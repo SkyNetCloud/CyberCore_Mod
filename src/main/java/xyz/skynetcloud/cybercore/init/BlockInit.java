@@ -12,13 +12,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.block.tech.TechBlockBaseSubCore;
 import xyz.skynetcloud.cybercore.block.tech.techblocks.CyberCoreCable;
-import xyz.skynetcloud.cybercore.block.tech.techblocks.LunarGenBlock;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockInit {
 	static ItemGroup group = CyberCoreTab.instance;
 
-	public static Block lunargen_block = new LunarGenBlock();
+	public static Block lunargen_block = new TechBlockBaseSubCore(Block.Properties.create(Material.IRON), group, true);
 
 	public static Block power_box = new TechBlockBaseSubCore(Block.Properties.create(Material.IRON), group, true);
 
