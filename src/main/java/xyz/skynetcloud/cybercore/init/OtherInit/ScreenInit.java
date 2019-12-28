@@ -1,6 +1,17 @@
 package xyz.skynetcloud.cybercore.init.OtherInit;
 
+import net.minecraft.client.gui.ScreenManager;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import xyz.skynetcloud.cybercore.util.screen.LunaGenScreen;
+import xyz.skynetcloud.cybercore.util.screen.PowerStorageScreen;
+
 public class ScreenInit {
 
-	// TODO Redoing All Blocks
+	@OnlyIn(Dist.CLIENT)
+	public static final void registerGUI() {
+		ScreenManager.registerFactory(ContainersInit.LUNARGEN_CON, LunaGenScreen::new);
+		ScreenManager.registerFactory(ContainersInit.POWER_CON, PowerStorageScreen::new);
+
+	}
 }

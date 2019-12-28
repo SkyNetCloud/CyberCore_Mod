@@ -41,6 +41,8 @@ public class CyberCorePowerBlock extends TechBlockBaseSubCore {
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
 		worldIn.setBlockState(pos, this.getDefaultState().with(FACING, placer.getHorizontalFacing().getOpposite()), 2);
 	}
+	
+
 
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {

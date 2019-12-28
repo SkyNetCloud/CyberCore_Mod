@@ -1,9 +1,10 @@
 package xyz.skynetcloud.cybercore.util;
 
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.energy.EnergyStorage;
 
-public class CyberPowerStorage extends EnergyStorage {
+public class CyberPowerStorage extends EnergyStorage implements INBTSerializable<CompoundNBT> {
 
 	protected int power;
 	protected int cap;
@@ -31,6 +32,7 @@ public class CyberPowerStorage extends EnergyStorage {
 
 	}
 
+	@Override
 	public void deserializeNBT(CompoundNBT nbt) {
 		power = nbt.getInt("energy");
 		cap = nbt.getInt("capacity");

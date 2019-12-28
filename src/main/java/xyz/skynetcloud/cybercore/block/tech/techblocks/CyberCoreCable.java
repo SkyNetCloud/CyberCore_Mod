@@ -9,26 +9,36 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Direction.Axis;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
 import net.minecraftforge.energy.CapabilityEnergy;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.block.tech.TechBlockBaseSubCore;
+import xyz.skynetcloud.cybercore.init.BlockInit;
+import xyz.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
 
 public class CyberCoreCable extends TechBlockBaseSubCore {
 
@@ -76,12 +86,10 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 
 	public CyberCoreCable() {
 		super(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F), CyberCoreTab.instance, true);
-
 		this.setDefaultState(stateContainer.getBaseState().with(NORTH, 0).with(EAST, 0).with(SOUTH, 0).with(WEST, 0)
 				.with(UP, 0).with(DOWN, 0));
 	}
 
-	/*
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand hand,
 			BlockRayTraceResult ray) {
@@ -107,12 +115,12 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 		}
 		return super.onBlockActivated(state, worldIn, pos, player, hand, ray);
 	}
-*/
+
 	@Override
 	public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
-		return new ItemStack(null);
+		return new ItemStack(BlockInit.power_cable);
 	}
-/*
+
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldstate, boolean bool) {
 		CableTileEntity te = getTECable(world, pos);
@@ -122,7 +130,7 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 		}
 
 	}
-*/
+
 	@Override
 	public boolean hasTileEntity() {
 		return true;
@@ -135,7 +143,7 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return null;
+		return new CableTileEntity();
 	}
 
 	public Item createItemBlock() {
@@ -143,9 +151,17 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 				.setRegistryName("power_cable");
 	}
 
-	/*
-	 * public BlockRenderLayer getRenderLayer() { return BlockRenderLayer.CUTOUT; }
-	 */
+	@Override
+	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+		TileEntity te = worldIn.getTileEntity(pos);
+		if (te != null) {
+			if (te instanceof CableTileEntity) {
+				((CableTileEntity) te).deleteCable();
+			}
+		}
+		super.onReplaced(state, worldIn, pos, newState, isMoving);
+	}
+
 
 	@Override
 	public BlockRenderType getRenderType(BlockState state) {
@@ -158,7 +174,7 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 		HashMap<Integer, RayTraceResult> list = new HashMap<Integer, RayTraceResult>();
 		return list;
 	}
-	/*
+
 	@Override
 	public void onNeighborChange(BlockState state, IWorldReader world, BlockPos pos, BlockPos neighbor) {
 
@@ -180,7 +196,7 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 		}
 		return null;
 	}
-*/
+
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		IBlockReader world = context.getWorld();
@@ -205,7 +221,7 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 
 		return state;
 	}
-	/*
+
 	@Override
 	public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world,
 			BlockPos currentPos, BlockPos facingPos) {
@@ -223,7 +239,7 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 		}
 		return state;
 	}
-	*/
+
 	@Override
 	protected void fillStateContainer(Builder<Block, BlockState> builder) {
 		builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN);

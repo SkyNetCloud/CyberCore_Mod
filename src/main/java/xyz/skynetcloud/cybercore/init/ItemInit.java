@@ -12,7 +12,7 @@ import xyz.skynetcloud.cybercore.item.UpgradeLvl;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemInit {
 
-	public static Item cyber_ingot;
+	public static Item cyber_ingot = new Item(new Item.Properties().group(CyberCoreTab.instance));
 
 	public static UpgradeLvl lunar_upgrade_lvl_1 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 1,
 			3);

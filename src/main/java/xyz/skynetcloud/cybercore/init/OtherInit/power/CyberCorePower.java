@@ -26,34 +26,22 @@ public class CyberCorePower extends EnergyStorage implements INBTSerializable<Co
 		return super.extractEnergy(maxExtract, false);
 	}
 
-	public void setEnergy(int energy) {
-		this.energy = energy;
-	}
-
-	public void addEnergy(int energy) {
-		this.energy += energy;
-		if (this.energy > getMaxEnergyStored()) {
-			this.energy = getEnergyStored();
-		}
-	}
-
-	public void consumeEnergy(int energy) {
-		this.energy -= energy;
-		if (this.energy < 0) {
-			this.energy = 0;
-		}
+	@Override
+	public void deserializeNBT(CompoundNBT nbt) {
+		energy = nbt.getInt("energy");
+		capacity = nbt.getInt("capacity");
+		maxReceive = nbt.getInt("maxreceive");
+		maxExtract = nbt.getInt("maxextract");
 	}
 
 	@Override
 	public CompoundNBT serializeNBT() {
-		CompoundNBT tag = new CompoundNBT();
-		tag.putInt("energy", getEnergyStored());
-		return tag;
-	}
-
-	@Override
-	public void deserializeNBT(CompoundNBT nbt) {
-		setEnergy(nbt.getInt("energy"));
+		CompoundNBT nbtList = new CompoundNBT();
+		nbtList.putInt("energy", energy);
+		nbtList.putInt("capacity", capacity);
+		nbtList.putInt("maxreceive", maxReceive);
+		nbtList.putInt("maxextract", maxExtract);
+		return nbtList;
 	}
 
 	// Sync client/server

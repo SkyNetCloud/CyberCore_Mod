@@ -11,19 +11,28 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.block.tech.TechBlockBaseSubCore;
+import xyz.skynetcloud.cybercore.block.tech.techblocks.CyberCoreCable;
+import xyz.skynetcloud.cybercore.block.tech.techblocks.LunarGenBlock;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockInit {
 	static ItemGroup group = CyberCoreTab.instance;
 
-	public static Block lunargen_block = new TechBlockBaseSubCore(Block.Properties.create(Material.IRON), group, true);
+	public static Block lunargen_block = new LunarGenBlock();
+
+	public static Block power_box = new TechBlockBaseSubCore(Block.Properties.create(Material.IRON), group, true);
 
 	public static Block cyber_ore = new Block(Block.Properties.create(Material.GOURD));
+
+	public static Block power_cable = new CyberCoreCable();
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		lunargen_block = registerBlock(lunargen_block, "lunarsolargenerator_block");
 		cyber_ore = registerBlock(cyber_ore, "cyber_ore");
+		power_cable = registerBlock(power_cable, "power_cable");
+		power_box = registerBlock(power_box, "power_storage_block");
+
 	}
 
 	public static Block registerBlock(Block block, String name) {

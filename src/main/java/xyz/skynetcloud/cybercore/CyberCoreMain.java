@@ -11,7 +11,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import xyz.skynetcloud.cybercore.init.BlockInit;
+import xyz.skynetcloud.cybercore.init.ItemInit;
+import xyz.skynetcloud.cybercore.init.OtherInit.ScreenInit;
+import xyz.skynetcloud.cybercore.world.gen.OreGen;
 
 @Mod("cybercore")
 public class CyberCoreMain {
@@ -30,6 +32,8 @@ public class CyberCoreMain {
 
 	private void setup(FMLCommonSetupEvent event) {
 
+		ScreenInit.registerGUI();
+		OreGen.setupOreGeneration();
 	}
 
 	@SubscribeEvent
@@ -48,7 +52,7 @@ public class CyberCoreMain {
 
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(BlockInit.lunargen_block);
+			return new ItemStack(ItemInit.lunar_upgrade_lvl_1);
 		}
 	}
 
