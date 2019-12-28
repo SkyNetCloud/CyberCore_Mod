@@ -19,7 +19,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
 
-version = 
+version = "${minecraft_version}-${mod_version}.${System.getenv().BUILD_NUMBER}"
 group = 'xyz.skynetcloud.cybercore' 
 archivesBaseName = 'CyberCore'
 
@@ -27,7 +27,7 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 
 minecraft {
 
-    mappings channel: 'snapshot', version: mappings_version
+    mappings channel: 'snapshot', version: "20190719-1.14.3"
 
     runs {
         client = {

@@ -4,6 +4,7 @@ loaderVersion="[30,)" #mandatory (28 is current forge version)
 modId="cybercore" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="CyberCore" #mandatory
+logoFile="Logo.png" #optional
 description='''
 A small Tech Mod
 '''

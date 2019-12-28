@@ -1,4 +1,4 @@
 {
     "parent": "item/generated",
-    "textures": { "layer0": "supercyber:item/power_cable"}
+    "textures": { "layer0": "cybercore:items/power_cable"}
 }

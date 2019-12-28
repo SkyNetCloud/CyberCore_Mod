@@ -1,6 +1,7 @@
 package xyz.skynetcloud.cybercore.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.OreBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -17,11 +18,13 @@ import xyz.skynetcloud.cybercore.block.tech.techblocks.CyberCoreCable;
 public class BlockInit {
 	static ItemGroup group = CyberCoreTab.instance;
 
-	public static Block lunargen_block = new TechBlockBaseSubCore(Block.Properties.create(Material.IRON), group, true);
+	public static Block lunargen_block = new TechBlockBaseSubCore(
+			Block.Properties.create(Material.IRON).hardnessAndResistance(15), group, true);
 
 	public static Block power_box = new TechBlockBaseSubCore(Block.Properties.create(Material.IRON), group, true);
 
-	public static Block cyber_ore = new Block(Block.Properties.create(Material.GOURD));
+	public static Block cyber_ore = new OreBlock(
+			Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F).harvestLevel(6));
 
 	public static Block power_cable = new CyberCoreCable();
 
