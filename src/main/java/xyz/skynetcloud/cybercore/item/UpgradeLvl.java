@@ -5,8 +5,8 @@ public class UpgradeLvl extends ItemBaseCore {
 	private int level;
 	private int itemtype;
 
-	public UpgradeLvl(String name, Properties property, int level, int itemtype) {
-		super(name, property);
+	public UpgradeLvl(Properties property, int level, int itemtype) {
+		super(property);
 		this.level = level;
 		this.itemtype = itemtype;
 	}

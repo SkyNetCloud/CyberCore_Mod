@@ -5,19 +5,14 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import xyz.skynetcloud.cybercore.block.BlockBaseCore;
-import xyz.skynetcloud.cybercore.util.TE.otherclasses.PowerTileEntity;
 
 public class TechBlockBaseSubCore extends BlockBaseCore {
 
@@ -38,7 +33,7 @@ public class TechBlockBaseSubCore extends BlockBaseCore {
 
 	}
 
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
+	/*public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
 			BlockRayTraceResult ray) {
 		if (!worldIn.isRemote) {
 			TileEntity te = worldIn.getTileEntity(pos);
@@ -48,7 +43,7 @@ public class TechBlockBaseSubCore extends BlockBaseCore {
 		}
 		return true;
 	}
-
+	*/
 	@Override
 	public boolean hasTileEntity() {
 		return true;
@@ -59,18 +54,17 @@ public class TechBlockBaseSubCore extends BlockBaseCore {
 		return true;
 	}
 	
-	//TODO Need To work on Fixing TileEntity
-/*
+	/*
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		if (this == BlockInit.lunargen)
+		if (this == Names.LUNAR_GEN_MACHINE_BLOCK)
 			return new LunaGenTileEntity();
-		else if (this == BlockInit.powerbox)
+		else if (this == Names.POWER_BOX_BLOCK)
 			return new PowerStorageTileEntity();
 		else
 			return new LunaGenTileEntity();
 	}
- */
+	*/
 	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;

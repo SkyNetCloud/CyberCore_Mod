@@ -4,9 +4,8 @@ import net.minecraft.item.Item;
 
 public class ItemBaseCore extends Item {
 
-	public ItemBaseCore(String name, Properties property) {
+	public ItemBaseCore(Properties property) {
 		super(property);
-		setRegistryName(name);
 
 	}
 
