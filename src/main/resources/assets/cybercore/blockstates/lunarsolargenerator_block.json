@@ -1,0 +1,9 @@
+{
+    "variants": 
+    {
+        "": 
+        {
+            "model": "cybercore:block/machine/lunarsolargenerator_block"
+        }
+    }
+}

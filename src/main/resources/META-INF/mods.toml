@@ -1,0 +1,10 @@
+modLoader="javafml" #mandatory
+loaderVersion="[30,)" #mandatory (28 is current forge version)
+[[mods]] #mandatory
+modId="cybercore" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="CyberCore" #mandatory
+description='''
+A small Tech Mod
+'''
+
