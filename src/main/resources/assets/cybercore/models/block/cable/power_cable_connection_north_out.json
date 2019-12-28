@@ -1,0 +1,146 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"2": "cybercore:block/cables/cable",
+		"3": "cybercore:block/cables/connection_out",
+		"particle": "cybercore:block/cables/cable"
+	},
+	"elements": [
+		{
+			"from": [
+				6,
+				6,
+				0
+			],
+			"to": [
+				10,
+				10,
+				2
+			],
+			"faces": {
+				"north": {
+					"uv": [
+						6.5,
+						6.5,
+						10.5,
+						10.5
+					],
+					"texture": "#3"
+				},
+				"east": {
+					"uv": [
+						4.5,
+						0,
+						8.5,
+						6
+					],
+					"texture": "#3"
+				},
+				"south": {
+					"uv": [
+						6.5,
+						6.5,
+						10.5,
+						10.5
+					],
+					"texture": "#3"
+				},
+				"west": {
+					"uv": [
+						0,
+						0,
+						4,
+						6
+					],
+					"texture": "#3"
+				},
+				"up": {
+					"uv": [
+						0,
+						6.5,
+						6,
+						10.5
+					],
+					"texture": "#3"
+				},
+				"down": {
+					"uv": [
+						0,
+						11,
+						6,
+						15
+					],
+					"texture": "#3"
+				}
+			}
+		},
+		{
+			"from": [
+				7,
+				7,
+				1
+			],
+			"to": [
+				9,
+				9,
+				7
+			],
+			"faces": {
+				"north": {
+					"uv": [
+						0,
+						7,
+						2,
+						9
+					],
+					"texture": "#2"
+				},
+				"east": {
+					"uv": [
+						9.5,
+						7,
+						16,
+						9
+					],
+					"texture": "#2"
+				},
+				"south": {
+					"uv": [
+						0,
+						7,
+						2,
+						9
+					],
+					"texture": "#2"
+				},
+				"west": {
+					"uv": [
+						0,
+						7,
+						6.5,
+						9
+					],
+					"texture": "#2"
+				},
+				"up": {
+					"uv": [
+						7,
+						0,
+						9,
+						6.5
+					],
+					"texture": "#2"
+				},
+				"down": {
+					"uv": [
+						7,
+						9.5,
+						9,
+						16
+					],
+					"texture": "#2"
+				}
+			}
+		}
+	]
+}

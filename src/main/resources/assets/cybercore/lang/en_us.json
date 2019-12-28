@@ -1,15 +1,16 @@
 {
-	"itemGroup.CyberCore": "Cyber Core",
+	"itemGroup.cybercore": "Cyber Core",
 	"block.cybercore.cyber_ingot_block": "Cyber Block",
 	"block.cybercore.lunarsolargenerator_block": "Lunar Solar Generator",
 	"block.cybercore.power_storage_block": "Cyber Power Block",
 	"block.cybercore.power_cable": "Power Conduit",
-	"item.cybercore.lunagen_lvl_1": "Lunar Power Upgrade lvl 1",
-	"item.cybercore.lunagen_lvl_2": "Lunar Power Upgrade lvl 2",
-	"item.cybercore.lunagen_lvl_3": "Lunar Power Upgrade lvl 3",
-	"item.cybercore.lunagen_lvl_4": "Lunar Power Upgrade lvl 4",
-	"item.cybercore.speed_lvl_1": "Speed Upgrade lvl 1",
-	"item.cybercore.speed_lvl_2": "Speed Upgrade lvl 2",
-	"item.cybercore.speed_lvl_3": "Speed Upgrade lvl 3",
-	"item.cybercore.speed_lvl_4": "Speed Upgrade lvl 4"
+	"item.cybercore.cyber_ingot": "Cyber Ingot",
+	"item.cybercore.lunar_upgrade_lvl_1": "Lunar Power Upgrade lvl 1",
+	"item.cybercore.lunar_upgrade_lvl_2": "Lunar Power Upgrade lvl 2",
+	"item.cybercore.lunar_upgrade_lvl_3": "Lunar Power Upgrade lvl 3",
+	"item.cybercore.lunar_upgrade_lvl_4": "Lunar Power Upgrade lvl 4",
+	"item.cybercore.speed_upgrade_lvl_1": "Speed Upgrade lvl 1",
+	"item.cybercore.speed_upgrade_lvl_2": "Speed Upgrade lvl 2",
+	"item.cybercore.speed_upgrade_lvl_3": "Speed Upgrade lvl 3",
+	"item.cybercore.speed_upgrade_lvl_4": "Speed Upgrade lvl 4"
 }
