@@ -1,6 +1,6 @@
 {
    "parent": "item/handheld",
    "textures": {
-       "layer0": "cybercore:item/cyber_axe"
+       "layer0": "cybercore:items/cyber_axe"
    }
 }

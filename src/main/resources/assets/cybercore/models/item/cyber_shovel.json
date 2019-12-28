@@ -1,6 +1,6 @@
 {
    "parent": "item/handheld",
    "textures": {
-       "layer0": "cybercore:item/cyber_shovel"
+       "layer0": "cybercore:items/cyber_shovel"
    }
 }

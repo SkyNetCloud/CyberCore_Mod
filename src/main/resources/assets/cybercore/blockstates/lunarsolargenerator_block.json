@@ -1,9 +1,7 @@
 {
-    "variants": 
-    {
-        "": 
-        {
-            "model": "cybercore:block/machine/lunarsolargenerator_block"
-        }
-    }
+	"variants": {
+		"": {
+			"model": "cybercore:block/machine/lunarsolargenerator_block"
+		}
+	}
 }
