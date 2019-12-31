@@ -45,7 +45,7 @@ dependencies {
     minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
 }
 
-def changelog_file = rootProject.file("build/BiomesOPlenty-${version}-changelog.txt")
+def changelog_file = rootProject.file("build/CyberCore-${version}-changelog.txt")
 
 curseforge {
     if (project.hasProperty('curseApiKey')) {
@@ -54,7 +54,7 @@ curseforge {
             id = '356097'
 
             if (changelog_file.exists()) {
-                changelog = changelog_file
+                changelog = 'changelog.txt'
             }
 
             releaseType = 'beta'
