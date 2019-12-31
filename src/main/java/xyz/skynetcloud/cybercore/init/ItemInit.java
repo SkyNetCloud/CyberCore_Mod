@@ -1,62 +1,30 @@
 package xyz.skynetcloud.cybercore.init;
 
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.HoeItem;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.cyber_axe;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.cyber_hoe;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.cyber_ingot;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.cyber_pickaxe;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.cyber_shovel;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.cyber_sword;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.lunar_upgrade_lvl_1;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.lunar_upgrade_lvl_2;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.lunar_upgrade_lvl_3;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.lunar_upgrade_lvl_4;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.speed_upgrade_lvl_1;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.speed_upgrade_lvl_2;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.speed_upgrade_lvl_3;
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.speed_upgrade_lvl_4;
+
 import net.minecraft.item.Item;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.SwordItem;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
-import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.item.UpgradeLvl;
-import xyz.skynetcloud.cybercore.item.tools.CyberCorePickaxe;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemInit {
-
-	public static Item cyber_pickaxe = new CyberCorePickaxe(ToolMaterialsInit.cyber_ingot, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance));
-
-	public static Item cyber_axe = new AxeItem(ToolMaterialsInit.cyber_ingot, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance));
-
-	public static Item cyber_hoe = new HoeItem(ToolMaterialsInit.cyber_ingot, 20,
-			new Item.Properties().group(CyberCoreTab.instance));
-
-	public static Item cyber_shovel = new ShovelItem(ToolMaterialsInit.cyber_ingot, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance));
-
-	public static Item cyber_sword = new SwordItem(ToolMaterialsInit.cyber_ingot, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance));
-
-	public static Item cyber_ingot = new Item(new Item.Properties().group(CyberCoreTab.instance));
-
-	public static UpgradeLvl lunar_upgrade_lvl_1 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 1,
-			3);
-
-	public static UpgradeLvl lunar_upgrade_lvl_2 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 2,
-			3);
-
-	public static UpgradeLvl lunar_upgrade_lvl_3 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 3,
-			3);
-
-	public static UpgradeLvl lunar_upgrade_lvl_4 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 4,
-			3);
-
-	public static UpgradeLvl speed_upgrade_lvl_1 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 1,
-			3);
-
-	public static UpgradeLvl speed_upgrade_lvl_2 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 2,
-			3);
-
-	public static UpgradeLvl speed_upgrade_lvl_3 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 3,
-			3);
-
-	public static UpgradeLvl speed_upgrade_lvl_4 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 4,
-			3);
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {

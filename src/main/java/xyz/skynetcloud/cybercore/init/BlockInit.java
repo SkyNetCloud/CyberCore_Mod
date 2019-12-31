@@ -1,45 +1,32 @@
 package xyz.skynetcloud.cybercore.init;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.OreBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
-import xyz.skynetcloud.cybercore.block.tech.TechBlockBaseSubCore;
-import xyz.skynetcloud.cybercore.block.tech.techblocks.CyberCoreCable;
+import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockInit {
-	static ItemGroup group = CyberCoreTab.instance;
-
-	public static Block lunargen_block = new TechBlockBaseSubCore(
-			Block.Properties.create(Material.IRON).hardnessAndResistance(15), group, true);
-
-	public static Block power_box = new TechBlockBaseSubCore(Block.Properties.create(Material.IRON), group, true);
-
-	public static Block cyber_ore = new OreBlock(
-			Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F).harvestLevel(6));
-
-	public static Block power_cable = new CyberCoreCable();
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		lunargen_block = registerBlock(lunargen_block, "lunarsolargenerator_block");
-		cyber_ore = registerBlock(cyber_ore, "cyber_ore");
-		power_cable = registerBlock(power_cable, "power_cable");
-		power_box = registerBlock(power_box, "power_storage_block");
-
+		BlockNames.lunargen_block = registerBlock(BlockNames.lunargen_block, "lunarsolargenerator_block");
+		BlockNames.cyber_ore = registerBlock(BlockNames.cyber_ore, "cyber_ore");
+		BlockNames.power_cable = registerBlock(BlockNames.power_cable, "power_cable");
+		BlockNames.power_box = registerBlock(BlockNames.power_box, "power_storage_block");
+		BlockNames.cyber_block = registerBlock(BlockNames.cyber_block, "cyber_block");
+		BlockNames.cyber_stair_block = registerBlock(BlockNames.cyber_stair_block, "cyber_stair_block");
+		BlockNames.cyber_slab_block = registerBlock(BlockNames.cyber_slab_block, "cyber_slab_block");
 	}
 
-	public static Block registerBlock(Block block, String name) {
+	public static Block registerBlock(Block block,) {
 		BlockItem itemBlock = new BlockItem(block, new Item.Properties().group(CyberCoreTab.instance));
-		block.setRegistryName(name);
+		
 		itemBlock.setRegistryName(name);
 		ForgeRegistries.BLOCKS.register(block);
 		ForgeRegistries.ITEMS.register(itemBlock);
