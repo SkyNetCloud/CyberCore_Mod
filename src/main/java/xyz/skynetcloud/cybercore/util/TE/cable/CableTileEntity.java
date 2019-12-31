@@ -19,7 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import xyz.skynetcloud.cybercore.init.OtherInit.TileEntityInit;
 
 public class CableTileEntity extends TileEntity implements ITickableTileEntity {
 	private BlockPos masterPos = pos;
@@ -43,7 +42,7 @@ public class CableTileEntity extends TileEntity implements ITickableTileEntity {
 	private boolean connectionUpdate = true;
 
 	public CableTileEntity() {
-		super(TileEntityInit.CABLE_TE);
+		super(null);
 	}
 
 	@Override

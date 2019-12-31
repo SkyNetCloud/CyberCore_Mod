@@ -7,8 +7,8 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.text.ITextComponent;
+import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
 import xyz.skynetcloud.cybercore.block.tech.techblocks.CyberCorePowerBlock;
-import xyz.skynetcloud.cybercore.init.BlockInit;
 import xyz.skynetcloud.cybercore.init.OtherInit.TileEntityInit;
 import xyz.skynetcloud.cybercore.util.TE.otherclasses.PowerInventoryTileEntity;
 import xyz.skynetcloud.cybercore.util.container.PowerStorageContainer;
@@ -47,7 +47,7 @@ public class PowerStorageTileEntity extends PowerInventoryTileEntity {
 	};
 
 	public PowerStorageTileEntity() {
-		super(TileEntityInit.POWER_BOX_TE, 1000, 3);
+		super( null, 1000, 3);
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class PowerStorageTileEntity extends PowerInventoryTileEntity {
 					}
 					BlockState state = world.getBlockState(pos);
 					if (state != null) {
-						if (state.getBlock() == BlockInit.power_box) {
+						if (state.getBlock() == BlockNames.power_box) {
 							world.setBlockState(pos, state.with(CyberCorePowerBlock.LEVEL, newLvl), 2);
 							markDirty();
 						}

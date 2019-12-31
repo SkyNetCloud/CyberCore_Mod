@@ -7,7 +7,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import xyz.skynetcloud.cybercore.init.OtherInit.TileEntityInit;
 import xyz.skynetcloud.cybercore.util.CyberCoreConstants;
 import xyz.skynetcloud.cybercore.util.TE.otherclasses.PowerInventoryTileEntity;
 import xyz.skynetcloud.cybercore.util.container.LunaGenContainer;
@@ -50,7 +49,7 @@ public class LunaGenTileEntity extends PowerInventoryTileEntity {
 	};
 
 	public LunaGenTileEntity() {
-		super(TileEntityInit.LUNARGEN_GEN_TE, 10000, 4);
+		super(null, 10000, 4);
 	}
 
 	@Override
