@@ -3,10 +3,14 @@ package xyz.skynetcloud.cybercore.block;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemGroup;
 
+@SuppressWarnings("unused")
 public class BlockBaseCore extends Block {
 
-	public BlockBaseCore(Properties properties, ItemGroup group, boolean hasItem) {
-		super(properties);
+	private ItemGroup group;
+
+	public BlockBaseCore(Properties property, ItemGroup group) {
+		super(property);
+		this.group = group;
 
 	}
 
