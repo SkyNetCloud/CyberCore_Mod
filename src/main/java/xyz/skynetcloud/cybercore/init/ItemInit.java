@@ -21,6 +21,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
+import xyz.skynetcloud.cybercore.api.items.ItemNames.ItemNamesInit;
 import xyz.skynetcloud.cybercore.item.UpgradeLvl;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -29,33 +30,33 @@ public class ItemInit {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
-		cyber_axe = registerItem(cyber_axe, "cyber_axe");
+		cyber_axe = registerItem(cyber_axe, ItemNamesInit.CYBER_AXE);
 
-		cyber_pickaxe = registerItem(cyber_pickaxe, "cyber_pickaxe");
+		cyber_pickaxe = registerItem(cyber_pickaxe, ItemNamesInit.CYBER_PICKAXE);
 
-		cyber_shovel = registerItem(cyber_shovel, "cyber_shovel");
+		cyber_shovel = registerItem(cyber_shovel, ItemNamesInit.CYBER_SHOVEL);
 
-		cyber_sword = registerItem(cyber_sword, "cyber_sword");
+		cyber_sword = registerItem(cyber_sword, ItemNamesInit.CYBER_SWORD);
 
-		cyber_hoe = registerItem(cyber_hoe, "cyber_hoe");
+		cyber_hoe = registerItem(cyber_hoe, ItemNamesInit.CYBER_HOE);
 
-		lunar_upgrade_lvl_1 = registerItem(lunar_upgrade_lvl_1, "lunar_upgrade_lvl_1");
+		lunar_upgrade_lvl_1 = registerItem(lunar_upgrade_lvl_1, ItemNamesInit.LUNAR_LVL_1);
 
-		lunar_upgrade_lvl_2 = registerItem(lunar_upgrade_lvl_2, "lunar_upgrade_lvl_2");
+		lunar_upgrade_lvl_2 = registerItem(lunar_upgrade_lvl_2, ItemNamesInit.LUNAR_LVL_2);
 
-		lunar_upgrade_lvl_3 = registerItem(lunar_upgrade_lvl_3, "lunar_upgrade_lvl_3");
+		lunar_upgrade_lvl_3 = registerItem(lunar_upgrade_lvl_3, ItemNamesInit.LUNAR_LVL_3);
 
-		lunar_upgrade_lvl_4 = registerItem(lunar_upgrade_lvl_4, "lunar_upgrade_lvl_4");
+		lunar_upgrade_lvl_4 = registerItem(lunar_upgrade_lvl_4, ItemNamesInit.LUNAR_LVL_4);
 
-		speed_upgrade_lvl_1 = registerItem(speed_upgrade_lvl_1, "speed_upgrade_lvl_1");
+		speed_upgrade_lvl_1 = registerItem(speed_upgrade_lvl_1, ItemNamesInit.SPEED_LVL_1);
 
-		speed_upgrade_lvl_2 = registerItem(speed_upgrade_lvl_2, "speed_upgrade_lvl_2");
+		speed_upgrade_lvl_2 = registerItem(speed_upgrade_lvl_2, ItemNamesInit.SPEED_LVL_2);
 
-		speed_upgrade_lvl_3 = registerItem(speed_upgrade_lvl_3, "speed_upgrade_lvl_3");
+		speed_upgrade_lvl_3 = registerItem(speed_upgrade_lvl_3, ItemNamesInit.SPEED_LVL_3);
 
-		speed_upgrade_lvl_4 = registerItem(speed_upgrade_lvl_4, "speed_upgrade_lvl_4");
+		speed_upgrade_lvl_4 = registerItem(speed_upgrade_lvl_4, ItemNamesInit.SPEED_LVL_4);
 
-		cyber_ingot = registerItem(cyber_ingot, "cyber_ingot");
+		cyber_ingot = registerItem(cyber_ingot, ItemNamesInit.CYBER_INGOT);
 
 		CyberCoreMain.LOGGER.info("Items Loaded");
 
