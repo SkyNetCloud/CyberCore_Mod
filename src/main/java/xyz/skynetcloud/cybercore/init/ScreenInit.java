@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.init.OtherInit;
+package xyz.skynetcloud.cybercore.init;
 
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.api.distmarker.Dist;

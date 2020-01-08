@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.init.OtherInit;
+package xyz.skynetcloud.cybercore.init;
 
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.event.RegistryEvent;
