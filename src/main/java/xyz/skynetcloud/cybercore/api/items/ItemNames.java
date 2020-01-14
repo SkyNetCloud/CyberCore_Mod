@@ -15,14 +15,14 @@ import xyz.skynetcloud.cybercore.item.tools.CyberCorePickaxe;
 public class ItemNames {
 
 	public static class ItemNamesInit {
-		public static final String SPEED_LVL_1 = (MODID + ":speed_lvl_1");
-		public static final String SPEED_LVL_2 = (MODID + ":speed_lvl_2");
-		public static final String SPEED_LVL_3 = (MODID + ":speed_lvl_3");
-		public static final String SPEED_LVL_4 = (MODID + ":speed_lvl_4");
-		public static final String LUNAR_LVL_1 = (MODID + ":lunar_lvl_1");
-		public static final String LUNAR_LVL_2 = (MODID + ":lunar_lvl_2");
-		public static final String LUNAR_LVL_3 = (MODID + ":lunar_lvl_3");
-		public static final String LUNAR_LVL_4 = (MODID + ":lunar_lvl_4");
+		public static final String SPEED_LVL_1 = (MODID + ":speed_upgrade_lvl_1");
+		public static final String SPEED_LVL_2 = (MODID + ":speed_upgrade_lvl_2");
+		public static final String SPEED_LVL_3 = (MODID + ":speed_upgrade_lvl_3");
+		public static final String SPEED_LVL_4 = (MODID + ":speed_upgrade_lvl_4");
+		public static final String LUNAR_LVL_1 = (MODID + ":lunar_upgrade_lvl_1");
+		public static final String LUNAR_LVL_2 = (MODID + ":lunar_upgrade_lvl_2");
+		public static final String LUNAR_LVL_3 = (MODID + ":lunar_upgrade_lvl_3");
+		public static final String LUNAR_LVL_4 = (MODID + ":lunar_upgrade_lvl_4");
 		public static final String CYBER_INGOT = (MODID + ":cyber_ingot");
 		public static final String CYBER_AXE = (MODID + ":cyber_axe");
 		public static final String CYBER_PICKAXE = (MODID + ":cyber_pickaxe");
@@ -48,29 +48,21 @@ public class ItemNames {
 
 	public static Item cyber_ingot = new Item(new Item.Properties().group(CyberCoreTab.instance));
 
-	public static UpgradeLvl lunar_upgrade_lvl_1 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 1,
-			3);
+	public static Item lunar_upgrade_lvl_1 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 1, 0);
 
-	public static UpgradeLvl lunar_upgrade_lvl_2 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 2,
-			3);
+	public static Item lunar_upgrade_lvl_2 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 2, 0);
 
-	public static UpgradeLvl lunar_upgrade_lvl_3 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 3,
-			3);
+	public static Item lunar_upgrade_lvl_3 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 3, 0);
 
-	public static UpgradeLvl lunar_upgrade_lvl_4 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 4,
-			3);
+	public static Item lunar_upgrade_lvl_4 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 4, 0);
 
-	public static UpgradeLvl speed_upgrade_lvl_1 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 1,
-			3);
+	public static Item speed_upgrade_lvl_1 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 1, 2);
 
-	public static UpgradeLvl speed_upgrade_lvl_2 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 2,
-			3);
+	public static Item speed_upgrade_lvl_2 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 2, 2);
 
-	public static UpgradeLvl speed_upgrade_lvl_3 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 3,
-			3);
+	public static Item speed_upgrade_lvl_3 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 3, 2);
 
-	public static UpgradeLvl speed_upgrade_lvl_4 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 4,
-			3);
+	public static Item speed_upgrade_lvl_4 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 4, 2);
 
 	public static final Item WRENCH = new Item(new Item.Properties().group(CyberCoreTab.instance));
 
