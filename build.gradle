@@ -54,7 +54,7 @@ curseforge {
             id = '356097'
 
             if (changelog_file.exists()) {
-                changelog = 'changelog.txt'
+                changelog = file('changelog.txt')
             }
 
             releaseType = 'beta'
