@@ -21,6 +21,7 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class CableTileEntity extends TileEntity implements ITickableTileEntity {
 	private BlockPos masterPos = null;
 
