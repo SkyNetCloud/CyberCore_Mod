@@ -14,19 +14,17 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import xyz.skynetcloud.cybercore.init.OtherInit.power.CyberCorePower;
-
+import xyz.skynetcloud.cybercore.init.OtherInit.power.CyberSystemPowerStorage;
 
 abstract public class CyberCorePowerTE extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
-	protected CyberCorePower energystorage;
+	protected CyberSystemPowerStorage energystorage;
 	private LazyOptional<IEnergyStorage> energyCap;
 	public String customname;
 
-	public CyberCorePowerTE(TileEntityType<?> type, int energyStorage)
-	{
+	public CyberCorePowerTE(TileEntityType<?> type, int energyStorage) {
 		super(type);
-		energystorage = new CyberCorePower(energyStorage);
+		energystorage = new CyberSystemPowerStorage(energyStorage);
 		energyCap = LazyOptional.of(() -> energystorage);
 	}
 

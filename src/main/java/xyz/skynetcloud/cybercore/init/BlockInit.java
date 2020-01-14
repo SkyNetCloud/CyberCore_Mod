@@ -1,32 +1,35 @@
 package xyz.skynetcloud.cybercore.init;
 
-import static xyz.skynetcloud.cybercore.api.blocks.BlockNames.cyber_block;
-import static xyz.skynetcloud.cybercore.api.blocks.BlockNames.cyber_ore;
-import static xyz.skynetcloud.cybercore.api.blocks.BlockNames.cyber_slab_block;
-import static xyz.skynetcloud.cybercore.api.blocks.BlockNames.cyber_stair_block;
-import static xyz.skynetcloud.cybercore.api.blocks.BlockNames.lunargen_block;
-import static xyz.skynetcloud.cybercore.api.blocks.BlockNames.power_box;
-import static xyz.skynetcloud.cybercore.api.blocks.BlockNames.power_cable;
-
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.IForgeRegistry;
+import xyz.skynetcloud.cybercore.CyberCoreMain;
 import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
-import xyz.skynetcloud.cybercore.api.blocks.BlockNames.BlockNamesInit;
+import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockInit {
 
+	
+	public static void register(IForgeRegistry<Block> registry) {
+		for (BlockBaseCore block : BlockNames.BLOCKS)
+			registry.register((Block) block);
+
+	}
+
+	public static void registerItemBlocks(IForgeRegistry<Item> registry) {
+		for (BlockBaseCore block : BlockNames.BLOCKITEMS)
+			registry.register((Item) block.createItemBlock());
+	}
+
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		lunargen_block = BlockNames.registerBlock(BlockNames.lunargen_block, BlockNamesInit.LUNAR_BLOCK);
-		cyber_ore = BlockNames.registerBlock(BlockNames.cyber_ore, BlockNamesInit.CYBER_ORE_BLOCK);
-		power_cable = BlockNames.registerBlock(BlockNames.power_cable, BlockNamesInit.POWER_CABLE_BLOCK);
-		power_box = BlockNames.registerBlock(BlockNames.power_box, BlockNamesInit.POWER_BOX_BLOCK);
-		cyber_block = BlockNames.registerBlock(BlockNames.cyber_block, BlockNamesInit.CYBER_BLOCK);
-		cyber_stair_block = BlockNames.registerBlock(BlockNames.cyber_stair_block, BlockNamesInit.CYBER_STAIR_BLOCK);
-		cyber_slab_block = BlockNames.registerBlock(BlockNames.cyber_slab_block, BlockNamesInit.CYBER_SLAB_BLOCK);
+		BlockInit.register(event.getRegistry());
+
+		CyberCoreMain.LOGGER.info("Loaded Blocks");
 	}
 
 }

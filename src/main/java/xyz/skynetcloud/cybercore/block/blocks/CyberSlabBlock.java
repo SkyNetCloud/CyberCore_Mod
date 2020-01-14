@@ -34,8 +34,8 @@ public class CyberSlabBlock extends BlockBaseCore implements IWaterLoggable {
 	static final VoxelShape BOTTOM_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
 	static final VoxelShape TOP_SHAPE = Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
-	public CyberSlabBlock(Properties builder, ItemGroup group) {
-		super(builder, group);
+	public CyberSlabBlock(Properties builder, String name, ItemGroup group) {
+		super(builder, name, group, false);
 
 	}
 

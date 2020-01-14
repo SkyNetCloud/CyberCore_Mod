@@ -6,7 +6,7 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import xyz.skynetcloud.cybercore.init.OtherInit.ContainersInit;
+import xyz.skynetcloud.cybercore.api.containers.ContainerNames;
 import xyz.skynetcloud.cybercore.util.TE.LunaGenTileEntity;
 
 public class LunaGenContainer extends BaseContainerCore {
@@ -16,14 +16,14 @@ public class LunaGenContainer extends BaseContainerCore {
 	}
 
 	public LunaGenContainer(int id, PlayerInventory player, LunaGenTileEntity tileentity) {
-		super(id, ContainersInit.LUNARGEN_CON, player, tileentity, 4);
+		super(id, ContainerNames.LUNARGEN_CON, player, tileentity, 4);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
 
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 0, 84, 71, "slot.lunagen.focus"));
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 1, 45, 33, "slot.util.accelerateupgrade"));
-		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getPowerInSlot(), 150, 86, "slot.util.powerin"));
-		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getPowerOutSlot(), 168, 86, "slot.util.powerout"));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 0, 84, 71, "slot.lunagen.lvlcard"));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 1, 45, 33, "slot.util.acceleratecard"));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 150, 86, "slot.util.powerin"));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 168, 86, "slot.util.powerout"));
 	}
 
 	@Override

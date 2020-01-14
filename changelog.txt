@@ -1,6 +1,7 @@
-Mod Build: 0.1 - Sat Dec 28 11:12 EST 2019
+Mod Build: 0.2 - Mon Jan 13 10:55 0EST 2020
 	SkyNetCloud: 
-		Added Items
-		Added Blocks
-		Added Textures
+		Fix Textures
+		Fix Block Gui
+		Fix Power Cable Bug
+		Add More New Items
 

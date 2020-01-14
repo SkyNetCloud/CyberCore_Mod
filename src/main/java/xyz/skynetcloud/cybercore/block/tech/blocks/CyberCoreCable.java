@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.block.tech.techblocks;
+package xyz.skynetcloud.cybercore.block.tech.blocks;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,10 +15,10 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.Hand;
@@ -36,11 +36,12 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.energy.CapabilityEnergy;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
-import xyz.skynetcloud.cybercore.block.tech.TechBlockBaseSubCore;
-import xyz.skynetcloud.cybercore.init.BlockInit;
+import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
+import xyz.skynetcloud.cybercore.api.items.ItemNames;
+import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 import xyz.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
 
-public class CyberCoreCable extends TechBlockBaseSubCore {
+public class CyberCoreCable extends BlockBaseCore {
 
 	public static final IntegerProperty NORTH = IntegerProperty.create("north", 0, 3),
 			EAST = IntegerProperty.create("east", 0, 3), SOUTH = IntegerProperty.create("south", 0, 3),
@@ -84,17 +85,18 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 		}
 	};
 
-	public CyberCoreCable() {
-		super(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F), CyberCoreTab.instance, true);
+	public CyberCoreCable(String name, ItemGroup group) {
+		super(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F), name, group, true);
 		this.setDefaultState(stateContainer.getBaseState().with(NORTH, 0).with(EAST, 0).with(SOUTH, 0).with(WEST, 0)
 				.with(UP, 0).with(DOWN, 0));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand hand,
-			BlockRayTraceResult ray) {
+	public ActionResultType func_225533_a_(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
+			Hand hand, BlockRayTraceResult ray) {
 		if (!worldIn.isRemote && hand.equals(Hand.MAIN_HAND)
-				&& player.getHeldItemMainhand().getItem().equals(Items.REDSTONE)) {
+				&& player.getHeldItemMainhand().getItem().equals(ItemNames.cyber_ingot)) {
 			Vec3d hitvec = ray.getHitVec();
 			hitvec = hitvec.add(-pos.getX(), -pos.getY(), -pos.getZ());
 			VoxelShape tempshape;
@@ -112,13 +114,14 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 					}
 				}
 			}
+
 		}
-		return super.onBlockActivated(state, worldIn, pos, player, hand, ray);
+		return super.func_225533_a_(state, worldIn, pos, player, hand, ray);
 	}
 
 	@Override
 	public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
-		return new ItemStack(BlockInit.power_cable);
+		return new ItemStack(BlockNames.CABLE);
 	}
 
 	@Override
@@ -147,10 +150,10 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 	}
 
 	public Item createItemBlock() {
-		return new BlockItem(this, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS))
-				.setRegistryName("power_cable");
+		return new BlockItem(this, new Item.Properties().group(CyberCoreTab.instance)).setRegistryName("cable");
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		TileEntity te = worldIn.getTileEntity(pos);
@@ -162,8 +165,6 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 		super.onReplaced(state, worldIn, pos, newState, isMoving);
 	}
 
-
-
 	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
@@ -173,6 +174,7 @@ public class CyberCoreCable extends TechBlockBaseSubCore {
 	protected HashMap<Integer, RayTraceResult> rayTraceList(BlockPos pos, Vec3d start, Vec3d end,
 			HashMap<Integer, AxisAlignedBB> boxes) {
 		HashMap<Integer, RayTraceResult> list = new HashMap<Integer, RayTraceResult>();
+
 		return list;
 	}
 

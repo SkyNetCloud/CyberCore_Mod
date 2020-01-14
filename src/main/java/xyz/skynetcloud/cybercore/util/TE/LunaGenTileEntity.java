@@ -5,21 +5,21 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IIntArray;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
+import xyz.skynetcloud.cybercore.init.OtherInit.power.CyberSystemPowerStorage;
 import xyz.skynetcloud.cybercore.util.CyberCoreConstants;
-import xyz.skynetcloud.cybercore.util.TE.otherclasses.PowerInventoryTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import xyz.skynetcloud.cybercore.util.container.LunaGenContainer;
 
-public class LunaGenTileEntity extends PowerInventoryTileEntity {
+public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	int workload = 0;
 	protected final IIntArray field_array = new IIntArray() {
 		public int get(int index) {
 			switch (index) {
 			case 0:
-				return LunaGenTileEntity.this.powerstorage.getEnergyStored();
+				return LunaGenTileEntity.this.energystorage.getEnergyStored();
 			case 1:
-				return LunaGenTileEntity.this.powerstorage.getMaxEnergyStored();
+				return LunaGenTileEntity.this.energystorage.getMaxEnergyStored();
 			case 2:
 				return LunaGenTileEntity.this.workload;
 			default:
@@ -30,10 +30,10 @@ public class LunaGenTileEntity extends PowerInventoryTileEntity {
 		public void set(int index, int value) {
 			switch (index) {
 			case 0:
-				LunaGenTileEntity.this.powerstorage.setEnergyStored(value);
+				LunaGenTileEntity.this.energystorage.setEnergyStored(value);
 				break;
 			case 1:
-				LunaGenTileEntity.this.powerstorage.setEnergyMaxStored(value);
+				LunaGenTileEntity.this.energystorage.setEnergyMaxStored(value);
 				break;
 			case 2:
 				LunaGenTileEntity.this.workload = value;
@@ -49,30 +49,29 @@ public class LunaGenTileEntity extends PowerInventoryTileEntity {
 	};
 
 	public LunaGenTileEntity() {
-		super(null, 10000, 4);
+		super(TileEntityNames.LUNAR_GEN_MACHINE_TE, 10000, 4);
 	}
 
-	@Override
 	public void doUpdate() {
 		if (world.isDaytime() && world.canBlockSeeSky(pos.up())) {
-			if (powerstorage.getMaxEnergyStored() - powerstorage.getEnergyStored() > 0) {
+			if (energystorage.getMaxEnergyStored() - energystorage.getEnergyStored() > 0) {
 				workload++;
 				if (workload >= getTicksPerAmount()) {
-					powerstorage.receiveEnergy(getEnergyPerTick(markUpLevel(0, CyberCoreConstants.LUNASOLARFOCUS_TYPE)));
+					energystorage
+							.receiveEnergy(getEnergyPerTick(getMarkLvl(0, CyberCoreConstants.LUNASOLARFOCUS_TYPE)));
 					workload = 0;
 				}
 			}
 		}
-		doPowerLoop();
+		this.doEnergyLoop();
 	}
 
-	@Override
 	public IIntArray getIntArray() {
-		return field_array;
+		return this.field_array;
 	}
 
-	private int getEnergyPerTick(int level) {
-		switch (level) {
+	private int getEnergyPerTick(int focusLevel) {
+		switch (focusLevel) {
 		case 1:
 			return 20;
 		case 2:
@@ -87,7 +86,7 @@ public class LunaGenTileEntity extends PowerInventoryTileEntity {
 	}
 
 	public int getTicksPerAmount() {
-		return 80 - (markUpLevel(1, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * 15);
+		return 80 - (getMarkLvl(1, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * 15);
 	}
 
 	@Override
@@ -105,7 +104,7 @@ public class LunaGenTileEntity extends PowerInventoryTileEntity {
 
 	@Override
 	public String getNameString() {
-		return "lunagenerator";
+		return "solargenerator";
 	}
 
 	@Override
@@ -113,20 +112,28 @@ public class LunaGenTileEntity extends PowerInventoryTileEntity {
 		return new LunaGenContainer(id, inv, this);
 	}
 
-	@Override
-	public int getPowerInSlot() {
+	public int getEnergyInSlot() {
 		return 2;
 	}
 
-	@Override
-	public int getPowerOutSlot() {
+	public int getEnergyOutSlot() {
 		return 3;
 	}
 
-	@Override
-	public ITextComponent getDisplayName() {
-		// TODO Auto-generated method stub
-		return new StringTextComponent("lunar_te");
+	static CyberSystemPowerStorage access$000(LunaGenTileEntity x0) {
+		return x0.energystorage;
+	}
+
+	static CyberSystemPowerStorage access$100(LunaGenTileEntity x0) {
+		return x0.energystorage;
+	}
+
+	static CyberSystemPowerStorage access$200(LunaGenTileEntity x0) {
+		return x0.energystorage;
+	}
+
+	static CyberSystemPowerStorage access$300(LunaGenTileEntity x0) {
+		return x0.energystorage;
 	}
 
 }

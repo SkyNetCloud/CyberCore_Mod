@@ -18,7 +18,7 @@ public class LunaGenScreen extends ScreenBaseCore<LunaGenContainer> {
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		//GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
+		// GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
 		minecraft.getTextureManager().bindTexture(TEXTURES);
 		// this.drawScaledCustomSizeModalRect(this.guiLeft, this.guiTop, 0, 0,
 		// this.xSize, this.ySize, tileWidth, tileHeight);
@@ -28,7 +28,7 @@ public class LunaGenScreen extends ScreenBaseCore<LunaGenContainer> {
 		blit(this.guiLeft + 159, this.guiTop + 28 + (55 - k), 205, 55 - k, 16, 0 + k);
 
 		int l = 0;
-		switch (((LunaGenTileEntity) this.te).markUpLevel(0, CyberCoreConstants.LUNASOLARFOCUS_TYPE)) {
+		switch (((LunaGenTileEntity) this.te).getMarkLvl(0, CyberCoreConstants.LUNASOLARFOCUS_TYPE)) {
 		case 0:
 			l = 0;
 			break;

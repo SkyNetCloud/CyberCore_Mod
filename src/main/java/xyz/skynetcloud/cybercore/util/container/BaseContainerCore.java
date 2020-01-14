@@ -8,14 +8,14 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.IIntArray;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import xyz.skynetcloud.cybercore.util.TE.otherclasses.PowerTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCorePowerTE;
 
 public class BaseContainerCore extends Container {
 
-	protected final PowerTileEntity tileentity;
+	protected final CyberCorePowerTE tileentity;
 	protected final IIntArray field_array;
 
-	public BaseContainerCore(int id, ContainerType<?> type, PlayerInventory player, PowerTileEntity tileentity,
+	public BaseContainerCore(int id, ContainerType<?> type, PlayerInventory player, CyberCorePowerTE tileentity,
 			int slots) {
 		super(type, id);
 		for (int y = 0; y < 3; y++) {
@@ -43,7 +43,7 @@ public class BaseContainerCore extends Container {
 		return tileentity.isUsableByPlayer(playerIn);
 	}
 
-	public PowerTileEntity getTE() {
+	public CyberCorePowerTE getTE() {
 		return tileentity;
 	}
 

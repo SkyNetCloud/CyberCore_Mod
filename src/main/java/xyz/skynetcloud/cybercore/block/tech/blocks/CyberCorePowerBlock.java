@@ -1,11 +1,8 @@
-package xyz.skynetcloud.cybercore.block.tech.techblocks;
-
-import javax.annotation.Nullable;
+package xyz.skynetcloud.cybercore.block.tech.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -23,19 +20,16 @@ import xyz.skynetcloud.cybercore.block.tech.TechBlockBaseSubCore;
 public class CyberCorePowerBlock extends TechBlockBaseSubCore {
 
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-	public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 3);
+	public static final IntegerProperty LVL = IntegerProperty.create("lvl", 0, 3);
 
 	public CyberCorePowerBlock() {
-		super(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F), 
-				CyberCoreTab.instance, false);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LEVEL, 0));
+		super("power_storage", CyberCoreTab.instance);
+		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LVL, 0));
 	}
 
-	@Nullable
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(FACING, Direction.NORTH);
-
+		return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
 	}
 
 	@Override
@@ -55,7 +49,7 @@ public class CyberCorePowerBlock extends TechBlockBaseSubCore {
 
 	@Override
 	protected void fillStateContainer(Builder<Block, BlockState> builder) {
-		builder.add(FACING).add(LEVEL);
+		builder.add(FACING).add(LVL);
 	}
 
 }

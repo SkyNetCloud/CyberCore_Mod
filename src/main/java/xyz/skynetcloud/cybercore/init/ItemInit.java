@@ -30,6 +30,8 @@ public class ItemInit {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
+		BlockInit.registerItemBlocks(event.getRegistry());
+
 		cyber_axe = registerItem(cyber_axe, ItemNamesInit.CYBER_AXE);
 
 		cyber_pickaxe = registerItem(cyber_pickaxe, ItemNamesInit.CYBER_PICKAXE);

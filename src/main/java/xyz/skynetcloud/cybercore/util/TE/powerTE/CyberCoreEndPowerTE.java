@@ -97,7 +97,7 @@ abstract public class CyberCoreEndPowerTE extends CyberCorePowerTE {
 		}
 	}
 
-	public int getUpgradeTier(int slot, int itemtype) {
+	public int getMarkLvl(int slot, int itemtype) {
 		ItemStack stack = itemhandler.getStackInSlot(slot);
 		if (!stack.isEmpty()) {
 			if (stack.getItem() instanceof UpgradeLvl) {

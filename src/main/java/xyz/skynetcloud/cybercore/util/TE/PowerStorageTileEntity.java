@@ -6,24 +6,22 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IIntArray;
-import net.minecraft.util.text.ITextComponent;
 import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
-import xyz.skynetcloud.cybercore.block.tech.techblocks.CyberCorePowerBlock;
-import xyz.skynetcloud.cybercore.init.OtherInit.TileEntityInit;
-import xyz.skynetcloud.cybercore.util.TE.otherclasses.PowerInventoryTileEntity;
+import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
+import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
+import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import xyz.skynetcloud.cybercore.util.container.PowerStorageContainer;
 
-@SuppressWarnings("unused")
-public class PowerStorageTileEntity extends PowerInventoryTileEntity {
+public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 
 	private int currentLvl = -1;
 	protected final IIntArray field_array = new IIntArray() {
 		public int get(int index) {
 			switch (index) {
 			case 0:
-				return PowerStorageTileEntity.this.powerstorage.getEnergyStored();
+				return PowerStorageTileEntity.this.energystorage.getEnergyStored();
 			case 1:
-				return PowerStorageTileEntity.this.powerstorage.getMaxEnergyStored();
+				return PowerStorageTileEntity.this.energystorage.getMaxEnergyStored();
 			default:
 				return 0;
 			}
@@ -32,10 +30,10 @@ public class PowerStorageTileEntity extends PowerInventoryTileEntity {
 		public void set(int index, int value) {
 			switch (index) {
 			case 0:
-				PowerStorageTileEntity.this.powerstorage.setEnergyStored(value);
+				PowerStorageTileEntity.this.energystorage.setEnergyStored(value);
 				break;
 			case 1:
-				PowerStorageTileEntity.this.powerstorage.setEnergyMaxStored(value);
+				PowerStorageTileEntity.this.energystorage.setEnergyMaxStored(value);
 				break;
 			}
 
@@ -47,12 +45,12 @@ public class PowerStorageTileEntity extends PowerInventoryTileEntity {
 	};
 
 	public PowerStorageTileEntity() {
-		super( null, 1000, 3);
+		super(TileEntityNames.POWER_BOX_TE, 1000, 3);
 	}
 
 	@Override
 	public void doUpdate() {
-		doPowerLoop();
+		doEnergyLoop();
 	}
 
 	@Override
@@ -60,29 +58,30 @@ public class PowerStorageTileEntity extends PowerInventoryTileEntity {
 		return field_array;
 	}
 
+	@Override
 	public void onSlotContentChanged() {
 		if (world != null) {
 			if (!world.isRemote) {
-				int newLvl = markUpLevel(0, 3);
+				int newLvl = getMarkLvl(0, 3);
 				if (currentLvl != newLvl) {
-					switch (newLvl) {
+					switch (currentLvl) {
 					case 0:
-						powerstorage.setEnergyMaxStored(1000);
+						energystorage.setEnergyMaxStored(1000);
 						break;
 					case 1:
-						powerstorage.setEnergyMaxStored(10000);
+						energystorage.setEnergyMaxStored(10000);
 						break;
 					case 2:
-						powerstorage.setEnergyMaxStored(100000);
+						energystorage.setEnergyMaxStored(100000);
 						break;
 					case 3:
-						powerstorage.setEnergyMaxStored(1000000);
+						energystorage.setEnergyMaxStored(1000000);
 						break;
 					}
 					BlockState state = world.getBlockState(pos);
 					if (state != null) {
-						if (state.getBlock() == BlockNames.power_box) {
-							world.setBlockState(pos, state.with(CyberCorePowerBlock.LEVEL, newLvl), 2);
+						if (state.getBlock() == BlockNames.POWER_BOX) {
+							world.setBlockState(pos, state.with(CyberCorePowerBlock.LVL, newLvl), 2);
 							markDirty();
 						}
 					}
@@ -99,7 +98,7 @@ public class PowerStorageTileEntity extends PowerInventoryTileEntity {
 
 	@Override
 	public String getNameString() {
-		return "powerstorage";
+		return "power_storage";
 	}
 
 	@Override
@@ -108,18 +107,12 @@ public class PowerStorageTileEntity extends PowerInventoryTileEntity {
 	}
 
 	@Override
-	public int getPowerInSlot() {
+	public int getEnergyInSlot() {
 		return 1;
 	}
 
 	@Override
-	public int getPowerOutSlot() {
+	public int getEnergyOutSlot() {
 		return 2;
-	}
-
-	@Override
-	public ITextComponent getDisplayName() {
-
-		return null;
 	}
 }

@@ -7,7 +7,7 @@ import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.registries.ForgeRegistries;
-import xyz.skynetcloud.cybercore.init.BlockInit;
+import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
 
 public class OreGen {
 
@@ -16,7 +16,7 @@ public class OreGen {
 			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 					Feature.ORE
 							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-									BlockInit.cyber_ore.getDefaultState(), 17))
+									BlockNames.CYBER_ORE.getDefaultState(), 17))
 							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(20, 0, 0, 128))));
 
 		}

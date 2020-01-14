@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
-import xyz.skynetcloud.cybercore.util.TE.otherclasses.PowerTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCorePowerTE;
 import xyz.skynetcloud.cybercore.util.container.BaseContainerCore;
 import xyz.skynetcloud.cybercore.util.container.BaseContainerCore.SlotItemHandlerWithInfo;
 
@@ -14,7 +14,7 @@ public class ScreenBaseCore<T extends BaseContainerCore> extends ContainerScreen
 	protected static final ResourceLocation TEXTURES = new ResourceLocation(
 			CyberCoreMain.MODID + ":textures/gui/container/lunagen.png");
 	protected final PlayerInventory player;
-	protected final PowerTileEntity te;
+	protected final CyberCorePowerTE te;
 
 	@SuppressWarnings("unchecked")
 	public ScreenBaseCore(BaseContainerCore inventorySlotsIn, PlayerInventory inventoryPlayer, ITextComponent title) {
@@ -41,7 +41,7 @@ public class ScreenBaseCore<T extends BaseContainerCore> extends ContainerScreen
 	}
 
 	protected void drawTooltips(int mouseX, int mouseY) {
-		drawTooltip( te.getEnergyStored() + "/" + te.getMaxEnergyStored(), mouseX, mouseY, 158, 28, 16, 55);
+		drawTooltip(te.getEnergyStored() + "/" + te.getMaxEnergyStored(), mouseX, mouseY, 158, 28, 16, 55);
 	}
 
 	public void drawTooltip(String lines, int mouseX, int mouseY, int posX, int posY, int width, int height) {

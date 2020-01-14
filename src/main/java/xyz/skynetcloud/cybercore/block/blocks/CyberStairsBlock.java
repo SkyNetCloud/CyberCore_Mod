@@ -95,8 +95,8 @@ public class CyberStairsBlock extends BlockBaseCore implements IWaterLoggable {
 		return voxelshape;
 	}
 
-	public CyberStairsBlock(BlockState state, Properties builder, ItemGroup group) {
-		super(builder, group);
+	public CyberStairsBlock(BlockState state, Properties builder, String name, ItemGroup group) {
+		super(builder, name, group, true);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM)
 				.with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, Boolean.valueOf(false)));
 		this.modelBlock = state.getBlock();

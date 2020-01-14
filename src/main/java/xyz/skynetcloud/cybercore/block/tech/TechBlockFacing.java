@@ -16,7 +16,7 @@ public class TechBlockFacing extends TechBlockBaseSubCore {
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
 	public TechBlockFacing(String name, ItemGroup tab) {
-		super(null, tab, false);
+		super(name, tab);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
 	}
 
@@ -39,5 +39,4 @@ public class TechBlockFacing extends TechBlockBaseSubCore {
 	protected void fillStateContainer(Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
-
 }
