@@ -1,11 +1,13 @@
 package xyz.skynetcloud.cybercore.init;
 
+import static xyz.skynetcloud.cybercore.api.items.ItemNames.*;
+
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 
 public enum ToolMaterialsInit implements IItemTier {
-	cyber_ingot(10.0f, 9.0f, 800, 3, 25, ItemInit.cyber_ingot);
+	cyber_ingot_materials(10.0f, 9.0f, 800, 3, 25, cyber_ingot);
 
 	private float attackDamage, efficiency;
 	private int durability, harvestLevel, enchantability;
