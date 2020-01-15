@@ -5,6 +5,7 @@ modId="cybercore" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="CyberCore" #mandatory
 logoFile="Logo.png" #optional
+updateJSONURL="https://github.com/SkyNetCloud/CyberCore_Mod/raw/update.json" #optional
 description='''
 A small Tech Mod
 '''

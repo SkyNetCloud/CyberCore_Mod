@@ -6,7 +6,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IIntArray;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
-import xyz.skynetcloud.cybercore.init.OtherInit.power.CyberSystemPowerStorage;
+import xyz.skynetcloud.cybercore.util.ClientSideConfig;
 import xyz.skynetcloud.cybercore.util.CyberCoreConstants;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import xyz.skynetcloud.cybercore.util.container.LunaGenContainer;
@@ -49,7 +49,7 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	};
 
 	public LunaGenTileEntity() {
-		super(TileEntityNames.LUNAR_GEN_MACHINE_TE, 10000, 4);
+		super(TileEntityNames.LUNAR_GEN_MACHINE_TE, ClientSideConfig.PowerLmit.get(), 4);
 	}
 
 	public void doUpdate() {
@@ -86,7 +86,8 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	}
 
 	public int getTicksPerAmount() {
-		return 80 - (getMarkLvl(1, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * 15);
+		return ClientSideConfig.LunarGenPerTick.get()
+				- (getMarkLvl(1, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * ClientSideConfig.LunarGenPerTick.get());
 	}
 
 	@Override
@@ -118,22 +119,6 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 
 	public int getEnergyOutSlot() {
 		return 3;
-	}
-
-	static CyberSystemPowerStorage access$000(LunaGenTileEntity x0) {
-		return x0.energystorage;
-	}
-
-	static CyberSystemPowerStorage access$100(LunaGenTileEntity x0) {
-		return x0.energystorage;
-	}
-
-	static CyberSystemPowerStorage access$200(LunaGenTileEntity x0) {
-		return x0.energystorage;
-	}
-
-	static CyberSystemPowerStorage access$300(LunaGenTileEntity x0) {
-		return x0.energystorage;
 	}
 
 }

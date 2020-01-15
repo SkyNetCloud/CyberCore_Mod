@@ -45,18 +45,14 @@ dependencies {
     minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
 }
 
-def changelog_file = rootProject.file("build/CyberCore-${version}-changelog.txt")
-
 curseforge {
     if (project.hasProperty('curseApiKey')) {
         apiKey = project.getProperty('curseApiKey')
         project {
             id = '356097'
-
-            if (changelog_file.exists()) {
-                changelog = file('changelog.txt')
-            }
-
+            
+            changelog = file("CyberCore-${version}-changelog.txt")
+            
             releaseType = 'beta'
 
             mainArtifact(jar) {

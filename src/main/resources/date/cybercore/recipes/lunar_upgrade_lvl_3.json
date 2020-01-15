@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ABA",
+        "BCB",
+        "ABA"
+    ],
+    "key": {
+        "A": 
+        {
+            "item": "minecraft:glass_pane"
+        },
+        "B": 
+        {
+            "item": "cybercore:lunar_upgrade_lvl_2"
+        },
+        "C": 
+        {
+            "item": "minecraft:diamond"
+        }
+    },
+    "result": {
+        "item": "cybercore:lunar_upgrade_lvl_3",
+        "count": 1
+    }
+}

@@ -1,4 +1,10 @@
 {
+	"cybercore.update.available": "A update for CyberCore Mod is available. ",
+	"cybercore.update.click": "Click here",
+	"cybercore.update.tooltip": "View CurseForge",
+	"cybercore.info.click": "Click here",
+	"cybercore.info.link": "Dicord Link",
+	"cybercore.discord.tooltip": "Join Discord Server",
 	"itemGroup.cybercore": "Cyber Core",
 	"block.cybercore.cyber_ingot_block": "Cyber Block",
 	"block.cybercore.lunarsolargenerator_block": "Lunar Generator",

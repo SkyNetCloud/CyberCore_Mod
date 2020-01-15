@@ -9,6 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemGroup;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.block.BlockBaseCore;
+import xyz.skynetcloud.cybercore.block.blocks.CustomWorldLink;
 import xyz.skynetcloud.cybercore.block.blocks.CyberSlabBlock;
 import xyz.skynetcloud.cybercore.block.blocks.CyberStairsBlock;
 import xyz.skynetcloud.cybercore.block.tech.TechBlockFacing;
@@ -22,6 +23,8 @@ public class BlockNames {
 	public static List<BlockBaseCore> BLOCKITEMS = new ArrayList<>();
 
 	public static ItemGroup group = CyberCoreTab.instance;
+	
+	public static Block DimWorldLinkBlock = new CustomWorldLink();
 
 	public static BlockBaseCore CABLE = (BlockBaseCore) new CyberCoreCable("cable", CyberCoreTab.instance);
 

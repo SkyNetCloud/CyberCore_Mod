@@ -9,6 +9,7 @@ import net.minecraft.util.IIntArray;
 import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
+import xyz.skynetcloud.cybercore.util.ClientSideConfig;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import xyz.skynetcloud.cybercore.util.container.PowerStorageContainer;
 
@@ -45,7 +46,7 @@ public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 	};
 
 	public PowerStorageTileEntity() {
-		super(TileEntityNames.POWER_BOX_TE, 1000, 3);
+		super(TileEntityNames.POWER_BOX_TE, ClientSideConfig.PowerLmit.get(), 3);
 	}
 
 	@Override

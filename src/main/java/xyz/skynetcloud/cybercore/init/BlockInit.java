@@ -13,7 +13,6 @@ import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockInit {
 
-	
 	public static void register(IForgeRegistry<Block> registry) {
 		for (BlockBaseCore block : BlockNames.BLOCKS)
 			registry.register((Block) block);
