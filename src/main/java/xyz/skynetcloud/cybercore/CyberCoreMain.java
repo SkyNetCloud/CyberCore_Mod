@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -19,6 +20,7 @@ import xyz.skynetcloud.cybercore.api.items.ItemNames;
 import xyz.skynetcloud.cybercore.init.ClientEventInit;
 import xyz.skynetcloud.cybercore.init.ScreenInit;
 import xyz.skynetcloud.cybercore.util.CyberCoreConfig;
+import xyz.skynetcloud.cybercore.world.gen.OreGen;
 
 @Mod("cybercore")
 public class CyberCoreMain {
@@ -26,7 +28,7 @@ public class CyberCoreMain {
 	public static boolean hasSendUpdateAvailable = false;
 
 	public static final String MODID = "cybercore";
-
+	public static final ResourceLocation CYBERLAND_DIM = new ResourceLocation(MODID, "cyberland_dim");
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public CyberCoreMain() {
@@ -59,6 +61,7 @@ public class CyberCoreMain {
 	private void doClientStuff(final FMLClientSetupEvent event) {
 
 		ScreenInit.registerGUI();
+		OreGen.setupOreGeneration();
 
 	}
 

@@ -20,6 +20,7 @@ public class OreGen {
 							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(20, 0, 0, 128))));
 
 		}
+
 	}
 
 }

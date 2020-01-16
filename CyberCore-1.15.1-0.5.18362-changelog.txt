@@ -1,6 +1,8 @@
-Mod Build: 0.3 - Jan 14 5:38 0EST 2020
+Mod Build: 0.5 - Jan 15 7:52 EST 2020
 	SkyNetCloud: 
-		Added Config Client And Server
-		Added Version Checker
+		Added Ore Gen
+		Added Cyber Ingot, Power Storage, Lunar Gen Recipes
+		Fix World Load of CyberLand	
+		
 				
 

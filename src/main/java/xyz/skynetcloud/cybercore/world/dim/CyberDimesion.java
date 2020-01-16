@@ -8,17 +8,17 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.ChunkGeneratorType;
 
 public class CyberDimesion extends Dimension {
 
 	public CyberDimesion(World world, DimensionType type) {
 		super(world, type, 0.0F);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public ChunkGenerator<?> createChunkGenerator() {
-		return new CyberChunkGen(world, new CyberBiomeProvider());
+		return new CyberChunkGen(world, new CyberBiomeProvider(), ChunkGeneratorType.SURFACE.createSettings());
 	}
 
 	@Override
@@ -74,5 +74,4 @@ public class CyberDimesion extends Dimension {
 	public boolean doesXZShowFog(int x, int z) {
 		return false;
 	}
-
 }

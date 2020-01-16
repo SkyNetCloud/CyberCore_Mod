@@ -7,7 +7,7 @@ import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class ClientSideConfig {
 
-	public BooleanValue grass_enable;
+	public static BooleanValue grass_enable;
 
 	public static IntValue world_height;
 
@@ -23,6 +23,8 @@ public class ClientSideConfig {
 
 	public static void init(ForgeConfigSpec.Builder server, ForgeConfigSpec.Builder client) {
 		client.comment("Client Side Configuration").push("common");
+		
+		grass_enable = client.comment("World Has Grass").define("grass_enable", true);
 
 		overworldId = client.comment("Overworld dim ID").defineInRange("overworldId", 0, -1000, 1000);
 
