@@ -1,5 +1,6 @@
 {
 	"1.15.1": {
+		"0.5.18362": "See https://www.curseforge.com/minecraft/mc-mods/cybercore-mod/files for detailed information.",
 		"0.4.18362": "See https://www.curseforge.com/minecraft/mc-mods/cybercore-mod/files for detailed information.",
 		"0.3.18362": "See https://www.curseforge.com/minecraft/mc-mods/cybercore-mod/files for detailed information.",
 		"0.2.18362": "See https://www.curseforge.com/minecraft/mc-mods/cybercore-mod/files for detailed information.",
@@ -7,6 +8,6 @@
 	},
 	"homepage": "https://www.curseforge.com/minecraft/mc-mods/cybercore-mod",
 	"promos": {
-		"1.15.1-latest": "0.4.18362"
+		"1.15.1-latest": "0.5.18362"
 	}
 }
