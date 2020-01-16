@@ -1,20 +1,23 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"A A",
-		"AIA",
-		" A "
+		"ABA",
+		"BCB",
+		"ABA"
 	],
 	"key": {
 		"A": {
+			"item": "minecraft:stone"
+		},
+		"B": {
 			"item": "cybercore:cyber_ingot"
 		},
-		"I": {
-			"item": "minecraft:iron_ingot"
+		"C": {
+			"item": "minecraft:diamond"
 		}
 	},
 	"result": {
-		"item": "cybercore:wrench",
+		"item": "cybercore:worldlinkblock",
 		"count": 1
 	}
 }

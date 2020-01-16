@@ -7,17 +7,17 @@
 	],
 	"key": {
 		"A": {
-			"item": "minecraft:glass_pane"
+			"item": "minecraft:suger"
 		},
 		"B": {
-			"item": "cybercore:lunar_upgrade_lvl_3"
+			"item": "cybercore:speed_upgrade_lvl_2"
 		},
 		"C": {
-			"item": "minecraft:diamond"
+			"item": "minecraft:redstone"
 		}
 	},
 	"result": {
-		"item": "cybercore:lunar_upgrade_lvl_4",
+		"item": "cybercore:speed_upgrade_lvl_3",
 		"count": 1
 	}
 }
