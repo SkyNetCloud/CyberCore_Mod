@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"age=0": {
+			"model": "cybercore:block/lettuce_crop_block_age0"
+		},
+		"age=1": {
+			"model": "cybercore:block/lettuce_crop_block_age1"
+		},
+		"age=2": {
+			"model": "cybercore:block/lettuce_crop_block_age2"
+		},
+		"age=3": {
+			"model": "cybercore:block/lettuce_crop_block_age3"
+		}
+	}
+}
