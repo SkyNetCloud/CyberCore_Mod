@@ -13,7 +13,7 @@ public class PowerFurnaceContainer extends BaseContainerCore {
 
 	public PowerFurnaceContainer(int id, PlayerInventory inv) {
 		this(id, inv, new PowedFurnaceTileEntity());
-	}
+	} 
 
 	public PowerFurnaceContainer(int id, PlayerInventory player, PowedFurnaceTileEntity tileentity) {
 		super(id, ContainerNames.POWER_FURNCAE_CON, player, tileentity, 15);
