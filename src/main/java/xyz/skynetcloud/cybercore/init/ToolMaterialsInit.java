@@ -7,7 +7,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 
 public enum ToolMaterialsInit implements IItemTier {
-	cyber_ingot_materials(10.0f, 9.0f, 800, 3, 25, cyber_ingot);
+	cyber_ingot_materials(10.0f, 9.0f, 800, 3, 25, cyber_ingot),
+	ruby_ingot_materials(10.0f, 9.0f, 800, 3, 25, ruby_ingot),
+	dark_steel_ingot_materials(10.0f, 9.0f, 800, 3, 25, dark_steel_ingot);
 
 	private float attackDamage, efficiency;
 	private int durability, harvestLevel, enchantability;

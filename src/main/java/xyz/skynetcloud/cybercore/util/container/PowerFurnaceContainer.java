@@ -29,6 +29,7 @@ public class PowerFurnaceContainer extends BaseContainerCore {
 				this.addSlot(new SlotItemHandlerWithInfo(handler, x + y * 6, 26 + x * 22, 26 + y * 37, usage));
 			}
 		}
+		this.addSlot(new ChangeCheckSlot(tileentity, handler, 0, 132, 64, "slot.util.powerlvlUp"));
 		this.addSlot(new SlotItemHandlerWithInfo(handler, 12, 113, 85, "slot.util.speedupgrade"));
 		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 150, 86, "slot.util.energyin"));
 		this.addSlot(
@@ -73,4 +74,19 @@ public class PowerFurnaceContainer extends BaseContainerCore {
 		return stack;
 	}
 
+	class ChangeCheckSlot extends SlotItemHandlerWithInfo {
+		private PowedFurnaceTileEntity te;
+
+		public ChangeCheckSlot(PowedFurnaceTileEntity te, IItemHandler itemHandler, int index, int xPosition,
+				int yPosition, String usage) {
+			super(itemHandler, index, xPosition, yPosition, usage);
+			this.te = te;
+		}
+
+		@Override
+		public void onSlotChanged() {
+			te.onSlotContentChanged();
+			super.onSlotChanged();
+		}
+	}
 }

@@ -1,5 +1,7 @@
 package xyz.skynetcloud.cybercore.util.screen;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -18,7 +20,7 @@ public class LunaGenScreen extends ScreenBaseCore<LunaGenContainer> {
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		// GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
+		GlStateManager.func_227637_a_(1.0f, 1.0f, 1.0f, 1.0f);
 		minecraft.getTextureManager().bindTexture(TEXTURES);
 		// this.drawScaledCustomSizeModalRect(this.guiLeft, this.guiTop, 0, 0,
 		// this.xSize, this.ySize, tileWidth, tileHeight);

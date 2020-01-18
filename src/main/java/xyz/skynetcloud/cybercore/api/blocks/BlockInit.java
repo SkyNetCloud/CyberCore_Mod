@@ -30,8 +30,20 @@ public class BlockInit {
 
 	public static Block CABLE = (BlockBaseCore) new CyberCoreCable("cable", CyberCoreTab.instance);
 
+	public static Block RUBY_BLOCK = new BlockBaseCore(Block.Properties.create(Material.IRON), "ruby_block", group,
+			true);
+	public static Block DARK_STEEL_BLOCK = new BlockBaseCore(Block.Properties.create(Material.IRON), "dark_steel_block",
+			group, true);
+
 	public static Block CYBER_ORE = new OreBlock(
 			Block.Properties.create(Material.ROCK).hardnessAndResistance(5.0f, 10.0f)).setRegistryName("cyber_ore");
+
+	public static Block DARK_STEEL_ORE = new OreBlock(
+			Block.Properties.create(Material.ROCK).hardnessAndResistance(5.0f, 15.0f))
+					.setRegistryName("dark_steel_ore");
+
+	public static Block RUBY_ORE = new OreBlock(
+			Block.Properties.create(Material.ROCK).hardnessAndResistance(0.5F, 7.0F)).setRegistryName("ruby_ore");
 
 	public static Block LUNAR_BLOCK = new TechBlockFacing("lunarsolargenerator_block", CyberCoreTab.instance);
 

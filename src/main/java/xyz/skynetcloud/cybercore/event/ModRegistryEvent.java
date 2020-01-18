@@ -20,16 +20,21 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 
-		event.getRegistry().register(BlockInit.LETTUCE_CROP);
-		event.getRegistry().register(BlockInit.TOMATO_CROP);
-		event.getRegistry().register(BlockInit.CABLE);
-		event.getRegistry().register(BlockInit.CYBER_ORE);
-		event.getRegistry().register(BlockInit.CYBER_SLAB);
-		event.getRegistry().register(BlockInit.CYBER_STAIRS);
-		event.getRegistry().register(BlockInit.LUNAR_BLOCK);
-		event.getRegistry().register(BlockInit.DimWorldLinkBlock);
-		event.getRegistry().register(BlockInit.POWER_BOX);
-		event.getRegistry().register(BlockInit.POWER_FURNACE_BLOCK);
+		event.getRegistry().registerAll(
+		BlockInit.LETTUCE_CROP,
+		BlockInit.TOMATO_CROP, 
+		BlockInit.DARK_STEEL_BLOCK,
+		BlockInit.DARK_STEEL_ORE,
+		BlockInit.RUBY_BLOCK,
+		BlockInit.RUBY_ORE,
+		BlockInit.CABLE,
+		BlockInit.CYBER_ORE, 
+		BlockInit.CYBER_SLAB, 
+		BlockInit.CYBER_STAIRS, 
+		BlockInit.LUNAR_BLOCK,
+		BlockInit.DimWorldLinkBlock, 
+		BlockInit.POWER_BOX, 
+		BlockInit.POWER_FURNACE_BLOCK);
 
 		CyberCoreMain.LOGGER.info("Loaded Blocks");
 	}
@@ -37,32 +42,49 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
-		event.getRegistry().register(ItemNames.power_furnace_block);
-		event.getRegistry().register(ItemNames.cable);
-		event.getRegistry().register(ItemNames.cyber_ore);
-		event.getRegistry().register(ItemNames.cyber_ingot);
-		event.getRegistry().register(ItemNames.power_box);
-		event.getRegistry().register(ItemNames.lunar);
-		event.getRegistry().register(ItemNames.lettuce_crop);
-		event.getRegistry().register(ItemNames.tomato_crop);
-		event.getRegistry().register(ItemNames.cheese);
-		event.getRegistry().register(ItemNames.tomato);
-		event.getRegistry().register(ItemNames.tomato_seed);
-		event.getRegistry().register(ItemNames.lettuce);
-		event.getRegistry().register(ItemNames.lettuce_seed);
-		event.getRegistry().register(ItemNames.cyber_axe);
-		event.getRegistry().register(ItemNames.cyber_hoe);
-		event.getRegistry().register(ItemNames.cyber_pickaxe);
-		event.getRegistry().register(ItemNames.cyber_shovel);
-		event.getRegistry().register(ItemNames.cyber_sword);
-		event.getRegistry().register(ItemNames.lunar_upgrade_lvl_1);
-		event.getRegistry().register(ItemNames.lunar_upgrade_lvl_2);
-		event.getRegistry().register(ItemNames.lunar_upgrade_lvl_3);
-		event.getRegistry().register(ItemNames.lunar_upgrade_lvl_4);
-		event.getRegistry().register(ItemNames.speed_upgrade_lvl_1);
-		event.getRegistry().register(ItemNames.speed_upgrade_lvl_2);
-		event.getRegistry().register(ItemNames.speed_upgrade_lvl_3);
-		event.getRegistry().register(ItemNames.speed_upgrade_lvl_4);
+		event.getRegistry().registerAll(ItemNames.power_furnace_block,
+		ItemNames.dimworldlink_item,
+		ItemNames.cable,
+		ItemNames.ruby_ingot,
+		ItemNames.ruby_ore,
+		ItemNames.ruby_axe,
+		ItemNames.ruby_hoe,
+		ItemNames.ruby_pickaxe,
+		ItemNames.ruby_shovel,
+		ItemNames.ruby_sword,
+		ItemNames.dark_steel_axe,
+		ItemNames.dark_steel_hoe,
+		ItemNames.dark_steel_shovel,
+		ItemNames.dark_steel_sword,
+		ItemNames.dark_steel_ingot,
+		ItemNames.dark_steel_ore,
+		ItemNames.cyber_ore,
+		ItemNames.cyber_ingot,
+		ItemNames.power_box,
+		ItemNames.lunar,
+		ItemNames.lettuce_crop,
+		ItemNames.tomato_crop,
+		ItemNames.cheese,
+		ItemNames.tomato,
+		ItemNames.tomato_seed,
+		ItemNames.lettuce,
+		ItemNames.lettuce_seed,
+		ItemNames.cyber_axe,
+		ItemNames.cyber_hoe,
+		ItemNames.cyber_pickaxe,
+		ItemNames.cyber_shovel,
+		ItemNames.cyber_sword,
+		ItemNames.lunar_upgrade_lvl_1,
+		ItemNames.lunar_upgrade_lvl_2,
+		ItemNames.lunar_upgrade_lvl_3,
+		ItemNames.lunar_upgrade_lvl_4,
+		ItemNames.speed_upgrade_lvl_1,
+		ItemNames.speed_upgrade_lvl_2,
+		ItemNames.speed_upgrade_lvl_3,
+		ItemNames.speed_upgrade_lvl_4,
+		ItemNames.power_upgrade_lvl_1,
+		ItemNames.power_upgrade_lvl_2,
+		ItemNames.power_upgrade_lvl_3);
 
 		CyberCoreMain.LOGGER.info("Item Loaded");
 	}

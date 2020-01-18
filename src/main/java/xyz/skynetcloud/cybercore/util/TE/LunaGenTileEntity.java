@@ -1,17 +1,22 @@
 package xyz.skynetcloud.cybercore.util.TE;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IIntArray;
+import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
+import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
 import xyz.skynetcloud.cybercore.util.ClientSideConfig;
 import xyz.skynetcloud.cybercore.util.CyberCoreConstants;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import xyz.skynetcloud.cybercore.util.container.LunaGenContainer;
 
 public class LunaGenTileEntity extends CyberCoreEndPowerTE {
+
+	private int currentLvl = -1;
 	int workload = 0;
 	protected final IIntArray field_array = new IIntArray() {
 		public int get(int index) {
@@ -75,14 +80,46 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 		case 1:
 			return 20;
 		case 2:
-			return 60;
+			return 100;
 		case 3:
-			return 180;
+			return 1200;
 		case 4:
-			return 540;
+			return 2000;
 		}
 
 		return 0;
+	}
+
+	public void onSlotContentChanged() {
+		if (world != null) {
+			if (!world.isRemote) {
+				int newLvl = getMarkLvl(0, CyberCoreConstants.POWER_LVL_TYPE);
+				if (currentLvl != newLvl) {
+					switch (currentLvl) {
+					case 0:
+						energystorage.setEnergyMaxStored(1000);
+						break;
+					case 1:
+						energystorage.setEnergyMaxStored(10000);
+						break;
+					case 2:
+						energystorage.setEnergyMaxStored(100000);
+						break;
+					case 3:
+						energystorage.setEnergyMaxStored(1000000);
+						break;
+					}
+					BlockState state = world.getBlockState(pos);
+					if (state != null) {
+						if (state.getBlock() == BlockInit.POWER_BOX) {
+							world.setBlockState(pos, state.with(CyberCorePowerBlock.LVL, newLvl), 2);
+							markDirty();
+						}
+					}
+					currentLvl = newLvl;
+				}
+			}
+		}
 	}
 
 	public int getTicksPerAmount() {

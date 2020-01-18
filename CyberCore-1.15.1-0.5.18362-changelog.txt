@@ -1,8 +1,9 @@
-Mod Build: 0.5 - Jan 15 7:52 EST 2020
+Mod Build: 0.6 - Jan 15 7:52 EST 2020
 	SkyNetCloud: 
-		Added Ore Gen
-		Added Cyber Ingot, Power Storage, Lunar Gen Recipes
-		Fix World Load of CyberLand	
+		Added More New Ore Gen
+		Fix Crafting Cyber Ingot, Power Storage, Lunar Gen Recipes
+		
+			
 		
 				
 
