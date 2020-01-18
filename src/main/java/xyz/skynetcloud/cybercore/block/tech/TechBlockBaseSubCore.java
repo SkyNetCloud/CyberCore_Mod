@@ -22,9 +22,10 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
+import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 import xyz.skynetcloud.cybercore.util.TE.LunaGenTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.PowedFurnaceTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.PowerStorageTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 
@@ -66,7 +67,7 @@ public class TechBlockBaseSubCore extends BlockBaseCore {
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 
-		if (this == BlockNames.LUNAR_BLOCK)
+		if (this == BlockInit.LUNAR_BLOCK)
 			return Block.makeCuboidShape(1, 0, 1, 15, 1, 15);
 		else
 			return super.getShape(state, worldIn, pos, context);
@@ -79,10 +80,12 @@ public class TechBlockBaseSubCore extends BlockBaseCore {
 
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		if (this == BlockNames.LUNAR_BLOCK)
+		if (this == BlockInit.LUNAR_BLOCK)
 			return new LunaGenTileEntity();
-		else if (this == BlockNames.POWER_BOX)
+		else if (this == BlockInit.POWER_BOX)
 			return new PowerStorageTileEntity();
+		else if (this == BlockInit.POWER_FURNACE_BLOCK)
+			return new PowedFurnaceTileEntity();
 		else
 			return new LunaGenTileEntity();
 	}

@@ -6,8 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
-import xyz.skynetcloud.cybercore.init.BlockInit;
+import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 
 @SuppressWarnings("unused")
 public class BlockBaseCore extends Block {
@@ -21,9 +20,9 @@ public class BlockBaseCore extends Block {
 		this.group = group;
 		this.name = name;
 		setRegistryName(name);
-		BlockNames.BLOCKS.add(this);
+		BlockInit.BLOCKS.add(this);
 		if (hasItem)
-			BlockNames.BLOCKITEMS.add(this);
+			BlockInit.BLOCKITEMS.add(this);
 	}
 
 	public Item createItemBlock() {

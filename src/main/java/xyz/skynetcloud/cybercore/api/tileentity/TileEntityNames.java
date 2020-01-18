@@ -1,18 +1,23 @@
 package xyz.skynetcloud.cybercore.api.tileentity;
 
 import net.minecraft.tileentity.TileEntityType;
-import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
+import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.util.TE.LunaGenTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.PowedFurnaceTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.PowerStorageTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
 
 public class TileEntityNames {
 
 	public static final TileEntityType<PowerStorageTileEntity> POWER_BOX_TE = TileEntityType.Builder
-			.create(PowerStorageTileEntity::new, BlockNames.POWER_BOX).build(null);
+			.create(PowerStorageTileEntity::new, BlockInit.POWER_BOX).build(null);
 	public static final TileEntityType<LunaGenTileEntity> LUNAR_GEN_MACHINE_TE = TileEntityType.Builder
-			.create(LunaGenTileEntity::new, BlockNames.LUNAR_BLOCK).build(null);
+			.create(LunaGenTileEntity::new, BlockInit.LUNAR_BLOCK).build(null);
 	public static final TileEntityType<CableTileEntity> CABLE_TE = TileEntityType.Builder
-			.create(CableTileEntity::new, BlockNames.CABLE).build(null);
+			.create(CableTileEntity::new, BlockInit.CABLE).build(null);
+	
+
+	public static final TileEntityType<PowedFurnaceTileEntity> POWER_FURNACE_TE = TileEntityType.Builder
+			.create(PowedFurnaceTileEntity::new, BlockInit.POWER_FURNACE_BLOCK).build(null);
 
 }

@@ -33,7 +33,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.hooks.BasicEventHooks;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
-import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
+import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 import xyz.skynetcloud.cybercore.init.DimInit;
 import xyz.skynetcloud.cybercore.util.ClientSideConfig;
@@ -47,7 +47,7 @@ public class CustomWorldLink extends BlockBaseCore {
 
 	@Override
 	public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
-		return new ItemStack(BlockNames.DimWorldLinkBlock);
+		return new ItemStack(BlockInit.DimWorldLinkBlock);
 	}
 
 	public Item createItemBlock() {
@@ -100,7 +100,7 @@ public class CustomWorldLink extends BlockBaseCore {
 					for (int x = pos.getX() - 6; x < pos.getX() + 6; x++) {
 						for (int z = pos.getZ() - 6; z < pos.getZ() + 6; z++) {
 							mutableBlockPos.setPos(x, y, z);
-							if (otherWorld.getBlockState(mutableBlockPos).getBlock() == BlockNames.DimWorldLinkBlock) {
+							if (otherWorld.getBlockState(mutableBlockPos).getBlock() == BlockInit.DimWorldLinkBlock) {
 								otherWorldPos = new BlockPos(x, y + 1, z);
 								foundBlock = true;
 								break;
@@ -113,7 +113,7 @@ public class CustomWorldLink extends BlockBaseCore {
 							DimensionType.byName(DimInit.CYBERLAND_ID));
 				}
 				if (!foundBlock) {
-					otherWorld.setBlockState(otherWorldPos.down(), BlockNames.DimWorldLinkBlock.getDefaultState());
+					otherWorld.setBlockState(otherWorldPos.down(), BlockInit.DimWorldLinkBlock.getDefaultState());
 					changeDim(((ServerPlayerEntity) playerIn), otherWorldPos,
 							DimensionType.byName(DimInit.CYBERLAND_ID));
 				}
@@ -132,7 +132,7 @@ public class CustomWorldLink extends BlockBaseCore {
 					for (int x = pos.getX() - 6; x < pos.getX() + 6; x++) {
 						for (int z = pos.getZ() - 6; z < pos.getZ() + 6; z++) {
 							mutableBlockPos.setPos(x, y, z);
-							if (overWorld.getBlockState(mutableBlockPos).getBlock() == BlockNames.DimWorldLinkBlock) {
+							if (overWorld.getBlockState(mutableBlockPos).getBlock() == BlockInit.DimWorldLinkBlock) {
 								overWorldPos = new BlockPos(x, y + 1, z);
 								foundBlock = true;
 								break;
@@ -145,7 +145,7 @@ public class CustomWorldLink extends BlockBaseCore {
 							DimensionType.getById(ClientSideConfig.getOverworldId()));
 				}
 				if (!foundBlock) {
-					overWorld.setBlockState(overWorldPos.down(), BlockNames.DimWorldLinkBlock.getDefaultState());
+					overWorld.setBlockState(overWorldPos.down(), BlockInit.DimWorldLinkBlock.getDefaultState());
 					changeDim(((ServerPlayerEntity) playerIn), overWorldPos,
 							DimensionType.getById(ClientSideConfig.getOverworldId()));
 				}

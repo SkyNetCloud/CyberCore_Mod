@@ -17,7 +17,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import xyz.skynetcloud.cybercore.api.items.ItemNames;
-import xyz.skynetcloud.cybercore.init.ClientEventInit;
+import xyz.skynetcloud.cybercore.event.ModClientEvent;
 import xyz.skynetcloud.cybercore.init.ScreenInit;
 import xyz.skynetcloud.cybercore.util.CyberCoreConfig;
 import xyz.skynetcloud.cybercore.world.gen.OreGen;
@@ -46,8 +46,8 @@ public class CyberCoreMain {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-			FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientEventInit::DiscordLinkOnWorldLoad);
-			FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientEventInit::onWorldStart);
+			FMLJavaModLoadingContext.get().getModEventBus().addListener(ModClientEvent::DiscordLinkOnWorldLoad);
+			FMLJavaModLoadingContext.get().getModEventBus().addListener(ModClientEvent::onWorldStart);
 		});
 
 		MinecraftForge.EVENT_BUS.register(this);

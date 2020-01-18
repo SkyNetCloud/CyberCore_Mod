@@ -96,7 +96,7 @@ public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
 	};
 
 	public PowedFurnaceTileEntity() {
-		super(TileEntityNames.POWED_FURNACE_TE, 10000, 15);
+		super(TileEntityNames.POWER_FURNACE_TE, 10000, 15);
 		inputs = new RangedWrapper(itemhandler, 0, 6);
 		outputs = new RangedWrapper(itemhandler, 6, 12);
 		inputs_provider = LazyOptional.of(() -> inputs);
