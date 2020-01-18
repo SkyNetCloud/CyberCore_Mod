@@ -36,7 +36,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.energy.CapabilityEnergy;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
-import xyz.skynetcloud.cybercore.api.blocks.BlockNames;
+import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.api.items.ItemNames;
 import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 import xyz.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
@@ -121,7 +121,7 @@ public class CyberCoreCable extends BlockBaseCore {
 
 	@Override
 	public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
-		return new ItemStack(BlockNames.CABLE);
+		return new ItemStack(BlockInit.CABLE);
 	}
 
 	@Override

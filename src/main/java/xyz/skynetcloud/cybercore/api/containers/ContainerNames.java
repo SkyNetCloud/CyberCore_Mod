@@ -4,6 +4,7 @@ import static xyz.skynetcloud.cybercore.CyberCoreMain.MODID;
 
 import net.minecraft.inventory.container.ContainerType;
 import xyz.skynetcloud.cybercore.util.container.LunaGenContainer;
+import xyz.skynetcloud.cybercore.util.container.PowerFurnaceContainer;
 import xyz.skynetcloud.cybercore.util.container.PowerStorageContainer;
 
 public class ContainerNames {
@@ -17,4 +18,7 @@ public class ContainerNames {
 			LunaGenContainer::new);
 	public static final ContainerType<PowerStorageContainer> POWER_BOX_CON = new ContainerType<PowerStorageContainer>(
 			PowerStorageContainer::new);
+
+	public static final ContainerType<PowerFurnaceContainer> POWER_FURNCAE_CON = new ContainerType<PowerFurnaceContainer>(
+			PowerFurnaceContainer::new);
 }
