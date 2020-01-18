@@ -1,21 +1,18 @@
 package xyz.skynetcloud.cybercore.event;
 
 import net.minecraft.block.Block;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
 import xyz.skynetcloud.cybercore.api.Names;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.api.containers.ContainerNames;
 import xyz.skynetcloud.cybercore.api.items.ItemNames;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
-import xyz.skynetcloud.cybercore.data.dataprovider.Recipes;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModRegistryEvent {
@@ -87,14 +84,6 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ContainerNames.POWER_BOX_CON.setRegistryName(Names.POWER_BOX_CON));
 		event.getRegistry().register(ContainerNames.POWER_FURNCAE_CON.setRegistryName(Names.POWERED_FURNACE_CON));
 		CyberCoreMain.LOGGER.info("ContainerType Loaded");
-	}
-
-	@SubscribeEvent
-	public static void gatherData(GatherDataEvent event) {
-		DataGenerator gen = event.getGenerator();
-		gen.addProvider(new Recipes(gen));
-
-		CyberCoreMain.LOGGER.info("Data Loaded");
 	}
 
 }

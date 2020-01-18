@@ -20,9 +20,7 @@ public class BlockBaseCore extends Block {
 		this.group = group;
 		this.name = name;
 		setRegistryName(name);
-		BlockInit.BLOCKS.add(this);
-		if (hasItem)
-			BlockInit.BLOCKITEMS.add(this);
+
 	}
 
 	public Item createItemBlock() {

@@ -1,8 +1,5 @@
 package xyz.skynetcloud.cybercore.api.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.material.Material;
@@ -19,10 +16,6 @@ import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCoreCable;
 import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
 
 public class BlockInit {
-
-	public static List<BlockBaseCore> BLOCKS = new ArrayList<>();
-
-	public static List<BlockBaseCore> BLOCKITEMS = new ArrayList<>();
 
 	public static ItemGroup group = CyberCoreTab.instance;
 
