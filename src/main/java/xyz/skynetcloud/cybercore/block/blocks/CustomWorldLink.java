@@ -36,8 +36,8 @@ import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 import xyz.skynetcloud.cybercore.init.DimInit;
-import xyz.skynetcloud.cybercore.util.ClientSideConfig;
 import xyz.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
+import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
 
 public class CustomWorldLink extends BlockBaseCore {
 

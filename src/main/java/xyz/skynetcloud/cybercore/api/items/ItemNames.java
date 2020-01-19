@@ -80,6 +80,8 @@ public class ItemNames {
 	public static BlockItem power_box = new BlockItemCore(BlockInit.POWER_BOX);
 
 	public static BlockItem cable = new BlockItemCore(BlockInit.CABLE);
+	
+	//public static BlockItem item_cable = new BlockItemCore(BlockInit.ITEM_PIPE);
 
 	public static Item lettuce_seed = new SeedsInit(BlockInit.LETTUCE_CROP).setRegistryName(LETTUCE_SEEDS_NAME);
 

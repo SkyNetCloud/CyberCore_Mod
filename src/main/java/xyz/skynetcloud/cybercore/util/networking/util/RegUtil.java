@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.util;
+package xyz.skynetcloud.cybercore.util.networking.util;
 
 import java.util.Locale;
 import java.util.function.BiFunction;

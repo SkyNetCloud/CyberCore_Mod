@@ -16,6 +16,10 @@ public class TileEntityNames {
 	public static final TileEntityType<CableTileEntity> CABLE_TE = TileEntityType.Builder
 			.create(CableTileEntity::new, BlockInit.CABLE).build(null);
 	
+	
+	//public static final TileEntityType<ItemPipeTileEntity> TE_TYPE_ITEM_PIPE = TileEntityType.Builder
+	//		.create(ItemPipeTileEntity::new, BlockInit.ITEM_PIPE).build(null);
+	
 
 	public static final TileEntityType<PowedFurnaceTileEntity> POWER_FURNACE_TE = TileEntityType.Builder
 			.create(PowedFurnaceTileEntity::new, BlockInit.POWER_FURNACE_BLOCK).build(null);

@@ -23,12 +23,14 @@ public class BlockInit {
 
 	public static Block LETTUCE_CROP = new LettuceCrop("lettuce_crop_block");
 
-	public static BlockBaseCore DimWorldLinkBlock = (BlockBaseCore) new CustomWorldLink("worldlinkblock",
-			CyberCoreTab.instance);
+	//public static Block ITEM_PIPE = new CyberCoreItemPipe(Block.Properties.create(Material.IRON))
+		//	.setRegistryName("item_pipe");
+
+	public static Block DimWorldLinkBlock = new CustomWorldLink("worldlinkblock", CyberCoreTab.instance);
 
 	public static Block POWER_FURNACE_BLOCK = new TechBlockFacing("power_furnace_block", group);
 
-	public static Block CABLE = (BlockBaseCore) new CyberCoreCable("cable", CyberCoreTab.instance);
+	public static Block CABLE = new CyberCoreCable("cable", CyberCoreTab.instance);
 
 	public static Block RUBY_BLOCK = new BlockBaseCore(Block.Properties.create(Material.IRON), "ruby_block", group,
 			true);

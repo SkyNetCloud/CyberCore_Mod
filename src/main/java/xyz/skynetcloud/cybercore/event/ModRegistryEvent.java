@@ -21,6 +21,7 @@ public class ModRegistryEvent {
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 
 		event.getRegistry().registerAll(
+	//	BlockInit.ITEM_PIPE,
 		BlockInit.LETTUCE_CROP,
 		BlockInit.TOMATO_CROP, 
 		BlockInit.DARK_STEEL_BLOCK,
@@ -42,7 +43,9 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
-		event.getRegistry().registerAll(ItemNames.power_furnace_block,
+		event.getRegistry().registerAll(
+		//ItemNames.item_cable,
+		ItemNames.power_furnace_block,
 		ItemNames.dimworldlink_item,
 		ItemNames.cable,
 		ItemNames.ruby_ingot,
@@ -96,6 +99,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(TileEntityNames.CABLE_TE.setRegistryName("tileentitycable"));
 		event.getRegistry().register(TileEntityNames.POWER_BOX_TE.setRegistryName("tileentitypowerbox"));
 		event.getRegistry().register(TileEntityNames.POWER_FURNACE_TE.setRegistryName("tileentitypoweredfrnace"));
+		//event.getRegistry().register(TileEntityNames.TE_TYPE_ITEM_PIPE.setRegistryName("tileentityitempipe"));
 		CyberCoreMain.LOGGER.info("TileEntityType Loaded");
 	}
 

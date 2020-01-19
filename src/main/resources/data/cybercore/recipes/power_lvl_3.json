@@ -1,0 +1,26 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"AAA",
+		"BDB",
+		"DCD"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:glass_pane"
+		},
+		"B": {
+			"item": "cybercore:power_lvl_2"
+		},
+		"C": {
+			"item": "cybercore:dark_steel_ingot"
+		},
+		"D": {
+			"item": "cybercore:power_lvl_1"
+		}
+	},
+	"result": {
+		"item": "cybercore:power_lvl_3",
+		"count": 1
+	}
+}

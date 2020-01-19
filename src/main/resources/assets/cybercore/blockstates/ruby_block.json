@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"normal": {
+			"model": "cybercore:block/ruby_block"
+		}
+	}
+}

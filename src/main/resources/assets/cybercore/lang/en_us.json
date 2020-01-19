@@ -6,6 +6,9 @@
 	"cybercore.info.link": "Dicord Link",
 	"cybercore.discord.tooltip": "Join Discord Server",
 	"itemGroup.cybercore": "Cyber Core",
+	"item.cybercore.power_lvl_1": "Power Lvl Card 1",
+	"item.cybercore.power_lvl_2": "Power Lvl Card 2",
+	"item.cybercore.power_lvl_3": "Power Lvl Card 3",
 	"block.cybercore.cyber_ingot_block": "Cyber Block",
 	"block.cybercore.worldlinkblock": "World Link Block",
 	"block.cybercore.cyber_stairs": "Cyber Stairs",
@@ -28,8 +31,7 @@
 	"item.cybercore.speed_upgrade_lvl_2": "Speed lvl 2",
 	"item.cybercore.speed_upgrade_lvl_3": "Speed lvl 3",
 	"item.cybercore.speed_upgrade_lvl_4": "Speed lvl 4",
-	"slot.util.acceleratecard": "Insert Speed Card Slot",
-	"slot.lunagen.lvlcard": "Insert Level Card",
+	"slot.util.muilcardslot": "Anything Can Be place in here",
 	"slot.util.powerin": "Insert item with power to insert power",
 	"slot.util.powerout": "Insert item with power to extract power"
 }

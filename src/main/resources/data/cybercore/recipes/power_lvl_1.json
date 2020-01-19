@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"AAA",
+		"BBB",
+		"CCC"
+	],
+	"key": {
+		"A": {
+			"item": "cybercore:ruby_ingot"
+		},
+		"B": {
+			"item": "cybercore:cyber_ingot"
+		},
+		"C": {
+			"item": "cybercore:dark_steel_ingot"
+		}
+	},
+	"result": {
+		"item": "cybercore:power_lvl_1",
+		"count": 1
+	}
+}

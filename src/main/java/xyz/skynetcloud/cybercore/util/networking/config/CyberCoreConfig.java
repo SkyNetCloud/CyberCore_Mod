@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.util;
+package xyz.skynetcloud.cybercore.util.networking.config;
 
 import java.io.File;
 

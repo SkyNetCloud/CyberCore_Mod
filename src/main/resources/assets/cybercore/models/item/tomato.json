@@ -1,6 +1,6 @@
 {
    "parent": "item/generated",
    "textures": {
-       "layer0": "cybercore:item/item_tomato"
+       "layer0": "cybercore:items/item_tomato"
    }
 }

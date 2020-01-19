@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal": { "model": "cybercore:block/dark_steel_block" }
+    }
+}

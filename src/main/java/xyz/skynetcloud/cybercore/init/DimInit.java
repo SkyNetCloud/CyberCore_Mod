@@ -24,7 +24,7 @@ import net.minecraftforge.fml.network.FMLNetworkConstants;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.registries.ForgeRegistries;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
-import xyz.skynetcloud.cybercore.util.RegUtil;
+import xyz.skynetcloud.cybercore.util.networking.util.RegUtil;
 import xyz.skynetcloud.cybercore.world.dim.CyberDimesion;
 
 @SuppressWarnings("deprecation")

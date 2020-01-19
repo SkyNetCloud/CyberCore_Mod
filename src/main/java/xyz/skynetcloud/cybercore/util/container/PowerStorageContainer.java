@@ -19,7 +19,7 @@ public class PowerStorageContainer extends BaseContainerCore {
 		super(id, ContainerNames.POWER_BOX_CON, player, tileentity, 3);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
-		this.addSlot(new ChangeCheckSlot(tileentity, handler, 0, 132, 64, "slot.util.powerlvlUp"));
+		this.addSlot(new ChangeCheckSlot(tileentity, handler, 0, 132, 64, "slot.util.muilcardslot"));
 		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 150, 86, "slot.util.powerin"));
 		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 168, 86, "slot.util.powerout"));
 	}
