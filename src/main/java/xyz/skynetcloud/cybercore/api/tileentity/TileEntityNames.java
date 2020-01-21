@@ -6,6 +6,7 @@ import xyz.skynetcloud.cybercore.util.TE.LunaGenTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.PowedFurnaceTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.PowerStorageTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.cable.ItemPipeTileEntity;
 
 public class TileEntityNames {
 
@@ -16,10 +17,8 @@ public class TileEntityNames {
 	public static final TileEntityType<CableTileEntity> CABLE_TE = TileEntityType.Builder
 			.create(CableTileEntity::new, BlockInit.CABLE).build(null);
 	
-	
-	//public static final TileEntityType<ItemPipeTileEntity> TE_TYPE_ITEM_PIPE = TileEntityType.Builder
-	//		.create(ItemPipeTileEntity::new, BlockInit.ITEM_PIPE).build(null);
-	
+	public static final TileEntityType<ItemPipeTileEntity> TE_TYPE_ITEM_PIPE = TileEntityType.Builder
+			.create(ItemPipeTileEntity::new, BlockInit.ITEM_PIPE).build(null);
 
 	public static final TileEntityType<PowedFurnaceTileEntity> POWER_FURNACE_TE = TileEntityType.Builder
 			.create(PowedFurnaceTileEntity::new, BlockInit.POWER_FURNACE_BLOCK).build(null);

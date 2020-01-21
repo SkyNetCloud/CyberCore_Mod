@@ -1,9 +1,8 @@
-Mod Build: 0.6 - Jan 18 8:09 EST 2020
+Mod Build: 0.7 - Jan 20 10:21 pm EST 2020
 	SkyNetCloud: 
-		Added More New Ore Gen
-		Power Lvl Up cards work on all block that use the power system (Might be a little buggy still)
-		Fix Crafting Repcipes for all Items
-		
+		Added Missing Textures 
+		Added Missing Recipes
+		Added Missing Naming for Items/Blocks
 		
 			
 		

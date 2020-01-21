@@ -1,0 +1,26 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"AAA",
+		"TBT",
+		" C "
+	],
+	"key": {
+		"A": {
+			"item": "cybercore:cheese"
+		},
+		"B": {
+			"item": ""
+		},
+		"T": {
+			"item": "cybercore:tomato"
+		},
+		"C": {
+			"item": "cybercore:taco_shell"
+		}
+	},
+	"result": {
+		"item": "cybercore:taco",
+		"count": 1
+	}
+}

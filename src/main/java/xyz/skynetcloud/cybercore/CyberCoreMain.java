@@ -16,7 +16,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
-import xyz.skynetcloud.cybercore.api.items.ItemNames;
+import xyz.skynetcloud.cybercore.api.items.ItemInit;
 import xyz.skynetcloud.cybercore.event.ModClientEvent;
 import xyz.skynetcloud.cybercore.init.ScreenInit;
 import xyz.skynetcloud.cybercore.util.CyberCoreConfig;
@@ -75,7 +75,7 @@ public class CyberCoreMain {
 
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(ItemNames.lunar_upgrade_lvl_1);
+			return new ItemStack(ItemInit.lunar_upgrade_lvl_1);
 		}
 	}
 

@@ -20,11 +20,10 @@ public class LunaGenContainer extends BaseContainerCore {
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
 
-		this.addSlot(new ChangeCheckSlot(tileentity, handler, 0, 84, 71, "slot.util.muilcardslot"));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 0, 84, 71, "slot.lunagen.lvlcard"));
 		this.addSlot(new SlotItemHandlerWithInfo(handler, 1, 45, 33, "slot.util.acceleratecard"));
 		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 150, 86, "slot.util.powerin"));
-		this.addSlot(
-				new SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 168, 86, "slot.util.powerout"));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 168, 86, "slot.util.powerout"));
 	}
 
 	@Override
@@ -61,22 +60,6 @@ public class LunaGenContainer extends BaseContainerCore {
 			slot.onTake(playerIn, stack1);
 		}
 		return stack;
-	}
-
-	class ChangeCheckSlot extends SlotItemHandlerWithInfo {
-		private LunaGenTileEntity te;
-
-		public ChangeCheckSlot(LunaGenTileEntity te, IItemHandler itemHandler, int index, int xPosition, int yPosition,
-				String usage) {
-			super(itemHandler, index, xPosition, yPosition, usage);
-			this.te = te;
-		}
-
-		@Override
-		public void onSlotChanged() {
-			te.onSlotContentChanged();
-			super.onSlotChanged();
-		}
 	}
 
 }

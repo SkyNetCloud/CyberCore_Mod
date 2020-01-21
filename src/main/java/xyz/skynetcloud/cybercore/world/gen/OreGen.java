@@ -12,24 +12,24 @@ import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 public class OreGen {
 
 	public static void setupOreGeneration() {
+
 		for (Biome biome : ForgeRegistries.BIOMES) {
 			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 					Feature.ORE
 							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
 									BlockInit.CYBER_ORE.getDefaultState(), 17))
-							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(20, 0, 0, 128))));
+							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(20, 0, 0, 67))));
+			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
+					Feature.ORE
+							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+									BlockInit.RUBY_ORE.getDefaultState(), 10))
+							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(15, 0, 0, 50))));
 
 			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 					Feature.ORE
 							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-									BlockInit.DARK_STEEL_ORE.getDefaultState(), 5))
-							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(15, 0, 0, 25))));
-
-			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
-					Feature.ORE
-							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-									BlockInit.RUBY_ORE.getDefaultState(), 12))
-							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(5, 0, 0, 25))));
+									BlockInit.DARK_STEEL_ORE.getDefaultState(), 10))
+							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(15, 0, 0, 50))));
 
 		}
 

@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
-import xyz.skynetcloud.cybercore.api.items.ItemNames;
+import xyz.skynetcloud.cybercore.api.items.ItemInit;
 
 public class LettuceCrop extends CropsBlock {
 
@@ -50,7 +50,7 @@ public class LettuceCrop extends CropsBlock {
 
 	@OnlyIn(Dist.CLIENT)
 	protected IItemProvider getSeedsItem() {
-		return ItemNames.lettuce_seed;
+		return ItemInit.lettuce_seed;
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -63,7 +63,7 @@ public class LettuceCrop extends CropsBlock {
 		if (!world.isRemote) {
 			if (this.isMaxAge(state)) {
 				world.addEntity(
-						new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemNames.lettuce, 1)));
+						new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemInit.lettuce, 1)));
 				world.setBlockState(pos, this.withAge(0));
 				return true;
 			}

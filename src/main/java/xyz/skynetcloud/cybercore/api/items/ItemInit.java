@@ -52,7 +52,7 @@ import xyz.skynetcloud.cybercore.init.ToolMaterialsInit;
 import xyz.skynetcloud.cybercore.item.UpgradeLvl;
 import xyz.skynetcloud.cybercore.item.tools.CyberCorePickaxe;
 
-public class ItemNames {
+public class ItemInit {
 
 	public static class FoodInit {
 		public static Food taco = (new Food.Builder()).hunger(12).saturation(0.5F).meat().build();
@@ -60,6 +60,13 @@ public class ItemNames {
 		public static Food tomato = (new Food.Builder()).hunger(12).saturation(0.5F).build();
 		public static Food lettuce = (new Food.Builder()).hunger(12).saturation(0.5F).build();
 	}
+
+	public static Item taco_shell = new Item(new Item.Properties().group(CyberCoreTab.instance))
+			.setRegistryName("taco_shell");
+
+	public static BlockItem ruby_block = new BlockItemCore(BlockInit.RUBY_BLOCK);
+
+	public static BlockItem dark_steel_block = new BlockItemCore(BlockInit.DARK_STEEL_BLOCK);
 
 	public static BlockItem lettuce_crop = new BlockItemCore(BlockInit.LETTUCE_CROP);
 
@@ -75,13 +82,13 @@ public class ItemNames {
 
 	public static BlockItem lunar = new BlockItemCore(BlockInit.LUNAR_BLOCK);
 
-	public static BlockItem dimworldlink_item = new BlockItemCore(BlockInit.DimWorldLinkBlock);
+	public static BlockItem dimworldlink_item = new BlockItemCore(BlockInit.CYBERLAND);
 
 	public static BlockItem power_box = new BlockItemCore(BlockInit.POWER_BOX);
 
 	public static BlockItem cable = new BlockItemCore(BlockInit.CABLE);
-	
-	//public static BlockItem item_cable = new BlockItemCore(BlockInit.ITEM_PIPE);
+
+	public static BlockItem item_cable = new BlockItemCore(BlockInit.ITEM_PIPE);
 
 	public static Item lettuce_seed = new SeedsInit(BlockInit.LETTUCE_CROP).setRegistryName(LETTUCE_SEEDS_NAME);
 
@@ -185,4 +192,5 @@ public class ItemNames {
 
 	public static Item power_upgrade_lvl_3 = new UpgradeLvl(
 			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 3, 3).setRegistryName(POWER_LVL_3);
+
 }

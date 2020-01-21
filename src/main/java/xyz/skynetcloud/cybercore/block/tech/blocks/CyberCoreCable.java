@@ -37,7 +37,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.energy.CapabilityEnergy;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
-import xyz.skynetcloud.cybercore.api.items.ItemNames;
+import xyz.skynetcloud.cybercore.api.items.ItemInit;
 import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 import xyz.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
 
@@ -96,7 +96,7 @@ public class CyberCoreCable extends BlockBaseCore {
 	public ActionResultType func_225533_a_(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
 			Hand hand, BlockRayTraceResult ray) {
 		if (!worldIn.isRemote && hand.equals(Hand.MAIN_HAND)
-				&& player.getHeldItemMainhand().getItem().equals(ItemNames.cyber_ingot)) {
+				&& player.getHeldItemMainhand().getItem().equals(ItemInit.cyber_ingot)) {
 			Vec3d hitvec = ray.getHitVec();
 			hitvec = hitvec.add(-pos.getX(), -pos.getY(), -pos.getZ());
 			VoxelShape tempshape;

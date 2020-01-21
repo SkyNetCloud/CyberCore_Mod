@@ -11,7 +11,7 @@ import xyz.skynetcloud.cybercore.CyberCoreMain;
 import xyz.skynetcloud.cybercore.api.Names;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.api.containers.ContainerNames;
-import xyz.skynetcloud.cybercore.api.items.ItemNames;
+import xyz.skynetcloud.cybercore.api.items.ItemInit;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -20,22 +20,19 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 
-		event.getRegistry().registerAll(
-	//	BlockInit.ITEM_PIPE,
-		BlockInit.LETTUCE_CROP,
-		BlockInit.TOMATO_CROP, 
-		BlockInit.DARK_STEEL_BLOCK,
-		BlockInit.DARK_STEEL_ORE,
-		BlockInit.RUBY_BLOCK,
-		BlockInit.RUBY_ORE,
-		BlockInit.CABLE,
-		BlockInit.CYBER_ORE, 
-		BlockInit.CYBER_SLAB, 
-		BlockInit.CYBER_STAIRS, 
-		BlockInit.LUNAR_BLOCK,
-		BlockInit.DimWorldLinkBlock, 
-		BlockInit.POWER_BOX, 
-		BlockInit.POWER_FURNACE_BLOCK);
+		event.getRegistry().register(BlockInit.LETTUCE_CROP);
+		event.getRegistry().register(BlockInit.ITEM_PIPE);
+		event.getRegistry().register(BlockInit.TOMATO_CROP);
+		event.getRegistry().register(BlockInit.CABLE);
+		event.getRegistry().register(BlockInit.CYBER_ORE);
+		event.getRegistry().register(BlockInit.RUBY_ORE);
+		event.getRegistry().register(BlockInit.DARK_STEEL_ORE);
+		event.getRegistry().register(BlockInit.CYBER_SLAB);
+		event.getRegistry().register(BlockInit.CYBER_STAIRS);
+		event.getRegistry().register(BlockInit.LUNAR_BLOCK);
+		event.getRegistry().register(BlockInit.CYBERLAND);
+		event.getRegistry().register(BlockInit.POWER_BOX);
+		event.getRegistry().register(BlockInit.POWER_FURNACE_BLOCK);
 
 		CyberCoreMain.LOGGER.info("Loaded Blocks");
 	}
@@ -43,51 +40,52 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
-		event.getRegistry().registerAll(
-		//ItemNames.item_cable,
-		ItemNames.power_furnace_block,
-		ItemNames.dimworldlink_item,
-		ItemNames.cable,
-		ItemNames.ruby_ingot,
-		ItemNames.ruby_ore,
-		ItemNames.ruby_axe,
-		ItemNames.ruby_hoe,
-		ItemNames.ruby_pickaxe,
-		ItemNames.ruby_shovel,
-		ItemNames.ruby_sword,
-		ItemNames.dark_steel_axe,
-		ItemNames.dark_steel_hoe,
-		ItemNames.dark_steel_shovel,
-		ItemNames.dark_steel_sword,
-		ItemNames.dark_steel_ingot,
-		ItemNames.dark_steel_ore,
-		ItemNames.cyber_ore,
-		ItemNames.cyber_ingot,
-		ItemNames.power_box,
-		ItemNames.lunar,
-		ItemNames.lettuce_crop,
-		ItemNames.tomato_crop,
-		ItemNames.cheese,
-		ItemNames.tomato,
-		ItemNames.tomato_seed,
-		ItemNames.lettuce,
-		ItemNames.lettuce_seed,
-		ItemNames.cyber_axe,
-		ItemNames.cyber_hoe,
-		ItemNames.cyber_pickaxe,
-		ItemNames.cyber_shovel,
-		ItemNames.cyber_sword,
-		ItemNames.lunar_upgrade_lvl_1,
-		ItemNames.lunar_upgrade_lvl_2,
-		ItemNames.lunar_upgrade_lvl_3,
-		ItemNames.lunar_upgrade_lvl_4,
-		ItemNames.speed_upgrade_lvl_1,
-		ItemNames.speed_upgrade_lvl_2,
-		ItemNames.speed_upgrade_lvl_3,
-		ItemNames.speed_upgrade_lvl_4,
-		ItemNames.power_upgrade_lvl_1,
-		ItemNames.power_upgrade_lvl_2,
-		ItemNames.power_upgrade_lvl_3);
+		event.getRegistry().register(ItemInit.power_furnace_block);
+		event.getRegistry().register(ItemInit.taco_shell);
+		event.getRegistry().register(ItemInit.item_cable);
+		event.getRegistry().register(ItemInit.cable);
+		event.getRegistry().register(ItemInit.cyber_ore);
+		event.getRegistry().register(ItemInit.dark_steel_ore);
+		event.getRegistry().register(ItemInit.ruby_ore);
+		event.getRegistry().register(ItemInit.cyber_ingot);
+		event.getRegistry().register(ItemInit.dark_steel_ingot);
+		event.getRegistry().register(ItemInit.ruby_ingot);
+		event.getRegistry().register(ItemInit.power_box);
+		event.getRegistry().register(ItemInit.lunar);
+		event.getRegistry().register(ItemInit.lettuce_crop);
+		event.getRegistry().register(ItemInit.tomato_crop);
+		event.getRegistry().register(ItemInit.cheese);
+		event.getRegistry().register(ItemInit.tomato);
+		event.getRegistry().register(ItemInit.taco);
+		event.getRegistry().register(ItemInit.tomato_seed);
+		event.getRegistry().register(ItemInit.lettuce);
+		event.getRegistry().register(ItemInit.lettuce_seed);
+		event.getRegistry().register(ItemInit.cyber_axe);
+		event.getRegistry().register(ItemInit.cyber_hoe);
+		event.getRegistry().register(ItemInit.cyber_pickaxe);
+		event.getRegistry().register(ItemInit.cyber_shovel);
+		event.getRegistry().register(ItemInit.cyber_sword);
+		event.getRegistry().register(ItemInit.ruby_axe);
+		event.getRegistry().register(ItemInit.ruby_hoe);
+		event.getRegistry().register(ItemInit.ruby_pickaxe);
+		event.getRegistry().register(ItemInit.ruby_shovel);
+		event.getRegistry().register(ItemInit.ruby_sword);
+		event.getRegistry().register(ItemInit.dark_steel_axe);
+		event.getRegistry().register(ItemInit.dark_steel_hoe);
+		event.getRegistry().register(ItemInit.dark_steel_pickaxe);
+		event.getRegistry().register(ItemInit.dark_steel_shovel);
+		event.getRegistry().register(ItemInit.dark_steel_sword);
+		event.getRegistry().register(ItemInit.lunar_upgrade_lvl_1);
+		event.getRegistry().register(ItemInit.lunar_upgrade_lvl_2);
+		event.getRegistry().register(ItemInit.lunar_upgrade_lvl_3);
+		event.getRegistry().register(ItemInit.lunar_upgrade_lvl_4);
+		event.getRegistry().register(ItemInit.speed_upgrade_lvl_1);
+		event.getRegistry().register(ItemInit.speed_upgrade_lvl_2);
+		event.getRegistry().register(ItemInit.speed_upgrade_lvl_3);
+		event.getRegistry().register(ItemInit.speed_upgrade_lvl_4);
+		event.getRegistry().register(ItemInit.power_upgrade_lvl_1);
+		event.getRegistry().register(ItemInit.power_upgrade_lvl_2);
+		event.getRegistry().register(ItemInit.power_upgrade_lvl_3);
 
 		CyberCoreMain.LOGGER.info("Item Loaded");
 	}
@@ -99,7 +97,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(TileEntityNames.CABLE_TE.setRegistryName("tileentitycable"));
 		event.getRegistry().register(TileEntityNames.POWER_BOX_TE.setRegistryName("tileentitypowerbox"));
 		event.getRegistry().register(TileEntityNames.POWER_FURNACE_TE.setRegistryName("tileentitypoweredfrnace"));
-		//event.getRegistry().register(TileEntityNames.TE_TYPE_ITEM_PIPE.setRegistryName("tileentityitempipe"));
+		event.getRegistry().register(TileEntityNames.TE_TYPE_ITEM_PIPE.setRegistryName("itempipe_te"));
 		CyberCoreMain.LOGGER.info("TileEntityType Loaded");
 	}
 

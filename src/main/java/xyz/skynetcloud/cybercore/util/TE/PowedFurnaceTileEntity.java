@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -21,18 +20,15 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RangedWrapper;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
-import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
-import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
+import xyz.skynetcloud.cybercore.util.CyberCoreConstants;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import xyz.skynetcloud.cybercore.util.container.PowerFurnaceContainer;
-import xyz.skynetcloud.cybercore.util.networking.util.CyberCoreConstants;
 
 public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
 
 	public int[] ticksPassed = new int[6];
 	boolean isSmelting;
-	private int currentLvl = -1;
 	protected ItemStackHandler dummyitemhandler = new ItemStackHandler(1);
 
 	private RangedWrapper inputs;
@@ -224,38 +220,6 @@ public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
 		return compound;
 	}
 
-	public void onSlotContentChanged() {
-		if (world != null) {
-			if (!world.isRemote) {
-				int newLvl = getMarkLvl(0, CyberCoreConstants.POWER_LVL_TYPE);
-				if (currentLvl != newLvl) {
-					switch (currentLvl) {
-					case 0:
-						energystorage.setEnergyMaxStored(1000);
-						break;
-					case 1:
-						energystorage.setEnergyMaxStored(10000);
-						break;
-					case 2:
-						energystorage.setEnergyMaxStored(100000);
-						break;
-					case 3:
-						energystorage.setEnergyMaxStored(1000000);
-						break;
-					}
-					BlockState state = world.getBlockState(pos);
-					if (state != null) {
-						if (state.getBlock() == BlockInit.POWER_BOX) {
-							world.setBlockState(pos, state.with(CyberCorePowerBlock.LVL, newLvl), 2);
-							markDirty();
-						}
-					}
-					currentLvl = newLvl;
-				}
-			}
-		}
-	}
-
 	@Override
 	public void read(CompoundNBT compound) {
 		for (int i = 0; i < 6; i++) {
@@ -266,7 +230,7 @@ public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
 
 	@Override
 	public String getNameString() {
-		return "poweredfurnace";
+		return "megafurnace";
 	}
 
 	@Override

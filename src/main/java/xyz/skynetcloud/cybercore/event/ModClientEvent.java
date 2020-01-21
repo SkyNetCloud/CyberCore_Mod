@@ -9,7 +9,6 @@ import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.VersionChecker;
@@ -42,7 +41,7 @@ public class ModClientEvent {
 
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public static void DiscordLinkOnWorldLoad(PlayerEvent.PlayerLoggedInEvent event) {
+	public static void DiscordLinkOnWorldLoad(EntityJoinWorldEvent event) {
 
 		ITextComponent info = new TranslationTextComponent("cybercore.info.click");
 		ITextComponent link = new TranslationTextComponent("cybercore.info.link");

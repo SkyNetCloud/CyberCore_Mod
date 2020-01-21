@@ -20,11 +20,6 @@ public class BlockBaseCore extends Block {
 		this.group = group;
 		this.name = name;
 		setRegistryName(name);
-
-	}
-
-	public Item createItemBlock() {
-		return (Item) (new BlockItem(this, (new Item.Properties()).group(this.group))).setRegistryName(this.name);
 	}
 
 	protected VoxelShape[] makeShapes(float nodeWidth, float extensionWidth, float p_196408_3_, float p_196408_4_,

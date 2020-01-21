@@ -13,22 +13,24 @@ import xyz.skynetcloud.cybercore.block.crop.LettuceCrop;
 import xyz.skynetcloud.cybercore.block.crop.TomatoCrop;
 import xyz.skynetcloud.cybercore.block.tech.TechBlockFacing;
 import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCoreCable;
+import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCoreItemPipe;
 import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
 
 public class BlockInit {
 
 	public static ItemGroup group = CyberCoreTab.instance;
 
+	public static Block ITEM_PIPE = new CyberCoreItemPipe(Block.Properties.create(Material.IRON))
+			.setRegistryName("block_pipe");
+
 	public static Block TOMATO_CROP = new TomatoCrop("tomato_crop_block");
 
 	public static Block LETTUCE_CROP = new LettuceCrop("lettuce_crop_block");
 
-	//public static Block ITEM_PIPE = new CyberCoreItemPipe(Block.Properties.create(Material.IRON))
-		//	.setRegistryName("item_pipe");
+	public static BlockBaseCore CYBERLAND = (BlockBaseCore) new CustomWorldLink("cyberland_block",
+			CyberCoreTab.instance);
 
-	public static Block DimWorldLinkBlock = new CustomWorldLink("worldlinkblock", CyberCoreTab.instance);
-
-	public static Block POWER_FURNACE_BLOCK = new TechBlockFacing("power_furnace_block", group);
+	public static Block POWER_FURNACE_BLOCK = new TechBlockFacing("powered_furnace", group);
 
 	public static Block CABLE = new CyberCoreCable("cable", CyberCoreTab.instance);
 

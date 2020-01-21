@@ -1,6 +1,6 @@
 package xyz.skynetcloud.cybercore.init;
 
-import static xyz.skynetcloud.cybercore.api.items.ItemNames.*;
+import static xyz.skynetcloud.cybercore.api.items.ItemInit.*;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
