@@ -28,7 +28,6 @@ public class CyberCoreMain {
 	public static boolean hasSendUpdateAvailable = false;
 
 	public static final String MODID = "cybercore";
-	public static final ResourceLocation CYBERLAND_DIM = new ResourceLocation(MODID, "cyberland_dim");
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public CyberCoreMain() {

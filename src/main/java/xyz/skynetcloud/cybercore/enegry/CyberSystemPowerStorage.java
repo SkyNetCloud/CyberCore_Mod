@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.init.OtherInit.power;
+package xyz.skynetcloud.cybercore.enegry;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.energy.EnergyStorage;

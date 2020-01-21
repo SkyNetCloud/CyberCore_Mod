@@ -12,8 +12,10 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.VersionChecker;
+import net.minecraftforge.fml.common.Mod;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
 
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModClientEvent {
 
 	@OnlyIn(Dist.CLIENT)

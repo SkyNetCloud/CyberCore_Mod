@@ -14,7 +14,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import xyz.skynetcloud.cybercore.init.OtherInit.power.CyberSystemPowerStorage;
+import xyz.skynetcloud.cybercore.enegry.CyberSystemPowerStorage;
 
 abstract public class CyberCorePowerTE extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
