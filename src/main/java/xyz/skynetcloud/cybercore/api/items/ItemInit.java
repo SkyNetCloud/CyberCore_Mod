@@ -82,7 +82,7 @@ public class ItemInit {
 
 	public static BlockItem lunar = new BlockItemCore(BlockInit.LUNAR_BLOCK);
 
-	public static BlockItem dimworldlink_item = new BlockItemCore(BlockInit.CYBERLAND);
+	public static BlockItem cyberland_land = new BlockItemCore(BlockInit.CYBERLAND);
 
 	public static BlockItem power_box = new BlockItemCore(BlockInit.POWER_BOX);
 

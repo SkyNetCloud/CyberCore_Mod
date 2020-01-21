@@ -1,57 +1,52 @@
 package xyz.skynetcloud.cybercore.event;
 
-import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.ClickEvent;
-import net.minecraft.util.text.event.HoverEvent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.client.event.ClientPlayerNetworkEvent.LoggedInEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.VersionChecker;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.VersionChecker.CheckResult;
+import net.minecraftforge.fml.VersionChecker.Status;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModClientEvent {
 
-	@OnlyIn(Dist.CLIENT)
+	public static final ModClientEvent INSTANCE = new ModClientEvent();
+
 	@SubscribeEvent
-	public static void onWorldStart(EntityJoinWorldEvent evt) {
-		VersionChecker.CheckResult res = VersionChecker
-				.getResult(ModList.get().getModContainerById(CyberCoreMain.MODID).get().getModInfo());
-		if (evt.getEntity() instanceof ClientPlayerEntity && res.status == VersionChecker.Status.OUTDATED
-				&& !CyberCoreMain.hasSendUpdateAvailable) {
-			CyberCoreMain.hasSendUpdateAvailable = true;
+	public void handlePlayerLoggedInEvent(LoggedInEvent event) {
+		CheckResult versionRAW = VersionChecker
+				.getResult(ModList.get().getModFileById(CyberCoreMain.MODID).getMods().get(0));
+		Status result = versionRAW.status;
 
-			ITextComponent info = new TranslationTextComponent("cybercore.update.available");
-			ITextComponent link = new TranslationTextComponent("cybercore.update.click");
+		if (!(result.equals(Status.BETA_OUTDATED) || result.equals(Status.PENDING) || result.equals(Status.BETA))) {
+			event.getPlayer()
+					.sendMessage(new StringTextComponent(
+							TextFormatting.GREEN + "[" + CyberCoreMain.MODID + "] " + TextFormatting.WHITE
+									+ "A new version is available (" + versionRAW.target + "), please update!"));
+			event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.YELLOW + "Changelog:"));
 
-			link.getStyle()
-					.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,
-							"https://www.curseforge.com/minecraft/mc-mods/cybercore-mod/files"))
-					.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-							new TranslationTextComponent("cybercore.update.tooltip")))
-					.setColor(TextFormatting.DARK_GREEN).setUnderlined(true);
-			evt.getEntity().sendMessage(info.appendSibling(link));
+			String changes = versionRAW.changes.get(versionRAW.target);
+			if (changes != null) {
+				String changesFormat[] = changes.split("\n");
+
+				for (String change : changesFormat) {
+					event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.WHITE + "- " + change));
+				}
+				if (versionRAW.changes.size() > 1) {
+					event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.WHITE + "- And more..."));
+				}
+			}
 		}
-
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	@SubscribeEvent
-	public static void DiscordLinkOnWorldLoad(EntityJoinWorldEvent event) {
-
-		ITextComponent info = new TranslationTextComponent("cybercore.info.click");
-		ITextComponent link = new TranslationTextComponent("cybercore.info.link");
-
-		link.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/WbHWbm8"))
-				.setColor(TextFormatting.DARK_GREEN).setUnderlined(true);
-		event.getEntity().sendMessage(info.appendSibling(link));
-
+		if (result.equals(Status.BETA)) {
+			event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.MODID
+					+ "] " + TextFormatting.WHITE + "Version not released yet"
+					+ " Join Discord https://discord.gg/8jwjjyK If you would like to help me with Item to add "));
+		}
 	}
 
 }

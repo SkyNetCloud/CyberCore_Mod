@@ -21,12 +21,15 @@ public class ModRegistryEvent {
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 
 		event.getRegistry().register(BlockInit.LETTUCE_CROP);
+		event.getRegistry().register(BlockInit.CYBERLAND);
 		event.getRegistry().register(BlockInit.ITEM_PIPE);
 		event.getRegistry().register(BlockInit.TOMATO_CROP);
 		event.getRegistry().register(BlockInit.CABLE);
 		event.getRegistry().register(BlockInit.CYBER_ORE);
 		event.getRegistry().register(BlockInit.RUBY_ORE);
 		event.getRegistry().register(BlockInit.DARK_STEEL_ORE);
+		event.getRegistry().register(BlockInit.RUBY_BLOCK);
+		event.getRegistry().register(BlockInit.DARK_STEEL_BLOCK);
 		event.getRegistry().register(BlockInit.CYBER_SLAB);
 		event.getRegistry().register(BlockInit.CYBER_STAIRS);
 		event.getRegistry().register(BlockInit.LUNAR_BLOCK);
@@ -40,6 +43,9 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
+		event.getRegistry().register(ItemInit.ruby_block);
+		event.getRegistry().register(ItemInit.cyberland_land);
+		event.getRegistry().register(ItemInit.dark_steel_block);
 		event.getRegistry().register(ItemInit.power_furnace_block);
 		event.getRegistry().register(ItemInit.taco_shell);
 		event.getRegistry().register(ItemInit.item_cable);

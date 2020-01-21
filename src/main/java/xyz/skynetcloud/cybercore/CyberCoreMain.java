@@ -5,10 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -25,7 +22,7 @@ import xyz.skynetcloud.cybercore.world.gen.OreGen;
 @Mod("cybercore")
 public class CyberCoreMain {
 
-	public static boolean hasSendUpdateAvailable = false;
+	public static boolean hasSendUpdateAvailable = true;
 
 	public static final String MODID = "cybercore";
 	public static final Logger LOGGER = LogManager.getLogger();
@@ -44,12 +41,9 @@ public class CyberCoreMain {
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-			FMLJavaModLoadingContext.get().getModEventBus().addListener(ModClientEvent::DiscordLinkOnWorldLoad);
-			FMLJavaModLoadingContext.get().getModEventBus().addListener(ModClientEvent::onWorldStart);
-		});
-
 		MinecraftForge.EVENT_BUS.register(this);
+
+		MinecraftForge.EVENT_BUS.register(ModClientEvent.INSTANCE);
 
 	}
 
