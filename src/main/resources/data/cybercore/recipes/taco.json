@@ -10,7 +10,7 @@
 			"item": "cybercore:cheese"
 		},
 		"B": {
-			"item": ""
+			"item": "minecraft:cooked_beef"
 		},
 		"T": {
 			"item": "cybercore:tomato"
@@ -21,6 +21,6 @@
 	},
 	"result": {
 		"item": "cybercore:taco",
-		"count": 1
+		"count": 3
 	}
 }

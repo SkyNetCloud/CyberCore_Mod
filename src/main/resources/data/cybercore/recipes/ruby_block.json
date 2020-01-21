@@ -2,22 +2,16 @@
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
 		"AAA",
-		"CCC",
-		"ABA"
+		"AAA",
+		"AAA"
 	],
 	"key": {
 		"A": {
-			"item": "cybercore:cyber_ingot"
-		},
-		"B": {
 			"item": "cybercore:ruby_ingot"
-		},
-		"C": {
-			"item": "cybercore:dark_steel_block"
 		}
 	},
 	"result": {
-		"item": "cybercore:power_storage",
+		"item": "cybercore:ruby_block",
 		"count": 1
 	}
 }
