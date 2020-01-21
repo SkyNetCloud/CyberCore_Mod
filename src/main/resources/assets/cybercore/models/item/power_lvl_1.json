@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "cybercore:items/power_upgrade_lvl_2"
+		"layer0": "cybercore:items/powered_lvl_1"
 	}
 }
