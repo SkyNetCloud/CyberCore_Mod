@@ -21,9 +21,9 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RangedWrapper;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
-import xyz.skynetcloud.cybercore.util.CyberCoreConstants;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import xyz.skynetcloud.cybercore.util.container.PowerFurnaceContainer;
+import xyz.skynetcloud.cybercore.util.networking.util.CyberCoreConstants;
 
 public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
 

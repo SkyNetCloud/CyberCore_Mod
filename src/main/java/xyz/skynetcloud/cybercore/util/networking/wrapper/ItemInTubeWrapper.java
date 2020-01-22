@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.util.wrapper;
+package xyz.skynetcloud.cybercore.util.networking.wrapper;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

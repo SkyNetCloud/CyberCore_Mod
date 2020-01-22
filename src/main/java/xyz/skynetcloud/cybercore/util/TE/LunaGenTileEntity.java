@@ -6,10 +6,10 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IIntArray;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
-import xyz.skynetcloud.cybercore.util.ClientSideConfig;
-import xyz.skynetcloud.cybercore.util.CyberCoreConstants;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import xyz.skynetcloud.cybercore.util.container.LunaGenContainer;
+import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
+import xyz.skynetcloud.cybercore.util.networking.util.CyberCoreConstants;
 
 public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	int workload = 0;

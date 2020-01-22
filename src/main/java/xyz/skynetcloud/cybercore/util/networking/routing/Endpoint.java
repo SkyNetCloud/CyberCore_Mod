@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.util.routing;
+package xyz.skynetcloud.cybercore.util.networking.routing;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.util.helper;
+package xyz.skynetcloud.cybercore.util.networking.helper;
 
 import java.util.ArrayList;
 import java.util.Collection;

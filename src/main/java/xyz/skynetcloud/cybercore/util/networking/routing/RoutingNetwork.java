@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.util.routing;
+package xyz.skynetcloud.cybercore.util.networking.routing;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,9 +16,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import xyz.skynetcloud.cybercore.util.ClientSideConfig;
 import xyz.skynetcloud.cybercore.util.TE.cable.ItemPipeTileEntity;
-import xyz.skynetcloud.cybercore.util.helper.WorldHelper;
+import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
+import xyz.skynetcloud.cybercore.util.networking.helper.WorldHelper;
 
 public class RoutingNetwork {
 	public final Set<BlockPos> tubes = new HashSet<BlockPos>(); // set of the tubes that make up the network interior

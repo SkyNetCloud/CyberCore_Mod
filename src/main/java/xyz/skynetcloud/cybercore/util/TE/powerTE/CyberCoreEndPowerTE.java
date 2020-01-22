@@ -16,7 +16,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import xyz.skynetcloud.cybercore.item.UpgradeLvl;
-import xyz.skynetcloud.cybercore.util.IItemChargeable;
+import xyz.skynetcloud.cybercore.util.networking.util.IItemChargeable;
 
 abstract public class CyberCoreEndPowerTE extends CyberCorePowerTE {
 	protected ItemStackHandler itemhandler;

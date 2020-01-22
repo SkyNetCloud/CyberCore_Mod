@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.util.helper;
+package xyz.skynetcloud.cybercore.util.networking.helper;
 
 import javax.annotation.Nullable;
 

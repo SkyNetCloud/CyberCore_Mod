@@ -4,9 +4,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
-import xyz.skynetcloud.cybercore.util.CyberCoreConstants;
 import xyz.skynetcloud.cybercore.util.TE.LunaGenTileEntity;
 import xyz.skynetcloud.cybercore.util.container.LunaGenContainer;
+import xyz.skynetcloud.cybercore.util.networking.util.CyberCoreConstants;
 
 public class LunaGenScreen extends ScreenBaseCore<LunaGenContainer> {
 	private static final ResourceLocation TEXTURES = new ResourceLocation(

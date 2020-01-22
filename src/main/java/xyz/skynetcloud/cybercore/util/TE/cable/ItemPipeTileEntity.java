@@ -29,12 +29,12 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCoreItemPipe;
-import xyz.skynetcloud.cybercore.util.ClientSideConfig;
-import xyz.skynetcloud.cybercore.util.handler.ItemPipeInventoryHandler;
-import xyz.skynetcloud.cybercore.util.helper.WorldHelper;
-import xyz.skynetcloud.cybercore.util.routing.Route;
-import xyz.skynetcloud.cybercore.util.routing.RoutingNetwork;
-import xyz.skynetcloud.cybercore.util.wrapper.ItemInTubeWrapper;
+import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
+import xyz.skynetcloud.cybercore.util.networking.handler.ItemPipeInventoryHandler;
+import xyz.skynetcloud.cybercore.util.networking.helper.WorldHelper;
+import xyz.skynetcloud.cybercore.util.networking.routing.Route;
+import xyz.skynetcloud.cybercore.util.networking.routing.RoutingNetwork;
+import xyz.skynetcloud.cybercore.util.networking.wrapper.ItemInTubeWrapper;
 
 public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntity {
 

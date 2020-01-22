@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.util.routing;
+package xyz.skynetcloud.cybercore.util.networking.routing;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCoreItemPipe;
-import xyz.skynetcloud.cybercore.util.helper.PosHelper;
+import xyz.skynetcloud.cybercore.util.networking.helper.PosHelper;
 
 public class FastestRoutesSolver {
 

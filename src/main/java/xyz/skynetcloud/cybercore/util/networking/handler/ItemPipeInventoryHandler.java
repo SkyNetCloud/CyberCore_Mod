@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.util.handler;
+package xyz.skynetcloud.cybercore.util.networking.handler;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;

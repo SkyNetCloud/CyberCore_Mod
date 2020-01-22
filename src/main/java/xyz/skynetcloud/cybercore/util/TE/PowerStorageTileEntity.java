@@ -9,9 +9,9 @@ import net.minecraft.util.IIntArray;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
-import xyz.skynetcloud.cybercore.util.ClientSideConfig;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import xyz.skynetcloud.cybercore.util.container.PowerStorageContainer;
+import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
 
 public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 
