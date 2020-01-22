@@ -9,6 +9,8 @@ public class ClientSideConfig {
 
 	public static BooleanValue grass_enable;
 
+	public static BooleanValue canConnect;
+
 	public static IntValue world_height;
 
 	public static IntValue overworldId;
@@ -32,6 +34,8 @@ public class ClientSideConfig {
 	public static void init(ForgeConfigSpec.Builder server, ForgeConfigSpec.Builder client) {
 		client.comment("Client Side Configuration").push("client");
 
+		canConnect = client.comment("Can Connect this block default:true").define("canConnect", true);
+
 		max_items_in_item_pipe = client.comment(
 				"Max items that can fit in a single tube. A tube block will break of the number of itemstacks contained with them is greater than this value, dropping their items on the ground")
 
@@ -47,13 +51,6 @@ public class ClientSideConfig {
 				"Soft cap on how many tubes can exist in a contiguous network of Item Pipes. Items are transported slowlier in networks of greater size than this value.")
 				.defineInRange("soft_item_pipe_cap", 400, 1, 10000);
 
-		grass_enable = client.comment("World Has Grass").translation("cybercore.config.grass_enable")
-				.define("grass_enable", true);
-
-		overworldId = client.comment("Overworld dim ID").defineInRange("overworldId", 0, -1000, 1000);
-
-		world_height = client.comment("Height of the world").defineInRange("world_height", 70, 5, 256);
-
 		PowerLmit = client.comment("Power Limit For All Blocks default:1000").define("cybercore_power_limit", 1000);
 
 		SpeedLvlTick = client.comment("Speed Upgrade Tick default:15").define("speed_lvl_tick", 15);
@@ -61,6 +58,8 @@ public class ClientSideConfig {
 		LunarGenPerTick = client.comment("Power Per Tick LunarGen Block default:10").define("lunar_gen_per_tick", 10);
 
 		server.comment("Server Side Configuration");
+
+		canConnect = server.comment("Can Connect this block default:true").define("canConnect", true);
 
 		max_items_in_item_pipe = server.comment(
 				"Max items that can fit in a single tube. A tube block will break of the number of itemstacks contained with them is greater than this value, dropping their items on the ground")
@@ -77,12 +76,6 @@ public class ClientSideConfig {
 
 				.defineInRange("soft_item_pipe_cap", 400, 1, 10000);
 
-		grass_enable = server.comment("World Has Grass").define("grass_enable", true);
-
-		overworldId = server.comment("Overworld dim ID").defineInRange("overworldId", 0, -1000, 1000);
-
-		world_height = server.comment("Height of the world").defineInRange("world_height", 70, 5, 256);
-
 		PowerLmit = server.comment("Power Limit For All Blocks default:1000").define("cybercore_power_limit", 1000);
 
 		SpeedLvlTick = server.comment("Speed Upgrade Tick default:15").define("speed_lvl_tick", 15);
@@ -92,6 +85,6 @@ public class ClientSideConfig {
 	}
 
 	public static int getOverworldId() {
-		return overworldId.get();
+		return 0;
 	}
 }

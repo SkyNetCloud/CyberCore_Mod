@@ -1,5 +1,5 @@
 {
-	"parent": "block/slab_top",
+	"parent": "block/slab",
 	"textures": {
 		"bottom": "cybercore:blocks/ruby_block",
 		"top": "cybercore:blocks/ruby_block",

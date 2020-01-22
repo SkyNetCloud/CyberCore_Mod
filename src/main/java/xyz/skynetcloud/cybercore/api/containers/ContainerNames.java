@@ -21,4 +21,26 @@ public class ContainerNames {
 
 	public static final ContainerType<PowerFurnaceContainer> POWER_FURNCAE_CON = new ContainerType<PowerFurnaceContainer>(
 			PowerFurnaceContainer::new);
+/*
+	public static final ContainerType<CyberCoreChestContainer> IRON_CHEST = new ContainerType<>(
+			CyberCoreChestContainer::createIronContainer);
+
+	public static final ContainerType<CyberCoreChestContainer> GOLD_CHEST = new ContainerType<>(
+			CyberCoreChestContainer::createGoldContainer);
+
+	public static final ContainerType<CyberCoreChestContainer> DIAMOND_CHEST = new ContainerType<>(
+			CyberCoreChestContainer::createDiamondContainer);
+
+	public static final ContainerType<CyberCoreChestContainer> CRYSTAL_CHEST = new ContainerType<>(
+			CyberCoreChestContainer::createCrystalContainer);
+
+	public static final ContainerType<CyberCoreChestContainer> COPPER_CHEST = new ContainerType<>(
+			CyberCoreChestContainer::createCopperContainer);
+
+	public static final ContainerType<CyberCoreChestContainer> SILVER_CHEST = new ContainerType<>(
+			CyberCoreChestContainer::createSilverContainer);
+
+	public static final ContainerType<CyberCoreChestContainer> OBSIDIAN_CHEST = new ContainerType<>(
+			CyberCoreChestContainer::createObsidianContainer);
+*/
 }

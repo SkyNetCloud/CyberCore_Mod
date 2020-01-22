@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "cybercore:block/machine/block_loader"
+		},
+		"facing=south": {
+			"model": "cybercore:block/machine/block_loader",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "cybercore:block/machine/block_loader",
+			"y": 270
+		},
+		"facing=east": {
+			"model": "cybercore:block/machine/block_loader",
+			"y": 90
+		}
+	}
+}

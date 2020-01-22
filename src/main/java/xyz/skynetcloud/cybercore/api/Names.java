@@ -51,5 +51,6 @@ public class Names {
 	public static final String LUNARGEN_CON = (MODID + ":lunar_gen_machine_con");
 	public static final String POWER_BOX_CON = (MODID + ":power_box_con");
 	public static final String POWERED_FURNACE_CON = (MODID + ":poweredfurnace_con");
+	public static final String CYBER_CHEST_CONS = (MODID + ":cyberchest_con");
 
 }

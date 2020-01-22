@@ -14,6 +14,7 @@ import net.minecraft.util.Rotation;
 public class TechBlockFacing extends TechBlockBaseSubCore {
 
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+	
 
 	public TechBlockFacing(String name, ItemGroup tab) {
 		super(name, tab);
@@ -22,7 +23,7 @@ public class TechBlockFacing extends TechBlockBaseSubCore {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+		return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing());
 	}
 
 	@Override

@@ -32,7 +32,10 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
+import xyz.skynetcloud.cybercore.block.blocks.CyberExtractorBlock;
+import xyz.skynetcloud.cybercore.block.blocks.CyberLoaderBlock;
 import xyz.skynetcloud.cybercore.util.TE.cable.ItemPipeTileEntity;
+import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
 
 public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, ILiquidContainer {
 	public static final Direction[] FACING_VALUES = Direction.values();
@@ -139,6 +142,12 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 		if (block instanceof CyberCoreItemPipe)
 			return this.isTubeCompatible((CyberCoreItemPipe) block);
 
+		if (block instanceof CyberLoaderBlock && state.get(CyberLoaderBlock.FACING).equals(face.getOpposite()))
+			return ClientSideConfig.canConnect.get();
+
+		if (block instanceof CyberExtractorBlock && state.get(CyberExtractorBlock.FACING).equals(face.getOpposite()))
+			return ClientSideConfig.canConnect.get();
+
 		TileEntity te = world.getTileEntity(newPos);
 
 		if (te == null)
@@ -193,14 +202,14 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 
 		// define the shapes for the piping core and the dunswe pipe segments
 		// reminder: north = negative
-		VoxelShape core = Block.makeCuboidShape(7F, 7F, 7F, 9F, 9F, 9F);
+		VoxelShape core = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
 
-		VoxelShape down = Block.makeCuboidShape(6F, 0F, 6F, 10F, 2F, 10F);
-		VoxelShape up = Block.makeCuboidShape(6F, 14F, 6F, 10F, 16F, 10F);
-		VoxelShape north = Block.makeCuboidShape(6F, 6F, 0F, 10F, 10F, 2F);
-		VoxelShape south = Block.makeCuboidShape(6F, 6F, 14F, 10F, 10F, 16F);
-		VoxelShape west = Block.makeCuboidShape(0F, 6F, 6F, 2F, 10F, 10F);
-		VoxelShape east = Block.makeCuboidShape(14F, 6F, 6F, 16F, 10F, 10F);
+		VoxelShape down = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
+		VoxelShape up = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
+		VoxelShape north = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
+		VoxelShape south = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
+		VoxelShape west = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
+		VoxelShape east = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
 
 		VoxelShape[] dunswe = { down, up, north, south, west, east };
 

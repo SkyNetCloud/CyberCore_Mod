@@ -36,8 +36,8 @@ import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 import xyz.skynetcloud.cybercore.init.DimInit;
-import xyz.skynetcloud.cybercore.util.ClientSideConfig;
 import xyz.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
+import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
 
 public class CustomWorldLink extends BlockBaseCore {
 
@@ -48,11 +48,6 @@ public class CustomWorldLink extends BlockBaseCore {
 	@Override
 	public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
 		return new ItemStack(BlockInit.CYBERLAND);
-	}
-
-	public Item createItemBlock() {
-		return new BlockItem(this, new Item.Properties().group(CyberCoreTab.instance))
-				.setRegistryName("worldlinkblock");
 	}
 
 	@SuppressWarnings("deprecation")
@@ -75,7 +70,7 @@ public class CustomWorldLink extends BlockBaseCore {
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		return (worldIn.getDimension().getType().getId() == ClientSideConfig.getOverworldId()
+		return (worldIn.getDimension().getType().getId() == DimensionType.OVERWORLD.getId()
 				|| worldIn.getDimension().getType() == DimensionType.byName(DimInit.CYBERLAND_ID)
 						&& super.isValidPosition(state, worldIn, pos));
 	}
@@ -86,7 +81,7 @@ public class CustomWorldLink extends BlockBaseCore {
 
 		if (!worldIn.isRemote) {
 			// FROM OVERWORLD TO MINING DIM
-			if (worldIn.getDimension().getType().getId() == ClientSideConfig.getOverworldId()) {
+			if (worldIn.getDimension().getType().getId() == DimensionType.OVERWORLD.getId()) {
 				if (DimensionType.byName(DimInit.CYBERLAND_ID) == null) {
 					DimensionManager.registerDimension(DimInit.CYBERLAND_ID, DimInit.CYBERLAND, null, true);
 				}
@@ -121,8 +116,8 @@ public class CustomWorldLink extends BlockBaseCore {
 
 			// FROM MINING DIM TO OVERWORLD
 			if (worldIn.getDimension().getType() == DimensionType.byName(DimInit.CYBERLAND_ID)) {
-				World overWorld = worldIn.getServer()
-						.getWorld(DimensionType.getById(ClientSideConfig.getOverworldId()));
+				@SuppressWarnings("static-access")
+				World overWorld = worldIn.getServer().getWorld(DimensionType.OVERWORLD.getById(0));
 				overWorld.getBlockState(pos);
 				BlockPos overWorldPos = overWorld.getHeight(Heightmap.Type.WORLD_SURFACE, pos);
 				boolean foundBlock = false;
@@ -141,13 +136,11 @@ public class CustomWorldLink extends BlockBaseCore {
 					}
 				}
 				if (foundBlock) {
-					changeDim(((ServerPlayerEntity) playerIn), overWorldPos,
-							DimensionType.getById(ClientSideConfig.getOverworldId()));
+					changeDim(((ServerPlayerEntity) playerIn), overWorldPos, DimensionType.getById(0));
 				}
 				if (!foundBlock) {
 					overWorld.setBlockState(overWorldPos.down(), BlockInit.CYBERLAND.getDefaultState());
-					changeDim(((ServerPlayerEntity) playerIn), overWorldPos,
-							DimensionType.getById(ClientSideConfig.getOverworldId()));
+					changeDim(((ServerPlayerEntity) playerIn), overWorldPos, DimensionType.getById(0));
 				}
 			}
 

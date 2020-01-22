@@ -5,7 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -16,14 +18,13 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import xyz.skynetcloud.cybercore.api.items.ItemInit;
 import xyz.skynetcloud.cybercore.event.ModClientEvent;
 import xyz.skynetcloud.cybercore.init.ScreenInit;
-import xyz.skynetcloud.cybercore.util.CyberCoreConfig;
+import xyz.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 import xyz.skynetcloud.cybercore.world.gen.OreGen;
 
 @Mod("cybercore")
 public class CyberCoreMain {
 
-	public static boolean hasSendUpdateAvailable = true;
-
+	public static final String NAME = "CyberCore";
 	public static final String MODID = "cybercore";
 	public static final Logger LOGGER = LogManager.getLogger();
 
@@ -37,13 +38,16 @@ public class CyberCoreMain {
 		CyberCoreConfig.loadConfig(CyberCoreConfig.COMMON,
 				FMLPaths.CONFIGDIR.get().resolve("cybercore-server.toml").toString());
 
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+		modBus.addListener(this::setup);
 
-		MinecraftForge.EVENT_BUS.register(this);
+		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
-		MinecraftForge.EVENT_BUS.register(ModClientEvent.INSTANCE);
+			modBus.register(ModClientEvent.INSTANCE);
+			modBus.addListener(this::doClientStuff);
+
+		});
 
 	}
 
