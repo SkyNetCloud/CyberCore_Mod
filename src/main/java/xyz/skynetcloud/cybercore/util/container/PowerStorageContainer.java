@@ -19,9 +19,10 @@ public class PowerStorageContainer extends BaseContainerCore {
 		super(id, ContainerNames.POWER_BOX_CON, player, tileentity, 3);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
-		this.addSlot(new ChangeCheckSlot(tileentity, handler, 0, 132, 64, "slot.util.powerstoragelvlcardslot"));
+		this.addSlot(new ChangeCheckSlot(tileentity, handler, 0, 132, 64, "slot.util.powerstoragelvlcardslot", null));
 		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 150, 86, "slot.util.powerin"));
-		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 168, 86, "slot.util.powerout"));
+		this.addSlot(
+				new SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 168, 86, "slot.util.powerout"));
 	}
 
 	@Override
@@ -64,8 +65,8 @@ public class PowerStorageContainer extends BaseContainerCore {
 		private PowerStorageTileEntity te;
 
 		public ChangeCheckSlot(PowerStorageTileEntity te, IItemHandler itemHandler, int index, int xPosition,
-				int yPosition, String usage) {
-			super(itemHandler, index, xPosition, yPosition, usage);
+				int yPosition, String input, String output) {
+			super(itemHandler, index, xPosition, yPosition, input);
 			this.te = te;
 		}
 

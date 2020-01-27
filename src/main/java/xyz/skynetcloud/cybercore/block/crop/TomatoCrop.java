@@ -50,7 +50,7 @@ public class TomatoCrop extends CropsBlock {
 
 	@OnlyIn(Dist.CLIENT)
 	protected IItemProvider getSeedsItem() {
-		return ItemInit.lettuce_seed;
+		return ItemInit.tomato_seed;
 	}
 
 	@OnlyIn(Dist.CLIENT)

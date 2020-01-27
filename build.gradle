@@ -14,6 +14,10 @@ plugins {
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
+repositories {  
+    maven {url "http://tehnut.info/maven"}
+}
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
@@ -43,6 +47,9 @@ minecraft {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
+    
+    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${Hwyla_version}:api")
+    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${Hwyla_version}")
 }
 
 curseforge {
@@ -54,7 +61,7 @@ curseforge {
             changelog = file("CyberCore-${version}-changelog.txt")
             
             releaseType = 'release'
-			
+
             mainArtifact(jar) {
                 displayName = "CyberCore ${version}"
             }

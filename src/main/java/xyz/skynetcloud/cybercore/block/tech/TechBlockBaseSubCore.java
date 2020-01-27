@@ -33,6 +33,7 @@ public class TechBlockBaseSubCore extends BlockBaseCore {
 
 	public TechBlockBaseSubCore(String name, ItemGroup group) {
 		super(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0f, 10.0f), name, group, true);
+
 	}
 
 	public IItemProvider getItemDropped(BlockState state, World worldIn, BlockPos pos, int fortune) {
@@ -45,7 +46,6 @@ public class TechBlockBaseSubCore extends BlockBaseCore {
 		return new ItemStack(this);
 	}
 
-	@Override
 	public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
 			BlockRayTraceResult ray) {
 		if (!world.isRemote) {

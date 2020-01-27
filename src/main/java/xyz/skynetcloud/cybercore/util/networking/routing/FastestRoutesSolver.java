@@ -20,7 +20,7 @@ public class FastestRoutesSolver {
 	public static List<Route> generateRoutes(RoutingNetwork network, World world, BlockPos startPos) {
 
 		Object2IntOpenHashMap<BlockPos> tubeDists = new Object2IntOpenHashMap<BlockPos>();
-		tubeDists.put(startPos, 0); // put the startpos in the map
+		tubeDists.put(startPos, 0);
 		Object2IntOpenHashMap<Endpoint> endpointDists = new Object2IntOpenHashMap<Endpoint>();
 
 		HashSet<BlockPos> visitedTubes = new HashSet<BlockPos>();

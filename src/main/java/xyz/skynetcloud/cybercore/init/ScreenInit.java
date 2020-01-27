@@ -15,15 +15,6 @@ public class ScreenInit {
 		ScreenManager.registerFactory(ContainerNames.LUNARGEN_CON, LunaGenScreen::new);
 		ScreenManager.registerFactory(ContainerNames.POWER_BOX_CON, PowerStorageScreen::new);
 		ScreenManager.registerFactory(ContainerNames.POWER_FURNCAE_CON, PowedFurnaceScreen::new);
-		
-		/*
-		ScreenManager.registerFactory(ContainerNames.IRON_CHEST, CyberCoreChestScreen::new);
-		ScreenManager.registerFactory(ContainerNames.GOLD_CHEST, CyberCoreChestScreen::new);
-		ScreenManager.registerFactory(ContainerNames.DIAMOND_CHEST, CyberCoreChestScreen::new);
-		ScreenManager.registerFactory(ContainerNames.CRYSTAL_CHEST, CyberCoreChestScreen::new);
-		ScreenManager.registerFactory(ContainerNames.COPPER_CHEST, CyberCoreChestScreen::new);
-		ScreenManager.registerFactory(ContainerNames.SILVER_CHEST, CyberCoreChestScreen::new);
-		ScreenManager.registerFactory(ContainerNames.OBSIDIAN_CHEST, CyberCoreChestScreen::new);
-		*/
 	}
+
 }

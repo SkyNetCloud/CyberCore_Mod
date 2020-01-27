@@ -96,7 +96,7 @@ public class CyberCoreCable extends BlockBaseCore {
 	public ActionResultType func_225533_a_(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
 			Hand hand, BlockRayTraceResult ray) {
 		if (!worldIn.isRemote && hand.equals(Hand.MAIN_HAND)
-				&& player.getHeldItemMainhand().getItem().equals(ItemInit.cyber_ingot)) {
+				&& player.getHeldItemMainhand().getItem().equals(ItemInit.whrechItem)) {
 			Vec3d hitvec = ray.getHitVec();
 			hitvec = hitvec.add(-pos.getX(), -pos.getY(), -pos.getZ());
 			VoxelShape tempshape;

@@ -3,18 +3,13 @@ package xyz.skynetcloud.cybercore.block.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
-import net.minecraft.block.HorizontalBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -23,32 +18,30 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
+import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
+import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 import xyz.skynetcloud.cybercore.util.networking.helper.WorldHelper;
 
-public class CyberExtractorBlock extends Block {
+public class CyberExtractorBlock extends BlockBaseCore {
 
 	// output is current facing, input is face.getOpposite()
 	public static final DirectionProperty FACING = DirectionalBlock.FACING;
 
+	public static World worldIn;
+
 	protected final VoxelShape[] shapes;
 
 	public CyberExtractorBlock(Properties properties) {
-		super(properties);
+		super(properties, "block_extractor", CyberCoreTab.instance, true);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP));
 		this.shapes = this.makeShapes();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos,
 			boolean isMoving) {
-		if (!worldIn.isRemote && worldIn.isAreaLoaded(pos, fromPos)) {
+		if (!worldIn.isRemote) {
 			this.transferItem(state, pos, worldIn);
-			worldIn.playSound(null, pos, SoundEvents.BLOCK_PISTON_CONTRACT, SoundCategory.BLOCKS, 0.3F,
-					worldIn.rand.nextFloat() * 0.1F + 0.8F);
-		} else {
-			worldIn.playSound(null, pos, SoundEvents.BLOCK_PISTON_EXTEND, SoundCategory.BLOCKS, 0.1F,
-					worldIn.rand.nextFloat() * 0.1F + 0.9F);
 		}
 		worldIn.setBlockState(pos, state, 2);
 	}
@@ -63,8 +56,6 @@ public class CyberExtractorBlock extends Block {
 		if (inputCap.isPresent()) {
 			LazyOptional<IItemHandler> outputCap = WorldHelper.getTEItemHandlerAt(world, output_pos, input_dir);
 
-			// if the input handler exists and either the output handler exists or we have
-			// room to eject the item
 			if (outputCap.isPresent() || !world.getBlockState(output_pos).isOpaqueCube(world, output_pos)) {
 				ItemStack stack = inputCap.map(inputHandler -> this.extractNextStack(inputHandler))
 						.orElse(ItemStack.EMPTY);
@@ -78,11 +69,16 @@ public class CyberExtractorBlock extends Block {
 	}
 
 	private ItemStack extractNextStack(IItemHandler handler) {
+
 		int slots = handler.getSlots();
+
 		for (int i = 0; i < slots; i++) {
-			ItemStack stack = handler.extractItem(i, 64, false);
-			if (stack.getCount() > 0) {
-				return stack.copy();
+			if (!worldIn.isRemote) {
+				ItemStack stack = handler.extractItem(i, 64, false);
+
+				if (stack.getCount() > 0) {
+					return stack.copy();
+				}
 			}
 		}
 		return ItemStack.EMPTY;
@@ -104,7 +100,9 @@ public class CyberExtractorBlock extends Block {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing());
+		Direction direction = context.getFace().getOpposite();
+		return this.getDefaultState().with(FACING,
+				direction.getAxis() == Direction.Axis.Y ? Direction.DOWN : direction);
 	}
 
 	public BlockState rotate(BlockState state, Rotation rot) {

@@ -1,6 +1,5 @@
 {
 	"credit": "Yeet",
-	"parent": "block/orientable",
 	"textures": {
 		"0": "cybercore:blocks/machine/device_side",
 		"4": "cybercore:blocks/machine/device_bottom",

@@ -18,7 +18,8 @@ public class OreGen {
 					Feature.ORE
 							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
 									BlockInit.CYBER_ORE.getDefaultState(), 17))
-							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(20, 0, 0, 67))));
+							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(15, 0, 0, 12))));
+			
 			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 					Feature.ORE
 							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,

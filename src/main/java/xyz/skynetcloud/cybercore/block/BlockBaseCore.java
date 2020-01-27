@@ -1,12 +1,9 @@
 package xyz.skynetcloud.cybercore.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 
 @SuppressWarnings("unused")
 public class BlockBaseCore extends Block {

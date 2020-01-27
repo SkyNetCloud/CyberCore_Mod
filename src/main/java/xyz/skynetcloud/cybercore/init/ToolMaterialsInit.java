@@ -1,6 +1,8 @@
 package xyz.skynetcloud.cybercore.init;
 
-import static xyz.skynetcloud.cybercore.api.items.ItemInit.*;
+import static xyz.skynetcloud.cybercore.api.items.ItemInit.cyber_ingot;
+import static xyz.skynetcloud.cybercore.api.items.ItemInit.dark_steel_ingot;
+import static xyz.skynetcloud.cybercore.api.items.ItemInit.ruby_ingot;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;

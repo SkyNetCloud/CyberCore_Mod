@@ -21,53 +21,22 @@ import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
 public class BlockInit {
 
 	public static ItemGroup group = CyberCoreTab.instance;
-	/*
-	 * TODO My a working Chest Block public static Block IRON_CHEST = new
-	 * CyberCoreChestBlock(Block.Properties.create(Material.IRON).
-	 * hardnessAndResistance(3.0F)).setRegistryName("iron_chest");
-	 * 
-	 * public static Block GOLD_CHEST = new
-	 * GoldChestBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(3
-	 * .0F)).setRegistryName("gold_chest");
-	 * 
-	 * public static Block DIAMOND_CHEST = new
-	 * DiamondChestBlock(Block.Properties.create(Material.IRON).
-	 * hardnessAndResistance(3.0F)).setRegistryName("diamond_chest");
-	 * 
-	 * public static Block COPPER_CHEST = new
-	 * CopperChestBlock(Block.Properties.create(Material.IRON).hardnessAndResistance
-	 * (3.0F)).setRegistryName("crystal_chest");
-	 * 
-	 * public static Block SILVER_CHEST = new
-	 * SilverChestBlock(Block.Properties.create(Material.IRON).hardnessAndResistance
-	 * (3.0F)).setRegistryName("silver_chest");
-	 * 
-	 * public static Block CRYSTAL_CHEST = new
-	 * CyberCoreChestBlock(Block.Properties.create(Material.IRON).
-	 * hardnessAndResistance(3.0F)).setRegistryName("copper_chest");
-	 * 
-	 * public static Block OBSIDIAN_CHEST = new
-	 * CyberCoreChestBlock(Block.Properties.create(Material.IRON).
-	 * hardnessAndResistance(3.0F)).setRegistryName("obsidian_chest");
-	 */
-	public static Block ITEM_PIPE = new CyberCoreItemPipe(Block.Properties.create(Material.IRON))
-			.setRegistryName("block_pipe");
 
-	public static Block BLOCK_EXTRACTOR = new CyberExtractorBlock(Block.Properties.create(Material.IRON))
-			.setRegistryName("block_extractor");
+	public static Block IRRIGATION_BLOCK = new TechBlockFacing("irrigtion_block", group);
+
+	public static Block ITEM_PIPE = new CyberCoreItemPipe(
+			Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F)).setRegistryName("block_pipe");
+
+	public static Block BLOCK_EXTRACTOR = new CyberExtractorBlock(Block.Properties.create(Material.IRON));
 
 	public static Block BLOCK_LOADER = new CyberLoaderBlock(Block.Properties.create(Material.IRON))
 			.setRegistryName("block_loader");
-
-	public static Block CYBER_EXTRACTOR_BLOCK = new CyberExtractorBlock(Block.Properties.create(Material.IRON))
-			.setRegistryName("block_extractor");
 
 	public static Block TOMATO_CROP = new TomatoCrop("tomato_crop_block");
 
 	public static Block LETTUCE_CROP = new LettuceCrop("lettuce_crop_block");
 
-	public static BlockBaseCore CYBERLAND = (BlockBaseCore) new CustomWorldLink("cyberland_block",
-			CyberCoreTab.instance);
+	public static Block CYBERLAND = new CustomWorldLink("cyberland_block", CyberCoreTab.instance);
 
 	public static Block POWER_FURNACE_BLOCK = new TechBlockFacing("powered_furnace", group);
 
@@ -90,12 +59,12 @@ public class BlockInit {
 
 	public static Block LUNAR_BLOCK = new TechBlockFacing("lunarsolargenerator_block", CyberCoreTab.instance);
 
-	public static Block POWER_BOX = (BlockBaseCore) new CyberCorePowerBlock();
+	public static Block POWER_BOX = new CyberCorePowerBlock();
 
-	public static Block RUBY_SLAB = (BlockBaseCore) new CyberSlabBlock(Block.Properties.create(Material.ROCK),
-			"ruby_slab", CyberCoreTab.instance);
+	public static Block RUBY_SLAB = new CyberSlabBlock(Block.Properties.create(Material.ROCK), "ruby_slab",
+			CyberCoreTab.instance);
 
-	public static Block RUBY_STAIRS = (BlockBaseCore) new CyberStairsBlock(RUBY_SLAB.getDefaultState(),
+	public static Block RUBY_STAIRS = new CyberStairsBlock(RUBY_SLAB.getDefaultState(),
 			Block.Properties.create(Material.ROCK), "ruby_stairs", CyberCoreTab.instance);
 
 }

@@ -50,6 +50,7 @@ import xyz.skynetcloud.cybercore.block.BlockItemCore;
 import xyz.skynetcloud.cybercore.init.SeedsInit;
 import xyz.skynetcloud.cybercore.init.ToolMaterialsInit;
 import xyz.skynetcloud.cybercore.item.UpgradeLvl;
+import xyz.skynetcloud.cybercore.item.WrenchItem;
 import xyz.skynetcloud.cybercore.item.tools.CyberCorePickaxe;
 
 public class ItemInit {
@@ -61,26 +62,9 @@ public class ItemInit {
 		public static Food lettuce = (new Food.Builder()).hunger(12).saturation(0.5F).build();
 	}
 
-	/*
-	 * public static BlockItem iron_chest = new BlockItemCore(BlockInit.IRON_CHEST);
-	 * 
-	 * public static BlockItem gold_chest = new BlockItemCore(BlockInit.GOLD_CHEST);
-	 * 
-	 * public static BlockItem diamond_chest = new
-	 * BlockItemCore(BlockInit.DIAMOND_CHEST);
-	 * 
-	 * public static BlockItem crystal_chest = new
-	 * BlockItemCore(BlockInit.CRYSTAL_CHEST);
-	 * 
-	 * public static BlockItem silver_chest = new
-	 * BlockItemCore(BlockInit.SILVER_CHEST);
-	 * 
-	 * public static BlockItem copper_chest = new
-	 * BlockItemCore(BlockInit.COPPER_CHEST);
-	 * 
-	 * public static BlockItem obsidian_chest = new
-	 * BlockItemCore(BlockInit.OBSIDIAN_CHEST);
-	 */
+	public static Item whrechItem = new WrenchItem();
+
+	public static BlockItem Item_Irrigation = new BlockItemCore(BlockInit.IRRIGATION_BLOCK);
 
 	public static Item block_loader = new BlockItemCore(BlockInit.BLOCK_LOADER);
 

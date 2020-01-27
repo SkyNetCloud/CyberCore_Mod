@@ -2,7 +2,7 @@
 	"multipart": [
 		{
 			"apply": {
-				"model": "cybercore:block/cable/item_cable/cable_core"
+				"model": "cybercore:block/cable/item_cable/item_cable_core"
 			}
 		},
 		{
@@ -10,7 +10,7 @@
 				"north": "true"
 			},
 			"apply": {
-				"model": "cybercore:block/cable/item_cable/cable_north",
+				"model": "cybercore:block/cable/item_cable/item_cable_n",
 				"uvlock": true
 			}
 		},
@@ -19,7 +19,7 @@
 				"east": "true"
 			},
 			"apply": {
-				"model": "cybercore:block/cable/item_cable/cable_north",
+				"model": "cybercore:block/cable/item_cable/item_cable_n",
 				"y": 90,
 				"uvlock": true
 			}
@@ -29,7 +29,7 @@
 				"south": "true"
 			},
 			"apply": {
-				"model": "cybercore:block/cable/item_cable/cable_north",
+				"model": "cybercore:block/cable/item_cable/item_cable_n",
 				"y": 180,
 				"uvlock": true
 			}
@@ -39,7 +39,7 @@
 				"west": "true"
 			},
 			"apply": {
-				"model": "cybercore:block/cable/item_cable/cable_north",
+				"model": "cybercore:block/cable/item_cable/item_cable_n",
 				"y": 270,
 				"uvlock": true
 			}
@@ -49,8 +49,7 @@
 				"up": "true"
 			},
 			"apply": {
-				"model": "cybercore:block/cable/item_cable/cable_north",
-				"x": 270,
+				"model": "cybercore:block/cable/item_cable/item_cable_up",
 				"uvlock": true
 			}
 		},
@@ -59,8 +58,7 @@
 				"down": "true"
 			},
 			"apply": {
-				"model": "cybercore:block/cable/item_cable/cable_north",
-				"x": 90,
+				"model": "cybercore:block/cable/item_cable/item_cable_down",
 				"uvlock": true
 			}
 		}

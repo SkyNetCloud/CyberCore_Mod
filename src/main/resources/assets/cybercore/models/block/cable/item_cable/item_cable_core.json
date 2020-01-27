@@ -8,14 +8,23 @@
 		{
 			"from": [
 				7,
-				7,
+				8,
 				7
 			],
 			"to": [
 				9,
-				9,
+				10,
 				9
 			],
+			"rotation": {
+				"angle": 0,
+				"axis": "y",
+				"origin": [
+					8,
+					9,
+					8
+				]
+			},
 			"faces": {
 				"north": {
 					"uv": [

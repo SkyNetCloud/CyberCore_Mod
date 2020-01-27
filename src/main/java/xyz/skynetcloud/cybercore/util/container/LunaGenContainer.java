@@ -23,7 +23,8 @@ public class LunaGenContainer extends BaseContainerCore {
 		this.addSlot(new SlotItemHandlerWithInfo(handler, 0, 84, 71, "slot.lunagen.lvlcard"));
 		this.addSlot(new SlotItemHandlerWithInfo(handler, 1, 45, 33, "slot.util.acceleratecard"));
 		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 150, 86, "slot.util.powerin"));
-		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 168, 86, "slot.util.powerout"));
+		this.addSlot(
+				new SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 168, 86, "slot.util.powerout"));
 	}
 
 	@Override

@@ -25,6 +25,7 @@
 	"item.cybercore.ruby_ingot": "Ruby Ingot",
 	"item.cybercore.dark_steel_ingot": "Dark Steel Ingot",
 	"item.cybercore.taco": "Taco",
+	"item.cybercore.wrench": "Wrench Tool",
 	"item.cybercore.taco_shell": "Taco Shell",
 	"item.cybercore.lettuce_seed": "Lettuce Seed",
 	"item.cybercore.tomato_seed": "Tomato Seed",
@@ -60,6 +61,8 @@
 	"item.cybercore.power_lvl_3": "Power lvl 3",
 	"slot.util.acceleratecard": "Insert Speed Card Slot",
 	"slot.lunagen.lvlcard": "Insert Level Card",
+	"slot.poweredfurnace.input": "Items or Blocks Inputs",
+	"slot.util.output": "Output Item Or Blocks",
 	"slot.util.powerin": "Insert item with power to insert power",
 	"slot.util.powerout": "Insert item with power to extract power"
 }

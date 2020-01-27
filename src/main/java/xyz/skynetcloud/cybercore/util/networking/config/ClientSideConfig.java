@@ -7,13 +7,13 @@ import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class ClientSideConfig {
 
-	public static BooleanValue grass_enable;
-
 	public static BooleanValue canConnect;
 
 	public static IntValue world_height;
 
 	public static IntValue overworldId;
+
+	public static IntValue getIrrigationRange;
 
 	public static ConfigValue<Integer> max_items_in_item_pipe;
 
@@ -31,8 +31,18 @@ public class ClientSideConfig {
 
 	public static ConfigValue<Integer> SpeedLvlTick;
 
+	public static BooleanValue grass_enable;
+
 	public static void init(ForgeConfigSpec.Builder server, ForgeConfigSpec.Builder client) {
+
 		client.comment("Client Side Configuration").push("client");
+
+		grass_enable = client.comment("Should the layers top of the world be dirt and grass").define("grass_enable",
+				true);
+
+		world_height = client.comment("Height of the world").defineInRange("world_height", 70, 5, 256);
+
+		getIrrigationRange = client.comment("Speed Upgrade Tick default:15").defineInRange("speed_lvl_tick", 8, 1, 16);
 
 		canConnect = client.comment("Can Connect this block default:true").define("canConnect", true);
 

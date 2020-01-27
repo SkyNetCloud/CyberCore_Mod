@@ -2,7 +2,7 @@ package xyz.skynetcloud.cybercore.block.tech;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.DirectionalBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.state.DirectionProperty;
@@ -13,8 +13,7 @@ import net.minecraft.util.Rotation;
 
 public class TechBlockFacing extends TechBlockBaseSubCore {
 
-	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-	
+	public static final DirectionProperty FACING = DirectionalBlock.FACING;
 
 	public TechBlockFacing(String name, ItemGroup tab) {
 		super(name, tab);
@@ -40,4 +39,5 @@ public class TechBlockFacing extends TechBlockBaseSubCore {
 	protected void fillStateContainer(Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
+
 }

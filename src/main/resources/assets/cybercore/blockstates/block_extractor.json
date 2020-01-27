@@ -1,17 +1,13 @@
 {
 	"variants": {
 		"facing=down": {
-			"model": "cybercore:block/machine/extractor",
-			"uvlock": true
+			"model": "cybercore:block/machine/extractor"
 		},
 		"facing=up": {
-			"model": "cybercore:block/machine/extractor",
-			"uvlock": true,
-			"x": 180
+			"model": "cybercore:block/machine/extractor"
 		},
 		"facing=north": {
 			"model": "cybercore:block/machine/extractor",
-			"uvlock": true,
 			"x": 270
 		},
 		"facing=south": {
@@ -27,13 +23,8 @@
 		},
 		"facing=east": {
 			"model": "cybercore:block/machine/extractor",
-			"uvlock": true,
 			"x": 90,
 			"y": 270
-		},
-		"facing=down": {
-			"model": "cybercore:block/machine/extractor_powered",
-			"uvlock": true
 		}
 	}
 }

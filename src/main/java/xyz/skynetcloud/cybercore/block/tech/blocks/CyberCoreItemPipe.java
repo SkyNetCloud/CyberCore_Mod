@@ -82,20 +82,12 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 	@Deprecated
 	public void onReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (state.getBlock() == newState.getBlock()) {
-			// only thing super.onReplaced does is remove the tile entity
-			// if the block stays the same, we specifically do NOT remove the tile entity
-			// so don't do anything here
+
 		} else {
 			super.onReplaced(state, world, pos, newState, isMoving);
 		}
 	}
 
-	/**
-	 * Called when a neighboring block was changed and marks that this state should
-	 * perform any checks during a neighbor change. Cases may include when redstone
-	 * power is updated, cactus blocks popping off due to a neighboring solid block,
-	 * etc.
-	 */
 	@Override
 	@Deprecated
 	public void neighborChanged(BlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos,
@@ -106,10 +98,6 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 		super.neighborChanged(state, world, pos, blockIn, fromPos, wat);
 	}
 
-	/**
-	 * Called by ItemBlocks after a block is set in the world, to allow post-place
-	 * logic
-	 */
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer,
 			ItemStack stack) {
@@ -196,28 +184,21 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 
 	protected VoxelShape[] makeShapes() {
 
-		// 6 different state flags = 2^6 = 64 different state models (waterlogging
-		// doesn't affect model)
 		VoxelShape[] shapes = new VoxelShape[64];
 
-		// define the shapes for the piping core and the dunswe pipe segments
-		// reminder: north = negative
-		VoxelShape core = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
+		VoxelShape core = Block.makeCuboidShape(7, 8, 7, 9, 10, 9);
 
-		VoxelShape down = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
-		VoxelShape up = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
-		VoxelShape north = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
-		VoxelShape south = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
-		VoxelShape west = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
-		VoxelShape east = Block.makeCuboidShape(7, 7, 7, 9, 9, 9);
+		VoxelShape down = Block.makeCuboidShape(7, 0, 7, 9, 8, 9);
+		VoxelShape up = Block.makeCuboidShape(7, 9, 7, 9, 17, 9);
+		VoxelShape north = Block.makeCuboidShape(7, 8, 1, 9, 10, 7);
+		VoxelShape south = Block.makeCuboidShape(7, 8, 7, 9, 10, 16);
+		VoxelShape west = Block.makeCuboidShape(1, 8, 7, 9, 10, 9);
+		VoxelShape east = Block.makeCuboidShape(9, 8, 7, 17, 10, 9);
 
 		VoxelShape[] dunswe = { down, up, north, south, west, east };
 
 		for (int i = 0; i < 64; i++) {
 			shapes[i] = core;
-			// if the state flag exists in this state's 6-bit binary pattern, use the pipe
-			// segment in this state model
-			// down = LSB, east = MSB
 			for (int j = 0; j < 6; j++) {
 				if ((i & (1 << j)) != 0) {
 					shapes[i] = VoxelShapes.or(shapes[i], dunswe[j]);
@@ -256,7 +237,6 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 		return index;
 	}
 
-	/// watterloggy stuff
 
 	@Override
 	public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {

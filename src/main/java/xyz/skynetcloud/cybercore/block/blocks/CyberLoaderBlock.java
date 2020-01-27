@@ -47,7 +47,6 @@ public class CyberLoaderBlock extends Block {
 
 		return super.func_225533_a_(state, world, pos, player, hand, rayTrace);
 	}
-	
 
 	private ItemStack insertItem(ItemStack stack, World world, BlockPos pos, BlockState state) {
 
@@ -76,17 +75,17 @@ public class CyberLoaderBlock extends Block {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing());
+		return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
 	}
 
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {
-		return state.with(FACING, rot.rotate(state.get(FACING)));
+		return state.with(FACING, rot.rotate((Direction) state.get(FACING)));
 	}
 
 	@Override
 	public BlockState mirror(BlockState state, Mirror mirrorIn) {
-		return state.rotate(mirrorIn.toRotation(state.get(FACING)));
+		return state.rotate(mirrorIn.toRotation((Direction) state.get(FACING)));
 	}
 
 	@Override

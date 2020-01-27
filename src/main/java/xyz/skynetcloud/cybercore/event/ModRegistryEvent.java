@@ -19,14 +19,7 @@ public class ModRegistryEvent {
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		/*
-		 * event.getRegistry().register(BlockInit.IRON_CHEST);
-		 * event.getRegistry().register(BlockInit.GOLD_CHEST);
-		 * event.getRegistry().register(BlockInit.DIAMOND_CHEST);
-		 * event.getRegistry().register(BlockInit.COPPER_CHEST);
-		 * event.getRegistry().register(BlockInit.SILVER_CHEST);
-		 * event.getRegistry().register(BlockInit.OBSIDIAN_CHEST);
-		 */
+
 		event.getRegistry().register(BlockInit.BLOCK_LOADER);
 		event.getRegistry().register(BlockInit.BLOCK_EXTRACTOR);
 		event.getRegistry().register(BlockInit.LETTUCE_CROP);
@@ -51,16 +44,9 @@ public class ModRegistryEvent {
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		/*
-		 * event.getRegistry().register(ItemInit.iron_chest);
-		 * event.getRegistry().register(ItemInit.gold_chest);
-		 * event.getRegistry().register(ItemInit.diamond_chest);
-		 * event.getRegistry().register(ItemInit.crystal_chest);
-		 * event.getRegistry().register(ItemInit.silver_chest);
-		 * event.getRegistry().register(ItemInit.copper_chest);
-		 * event.getRegistry().register(ItemInit.obsidian_chest);
-		 */
+
 		event.getRegistry().register(ItemInit.block_loader);
+		event.getRegistry().register(ItemInit.whrechItem);
 		event.getRegistry().register(ItemInit.block_extractor);
 		event.getRegistry().register(ItemInit.ruby_block);
 		event.getRegistry().register(ItemInit.cyberland_land);
@@ -125,22 +111,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(TileEntityNames.POWER_BOX_TE.setRegistryName("tileentitypowerbox"));
 		event.getRegistry().register(TileEntityNames.POWER_FURNACE_TE.setRegistryName("tileentitypoweredfrnace"));
 		event.getRegistry().register(TileEntityNames.TE_TYPE_ITEM_PIPE.setRegistryName("itempipe_te"));
-		/*
-		 * event.getRegistry().register(TileEntityNames.IRON_CHEST.setRegistryName(
-		 * "iron_chest_te"));
-		 * event.getRegistry().register(TileEntityNames.GOLD_CHEST.setRegistryName(
-		 * "gold_chest_te"));
-		 * event.getRegistry().register(TileEntityNames.DIAMOND_CHEST.setRegistryName(
-		 * "diamond_chest_te"));
-		 * event.getRegistry().register(TileEntityNames.COPPER_CHEST.setRegistryName(
-		 * "copper_chest_te"));
-		 * event.getRegistry().register(TileEntityNames.SILVER_CHEST.setRegistryName(
-		 * "silver_chest_te"));
-		 * event.getRegistry().register(TileEntityNames.CRYSTAL_CHEST.setRegistryName(
-		 * "crystal_chest_te"));
-		 * event.getRegistry().register(TileEntityNames.OBSIDIAN_CHEST.setRegistryName(
-		 * "obsidian_chest_te"));
-		 */
+
 		CyberCoreMain.LOGGER.info("TileEntityType Loaded");
 	}
 
@@ -149,22 +120,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ContainerNames.LUNARGEN_CON.setRegistryName(Names.LUNARGEN_CON));
 		event.getRegistry().register(ContainerNames.POWER_BOX_CON.setRegistryName(Names.POWER_BOX_CON));
 		event.getRegistry().register(ContainerNames.POWER_FURNCAE_CON.setRegistryName(Names.POWERED_FURNACE_CON));
-		/*
-		 * event.getRegistry().register(ContainerNames.IRON_CHEST.setRegistryName(
-		 * "iron_chest_con"));
-		 * event.getRegistry().register(ContainerNames.GOLD_CHEST.setRegistryName(
-		 * "gold_chest_con"));
-		 * event.getRegistry().register(ContainerNames.DIAMOND_CHEST.setRegistryName(
-		 * "diamond_chest_con"));
-		 * event.getRegistry().register(ContainerNames.COPPER_CHEST.setRegistryName(
-		 * "copper_chest_con"));
-		 * event.getRegistry().register(ContainerNames.SILVER_CHEST.setRegistryName(
-		 * "silver_chest_con"));
-		 * event.getRegistry().register(ContainerNames.CRYSTAL_CHEST.setRegistryName(
-		 * "crystal_chest_con"));
-		 * event.getRegistry().register(ContainerNames.OBSIDIAN_CHEST.setRegistryName(
-		 * "obsidian_chest_con"));
-		 */
+
 		CyberCoreMain.LOGGER.info("ContainerType Loaded");
 	}
 
