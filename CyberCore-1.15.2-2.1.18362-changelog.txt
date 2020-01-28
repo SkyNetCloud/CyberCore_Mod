@@ -1,10 +1,8 @@
-Mod Build: 2.0 - Jan 27 2020
+Mod Build: 2.1 - Jan 28 2020
 	SkyNetCloud:
-	Update To 1.15.2
-	Added Extractor Block Recipes
-	Added Loader Block Recipes
-	Added Wrench Item Recipes
-
+	Fix Cyber Ore Textures Being able to be found by just going into spectator
+	Version Checker Shouldn't be Broken (But Knowing Me It Is :P)
+	
 
 		
 			

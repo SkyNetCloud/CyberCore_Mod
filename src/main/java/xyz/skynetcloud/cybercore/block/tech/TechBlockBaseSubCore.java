@@ -2,6 +2,8 @@ package xyz.skynetcloud.cybercore.block.tech;
 
 import java.util.List;
 
+import org.jline.utils.InfoCmp.Capability;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -21,12 +23,15 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.energy.CapabilityEnergy;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 import xyz.skynetcloud.cybercore.util.TE.LunaGenTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.PowedFurnaceTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.PowerStorageTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 
 public class TechBlockBaseSubCore extends BlockBaseCore {
