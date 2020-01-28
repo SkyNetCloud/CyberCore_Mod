@@ -16,9 +16,11 @@ public class ModClientEvent {
 
 	@SubscribeEvent
 	public void handlePlayerLoggedInEvent(LoggedInEvent event) {
-		CheckResult versionRAW = VersionChecker
-				.getResult(ModList.get().getModFileById(CyberCoreMain.MODID).getMods().get(0));
+
+		CheckResult versionRAW = VersionChecker.getResult(ModList.get().getModFileById("cybercore").getMods().get(0));
 		Status result = versionRAW.status;
+
+		CyberCoreMain.LOGGER.info("CyberCore Mod:" + versionRAW.status);
 
 		if (!(result.equals(Status.BETA_OUTDATED) || result.equals(Status.PENDING) || result.equals(Status.BETA))) {
 			event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "

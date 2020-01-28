@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -41,15 +41,12 @@ public class CyberCoreMain {
 		CyberCoreConfig.loadConfig(CyberCoreConfig.COMMON,
 				FMLPaths.CONFIGDIR.get().resolve("cybercore-server.toml").toString());
 
-		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 
-		modBus.addListener(this::setup);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-
-			modBus.register(ModClientEvent.INSTANCE);
-			modBus.addListener(this::doClientStuff);
-
+			MinecraftForge.EVENT_BUS.register(ModClientEvent.INSTANCE);
 		});
 
 	}

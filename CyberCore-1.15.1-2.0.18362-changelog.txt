@@ -1,13 +1,8 @@
-Mod Build: 1.1 - Jan 27 2020
+Mod Build: 2.0 - Jan 27 2020
 	SkyNetCloud:
-	Added Extractor Block
-	Added Loader Block 
-	Fixed Item Pipe (Some of it is still weird)
-	Added Textures to CyberLand Block
-	Fix Item Naming Json mess up
-	Added Wrench Item
-	Fixed CyberDimesion ChunkGen
-	
+	Added Extractor Block Recipes
+	Added Loader Block Recipes
+	Added Wrench Item Recipes
 
 
 		

@@ -98,7 +98,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ItemInit.speed_upgrade_lvl_4);
 		event.getRegistry().register(ItemInit.power_upgrade_lvl_1);
 		event.getRegistry().register(ItemInit.power_upgrade_lvl_2);
-		event.getRegistry().register(ItemInit.power_upgrade_lvl_3);
+		event.getRegistry().register(ItemInit.power_upgrade_lvl_3); 
 
 		CyberCoreMain.LOGGER.info("Item Loaded");
 	}

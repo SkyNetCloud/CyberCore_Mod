@@ -1,23 +1,17 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"CAC",
+		"B B",
 		"BBB",
-		"CCC"
+		" B "
 	],
 	"key": {
-		"A": {
-			"item": "minecraft:dark_steel_ingot"
-		},
 		"B": {
 			"item": "cybercore:dark_steel_block"
-		},
-		"C": {
-			"item": "cybercore:cyber_ingot"
 		}
 	},
 	"result": {
-		"item": "cybercore:block_loader",
+		"item": "cybercore:block_extractor",
 		"count": 1
 	}
 }
