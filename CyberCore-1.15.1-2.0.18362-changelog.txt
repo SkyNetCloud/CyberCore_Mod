@@ -1,5 +1,6 @@
 Mod Build: 2.0 - Jan 27 2020
 	SkyNetCloud:
+	Update To 1.15.2
 	Added Extractor Block Recipes
 	Added Loader Block Recipes
 	Added Wrench Item Recipes
