@@ -20,7 +20,7 @@ public class ModClientEvent {
 				.getResult(ModList.get().getModFileById(CyberCoreMain.MODID).getMods().get(0));
 		Status result = versionRAW.status;
 
-		if (!(result.equals(Status.BETA_OUTDATED) || result.equals(Status.PENDING) || result.equals(Status.BETA))) {
+		if (!(result.equals(Status.UP_TO_DATE) || result.equals(Status.PENDING) || result.equals(Status.AHEAD))) {
 			event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
 					+ TextFormatting.WHITE + "A new version is available (" + versionRAW.target + "), please update!"));
 			event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.YELLOW + "Changelog:"));
@@ -37,7 +37,7 @@ public class ModClientEvent {
 				}
 			}
 		}
-		if (result.equals(Status.BETA)) {
+		if (result.equals(Status.AHEAD)) {
 			event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
 					+ TextFormatting.WHITE + "Version not released yet"
 					+ " Join Discord https://discord.gg/8jwjjyK If you would like to help me with Item to add "));

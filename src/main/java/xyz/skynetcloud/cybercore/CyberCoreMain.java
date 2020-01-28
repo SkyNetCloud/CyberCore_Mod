@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -47,7 +49,7 @@ public class CyberCoreMain {
 
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
-			modBus.register(ModClientEvent.INSTANCE);
+			MinecraftForge.EVENT_BUS.register(ModClientEvent.INSTANCE);
 			modBus.addListener(this::doClientStuff);
 
 		});
@@ -62,12 +64,16 @@ public class CyberCoreMain {
 
 		ScreenInit.registerGUI();
 		OreGen.setupOreGeneration();
+		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+			RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.func_228643_e_());
+			RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.func_228643_e_());
+		});
 
-		RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.func_228643_e_());
-		RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.func_228643_e_());
 	}
 
 	public static class CyberCoreTab extends ItemGroup {
+
+		private ItemStack icon;
 
 		public static final CyberCoreTab instance = new CyberCoreTab(ItemGroup.GROUPS.length, "cybercore");
 
@@ -76,8 +82,19 @@ public class CyberCoreMain {
 		}
 
 		@Override
+		@OnlyIn(Dist.CLIENT)
+		public ItemStack getIcon() {
+			if (this.icon.isEmpty()) {
+				this.icon = this.createIcon();
+			}
+
+			return this.icon;
+		}
+
+		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(ItemInit.lunar_upgrade_lvl_1);
+
+			return getIcon();
 		}
 	}
 
