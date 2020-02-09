@@ -1,7 +1,9 @@
 package xyz.skynetcloud.cybercore.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.state.StateHolder;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
@@ -41,5 +43,9 @@ public class BlockBaseCore extends Block {
 		for (int i = 0; i < 16; i++)
 			avoxelshape[i] = VoxelShapes.or(voxelshape, avoxelshape[i]);
 		return avoxelshape;
+	}
+
+	public StateHolder<Block, BlockState> getCurrentState() {
+		return null;
 	}
 }

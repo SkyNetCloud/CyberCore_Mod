@@ -20,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
+import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class CableTileEntity extends TileEntity implements ITickableTileEntity {
@@ -29,7 +30,7 @@ public class CableTileEntity extends TileEntity implements ITickableTileEntity {
 
 	private int[] connections = new int[] { 0, 0, 0, 0, 0, 0 };
 
-	private int maxTransferRate = 20;
+	private int maxTransferRate = ClientSideConfig.maxTransferRate.get();
 
 	private List<BlockPos> cables = new ArrayList<>();
 

@@ -411,7 +411,7 @@
 						16,
 						16
 					],
-					"texture": "#missing"
+					"texture": "#0"
 				}
 			}
 		},
@@ -479,7 +479,7 @@
 						16,
 						16
 					],
-					"texture": "#missing"
+					"texture": "#0"
 				}
 			}
 		}

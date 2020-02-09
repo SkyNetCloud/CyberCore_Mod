@@ -1,6 +1,8 @@
 package xyz.skynetcloud.cybercore.event;
 
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
@@ -11,11 +13,18 @@ import xyz.skynetcloud.cybercore.CyberCoreMain;
 import xyz.skynetcloud.cybercore.api.Names;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.api.containers.ContainerNames;
+import xyz.skynetcloud.cybercore.api.entites.EntitesNameType;
 import xyz.skynetcloud.cybercore.api.items.ItemInit;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModRegistryEvent {
+
+	@SubscribeEvent
+	public static void registerEnchantment(RegistryEvent.Register<Enchantment> event) {
+		event.getRegistry().register(ItemInit.soulbond.setRegistryName("soulbond"));
+
+	}
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -35,7 +44,6 @@ public class ModRegistryEvent {
 		event.getRegistry().register(BlockInit.RUBY_SLAB);
 		event.getRegistry().register(BlockInit.RUBY_STAIRS);
 		event.getRegistry().register(BlockInit.LUNAR_BLOCK);
-		event.getRegistry().register(BlockInit.CYBERLAND);
 		event.getRegistry().register(BlockInit.POWER_BOX);
 		event.getRegistry().register(BlockInit.POWER_FURNACE_BLOCK);
 
@@ -45,6 +53,7 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
+		event.getRegistry().register(ItemInit.card);
 		event.getRegistry().register(ItemInit.block_loader);
 		event.getRegistry().register(ItemInit.whrechItem);
 		event.getRegistry().register(ItemInit.block_extractor);
@@ -116,10 +125,16 @@ public class ModRegistryEvent {
 	}
 
 	@SubscribeEvent
+	public static void registerEntityTypes(RegistryEvent.Register<EntityType<?>> event) {
+		EntitesNameType.registerAll(event);
+	}
+
+	@SubscribeEvent
 	public static void registerContainerType(RegistryEvent.Register<ContainerType<?>> event) {
 		event.getRegistry().register(ContainerNames.LUNARGEN_CON.setRegistryName(Names.LUNARGEN_CON));
 		event.getRegistry().register(ContainerNames.POWER_BOX_CON.setRegistryName(Names.POWER_BOX_CON));
 		event.getRegistry().register(ContainerNames.POWER_FURNCAE_CON.setRegistryName(Names.POWERED_FURNACE_CON));
+		event.getRegistry().register(ContainerNames.VILLAGER_CON.setRegistryName("villager_con"));
 
 		CyberCoreMain.LOGGER.info("ContainerType Loaded");
 	}

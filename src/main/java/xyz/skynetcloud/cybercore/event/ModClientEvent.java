@@ -20,7 +20,7 @@ public class ModClientEvent {
 				.getResult(ModList.get().getModFileById(CyberCoreMain.MODID).getMods().get(0));
 		Status result = versionRAW.status;
 
-		if (!(result.equals(Status.UP_TO_DATE) || result.equals(Status.PENDING) || result.equals(Status.AHEAD))) {
+		if (!(result.equals(Status.BETA_OUTDATED) || result.equals(Status.UP_TO_DATE) || result.equals(Status.AHEAD))) {
 			event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
 					+ TextFormatting.WHITE + "A new version is available (" + versionRAW.target + "), please update!"));
 			event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.YELLOW + "Changelog:"));
@@ -37,10 +37,18 @@ public class ModClientEvent {
 				}
 			}
 		}
+		if (result.equals(Status.UP_TO_DATE)) {
+			event.getPlayer()
+					.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + TextFormatting.WHITE
+							+ CyberCoreMain.NAME + TextFormatting.GREEN + "] " + TextFormatting.WHITE + "No New Version"
+							+ " Join Discord https://discord.gg/8jwjjyK"));
+		}
+
 		if (result.equals(Status.AHEAD)) {
-			event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
-					+ TextFormatting.WHITE + "Version not released yet"
-					+ " Join Discord https://discord.gg/8jwjjyK If you would like to help me with Item to add "));
+			event.getPlayer()
+					.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + TextFormatting.WHITE
+							+ CyberCoreMain.NAME + TextFormatting.GREEN + "] " + TextFormatting.WHITE
+							+ "Your a Head in The Version List" + " Join Discord https://discord.gg/8jwjjyK"));
 		}
 	}
 

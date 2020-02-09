@@ -9,6 +9,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
 
+
 @EventBusSubscriber(modid = CyberCoreMain.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class CyberCoreConfig {
 

@@ -1,5 +1,6 @@
 package xyz.skynetcloud.cybercore.api.items;
 
+import static xyz.skynetcloud.cybercore.CyberCoreMain.MODID;
 import static xyz.skynetcloud.cybercore.api.Names.CHEESE_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_AXE;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_HOE;
@@ -36,6 +37,8 @@ import static xyz.skynetcloud.cybercore.api.Names.TACO_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.TOMAO_SEEDS_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.TOMATO_NAME;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Food;
@@ -49,6 +52,8 @@ import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.block.BlockItemCore;
 import xyz.skynetcloud.cybercore.init.SeedsInit;
 import xyz.skynetcloud.cybercore.init.ToolMaterialsInit;
+import xyz.skynetcloud.cybercore.item.CyberCoreCardItem;
+import xyz.skynetcloud.cybercore.item.SoulReturn;
 import xyz.skynetcloud.cybercore.item.UpgradeLvl;
 import xyz.skynetcloud.cybercore.item.WrenchItem;
 import xyz.skynetcloud.cybercore.item.tools.CyberCorePickaxe;
@@ -61,6 +66,13 @@ public class ItemInit {
 		public static Food tomato = (new Food.Builder()).hunger(12).saturation(0.5F).build();
 		public static Food lettuce = (new Food.Builder()).hunger(12).saturation(0.5F).build();
 	}
+
+	private static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[] { EquipmentSlotType.HEAD,
+			EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET };
+
+	public static Enchantment soulbond = new SoulReturn(ARMOR_SLOTS);
+
+	public static Item card = new CyberCoreCardItem().setRegistryName(MODID + ":card");
 
 	public static Item whrechItem = new WrenchItem();
 

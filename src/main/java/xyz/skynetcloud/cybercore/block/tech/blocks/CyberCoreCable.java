@@ -42,7 +42,6 @@ import xyz.skynetcloud.cybercore.block.BlockBaseCore;
 import xyz.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
 
 public class CyberCoreCable extends BlockBaseCore {
-
 	public static final IntegerProperty NORTH = IntegerProperty.create("north", 0, 3),
 			EAST = IntegerProperty.create("east", 0, 3), SOUTH = IntegerProperty.create("south", 0, 3),
 			WEST = IntegerProperty.create("west", 0, 3), UP = IntegerProperty.create("up", 0, 3),

@@ -1,8 +1,19 @@
 package xyz.skynetcloud.cybercore.api;
 
-import static xyz.skynetcloud.cybercore.CyberCoreMain.MODID;
+import net.minecraft.util.ResourceLocation;
 
 public class Names {
+
+	public static final String NAME = "CyberCore";
+	public static final String MODID = "cybercore";
+
+	public static final String CYBERVILLAGER = MODID + ":cybervillager";
+	public static final String CYBERVILLAGERTRADESERIALIZER = MODID + ":villagertradeserializer";
+
+	public static final ResourceLocation CyberVILLAGERTRUSTCAP = new ResourceLocation(MODID, "villagertrustcap");
+
+	public static final String Client_CONFIG = "cybercore-client.toml";
+	public static final String Server_CONFIG = "cybercore-server.toml";
 
 	public static final String TACO_NAME = (MODID + ":taco");
 	public static final String CHEESE_NAME = (MODID + ":cheese");
@@ -25,6 +36,8 @@ public class Names {
 	public static final String POWER_LVL_1 = (MODID + ":power_lvl_1");
 	public static final String POWER_LVL_2 = (MODID + ":power_lvl_2");
 	public static final String POWER_LVL_3 = (MODID + ":power_lvl_3");
+
+	public static final String CyberTAB = ("cybercore");
 
 	public static final String CYBER_INGOT = ("cyber_ingot");
 	public static final String RUBY_INGOT = ("ruby_ingot");

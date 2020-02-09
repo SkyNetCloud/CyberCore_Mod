@@ -23,7 +23,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
 
-version = "${minecraft_version}-${mod_version}.${System.getenv().BUILD_NUMBER}"
+version = "1.15.2-${mod_version}.${System.getenv().BUILD_NUMBER}"
 group = 'xyz.skynetcloud.cybercore' 
 archivesBaseName = 'CyberCore'
 
@@ -46,10 +46,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
-    
-    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${Hwyla_version}:api")
-    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${Hwyla_version}")
+    minecraft 'net.minecraftforge:forge:1.15.2-31.1.1'
 }
 
 curseforge {

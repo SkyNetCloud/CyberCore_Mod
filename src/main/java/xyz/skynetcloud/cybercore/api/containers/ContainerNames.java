@@ -3,9 +3,11 @@ package xyz.skynetcloud.cybercore.api.containers;
 import static xyz.skynetcloud.cybercore.CyberCoreMain.MODID;
 
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraftforge.fml.network.IContainerFactory;
 import xyz.skynetcloud.cybercore.util.container.LunaGenContainer;
 import xyz.skynetcloud.cybercore.util.container.PowerFurnaceContainer;
 import xyz.skynetcloud.cybercore.util.container.PowerStorageContainer;
+import xyz.skynetcloud.cybercore.util.container.VillagerContainer;
 
 public class ContainerNames {
 
@@ -21,5 +23,8 @@ public class ContainerNames {
 
 	public static final ContainerType<PowerFurnaceContainer> POWER_FURNCAE_CON = new ContainerType<PowerFurnaceContainer>(
 			PowerFurnaceContainer::new);
+
+	public static final ContainerType<VillagerContainer> VILLAGER_CON = new ContainerType<VillagerContainer>(
+			(IContainerFactory<VillagerContainer>) VillagerContainer::new);
 
 }

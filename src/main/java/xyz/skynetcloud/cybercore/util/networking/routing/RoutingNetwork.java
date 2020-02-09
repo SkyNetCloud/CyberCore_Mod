@@ -48,15 +48,14 @@ public class RoutingNetwork {
 		int baseDuration = ClientSideConfig.ticks_in_item_pipe.get();
 		int size = this.tubes.size();
 		int softCap = ClientSideConfig.soft_item_pipe_cap.get();
-		int hardCap = ClientSideConfig.hard_item_pipe_cap.get() + 1; // add 1 to avoid divide-by-zero errors
 
 		if (size < softCap) {
 			this.ticksPerTube = baseDuration;
 			return;
 		}
 
-		float slope = 1F / (softCap - hardCap);
-		float offset = (-hardCap) * slope;
+		float slope = 1F / (softCap);
+		float offset = (-softCap) * slope;
 		float dilation = size * slope + offset;
 		float time = 1F / (dilation * dilation);
 		this.ticksPerTube = (int) (time * baseDuration);
@@ -177,9 +176,6 @@ public class RoutingNetwork {
 		LinkedList<BlockPos> blocksToVisit = new LinkedList<BlockPos>();
 		blocksToVisit.add(startPos);
 		while (!blocksToVisit.isEmpty()) {
-			if (network.tubes.size() > ClientSideConfig.hard_item_pipe_cap.get()) {
-				break;
-			}
 
 			BlockPos visitedPos = blocksToVisit.poll();
 			visited.add(visitedPos);

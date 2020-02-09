@@ -49,7 +49,7 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	};
 
 	public LunaGenTileEntity() {
-		super(TileEntityNames.LUNAR_GEN_MACHINE_TE, ClientSideConfig.PowerLmit.get(), 4);
+		super(TileEntityNames.LUNAR_GEN_MACHINE_TE, ClientSideConfig.PowerLmit.get(), 6);
 
 	}
 

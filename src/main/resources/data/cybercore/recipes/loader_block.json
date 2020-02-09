@@ -7,7 +7,7 @@
 	],
 	"key": {
 		"A": {
-			"item": "minecraft:dark_steel_ingot"
+			"item": "cybercore:dark_steel_ingot"
 		},
 		"B": {
 			"item": "cybercore:dark_steel_block"
@@ -17,7 +17,7 @@
 		}
 	},
 	"result": {
-		"item": "cybercore:lunar_upgrade_lvl_1",
+		"item": "cybercore:block_loader",
 		"count": 1
 	}
 }

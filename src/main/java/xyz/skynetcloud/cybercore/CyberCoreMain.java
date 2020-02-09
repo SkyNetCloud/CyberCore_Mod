@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -19,33 +18,40 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
+import xyz.skynetcloud.cybercore.api.Names;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.api.items.ItemInit;
 import xyz.skynetcloud.cybercore.event.ModClientEvent;
+import xyz.skynetcloud.cybercore.event.ModSoulBoundEvent;
+import xyz.skynetcloud.cybercore.init.RendererInit;
 import xyz.skynetcloud.cybercore.init.ScreenInit;
 import xyz.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
+import xyz.skynetcloud.cybercore.util.networking.handler.CapHandler;
+import xyz.skynetcloud.cybercore.util.networking.handler.CyberCorePacketHandler;
 import xyz.skynetcloud.cybercore.world.gen.OreGen;
 
 @Mod("cybercore")
 public class CyberCoreMain {
 
-	public static final String NAME = "CyberCore";
-	public static final String MODID = "cybercore";
+	public static final String NAME = Names.NAME;
+	public static final String MODID = Names.MODID;
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public CyberCoreMain() {
 
-		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, CyberCoreConfig.COMMON, "cybercore-server.toml");
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, CyberCoreConfig.CLIENT, "cybercore-client.toml");
+		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, CyberCoreConfig.COMMON, Names.Server_CONFIG);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, CyberCoreConfig.CLIENT, Names.Client_CONFIG);
 
 		CyberCoreConfig.loadConfig(CyberCoreConfig.CLIENT,
-				FMLPaths.CONFIGDIR.get().resolve("cybercore-client.toml").toString());
+				FMLPaths.CONFIGDIR.get().resolve(Names.Client_CONFIG).toString());
 		CyberCoreConfig.loadConfig(CyberCoreConfig.COMMON,
-				FMLPaths.CONFIGDIR.get().resolve("cybercore-server.toml").toString());
+				FMLPaths.CONFIGDIR.get().resolve(Names.Server_CONFIG).toString());
 
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 		modBus.addListener(this::setup);
+
+		MinecraftForge.EVENT_BUS.register(ModSoulBoundEvent.DEATH_INSTANCE);
 
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
@@ -58,10 +64,14 @@ public class CyberCoreMain {
 
 	private void setup(FMLCommonSetupEvent event) {
 
+		CyberCorePacketHandler.register();
+		CapHandler.register();
+
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
 
+		RendererInit.registerEntityRenderer();
 		ScreenInit.registerGUI();
 		OreGen.setupOreGeneration();
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
@@ -73,28 +83,16 @@ public class CyberCoreMain {
 
 	public static class CyberCoreTab extends ItemGroup {
 
-		private ItemStack icon;
-
-		public static final CyberCoreTab instance = new CyberCoreTab(ItemGroup.GROUPS.length, "cybercore");
+		public static final CyberCoreTab instance = new CyberCoreTab(ItemGroup.GROUPS.length, Names.CyberTAB);
 
 		private CyberCoreTab(int index, String label) {
 			super(index, label);
 		}
 
 		@Override
-		@OnlyIn(Dist.CLIENT)
-		public ItemStack getIcon() {
-			if (this.icon.isEmpty()) {
-				this.icon = this.createIcon();
-			}
-
-			return this.icon;
-		}
-
-		@Override
 		public ItemStack createIcon() {
 
-			return getIcon();
+			return new ItemStack(ItemInit.power_box);
 		}
 	}
 

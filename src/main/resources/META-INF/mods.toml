@@ -3,12 +3,12 @@ loaderVersion="[30,)" #mandatory (28 is current forge version)
 issueTrackerURL="https://github.com/SkyNetCloud/CyberCore_Mod/issues"
 [[mods]] #mandatory
 modId="cybercore" #mandatory
-version="1.2.18362" #mandatory
+version="1.3.18362" #mandatory
 displayName="CyberCore" #mandatory
 authors="SkyNetCloud"
 logoFile="Logo.png" #optional
 updateJSONURL="https://raw.githubusercontent.com/SkyNetCloud/CyberCore_Mod/master/update.json" #optional
 description='''
-A small Tech Mod
+A small Tech Mod With a lot being adding when I have the Time :D
 '''
 
