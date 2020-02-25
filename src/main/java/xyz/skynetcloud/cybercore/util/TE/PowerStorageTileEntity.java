@@ -11,7 +11,7 @@ import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import xyz.skynetcloud.cybercore.util.container.PowerStorageContainer;
-import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
+import xyz.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 
 public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 
@@ -46,7 +46,7 @@ public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 	};
 
 	public PowerStorageTileEntity() {
-		super(TileEntityNames.POWER_BOX_TE, ClientSideConfig.PowerLmit.get(), 3);
+		super(TileEntityNames.POWER_BOX_TE, CyberCoreConfig.PowerLmit.get(), 3);
 
 	}
 

@@ -8,12 +8,16 @@ public class Names {
 	public static final String MODID = "cybercore";
 
 	public static final String CYBERVILLAGER = MODID + ":cybervillager";
+	public static final String SHARK_MOB = MODID + ":shark_mob";
 	public static final String CYBERVILLAGERTRADESERIALIZER = MODID + ":villagertradeserializer";
 
-	public static final ResourceLocation CyberVILLAGERTRUSTCAP = new ResourceLocation(MODID, "villagertrustcap");
+	public static final ResourceLocation CYBERVILLAGERTRUSTCAP = new ResourceLocation(MODID, "villagertrustcap");
 
 	public static final String Client_CONFIG = "cybercore-client.toml";
 	public static final String Server_CONFIG = "cybercore-server.toml";
+
+	public static final String Villager_Client_CONFIG = "villager-trade-client.toml";
+	public static final String Villager_Server_CONFIG = "cybercore-trade-server.toml";
 
 	public static final String TACO_NAME = (MODID + ":taco");
 	public static final String CHEESE_NAME = (MODID + ":cheese");

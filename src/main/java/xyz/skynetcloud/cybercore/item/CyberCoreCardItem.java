@@ -10,6 +10,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
+import xyz.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 
 public class CyberCoreCardItem extends ItemBaseCore {
 
@@ -19,7 +20,7 @@ public class CyberCoreCardItem extends ItemBaseCore {
 
 	public static boolean hasCredits(ItemStack stack) {
 		CompoundNBT nbt = getNBT(stack);
-		if (nbt.contains("dollars")) {
+		if (nbt.contains("credits")) {
 			return true;
 		}
 		return false;
@@ -29,11 +30,11 @@ public class CyberCoreCardItem extends ItemBaseCore {
 		if (!stack.isEmpty()) {
 			if (stack.getItem() instanceof CyberCoreCardItem) {
 				if (hasCredits(stack)) {
-					return getNBT(stack).getInt("dollars");
+					return getNBT(stack).getInt("credits");
 				}
 			}
 		}
-		return 100;
+		return CyberCoreConfig.creaitstartOff.get();
 	}
 
 	public static CompoundNBT getNBT(ItemStack stack) {
@@ -58,7 +59,7 @@ public class CyberCoreCardItem extends ItemBaseCore {
 
 	public static void setCredits(ItemStack stack, int amount) {
 		CompoundNBT nbt = getNBT(stack);
-		nbt.putInt("dollars", amount);
+		nbt.putInt("credits", amount);
 		stack.setTag(nbt);
 	}
 
@@ -67,5 +68,4 @@ public class CyberCoreCardItem extends ItemBaseCore {
 		tooltip.add(new StringTextComponent("CyberCoreDollars: " + getCredits(stack)));
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
-
 }

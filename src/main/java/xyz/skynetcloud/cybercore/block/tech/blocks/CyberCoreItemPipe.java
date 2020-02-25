@@ -35,7 +35,7 @@ import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import xyz.skynetcloud.cybercore.block.blocks.CyberExtractorBlock;
 import xyz.skynetcloud.cybercore.block.blocks.CyberLoaderBlock;
 import xyz.skynetcloud.cybercore.util.TE.cable.ItemPipeTileEntity;
-import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
+import xyz.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 
 public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, ILiquidContainer {
 	public static final Direction[] FACING_VALUES = Direction.values();
@@ -131,10 +131,10 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 			return this.isTubeCompatible((CyberCoreItemPipe) block);
 
 		if (block instanceof CyberLoaderBlock && state.get(CyberLoaderBlock.FACING).equals(face.getOpposite()))
-			return ClientSideConfig.canConnect.get();
+			return CyberCoreConfig.canConnect.get();
 
 		if (block instanceof CyberExtractorBlock && state.get(CyberExtractorBlock.FACING).equals(face.getOpposite()))
-			return ClientSideConfig.canConnect.get();
+			return CyberCoreConfig.canConnect.get();
 
 		TileEntity te = world.getTileEntity(newPos);
 

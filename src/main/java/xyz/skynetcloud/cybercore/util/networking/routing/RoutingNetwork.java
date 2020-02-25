@@ -17,7 +17,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import xyz.skynetcloud.cybercore.util.TE.cable.ItemPipeTileEntity;
-import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
+import xyz.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 import xyz.skynetcloud.cybercore.util.networking.helper.WorldHelper;
 
 public class RoutingNetwork {
@@ -45,9 +45,9 @@ public class RoutingNetwork {
 	}
 
 	private void setTicksPerTube() {
-		int baseDuration = ClientSideConfig.ticks_in_item_pipe.get();
+		int baseDuration = CyberCoreConfig.ticks_in_item_pipe.get();
 		int size = this.tubes.size();
-		int softCap = ClientSideConfig.soft_item_pipe_cap.get();
+		int softCap = CyberCoreConfig.soft_item_pipe_cap.get();
 
 		if (size < softCap) {
 			this.ticksPerTube = baseDuration;

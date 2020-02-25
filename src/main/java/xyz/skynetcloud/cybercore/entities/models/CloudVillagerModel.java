@@ -6,9 +6,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class VillagerModels<T extends Entity> extends VillagerModel<T> {
-
-	public VillagerModels(float scale) {
+public class CloudVillagerModel<T extends Entity> extends VillagerModel<T>
+{
+	public CloudVillagerModel(float scale)
+	{
 		super(scale);
 	}
 }

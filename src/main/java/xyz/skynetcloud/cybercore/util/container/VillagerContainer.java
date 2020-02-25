@@ -10,32 +10,24 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import xyz.skynetcloud.cybercore.api.containers.ContainerNames;
-import xyz.skynetcloud.cybercore.entities.tradesandjobs.VillagerTask;
-import xyz.skynetcloud.cybercore.entities.tradesandjobs.VillagerTaskList;
-import xyz.skynetcloud.cybercore.entities.tradesandjobs.VillagerTrade;
+import xyz.skynetcloud.cybercore.entities.tradesandjobs.BaseVillagerTrade;
 
 public class VillagerContainer extends Container {
-	private List<VillagerTrade> trades;
-	private List<VillagerTask> tasks;
-	private int profession;
+	private List<BaseVillagerTrade> trades;
 
 	public VillagerContainer(int id, PlayerInventory inv, PacketBuffer data) {
-		this(id, inv, new ArrayList<VillagerTrade>(), 0);
-		List<VillagerTrade> list = new ArrayList<VillagerTrade>();
-		profession = data.readInt();
-		tasks = VillagerTaskList.getTaskList(profession);
+		this(id, inv, new ArrayList<BaseVillagerTrade>());
+		List<BaseVillagerTrade> list = new ArrayList<BaseVillagerTrade>();
 		int size = data.readInt();
 		for (int i = 0; i < size; i++) {
-			list.add(VillagerTrade.fromBuffer(data));
+			list.add(BaseVillagerTrade.fromBuffer(data));
 		}
 		trades = list;
 	}
 
-	public VillagerContainer(int id, PlayerInventory playerInv, List<VillagerTrade> trades, int profession) {
+	public VillagerContainer(int id, PlayerInventory playerInv, List<BaseVillagerTrade> trades) {
 		super(ContainerNames.VILLAGER_CON, id);
 		this.trades = trades;
-		this.profession = profession;
-		tasks = VillagerTaskList.getTaskList(profession);
 
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 9; x++) {
@@ -85,19 +77,12 @@ public class VillagerContainer extends Container {
 		return stack;
 	}
 
-	public void setTrades(List<VillagerTrade> trades) {
+	public void setTrades(List<BaseVillagerTrade> trades) {
 		this.trades = trades;
 	}
 
-	public List<VillagerTrade> getTrades() {
+	public List<BaseVillagerTrade> getTrades() {
 		return trades;
 	}
 
-	public List<VillagerTask> getTasks() {
-		return tasks;
-	}
-
-	public int getProfession() {
-		return profession;
-	}
 }

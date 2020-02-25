@@ -8,7 +8,7 @@ import net.minecraft.util.IIntArray;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import xyz.skynetcloud.cybercore.util.container.LunaGenContainer;
-import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
+import xyz.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 import xyz.skynetcloud.cybercore.util.networking.util.CyberCoreConstants;
 
 public class LunaGenTileEntity extends CyberCoreEndPowerTE {
@@ -49,7 +49,7 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	};
 
 	public LunaGenTileEntity() {
-		super(TileEntityNames.LUNAR_GEN_MACHINE_TE, ClientSideConfig.PowerLmit.get(), 6);
+		super(TileEntityNames.LUNAR_GEN_MACHINE_TE, CyberCoreConfig.PowerLmit.get(), 6);
 
 	}
 
@@ -87,8 +87,8 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	}
 
 	public int getTicksPerAmount() {
-		return ClientSideConfig.LunarGenPerTick.get()
-				- (getMarkLvl(1, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * ClientSideConfig.LunarGenPerTick.get());
+		return CyberCoreConfig.LunarGenPerTick.get()
+				- (getMarkLvl(1, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * CyberCoreConfig.LunarGenPerTick.get());
 	}
 
 	@Override

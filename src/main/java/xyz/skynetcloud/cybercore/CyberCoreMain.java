@@ -23,11 +23,11 @@ import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.api.items.ItemInit;
 import xyz.skynetcloud.cybercore.event.ModClientEvent;
 import xyz.skynetcloud.cybercore.event.ModSoulBoundEvent;
+import xyz.skynetcloud.cybercore.handlers.CapabilityHandler;
 import xyz.skynetcloud.cybercore.init.RendererInit;
 import xyz.skynetcloud.cybercore.init.ScreenInit;
-import xyz.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
-import xyz.skynetcloud.cybercore.util.networking.handler.CapHandler;
-import xyz.skynetcloud.cybercore.util.networking.handler.CyberCorePacketHandler;
+import xyz.skynetcloud.cybercore.packets.CyberCorePacketHandler;
+import xyz.skynetcloud.cybercore.util.networking.config.ConfigLoadder;
 import xyz.skynetcloud.cybercore.world.gen.OreGen;
 
 @Mod("cybercore")
@@ -39,12 +39,12 @@ public class CyberCoreMain {
 
 	public CyberCoreMain() {
 
-		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, CyberCoreConfig.COMMON, Names.Server_CONFIG);
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, CyberCoreConfig.CLIENT, Names.Client_CONFIG);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ConfigLoadder.COMMON, Names.Server_CONFIG);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigLoadder.CLIENT, Names.Client_CONFIG);
 
-		CyberCoreConfig.loadConfig(CyberCoreConfig.CLIENT,
+		ConfigLoadder.loadConfig(ConfigLoadder.CLIENT,
 				FMLPaths.CONFIGDIR.get().resolve(Names.Client_CONFIG).toString());
-		CyberCoreConfig.loadConfig(CyberCoreConfig.COMMON,
+		ConfigLoadder.loadConfig(ConfigLoadder.COMMON,
 				FMLPaths.CONFIGDIR.get().resolve(Names.Server_CONFIG).toString());
 
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -64,8 +64,8 @@ public class CyberCoreMain {
 
 	private void setup(FMLCommonSetupEvent event) {
 
+		CapabilityHandler.registerAll();
 		CyberCorePacketHandler.register();
-		CapHandler.register();
 
 	}
 

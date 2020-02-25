@@ -29,7 +29,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import xyz.skynetcloud.cybercore.block.tech.blocks.CyberCoreItemPipe;
-import xyz.skynetcloud.cybercore.util.networking.config.ClientSideConfig;
+import xyz.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 import xyz.skynetcloud.cybercore.util.networking.handler.ItemPipeInventoryHandler;
 import xyz.skynetcloud.cybercore.util.networking.helper.WorldHelper;
 import xyz.skynetcloud.cybercore.util.networking.routing.Route;
@@ -162,7 +162,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 			}
 			this.inventory = remainingWrappers;
 		}
-		if (!this.world.isRemote && this.inventory.size() > ClientSideConfig.max_items_in_item_pipe.get()) {
+		if (!this.world.isRemote && this.inventory.size() > CyberCoreConfig.max_items_in_item_pipe.get()) {
 			this.world.removeBlock(this.pos, false);
 		}
 	}

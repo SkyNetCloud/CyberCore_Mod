@@ -10,24 +10,23 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import xyz.skynetcloud.cybercore.util.container.VillagerContainer;
 
-public class VillagerContainerProvider implements INamedContainerProvider {
+public class BaseVillagerContainerProvider implements INamedContainerProvider {
 
-	private final List<VillagerTrade> list;
-	private final int profession;
+	private final List<BaseVillagerTrade> list;
 
-	public VillagerContainerProvider(List<VillagerTrade> list, int profession) {
+	public BaseVillagerContainerProvider(List<BaseVillagerTrade> list) {
 		this.list = list;
-		this.profession = profession;
+
 	}
 
 	@Override
 	public Container createMenu(int id, PlayerInventory inv, PlayerEntity entity) {
-		return new VillagerContainer(id, inv, list, profession);
+		return new VillagerContainer(id, inv, list);
 	}
 
 	@Override
 	public ITextComponent getDisplayName() {
-		return new TranslationTextComponent("container.cybervillager");
+		return new TranslationTextComponent("container.techvillager");
 	}
 
 }
