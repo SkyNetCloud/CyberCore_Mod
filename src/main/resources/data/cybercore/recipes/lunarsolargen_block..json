@@ -1,0 +1,23 @@
+
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"AAA",
+		"BCB",
+		"BBB"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:glass_pane"
+		},
+		"B": {
+			"item": "cybercore:cyber_ingot"
+		},
+		"C": {
+			"item": "minecraft:diamond"
+		}
+	},
+	"result": {
+		"item": "cybercore:lunarsolargenerator_block",
+		"count": 1
+	}
+}

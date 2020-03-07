@@ -15,7 +15,7 @@ import xyz.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 
 public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 
-	private int currentLvl = -1;
+	private int currentcard = -1;
 	protected final IIntArray field_array = new IIntArray() {
 		public int get(int index) {
 			switch (index) {
@@ -64,9 +64,9 @@ public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 	public void onSlotContentChanged() {
 		if (world != null) {
 			if (!world.isRemote) {
-				int newLvl = getMarkLvl(0, 3);
-				if (currentLvl != newLvl) {
-					switch (currentLvl) {
+				int newcard = getMarkcard(0, 3);
+				if (currentcard != newcard) {
+					switch (currentcard) {
 					case 0:
 						energystorage.setEnergyMaxStored(1000);
 						break;
@@ -83,11 +83,11 @@ public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 					BlockState state = world.getBlockState(pos);
 					if (state != null) {
 						if (state.getBlock() == BlockInit.POWER_BOX) {
-							world.setBlockState(pos, state.with(CyberCorePowerBlock.LVL, newLvl), 2);
+							world.setBlockState(pos, state.with(CyberCorePowerBlock.card, newcard), 2);
 							markDirty();
 						}
 					}
-					currentLvl = newLvl;
+					currentcard = newcard;
 				}
 			}
 		}

@@ -27,19 +27,19 @@ public class Names {
 	public static final String LETTUCE_SEEDS_NAME = (MODID + ":lettuce_seed");
 	public static final String TOMAO_SEEDS_NAME = (MODID + ":tomato_seed");
 
-	public static final String SPEED_LVL_1 = (MODID + ":speed_upgrade_lvl_1");
-	public static final String SPEED_LVL_2 = (MODID + ":speed_upgrade_lvl_2");
-	public static final String SPEED_LVL_3 = (MODID + ":speed_upgrade_lvl_3");
-	public static final String SPEED_LVL_4 = (MODID + ":speed_upgrade_lvl_4");
+	public static final String SPEED_CARD_1 = (MODID + ":speed_upgrade_card_1");
+	public static final String SPEED_CARD_2 = (MODID + ":speed_upgrade_card_2");
+	public static final String SPEED_CARD_3 = (MODID + ":speed_upgrade_card_3");
+	public static final String SPEED_CARD_4 = (MODID + ":speed_upgrade_card_4");
 
-	public static final String LUNAR_LVL_1 = (MODID + ":lunar_upgrade_lvl_1");
-	public static final String LUNAR_LVL_2 = (MODID + ":lunar_upgrade_lvl_2");
-	public static final String LUNAR_LVL_3 = (MODID + ":lunar_upgrade_lvl_3");
-	public static final String LUNAR_LVL_4 = (MODID + ":lunar_upgrade_lvl_4");
+	public static final String LUNAR_CARD_1 = (MODID + ":lunar_upgrade_card_1");
+	public static final String LUNAR_CARD_2 = (MODID + ":lunar_upgrade_card_2");
+	public static final String LUNAR_CARD_3 = (MODID + ":lunar_upgrade_card_3");
+	public static final String LUNAR_CARD_4 = (MODID + ":lunar_upgrade_card_4");
 
-	public static final String POWER_LVL_1 = (MODID + ":power_lvl_1");
-	public static final String POWER_LVL_2 = (MODID + ":power_lvl_2");
-	public static final String POWER_LVL_3 = (MODID + ":power_lvl_3");
+	public static final String POWER_CARD_1 = (MODID + ":power_storage_card_1");
+	public static final String POWER_CARD_2 = (MODID + ":power_storage_card_2");
+	public static final String POWER_CARD_3 = (MODID + ":power_storage_card_3");
 
 	public static final String CyberTAB = ("cybercore");
 

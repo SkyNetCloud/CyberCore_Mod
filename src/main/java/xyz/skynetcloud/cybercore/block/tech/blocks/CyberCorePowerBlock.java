@@ -27,11 +27,11 @@ import xyz.skynetcloud.cybercore.block.tech.TechBlockBaseSubCore;
 public class CyberCorePowerBlock extends TechBlockBaseSubCore {
 
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-	public static final IntegerProperty LVL = IntegerProperty.create("lvl", 0, 3);
+	public static final IntegerProperty card = IntegerProperty.create("card", 0, 3);
 
 	public CyberCorePowerBlock() {
 		super("power_storage", CyberCoreTab.instance);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LVL, 0));
+		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(card, 0));
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class CyberCorePowerBlock extends TechBlockBaseSubCore {
 
 	@Override
 	protected void fillStateContainer(Builder<Block, BlockState> builder) {
-		builder.add(FACING).add(LVL);
+		builder.add(FACING).add(card);
 	}
 
 }

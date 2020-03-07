@@ -16,23 +16,23 @@ import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_SHOVEL;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_SWORD;
 import static xyz.skynetcloud.cybercore.api.Names.LETTUCE_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.LETTUCE_SEEDS_NAME;
-import static xyz.skynetcloud.cybercore.api.Names.LUNAR_LVL_1;
-import static xyz.skynetcloud.cybercore.api.Names.LUNAR_LVL_2;
-import static xyz.skynetcloud.cybercore.api.Names.LUNAR_LVL_3;
-import static xyz.skynetcloud.cybercore.api.Names.LUNAR_LVL_4;
-import static xyz.skynetcloud.cybercore.api.Names.POWER_LVL_1;
-import static xyz.skynetcloud.cybercore.api.Names.POWER_LVL_2;
-import static xyz.skynetcloud.cybercore.api.Names.POWER_LVL_3;
+import static xyz.skynetcloud.cybercore.api.Names.LUNAR_CARD_1;
+import static xyz.skynetcloud.cybercore.api.Names.LUNAR_CARD_2;
+import static xyz.skynetcloud.cybercore.api.Names.LUNAR_CARD_3;
+import static xyz.skynetcloud.cybercore.api.Names.LUNAR_CARD_4;
+import static xyz.skynetcloud.cybercore.api.Names.POWER_CARD_1;
+import static xyz.skynetcloud.cybercore.api.Names.POWER_CARD_2;
+import static xyz.skynetcloud.cybercore.api.Names.POWER_CARD_3;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_AXE;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_HOE;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_INGOT;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_PICKAXE;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_SHOVEL;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_SWORD;
-import static xyz.skynetcloud.cybercore.api.Names.SPEED_LVL_1;
-import static xyz.skynetcloud.cybercore.api.Names.SPEED_LVL_2;
-import static xyz.skynetcloud.cybercore.api.Names.SPEED_LVL_3;
-import static xyz.skynetcloud.cybercore.api.Names.SPEED_LVL_4;
+import static xyz.skynetcloud.cybercore.api.Names.SPEED_CARD_1;
+import static xyz.skynetcloud.cybercore.api.Names.SPEED_CARD_2;
+import static xyz.skynetcloud.cybercore.api.Names.SPEED_CARD_3;
+import static xyz.skynetcloud.cybercore.api.Names.SPEED_CARD_4;
 import static xyz.skynetcloud.cybercore.api.Names.TACO_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.TOMAO_SEEDS_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.TOMATO_NAME;
@@ -185,37 +185,37 @@ public class ItemInit {
 	public static Item dark_steel_ingot = new Item(new Item.Properties().group(CyberCoreTab.instance))
 			.setRegistryName(DARK_STEEL_INGOT);
 
-	public static Item lunar_upgrade_lvl_1 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 1, 0).setRegistryName(LUNAR_LVL_1);
+	public static Item lunar_upgrade_card_1 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 1, 0).setRegistryName(LUNAR_CARD_1);
 
-	public static Item lunar_upgrade_lvl_2 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 2, 0).setRegistryName(LUNAR_LVL_2);
+	public static Item lunar_upgrade_card_2 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 2, 0).setRegistryName(LUNAR_CARD_2);
 
-	public static Item lunar_upgrade_lvl_3 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 3, 0).setRegistryName(LUNAR_LVL_3);
+	public static Item lunar_upgrade_card_3 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 3, 0).setRegistryName(LUNAR_CARD_3);
 
-	public static Item lunar_upgrade_lvl_4 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 4, 0).setRegistryName(LUNAR_LVL_4);
+	public static Item lunar_upgrade_card_4 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 4, 0).setRegistryName(LUNAR_CARD_4);
 
-	public static Item speed_upgrade_lvl_1 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 1, 2).setRegistryName(SPEED_LVL_1);
+	public static Item speed_upgrade_card_1 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance), 1, 2).setRegistryName(SPEED_CARD_1);
 
-	public static Item speed_upgrade_lvl_2 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 2, 2).setRegistryName(SPEED_LVL_2);
+	public static Item speed_upgrade_card_2 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance), 2, 2).setRegistryName(SPEED_CARD_2);
 
-	public static Item speed_upgrade_lvl_3 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 3, 2).setRegistryName(SPEED_LVL_3);
+	public static Item speed_upgrade_card_3 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance), 3, 2).setRegistryName(SPEED_CARD_3);
 
-	public static Item speed_upgrade_lvl_4 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 4, 2).setRegistryName(SPEED_LVL_4);
+	public static Item speed_upgrade_card_4 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance), 4, 2).setRegistryName(SPEED_CARD_4);
 
-	public static Item power_upgrade_lvl_1 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 1, 3).setRegistryName(POWER_LVL_1);
+	public static Item power_upgrade_card_1 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 1, 3).setRegistryName(POWER_CARD_1);
 
-	public static Item power_upgrade_lvl_2 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 2, 3).setRegistryName(POWER_LVL_2);
+	public static Item power_upgrade_card_2 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 2, 3).setRegistryName(POWER_CARD_2);
 
-	public static Item power_upgrade_lvl_3 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 3, 3).setRegistryName(POWER_LVL_3);
+	public static Item power_upgrade_card_3 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 3, 3).setRegistryName(POWER_CARD_3);
 
 }

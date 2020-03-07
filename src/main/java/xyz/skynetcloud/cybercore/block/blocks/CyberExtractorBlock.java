@@ -68,17 +68,15 @@ public class CyberExtractorBlock extends BlockBaseCore {
 		}
 	}
 
-	private ItemStack extractNextStack(IItemHandler handler) {
-
+	private ItemStack extractNextStack(IItemHandler handler)
+	{
 		int slots = handler.getSlots();
-
-		for (int i = 0; i < slots; i++) {
-			if (!worldIn.isRemote) {
-				ItemStack stack = handler.extractItem(i, 64, false);
-
-				if (stack.getCount() > 0) {
-					return stack.copy();
-				}
+		for (int i=0; i<slots; i++)
+		{
+			ItemStack stack = handler.extractItem(i, 64, false);
+			if (stack.getCount() > 0)
+			{
+				return stack.copy();
 			}
 		}
 		return ItemStack.EMPTY;

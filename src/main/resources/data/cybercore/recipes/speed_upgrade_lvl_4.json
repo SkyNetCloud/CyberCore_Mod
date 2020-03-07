@@ -10,14 +10,14 @@
 			"item": "minecraft:sugar"
 		},
 		"B": {
-			"item": "cybercore:speed_upgrade_lvl_3"
+			"item": "cybercore:speed_upgrade_card_3"
 		},
 		"C": {
 			"item": "minecraft:redstone"
 		}
 	},
 	"result": {
-		"item": "cybercore:speed_upgrade_lvl_4",
+		"item": "cybercore:speed_upgrade_card_4",
 		"count": 1
 	}
 }

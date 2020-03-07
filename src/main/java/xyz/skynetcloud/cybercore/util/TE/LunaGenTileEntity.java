@@ -59,7 +59,7 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 				workload++;
 				if (workload >= getTicksPerAmount()) {
 					energystorage
-							.receiveEnergy(getEnergyPerTick(getMarkLvl(0, CyberCoreConstants.LUNASOLARFOCUS_TYPE)));
+							.receiveEnergy(getEnergyPerTick(getMarkcard(0, CyberCoreConstants.LUNASOLARFOCUS_TYPE)));
 					workload = 0;
 				}
 			}
@@ -88,7 +88,7 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 
 	public int getTicksPerAmount() {
 		return CyberCoreConfig.LunarGenPerTick.get()
-				- (getMarkLvl(1, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * CyberCoreConfig.LunarGenPerTick.get());
+				- (getMarkcard(1, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * CyberCoreConfig.LunarGenPerTick.get());
 	}
 
 	@Override

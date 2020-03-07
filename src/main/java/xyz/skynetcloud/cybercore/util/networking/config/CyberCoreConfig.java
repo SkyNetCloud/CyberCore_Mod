@@ -31,7 +31,7 @@ public class CyberCoreConfig {
 
 	public static ConfigValue<Integer> maxTransferRate;
 
-	public static ConfigValue<Integer> SpeedLvlTick;
+	public static ConfigValue<Integer> SpeedcardTick;
 
 	public static BooleanValue grass_enable;
 
@@ -66,7 +66,7 @@ public class CyberCoreConfig {
 
 		PowerLmit = client.comment("Power Limit For All Blocks default:1000").define("cybercore_power_limit", 1000);
 
-		SpeedLvlTick = client.comment("Speed Upgrade Tick default:15").define("speed_lvl_tick", 15);
+		SpeedcardTick = client.comment("Speed Upgrade Tick default:15").define("speed_card_tick", 15);
 
 		LunarGenPerTick = client.comment("Power Per Tick LunarGen Block default:10").define("lunar_gen_per_tick", 10);
 
@@ -102,7 +102,7 @@ public class CyberCoreConfig {
 
 		PowerLmit = server.comment("Power Limit For All Blocks default:1000").define("cybercore_power_limit", 1000);
 
-		SpeedLvlTick = server.comment("Speed Upgrade Tick default:15").define("speed_lvl_tick", 15);
+		SpeedcardTick = server.comment("Speed Upgrade Tick default:15").define("speed_card_tick", 15);
 
 		LunarGenPerTick = server.comment("Power Per Tick LunarGen Block default:10").define("lunar_gen_per_tick", 10);
 

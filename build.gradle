@@ -24,8 +24,8 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 
 version = "1.15.2-${mod_version}.${System.getenv().BUILD_NUMBER}"
-group = 'xyz.skynetcloud.cybercore' 
-archivesBaseName = 'CyberCore'
+group = "xyz.skynetcloud.cybercore"
+archivesBaseName = "CyberCore"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 

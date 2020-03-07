@@ -27,7 +27,7 @@ public class LunaGenScreen extends ScreenBaseCore<LunaGenContainer> {
 		blit(this.guiLeft + 159, this.guiTop + 28 + (55 - k), 205, 55 - k, 16, 0 + k);
 
 		int l = 0;
-		switch (((LunaGenTileEntity) this.te).getMarkLvl(0, CyberCoreConstants.LUNASOLARFOCUS_TYPE)) {
+		switch (((LunaGenTileEntity) this.te).getMarkcard(0, CyberCoreConstants.LUNASOLARFOCUS_TYPE)) {
 		case 0:
 			l = 0;
 			break;

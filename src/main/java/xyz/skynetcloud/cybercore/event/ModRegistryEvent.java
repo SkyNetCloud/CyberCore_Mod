@@ -97,17 +97,17 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ItemInit.dark_steel_pickaxe);
 		event.getRegistry().register(ItemInit.dark_steel_shovel);
 		event.getRegistry().register(ItemInit.dark_steel_sword);
-		event.getRegistry().register(ItemInit.lunar_upgrade_lvl_1);
-		event.getRegistry().register(ItemInit.lunar_upgrade_lvl_2);
-		event.getRegistry().register(ItemInit.lunar_upgrade_lvl_3);
-		event.getRegistry().register(ItemInit.lunar_upgrade_lvl_4);
-		event.getRegistry().register(ItemInit.speed_upgrade_lvl_1);
-		event.getRegistry().register(ItemInit.speed_upgrade_lvl_2);
-		event.getRegistry().register(ItemInit.speed_upgrade_lvl_3);
-		event.getRegistry().register(ItemInit.speed_upgrade_lvl_4);
-		event.getRegistry().register(ItemInit.power_upgrade_lvl_1);
-		event.getRegistry().register(ItemInit.power_upgrade_lvl_2);
-		event.getRegistry().register(ItemInit.power_upgrade_lvl_3);
+		event.getRegistry().register(ItemInit.lunar_upgrade_card_1);
+		event.getRegistry().register(ItemInit.lunar_upgrade_card_2);
+		event.getRegistry().register(ItemInit.lunar_upgrade_card_3);
+		event.getRegistry().register(ItemInit.lunar_upgrade_card_4);
+		event.getRegistry().register(ItemInit.speed_upgrade_card_1);
+		event.getRegistry().register(ItemInit.speed_upgrade_card_2);
+		event.getRegistry().register(ItemInit.speed_upgrade_card_3);
+		event.getRegistry().register(ItemInit.speed_upgrade_card_4);
+		event.getRegistry().register(ItemInit.power_upgrade_card_1);
+		event.getRegistry().register(ItemInit.power_upgrade_card_2);
+		event.getRegistry().register(ItemInit.power_upgrade_card_3);
 
 		CyberCoreMain.LOGGER.info("Item Loaded");
 	}

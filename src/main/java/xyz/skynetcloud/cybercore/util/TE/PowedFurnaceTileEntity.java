@@ -204,11 +204,11 @@ public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
 	}
 
 	public int getEnergyPerTickPerItem() {
-		return 4 + (getMarkLvl(12, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * 4);
+		return 4 + (getMarkcard(12, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * 4);
 	}
 
 	public int getTicksPerItem() {
-		return 200 - (getMarkLvl(12, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * 35);
+		return 200 - (getMarkcard(12, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * 35);
 	}
 
 	@Override
