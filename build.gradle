@@ -23,7 +23,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
 
-version = "1.15.2-${mod_version}.${System.getenv().BUILD_NUMBER}"
+version = "1.15.2-${mod_version}.18362"
 group = "xyz.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
