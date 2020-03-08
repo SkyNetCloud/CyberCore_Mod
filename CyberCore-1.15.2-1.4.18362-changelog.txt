@@ -1,10 +1,8 @@
-Mod Build: 1.3 - Feb 09 2020
+Mod Build: 1.4 - March 07 2020
 	SkyNetCloud:
-	Added Cable maxTransferRate to both Client and Server Config
-	Added Soul Bond Book (Still WIP)
-	Fix Creative Tab Crashing Game
-	Added Custom Village (Still WIP)
-	Added New Item (Some May not be craftable yet)
+	Fix Missing Recipes
+	Update All Upgrade names
+	Added New Item Textures
 	
 	
 

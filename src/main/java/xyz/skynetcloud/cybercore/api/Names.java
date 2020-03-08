@@ -6,6 +6,7 @@ public class Names {
 
 	public static final String NAME = "CyberCore";
 	public static final String MODID = "cybercore";
+	public static final String INFO = "INFO";
 
 	public static final String CYBERVILLAGER = MODID + ":cybervillager";
 	public static final String SHARK_MOB = MODID + ":shark_mob";

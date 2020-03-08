@@ -1,5 +1,9 @@
 package xyz.skynetcloud.cybercore.util.networking.config;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
+
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
@@ -33,11 +37,16 @@ public class CyberCoreConfig {
 
 	public static ConfigValue<Integer> SpeedcardTick;
 
+	public static ConfigValue<Boolean> giveOnFirstJoin;
+
 	public static BooleanValue grass_enable;
 
 	public static void init(ForgeConfigSpec.Builder server, ForgeConfigSpec.Builder client) {
 
 		client.comment("Client Side Configuration").push("client");
+
+		giveOnFirstJoin = client.comment("This allow player to login in with two of the modded seeds")
+				.translation("item.seeds.config.give_on_first_join").define("give_on_first_join", true);
 
 		VillagerTradePool = client.comment("Allow The Villager to Trade Default:True").define("villager_trade", false);
 
@@ -74,7 +83,10 @@ public class CyberCoreConfig {
 				.defineInRange("max_Transfer_Rate", 20, 20, 1000);
 
 		server.comment("Server Side Configuration").push("server");
-		
+
+		giveOnFirstJoin = server.comment("This allow player to login in with two of the modded seeds")
+				.translation("item.seeds.config.give_on_first_join").define("give_on_first_join", true);
+
 		creaitstartOff = server.comment("Creadit Player Start off with Default:100").defineInRange("creait_start_off",
 				100, 1, 1000);
 

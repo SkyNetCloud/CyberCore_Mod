@@ -75,5 +75,4 @@ public class LettuceCrop extends CropsBlock {
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(AGE_3);
 	}
-
 }

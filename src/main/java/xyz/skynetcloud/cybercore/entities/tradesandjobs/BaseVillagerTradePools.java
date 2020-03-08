@@ -9,14 +9,14 @@ import net.minecraft.item.Items;
 public class BaseVillagerTradePools {
 	private static List<BaseVillagerTradePool> TradePool;
 
-	public static List<BaseVillagerTradePool> getSCIENTISTS() {
+	public static List<BaseVillagerTradePool> getTrades() {
 		if (TradePool == null) {
-			initScientists();
+			initTrades();
 		}
 		return TradePool;
 	}
 
-	private static void initScientists() {
+	private static void initTrades() {
 
 		new BaseVillagerTradePool("Sell apples",
 				generateStackList(new ItemStackWithRandomSize(new ItemStack(Items.APPLE), 5, 10)),
