@@ -131,10 +131,10 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 			return this.isTubeCompatible((CyberCoreItemPipe) block);
 
 		if (block instanceof CyberLoaderBlock && state.get(CyberLoaderBlock.FACING).equals(face.getOpposite()))
-			return CyberCoreConfig.canConnect.get();
+			return CyberCoreConfig.CanConnect.get();
 
 		if (block instanceof CyberExtractorBlock && state.get(CyberExtractorBlock.FACING).equals(face.getOpposite()))
-			return CyberCoreConfig.canConnect.get();
+			return CyberCoreConfig.CanConnect.get();
 
 		TileEntity te = world.getTileEntity(newPos);
 

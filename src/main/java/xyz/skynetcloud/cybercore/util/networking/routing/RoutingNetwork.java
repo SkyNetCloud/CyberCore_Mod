@@ -45,9 +45,9 @@ public class RoutingNetwork {
 	}
 
 	private void setTicksPerTube() {
-		int baseDuration = CyberCoreConfig.ticks_in_item_pipe.get();
+		int baseDuration = CyberCoreConfig.TICKS_PIPE.get();
 		int size = this.tubes.size();
-		int softCap = CyberCoreConfig.soft_item_pipe_cap.get();
+		int softCap = CyberCoreConfig.SOFT_CAP.get();
 
 		if (size < softCap) {
 			this.ticksPerTube = baseDuration;

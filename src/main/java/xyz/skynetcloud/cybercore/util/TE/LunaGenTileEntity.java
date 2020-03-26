@@ -49,7 +49,7 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	};
 
 	public LunaGenTileEntity() {
-		super(TileEntityNames.LUNAR_GEN_MACHINE_TE, CyberCoreConfig.PowerLmit.get(), 6);
+		super(TileEntityNames.LUNAR_GEN_MACHINE_TE, CyberCoreConfig.POWERLMIT.get(), 6);
 
 	}
 
@@ -87,8 +87,8 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	}
 
 	public int getTicksPerAmount() {
-		return CyberCoreConfig.LunarGenPerTick.get()
-				- (getMarkcard(1, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * CyberCoreConfig.LunarGenPerTick.get());
+		return CyberCoreConfig.PerTick.get()
+				- (getMarkcard(1, CyberCoreConstants.SPEEDUPGRADE_INFO_TYPE) * CyberCoreConfig.PerTick.get());
 	}
 
 	@Override

@@ -3,6 +3,7 @@ Mod Build: 1.4 - March 07 2020
 	Fix Missing Recipes
 	Update All Upgrade names
 	Added New Item Textures
+	Starter Seeds Can Be disable in config
 	
 	
 

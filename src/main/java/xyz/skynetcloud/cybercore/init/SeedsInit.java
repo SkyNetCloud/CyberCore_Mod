@@ -1,9 +1,7 @@
 package xyz.skynetcloud.cybercore.init;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.BlockNamedItem;
-import net.minecraftforge.common.MinecraftForge;
 
 public class SeedsInit extends BlockNamedItem {
 
@@ -12,6 +10,5 @@ public class SeedsInit extends BlockNamedItem {
 		
       		
 	}
-	
 
 }

@@ -9,10 +9,12 @@ public class Names {
 	public static final String INFO = "INFO";
 
 	public static final String CYBERVILLAGER = MODID + ":cybervillager";
-	public static final String SHARK_MOB = MODID + ":shark_mob";
+	public static final String PLAYER_AVOIDING_ROBOT = MODID + ":player_avoiding_robot";
 	public static final String CYBERVILLAGERTRADESERIALIZER = MODID + ":villagertradeserializer";
 
 	public static final ResourceLocation CYBERVILLAGERTRUSTCAP = new ResourceLocation(MODID, "villagertrustcap");
+	
+	public static final ResourceLocation ROBOT_TEXTURES = new ResourceLocation(MODID, "robot_textures");
 
 	public static final String Client_CONFIG = "cybercore-client.toml";
 	public static final String Server_CONFIG = "cybercore-server.toml";

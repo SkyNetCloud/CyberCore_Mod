@@ -60,7 +60,7 @@ curseforge {
     if (project.hasProperty('curseApiKey')) {
         apiKey = project.getProperty('curseApiKey')
         project {
-            id = '356097'
+            id = "${packid}"
             
             changelog = file("CyberCore-${version}-changelog.txt")
             

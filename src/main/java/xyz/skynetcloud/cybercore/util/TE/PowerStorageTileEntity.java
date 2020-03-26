@@ -46,7 +46,7 @@ public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 	};
 
 	public PowerStorageTileEntity() {
-		super(TileEntityNames.POWER_BOX_TE, CyberCoreConfig.PowerLmit.get(), 3);
+		super(TileEntityNames.POWER_BOX_TE, CyberCoreConfig.POWERLMIT.get(), 3);
 
 	}
 

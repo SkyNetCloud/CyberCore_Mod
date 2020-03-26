@@ -162,7 +162,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 			}
 			this.inventory = remainingWrappers;
 		}
-		if (!this.world.isRemote && this.inventory.size() > CyberCoreConfig.max_items_in_item_pipe.get()) {
+		if (!this.world.isRemote && this.inventory.size() > CyberCoreConfig.MAX_ITEMS_IN_PIPE.get()) {
 			this.world.removeBlock(this.pos, false);
 		}
 	}

@@ -16,9 +16,7 @@ public class CyberCorePacketHandler {
 			.networkProtocolVersion(() -> PROTOCOL_VERSION).simpleChannel();
 
 	public static final void register() {
-		int i = 0;
-		INSTANCE.registerMessage(i++, DoVillagerTradeMessage.class, DoVillagerTradeMessage::encode,
-				DoVillagerTradeMessage::decode, DoVillagerTradeMessage.DoVillagerTradeHandler::handle);
+
 	}
 
 	public static void sendToServer(Object msg) {

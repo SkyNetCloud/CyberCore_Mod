@@ -13,7 +13,6 @@ import xyz.skynetcloud.cybercore.CyberCoreMain;
 import xyz.skynetcloud.cybercore.api.Names;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.api.containers.ContainerNames;
-import xyz.skynetcloud.cybercore.api.entites.EntitesNameType;
 import xyz.skynetcloud.cybercore.api.items.ItemInit;
 import xyz.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 
@@ -126,7 +125,7 @@ public class ModRegistryEvent {
 
 	@SubscribeEvent
 	public static void registerEntityTypes(RegistryEvent.Register<EntityType<?>> event) {
-		EntitesNameType.registerAll(event);
+		// EntitesNameType.registerAll(event);
 	}
 
 	@SubscribeEvent
@@ -134,7 +133,6 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ContainerNames.LUNARGEN_CON.setRegistryName(Names.LUNARGEN_CON));
 		event.getRegistry().register(ContainerNames.POWER_BOX_CON.setRegistryName(Names.POWER_BOX_CON));
 		event.getRegistry().register(ContainerNames.POWER_FURNCAE_CON.setRegistryName(Names.POWERED_FURNACE_CON));
-		event.getRegistry().register(ContainerNames.VILLAGER_CON.setRegistryName("villager_con"));
 
 		CyberCoreMain.LOGGER.info("ContainerType Loaded");
 	}

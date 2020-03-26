@@ -30,7 +30,7 @@ public class CableTileEntity extends TileEntity implements ITickableTileEntity {
 
 	private int[] connections = new int[] { 0, 0, 0, 0, 0, 0 };
 
-	private int maxTransferRate = CyberCoreConfig.maxTransferRate.get();
+	private int maxTransferRate = CyberCoreConfig.MaxTranfterCap.get();
 
 	private List<BlockPos> cables = new ArrayList<>();
 
