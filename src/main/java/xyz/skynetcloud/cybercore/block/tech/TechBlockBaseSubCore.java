@@ -24,10 +24,10 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.block.BlockBaseCore;
-import xyz.skynetcloud.cybercore.util.TE.LunaGenTileEntity;
-import xyz.skynetcloud.cybercore.util.TE.PowedFurnaceTileEntity;
-import xyz.skynetcloud.cybercore.util.TE.PowerStorageTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
+import xyz.skynetcloud.cybercore.util.TE.techblock.LunaGenTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.techblock.PowedFurnaceTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.techblock.PowerStorageTileEntity;
 
 public class TechBlockBaseSubCore extends BlockBaseCore {
 

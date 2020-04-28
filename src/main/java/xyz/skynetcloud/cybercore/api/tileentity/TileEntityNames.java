@@ -2,11 +2,11 @@ package xyz.skynetcloud.cybercore.api.tileentity;
 
 import net.minecraft.tileentity.TileEntityType;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
-import xyz.skynetcloud.cybercore.util.TE.LunaGenTileEntity;
-import xyz.skynetcloud.cybercore.util.TE.PowedFurnaceTileEntity;
-import xyz.skynetcloud.cybercore.util.TE.PowerStorageTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.cable.ItemPipeTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.techblock.LunaGenTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.techblock.PowedFurnaceTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.techblock.PowerStorageTileEntity;
 
 public class TileEntityNames {
 

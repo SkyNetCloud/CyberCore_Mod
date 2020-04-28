@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import xyz.skynetcloud.cybercore.api.containers.ContainerNames;
-import xyz.skynetcloud.cybercore.util.TE.LunaGenTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.techblock.LunaGenTileEntity;
 
 public class LunaGenContainer extends BaseContainerCore {
 

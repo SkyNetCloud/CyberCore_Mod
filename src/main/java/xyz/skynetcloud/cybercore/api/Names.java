@@ -5,6 +5,9 @@ import net.minecraft.util.ResourceLocation;
 public class Names {
 
 	public static final String NAME = "CyberCore";
+	
+	public static final String UUID = "TheLewdNeko";
+	
 	public static final String MODID = "cybercore";
 	public static final String INFO = "INFO";
 
@@ -73,5 +76,22 @@ public class Names {
 	public static final String POWERED_FURNACE_CON = (MODID + ":poweredfurnace_con");
 	public static final String POWERED_IRRIGATION_CON = (MODID + ":poweredirrigation_con");
 	public static final String CYBER_CHEST_CONS = (MODID + ":cyberchest_con");
+
+	public static final String DARK_STEEL_HELMET_NAME = (MODID + ":dark_steel_helmet");
+	public static final String DARK_STEEL_CHESTPLATE_NAME = (MODID + ":dark_steel_chestplate");
+	public static final String DARK_STEEL_LEGGINGS_NAME = (MODID + ":dark_steel_leggings");
+	public static final String DARK_STEEL_BOOTS_NAME = (MODID + ":dark_steel_boots");
+
+	public static final String RUBY_HELMET_NAME = (MODID + ":ruby_helmet");
+	public static final String RUBY_CHESTPLATE_NAME = (MODID + ":ruby_chestplate");
+	public static final String RUBY_LEGGINGS_NAME = (MODID + ":ruby_leggings");
+	public static final String RUBY_BOOTS_NAME = (MODID + ":ruby_boots");
+
+	public static final String CYBER_HELMET_NAME = (MODID + ":cyber_helmet");
+	public static final String CYBER_CHESTPLATE_NAME = (MODID + ":cyber_chestplate");
+	public static final String CYBER_LEGGINGS_NAME = (MODID + ":cyber_leggings");
+	public static final String CYBER_BOOTS_NAME = (MODID + ":cyber_boots");
+
+	
 
 }

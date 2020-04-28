@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	
+	"pattern":
+	[
+		"R R",
+		"RRR",
+		"RRR"
+	],
+	
+	"key":
+	{
+		"R": { "item": "cybercore:ruby_ingot" }
+	},
+	
+	"result": { "item": "cybercore:ruby_chestplate" }
+}

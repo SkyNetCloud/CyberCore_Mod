@@ -8,7 +8,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import xyz.skynetcloud.cybercore.api.containers.ContainerNames;
-import xyz.skynetcloud.cybercore.util.TE.PowedFurnaceTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.techblock.PowedFurnaceTileEntity;
 
 public class PowerFurnaceContainer extends BaseContainerCore {
 

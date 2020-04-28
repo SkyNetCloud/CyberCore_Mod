@@ -13,6 +13,8 @@ public class ContainerNames {
 		public static final String LUNARGEN_CON = (MODID + ":lunar_gen_machine_con");
 		public static final String POWER_BOX_CON = (MODID + ":power_box_con");
 	}
+	
+	
 
 	public static final ContainerType<LunaGenContainer> LUNARGEN_CON = new ContainerType<LunaGenContainer>(
 			LunaGenContainer::new);

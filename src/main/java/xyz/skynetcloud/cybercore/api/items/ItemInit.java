@@ -7,7 +7,7 @@ import static xyz.skynetcloud.cybercore.api.Names.CYBER_HOE;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_INGOT;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_PICKAXE;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_SHOVEL;
-import static xyz.skynetcloud.cybercore.api.Names.CYBER_SWORD;
+import static xyz.skynetcloud.cybercore.api.Names.*;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_AXE;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_HOE;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_INGOT;
@@ -39,18 +39,24 @@ import static xyz.skynetcloud.cybercore.api.Names.TOMATO_NAME;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.EquipmentSlotType;
+
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Rarity;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.block.BlockItemCore;
+import xyz.skynetcloud.cybercore.init.CustomArmorMaterial;
 import xyz.skynetcloud.cybercore.init.SeedsInit;
+import xyz.skynetcloud.cybercore.item.ArmorItemBase;
 import xyz.skynetcloud.cybercore.init.ToolMaterialsInit;
 import xyz.skynetcloud.cybercore.item.CyberCoreCardItem;
 import xyz.skynetcloud.cybercore.item.SoulReturn;
@@ -197,17 +203,17 @@ public class ItemInit {
 	public static Item lunar_upgrade_card_4 = new UpgradeLvl(
 			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 4, 0).setRegistryName(LUNAR_CARD_4);
 
-	public static Item speed_upgrade_card_1 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance), 1, 2).setRegistryName(SPEED_CARD_1);
+	public static Item speed_upgrade_card_1 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 1, 2)
+			.setRegistryName(SPEED_CARD_1);
 
-	public static Item speed_upgrade_card_2 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance), 2, 2).setRegistryName(SPEED_CARD_2);
+	public static Item speed_upgrade_card_2 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 2, 2)
+			.setRegistryName(SPEED_CARD_2);
 
-	public static Item speed_upgrade_card_3 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance), 3, 2).setRegistryName(SPEED_CARD_3);
+	public static Item speed_upgrade_card_3 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 3, 2)
+			.setRegistryName(SPEED_CARD_3);
 
-	public static Item speed_upgrade_card_4 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance), 4, 2).setRegistryName(SPEED_CARD_4);
+	public static Item speed_upgrade_card_4 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 4, 2)
+			.setRegistryName(SPEED_CARD_4);
 
 	public static Item power_upgrade_card_1 = new UpgradeLvl(
 			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 1, 3).setRegistryName(POWER_CARD_1);
@@ -217,5 +223,48 @@ public class ItemInit {
 
 	public static Item power_upgrade_card_3 = new UpgradeLvl(
 			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 3, 3).setRegistryName(POWER_CARD_3);
+
+	public static Item DARK_STEEL_HELMET = new ArmorItemBase(CustomArmorMaterial.Dark_Steel, "dark_steel",
+			EquipmentSlotType.HEAD, new Item.Properties().group(CyberCoreTab.instance))
+					.setRegistryName(DARK_STEEL_HELMET_NAME);
+
+	public static Item DARK_STEEL_CHESTPLATE = new ArmorItemBase(CustomArmorMaterial.Dark_Steel, "dark_steel",
+			EquipmentSlotType.CHEST, new Item.Properties().group(CyberCoreTab.instance))
+					.setRegistryName(DARK_STEEL_CHESTPLATE_NAME);
+
+	public static Item DARK_STEEL_LEGGINGS = new ArmorItemBase(CustomArmorMaterial.Dark_Steel, "dark_steel",
+			EquipmentSlotType.LEGS, new Item.Properties().group(CyberCoreTab.instance))
+					.setRegistryName(DARK_STEEL_LEGGINGS_NAME);
+
+	public static Item DARK_STEEL_BOOTS = new ArmorItemBase(CustomArmorMaterial.Dark_Steel, "dark_steel",
+			EquipmentSlotType.FEET, new Item.Properties().group(CyberCoreTab.instance))
+					.setRegistryName(DARK_STEEL_BOOTS_NAME);
+
+	public static Item RUBY_HELMET = new ArmorItemBase(CustomArmorMaterial.Ruby, "ruby", EquipmentSlotType.HEAD,
+			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(RUBY_HELMET_NAME);
+
+	public static Item RUBY_CHESTPLATE = new ArmorItemBase(CustomArmorMaterial.Ruby, "ruby", EquipmentSlotType.CHEST,
+			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(RUBY_CHESTPLATE_NAME);
+
+	public static Item RUBY_LEGGINGS = new ArmorItemBase(CustomArmorMaterial.Ruby, "ruby", EquipmentSlotType.LEGS,
+			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(RUBY_LEGGINGS_NAME);
+
+	public static Item RUBY_BOOTS = new ArmorItemBase(CustomArmorMaterial.Ruby, "ruby", EquipmentSlotType.FEET,
+			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(RUBY_BOOTS_NAME);
+
+	public static Item CYBER_HELMET = new ArmorItemBase(CustomArmorMaterial.Cyber_Ingot, "cyber",
+			EquipmentSlotType.HEAD, new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE))
+					.setRegistryName(CYBER_HELMET_NAME);
+
+	public static Item CYBER_CHESTPLATE = new ArmorItemBase(CustomArmorMaterial.Cyber_Ingot, "cyber",
+			EquipmentSlotType.CHEST, new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE))
+					.setRegistryName(CYBER_CHESTPLATE_NAME);
+
+	public static Item CYBER_LEGGINGS = new ArmorItemBase(CustomArmorMaterial.Cyber_Ingot, "cyber",
+			EquipmentSlotType.LEGS, new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE))
+					.setRegistryName(CYBER_LEGGINGS_NAME);
+
+	public static Item CYBER_BOOTS = new ArmorItemBase(CustomArmorMaterial.Cyber_Ingot, "cyber", EquipmentSlotType.FEET,
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_BOOTS_NAME);
 
 }

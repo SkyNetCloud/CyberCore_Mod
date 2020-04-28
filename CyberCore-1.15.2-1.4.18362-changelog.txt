@@ -1,10 +1,7 @@
-Mod Build: 1.4 - March 07 2020
+Mod Build: 1.5 - March 07 2020
 	SkyNetCloud:
-	Fix Missing Recipes
-	Update All Upgrade names
-	Added New Item Textures
-	Starter Seeds Can Be disable in config
-	
+	Added Armour
+	Added 
 	
 
 

@@ -1,5 +1,7 @@
 package xyz.skynetcloud.cybercore;
 
+import java.util.UUID;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,6 +10,7 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -44,30 +47,24 @@ public class CyberCoreMain {
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public CyberCoreMain() {
-
 		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ConfigLoadder.COMMON, Names.Server_CONFIG);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigLoadder.CLIENT, Names.Client_CONFIG);
-
-		ConfigLoadder.loadConfig(ConfigLoadder.CLIENT,
-				FMLPaths.CONFIGDIR.get().resolve(Names.Client_CONFIG).toString());
-		ConfigLoadder.loadConfig(ConfigLoadder.COMMON,
-				FMLPaths.CONFIGDIR.get().resolve(Names.Server_CONFIG).toString());
-
+		
+		ConfigLoadder.loadConfig(ConfigLoadder.CLIENT, 
+		FMLPaths.CONFIGDIR.get().resolve(Names.Client_CONFIG).toString());
+		ConfigLoadder.loadConfig(ConfigLoadder.COMMON, 
+		FMLPaths.CONFIGDIR.get().resolve(Names.Server_CONFIG).toString());
+		
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-
 		modBus.addListener(this::setup);
-
+		
 		MinecraftForge.EVENT_BUS.register(ModSoulBoundEvent.DEATH_INSTANCE);
-
 		MinecraftForge.EVENT_BUS.addListener(this::entityJoinWorld);
-
+		MinecraftForge.EVENT_BUS.addListener(this::cpotd);
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-
 			MinecraftForge.EVENT_BUS.register(ModClientEvent.INSTANCE);
 			modBus.addListener(this::doClientStuff);
-
 		});
-
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
@@ -105,7 +102,8 @@ public class CyberCoreMain {
 	}
 
 	private void entityJoinWorld(PlayerLoggedInEvent event) {
-
+		
+		
 		PlayerEntity e = event.getPlayer();
 		if (!CyberCoreConfig.GivenOnFirstJoin.get() == true) {
 
@@ -126,6 +124,19 @@ public class CyberCoreMain {
 
 		}
 
+	}
+	
+
+	private void cpotd(PlayerLoggedInEvent event) {
+		if (event.getEntity() instanceof PlayerEntity
+				&& UUID.fromString("283502a2-4134-454c-bb47-39c3875b0dd4").equals(((PlayerEntity)event.getEntity()).getUniqueID())) {
+			event.getPlayer()
+			.sendMessage(new StringTextComponent(
+					TextFormatting.RED + "[" + TextFormatting.WHITE + Names.INFO + TextFormatting.RED + "] "
+							+ TextFormatting.WHITE + "Hello Alex Hope you like the mod"));
+			
+
+		}
 	}
 
 }

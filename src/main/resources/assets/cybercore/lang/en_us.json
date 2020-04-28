@@ -66,5 +66,17 @@
 	"slot.poweredfurnace.input": "Items or Blocks Inputs",
 	"slot.util.output": "Output Item Or Blocks",
 	"slot.util.powerin": "Insert item with power to insert power",
-	"slot.util.powerout": "Insert item with power to extract power"
+	"slot.util.powerout": "Insert item with power to extract power",
+	"item.cybercore.ruby_helmet": "Ruby Helmet",
+	"item.cybercore.ruby_chestplate": "Ruby Chestplate",
+	"item.cybercore.ruby_leggings": "Ruby Leggings",
+	"item.cybercore.ruby_boots": "Ruby Boots",
+	"item.cybercore.dark_steel_helmet": "Dark Steel Helmet",
+	"item.cybercore.dark_steel_chestplate": "Dark Steel Chestplate",
+	"item.cybercore.dark_steel_leggings": "Dark Steel Leggings",
+	"item.cybercore.dark_steel_boots": "Dark Steel Boots",
+	"item.cybercore.cyber_helmet": "Cyber Helmet",
+	"item.cybercore.cyber_chestplate": "Cyber Chestplate",
+	"item.cybercore.cyber_leggings": "Cyber Leggings",
+	"item.cybercore.cyber_boots": "Cyber Boots"
 }

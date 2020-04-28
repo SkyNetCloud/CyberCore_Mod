@@ -52,6 +52,22 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
+		
+		event.getRegistry().register(ItemInit.DARK_STEEL_HELMET);
+		event.getRegistry().register(ItemInit.DARK_STEEL_CHESTPLATE);
+		event.getRegistry().register(ItemInit.DARK_STEEL_LEGGINGS);
+		event.getRegistry().register(ItemInit.DARK_STEEL_BOOTS);
+		
+		event.getRegistry().register(ItemInit.RUBY_HELMET);
+		event.getRegistry().register(ItemInit.RUBY_CHESTPLATE);
+		event.getRegistry().register(ItemInit.RUBY_LEGGINGS);
+		event.getRegistry().register(ItemInit.RUBY_BOOTS);
+		
+		event.getRegistry().register(ItemInit.CYBER_HELMET);
+		event.getRegistry().register(ItemInit.CYBER_CHESTPLATE);
+		event.getRegistry().register(ItemInit.CYBER_LEGGINGS);
+		event.getRegistry().register(ItemInit.CYBER_BOOTS);
+		
 		event.getRegistry().register(ItemInit.card);
 		event.getRegistry().register(ItemInit.block_loader);
 		event.getRegistry().register(ItemInit.whrechItem);

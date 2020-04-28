@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import xyz.skynetcloud.cybercore.api.containers.ContainerNames;
-import xyz.skynetcloud.cybercore.util.TE.PowerStorageTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.techblock.PowerStorageTileEntity;
 
 public class PowerStorageContainer extends BaseContainerCore {
 

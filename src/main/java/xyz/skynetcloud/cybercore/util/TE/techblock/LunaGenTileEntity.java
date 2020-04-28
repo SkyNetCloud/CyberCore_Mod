@@ -1,4 +1,4 @@
-package xyz.skynetcloud.cybercore.util.TE;
+package xyz.skynetcloud.cybercore.util.TE.techblock;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

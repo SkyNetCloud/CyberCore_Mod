@@ -6,7 +6,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
-import xyz.skynetcloud.cybercore.util.TE.PowedFurnaceTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.techblock.PowedFurnaceTileEntity;
 import xyz.skynetcloud.cybercore.util.container.PowerFurnaceContainer;
 
 public class PowedFurnaceScreen extends ScreenBaseCore<PowerFurnaceContainer>
