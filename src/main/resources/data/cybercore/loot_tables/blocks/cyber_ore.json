@@ -7,7 +7,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "cybercore:cyber_ore"
+					"name": "cybercore:cyber_bits"
 				}
 			],
 			"conditions": [

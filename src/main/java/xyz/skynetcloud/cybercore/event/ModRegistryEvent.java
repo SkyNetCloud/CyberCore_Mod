@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -46,28 +47,30 @@ public class ModRegistryEvent {
 		event.getRegistry().register(BlockInit.POWER_BOX);
 		event.getRegistry().register(BlockInit.POWER_FURNACE_BLOCK);
 
-		CyberCoreMain.LOGGER.info("Loaded Blocks");
+		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "Loaded Blocks");
 	}
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
-		
+		event.getRegistry().register(ItemInit.cyber_bits);
+		event.getRegistry().register(ItemInit.cyber_blend);
+
 		event.getRegistry().register(ItemInit.DARK_STEEL_HELMET);
 		event.getRegistry().register(ItemInit.DARK_STEEL_CHESTPLATE);
 		event.getRegistry().register(ItemInit.DARK_STEEL_LEGGINGS);
 		event.getRegistry().register(ItemInit.DARK_STEEL_BOOTS);
-		
+
 		event.getRegistry().register(ItemInit.RUBY_HELMET);
 		event.getRegistry().register(ItemInit.RUBY_CHESTPLATE);
 		event.getRegistry().register(ItemInit.RUBY_LEGGINGS);
 		event.getRegistry().register(ItemInit.RUBY_BOOTS);
-		
+
 		event.getRegistry().register(ItemInit.CYBER_HELMET);
 		event.getRegistry().register(ItemInit.CYBER_CHESTPLATE);
 		event.getRegistry().register(ItemInit.CYBER_LEGGINGS);
 		event.getRegistry().register(ItemInit.CYBER_BOOTS);
-		
+
 		event.getRegistry().register(ItemInit.card);
 		event.getRegistry().register(ItemInit.block_loader);
 		event.getRegistry().register(ItemInit.whrechItem);
@@ -124,7 +127,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ItemInit.power_upgrade_card_2);
 		event.getRegistry().register(ItemInit.power_upgrade_card_3);
 
-		CyberCoreMain.LOGGER.info("Item Loaded");
+		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "Item Loaded");
 	}
 
 	@SubscribeEvent
@@ -136,7 +139,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(TileEntityNames.POWER_FURNACE_TE.setRegistryName("tileentitypoweredfrnace"));
 		event.getRegistry().register(TileEntityNames.TE_TYPE_ITEM_PIPE.setRegistryName("itempipe_te"));
 
-		CyberCoreMain.LOGGER.info("TileEntityType Loaded");
+		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "TileEntityType Loaded");
 	}
 
 	@SubscribeEvent
@@ -150,7 +153,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ContainerNames.POWER_BOX_CON.setRegistryName(Names.POWER_BOX_CON));
 		event.getRegistry().register(ContainerNames.POWER_FURNCAE_CON.setRegistryName(Names.POWERED_FURNACE_CON));
 
-		CyberCoreMain.LOGGER.info("ContainerType Loaded");
+		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "ContainerType Loaded");
 	}
 
 }

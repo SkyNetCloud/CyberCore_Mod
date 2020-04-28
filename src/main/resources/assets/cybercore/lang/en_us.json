@@ -78,5 +78,7 @@
 	"item.cybercore.cyber_helmet": "Cyber Helmet",
 	"item.cybercore.cyber_chestplate": "Cyber Chestplate",
 	"item.cybercore.cyber_leggings": "Cyber Leggings",
-	"item.cybercore.cyber_boots": "Cyber Boots"
+	"item.cybercore.cyber_boots": "Cyber Boots",
+	"item.cybercore.cyber_bits": "Cyber Ore Bits",
+	"item.cybercore.cyber_blend": "Cyber Ingot Blend"
 }

@@ -49,6 +49,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
@@ -90,6 +91,12 @@ public class ItemInit {
 
 	public static Item taco_shell = new Item(new Item.Properties().group(CyberCoreTab.instance))
 			.setRegistryName("taco_shell");
+
+	public static Item cyber_bits = new Item(new Item.Properties().group(CyberCoreTab.instance))
+			.setRegistryName("cyber_bits");
+
+	public static Item cyber_blend = new Item(new Item.Properties().group(CyberCoreTab.instance))
+			.setRegistryName("cyber_blend");
 
 	public static BlockItem ruby_block = new BlockItemCore(BlockInit.RUBY_BLOCK);
 
@@ -141,46 +148,46 @@ public class ItemInit {
 			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(CYBER_PICKAXE);
 
 	public static Item cyber_axe = new AxeItem(ToolMaterialsInit.cyber_ingot_materials, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(CYBER_AXE);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_AXE);
 
 	public static Item cyber_hoe = new HoeItem(ToolMaterialsInit.cyber_ingot_materials, 20,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(CYBER_HOE);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_HOE);
 
 	public static Item cyber_shovel = new ShovelItem(ToolMaterialsInit.cyber_ingot_materials, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(CYBER_SHOVEL);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_SHOVEL);
 
 	public static Item cyber_sword = new SwordItem(ToolMaterialsInit.cyber_ingot_materials, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(CYBER_SWORD);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_SWORD);
 
 	public static Item ruby_pickaxe = new CyberCorePickaxe(ToolMaterialsInit.ruby_ingot_materials, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(RUBY_PICKAXE);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_PICKAXE);
 
 	public static Item ruby_axe = new AxeItem(ToolMaterialsInit.ruby_ingot_materials, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(RUBY_AXE);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_AXE);
 
 	public static Item ruby_hoe = new HoeItem(ToolMaterialsInit.ruby_ingot_materials, 20,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(RUBY_HOE);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_HOE);
 
 	public static Item ruby_shovel = new ShovelItem(ToolMaterialsInit.ruby_ingot_materials, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(RUBY_SHOVEL);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_SHOVEL);
 
 	public static Item ruby_sword = new SwordItem(ToolMaterialsInit.ruby_ingot_materials, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(RUBY_SWORD);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_SWORD);
 
 	public static Item dark_steel_pickaxe = new CyberCorePickaxe(ToolMaterialsInit.dark_steel_ingot_materials, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(DARK_STEEL_PICKAXE);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_PICKAXE);
 
 	public static Item dark_steel_axe = new AxeItem(ToolMaterialsInit.dark_steel_ingot_materials, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(DARK_STEEL_AXE);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_AXE);
 
 	public static Item dark_steel_hoe = new HoeItem(ToolMaterialsInit.dark_steel_ingot_materials, 20,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(DARK_STEEL_HOE);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_HOE);
 
 	public static Item dark_steel_shovel = new ShovelItem(ToolMaterialsInit.dark_steel_ingot_materials, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(DARK_STEEL_SHOVEL);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_SHOVEL);
 
 	public static Item dark_steel_sword = new SwordItem(ToolMaterialsInit.dark_steel_ingot_materials, 10, 10,
-			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(DARK_STEEL_SWORD);
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_SWORD);
 
 	public static Item cyber_ingot = new Item(new Item.Properties().group(CyberCoreTab.instance))
 			.setRegistryName(CYBER_INGOT);

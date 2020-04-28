@@ -1,7 +1,7 @@
 {
 	"type": "minecraft:smelting",
 	"ingredient": {
-		"item": "cybercore:cyber_ore"
+		"item": "cybercore:cyber_blend"
 	},
 	"result": "cybercore:cyber_ingot",
 	"experience": 1.0,

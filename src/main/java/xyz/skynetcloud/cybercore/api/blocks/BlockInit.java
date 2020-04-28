@@ -23,6 +23,8 @@ public class BlockInit {
 	public static ItemGroup group = CyberCoreTab.instance;
 
 	public static Block IRRIGATION_BLOCK = new TechBlockFacing("irrigtion_block", group);
+	
+	public static Block Armor_Blender = new TechBlockFacing("armor_blender", group);
 
 	public static Block ITEM_PIPE = new CyberCoreItemPipe(
 			Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F)).setRegistryName("block_pipe");

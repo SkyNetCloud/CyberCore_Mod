@@ -17,20 +17,20 @@ public class OreGen {
 			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 					Feature.ORE
 							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-									BlockInit.CYBER_ORE.getDefaultState(), 17))
-							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(15, 0, 0, 12))));
-			
+									BlockInit.CYBER_ORE.getDefaultState(), 5))
+							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(10, 0, 0, 5))));
+
 			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 					Feature.ORE
 							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
 									BlockInit.RUBY_ORE.getDefaultState(), 10))
-							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(15, 0, 0, 50))));
+							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(15, 0, 0, 5))));
 
 			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 					Feature.ORE
 							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
 									BlockInit.DARK_STEEL_ORE.getDefaultState(), 10))
-							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(15, 0, 0, 50))));
+							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(15, 0, 0, 5))));
 
 		}
 
