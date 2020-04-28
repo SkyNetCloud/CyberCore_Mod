@@ -1,10 +1,6 @@
-Mod Build: 1.5 - March 07 2020
+Mod Build: 1.6 - April 28 2020
 	SkyNetCloud:
-	Added 3 Armor sets (Cyber Armor, Dark Steel Armor, Ruby Armor)
-	Change How Cyber_Ingot is Made
-	Added 2 New Items (Cyber Bits, Cyber Blend)
-	Change a few textures
-	Added Some tooltips to the Ruby Pickaxe, Dark Steel Pickaxe, Cyber Pickaxe plus some ok effects as well
+	Fix Some other code
 	
 
 

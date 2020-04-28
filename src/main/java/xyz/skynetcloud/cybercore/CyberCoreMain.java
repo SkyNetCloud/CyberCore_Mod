@@ -49,15 +49,15 @@ public class CyberCoreMain {
 	public CyberCoreMain() {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ConfigLoadder.COMMON, Names.Server_CONFIG);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigLoadder.CLIENT, Names.Client_CONFIG);
-		
-		ConfigLoadder.loadConfig(ConfigLoadder.CLIENT, 
-		FMLPaths.CONFIGDIR.get().resolve(Names.Client_CONFIG).toString());
-		ConfigLoadder.loadConfig(ConfigLoadder.COMMON, 
-		FMLPaths.CONFIGDIR.get().resolve(Names.Server_CONFIG).toString());
-		
+
+		ConfigLoadder.loadConfig(ConfigLoadder.CLIENT,
+				FMLPaths.CONFIGDIR.get().resolve(Names.Client_CONFIG).toString());
+		ConfigLoadder.loadConfig(ConfigLoadder.COMMON,
+				FMLPaths.CONFIGDIR.get().resolve(Names.Server_CONFIG).toString());
+
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		modBus.addListener(this::setup);
-		
+
 		MinecraftForge.EVENT_BUS.register(ModSoulBoundEvent.DEATH_INSTANCE);
 		MinecraftForge.EVENT_BUS.addListener(this::entityJoinWorld);
 		MinecraftForge.EVENT_BUS.addListener(this::cpotd);
@@ -102,8 +102,7 @@ public class CyberCoreMain {
 	}
 
 	private void entityJoinWorld(PlayerLoggedInEvent event) {
-		
-		
+
 		PlayerEntity e = event.getPlayer();
 		if (!CyberCoreConfig.GivenOnFirstJoin.get() == true) {
 
@@ -125,16 +124,14 @@ public class CyberCoreMain {
 		}
 
 	}
-	
 
 	private void cpotd(PlayerLoggedInEvent event) {
 		if (event.getEntity() instanceof PlayerEntity
-				&& UUID.fromString("283502a2-4134-454c-bb47-39c3875b0dd4").equals(((PlayerEntity)event.getEntity()).getUniqueID())) {
-			event.getPlayer()
-			.sendMessage(new StringTextComponent(
-					TextFormatting.RED + "[" + TextFormatting.WHITE + Names.INFO + TextFormatting.RED + "] "
-							+ TextFormatting.WHITE + "Hello Alex Hope you like the mod"));
-			
+				&& UUID.fromString("1f8f49b7-bca5-4bff-a2ca-588e7f330465").equals(((PlayerEntity) event.getEntity()).getUniqueID())) {
+			event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.RED + "[" + TextFormatting.WHITE
+					+ "Thank You" + TextFormatting.RED + "] " + TextFormatting.WHITE + "I implemented your idea"));
+			event.getPlayer().addItemStackToInventory(new ItemStack(ItemInit.cyber_bits, 5));
+			event.getPlayer().addItemStackToInventory(new ItemStack(ItemInit.cyber_blend, 5));
 
 		}
 	}
