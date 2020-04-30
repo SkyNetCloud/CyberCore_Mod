@@ -45,8 +45,30 @@ public class LunaGenScreen extends ScreenBaseCore<LunaGenContainer> {
 			break;
 		}
 
+		int e = 0;
+		switch (((LunaGenTileEntity) this.te).getMarkcard(0, CyberCoreConstants.SOLARFOCUS_TYPE)) {
+		case 0:
+			e = 0;
+			break;
+		case 1:
+			e = 5;
+			break;
+		case 2:
+			e = 15;
+			break;
+		case 3:
+			e = 25;
+			break;
+		case 4:
+			e = 35;
+			break;
+		}
+
 		int j = getWorkLoadScaled(17);
 		blit(this.guiLeft + 136, this.guiTop + 45, 205, 75, j, l);
+
+		int v = getWorkLoadScaled(17);
+		blit(this.guiLeft + 136, this.guiTop + 45, 205, 75, v, e);
 	}
 
 	private int getWorkLoadScaled(int pixels) {

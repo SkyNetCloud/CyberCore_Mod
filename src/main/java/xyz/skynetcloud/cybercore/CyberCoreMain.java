@@ -10,9 +10,16 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
@@ -32,12 +39,16 @@ import xyz.skynetcloud.cybercore.api.items.ItemInit;
 import xyz.skynetcloud.cybercore.event.ModClientEvent;
 import xyz.skynetcloud.cybercore.event.ModSoulBoundEvent;
 import xyz.skynetcloud.cybercore.handlers.CapabilityHandler;
+import xyz.skynetcloud.cybercore.init.FeaturesInit;
+import xyz.skynetcloud.cybercore.init.InitStructurePieceType;
 import xyz.skynetcloud.cybercore.init.RendererInit;
 import xyz.skynetcloud.cybercore.init.ScreenInit;
 import xyz.skynetcloud.cybercore.packets.CyberCorePacketHandler;
 import xyz.skynetcloud.cybercore.util.networking.config.ConfigLoadder;
 import xyz.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 import xyz.skynetcloud.cybercore.world.gen.OreGen;
+import xyz.skynetcloud.cybercore.world.gen.feature.LabConfig;
+import xyz.skynetcloud.cybercore.world.gen.feature.structure.Lab;
 
 @Mod("cybercore")
 public class CyberCoreMain {
@@ -60,6 +71,11 @@ public class CyberCoreMain {
 
 		MinecraftForge.EVENT_BUS.register(ModSoulBoundEvent.DEATH_INSTANCE);
 		MinecraftForge.EVENT_BUS.addListener(this::entityJoinWorld);
+
+		FeaturesInit.REGISTER.register(modBus);
+
+		InitStructurePieceType.init();
+
 		MinecraftForge.EVENT_BUS.addListener(this::cpotd);
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 			MinecraftForge.EVENT_BUS.register(ModClientEvent.INSTANCE);
@@ -71,7 +87,8 @@ public class CyberCoreMain {
 
 		CapabilityHandler.registerAll();
 		CyberCorePacketHandler.register();
-
+		this.addLab(Biomes.BIRCH_FOREST, Lab.Lab_Build_ONE);
+		this.addLab(Biomes.PLAINS, Lab.Lab_Build_ONE);
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
@@ -125,9 +142,17 @@ public class CyberCoreMain {
 
 	}
 
+	private void addLab(Biome biome, ResourceLocation templateLocation) {
+		ConfiguredFeature<LabConfig, ? extends Structure<LabConfig>> lootableLabFeature = FeaturesInit.Lab
+				.get().func_225566_b_(new LabConfig(CyberCoreConfig.LabGenerateChance.get(), templateLocation));
+		biome.func_226711_a_(lootableLabFeature);
+		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
+				lootableLabFeature.func_227228_a_(Placement.NOPE.func_227446_a_(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+	}
+
 	private void cpotd(PlayerLoggedInEvent event) {
-		if (event.getEntity() instanceof PlayerEntity
-				&& UUID.fromString("1f8f49b7-bca5-4bff-a2ca-588e7f330465").equals(((PlayerEntity) event.getEntity()).getUniqueID())) {
+		if (event.getEntity() instanceof PlayerEntity && UUID.fromString("1f8f49b7-bca5-4bff-a2ca-588e7f330465")
+				.equals(((PlayerEntity) event.getEntity()).getUniqueID())) {
 			event.getPlayer().sendMessage(new StringTextComponent(TextFormatting.RED + "[" + TextFormatting.WHITE
 					+ "Thank You" + TextFormatting.RED + "] " + TextFormatting.WHITE + "I implemented your idea"));
 			event.getPlayer().addItemStackToInventory(new ItemStack(ItemInit.cyber_bits, 5));

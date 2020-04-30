@@ -3,7 +3,6 @@ package xyz.skynetcloud.cybercore.item.tools;
 import java.util.List;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
@@ -17,14 +16,20 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 import xyz.skynetcloud.cybercore.CyberCoreMain;
+import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.api.items.ItemInit;
 
 public class CyberCorePickaxe extends PickaxeItem {
 
-	public CyberCorePickaxe(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder) {
-		super(tier, attackDamageIn, attackSpeedIn, builder);
+	public CyberCorePickaxe(IItemTier material, float speed) {
+		super(material, 1, speed, new Properties().group(CyberCoreTab.instance).addToolType(ToolType.PICKAXE,
+				material.getHarvestLevel()));
+	}
 
+	public CyberCorePickaxe(IItemTier material, float speed, Properties properties) {
+		super(material, 1, speed, properties.addToolType(ToolType.PICKAXE, material.getHarvestLevel()));
 	}
 
 	@Override

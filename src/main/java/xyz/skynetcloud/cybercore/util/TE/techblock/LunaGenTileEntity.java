@@ -64,6 +64,7 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 				}
 			}
 		}
+
 		this.doEnergyLoop();
 	}
 

@@ -1,13 +1,14 @@
 package xyz.skynetcloud.cybercore.api;
 
 import net.minecraft.util.ResourceLocation;
+import xyz.skynetcloud.cybercore.CyberCoreMain;
 
 public class Names {
 
 	public static final String NAME = "CyberCore";
-	
+
 	public static final String UUID = "TheLewdNeko";
-	
+
 	public static final String MODID = "cybercore";
 	public static final String INFO = "INFO";
 
@@ -16,7 +17,7 @@ public class Names {
 	public static final String CYBERVILLAGERTRADESERIALIZER = MODID + ":villagertradeserializer";
 
 	public static final ResourceLocation CYBERVILLAGERTRUSTCAP = new ResourceLocation(MODID, "villagertrustcap");
-	
+
 	public static final ResourceLocation ROBOT_TEXTURES = new ResourceLocation(MODID, "robot_textures");
 
 	public static final String Client_CONFIG = "cybercore-client.toml";
@@ -42,6 +43,11 @@ public class Names {
 	public static final String LUNAR_CARD_2 = (MODID + ":lunar_upgrade_card_2");
 	public static final String LUNAR_CARD_3 = (MODID + ":lunar_upgrade_card_3");
 	public static final String LUNAR_CARD_4 = (MODID + ":lunar_upgrade_card_4");
+
+	public static final String SOLAR_CARD_1 = (MODID + ":solar_upgrade_card_1");
+	public static final String SOLAR_CARD_2 = (MODID + ":solar_upgrade_card_2");
+	public static final String SOLAR_CARD_3 = (MODID + ":solar_upgrade_card_3");
+	public static final String SOLAR_CARD_4 = (MODID + ":solar_upgrade_card_4");
 
 	public static final String POWER_CARD_1 = (MODID + ":power_storage_card_1");
 	public static final String POWER_CARD_2 = (MODID + ":power_storage_card_2");
@@ -91,7 +97,5 @@ public class Names {
 	public static final String CYBER_CHESTPLATE_NAME = (MODID + ":cyber_chestplate");
 	public static final String CYBER_LEGGINGS_NAME = (MODID + ":cyber_leggings");
 	public static final String CYBER_BOOTS_NAME = (MODID + ":cyber_boots");
-
-	
 
 }

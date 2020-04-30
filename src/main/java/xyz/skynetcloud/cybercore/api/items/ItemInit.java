@@ -3,14 +3,22 @@ package xyz.skynetcloud.cybercore.api.items;
 import static xyz.skynetcloud.cybercore.CyberCoreMain.MODID;
 import static xyz.skynetcloud.cybercore.api.Names.CHEESE_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_AXE;
+import static xyz.skynetcloud.cybercore.api.Names.CYBER_BOOTS_NAME;
+import static xyz.skynetcloud.cybercore.api.Names.CYBER_CHESTPLATE_NAME;
+import static xyz.skynetcloud.cybercore.api.Names.CYBER_HELMET_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_HOE;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_INGOT;
+import static xyz.skynetcloud.cybercore.api.Names.CYBER_LEGGINGS_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_PICKAXE;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_SHOVEL;
-import static xyz.skynetcloud.cybercore.api.Names.*;
+import static xyz.skynetcloud.cybercore.api.Names.CYBER_SWORD;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_AXE;
+import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_BOOTS_NAME;
+import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_CHESTPLATE_NAME;
+import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_HELMET_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_HOE;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_INGOT;
+import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_LEGGINGS_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_PICKAXE;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_SHOVEL;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_SWORD;
@@ -24,11 +32,19 @@ import static xyz.skynetcloud.cybercore.api.Names.POWER_CARD_1;
 import static xyz.skynetcloud.cybercore.api.Names.POWER_CARD_2;
 import static xyz.skynetcloud.cybercore.api.Names.POWER_CARD_3;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_AXE;
+import static xyz.skynetcloud.cybercore.api.Names.RUBY_BOOTS_NAME;
+import static xyz.skynetcloud.cybercore.api.Names.RUBY_CHESTPLATE_NAME;
+import static xyz.skynetcloud.cybercore.api.Names.RUBY_HELMET_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_HOE;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_INGOT;
+import static xyz.skynetcloud.cybercore.api.Names.RUBY_LEGGINGS_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_PICKAXE;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_SHOVEL;
 import static xyz.skynetcloud.cybercore.api.Names.RUBY_SWORD;
+import static xyz.skynetcloud.cybercore.api.Names.SOLAR_CARD_1;
+import static xyz.skynetcloud.cybercore.api.Names.SOLAR_CARD_2;
+import static xyz.skynetcloud.cybercore.api.Names.SOLAR_CARD_3;
+import static xyz.skynetcloud.cybercore.api.Names.SOLAR_CARD_4;
 import static xyz.skynetcloud.cybercore.api.Names.SPEED_CARD_1;
 import static xyz.skynetcloud.cybercore.api.Names.SPEED_CARD_2;
 import static xyz.skynetcloud.cybercore.api.Names.SPEED_CARD_3;
@@ -39,31 +55,27 @@ import static xyz.skynetcloud.cybercore.api.Names.TOMATO_NAME;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.EquipmentSlotType;
-
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Food;
-import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.Item.Properties;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.block.BlockItemCore;
+import xyz.skynetcloud.cybercore.init.BasisToolMaterial;
 import xyz.skynetcloud.cybercore.init.CustomArmorMaterial;
 import xyz.skynetcloud.cybercore.init.SeedsInit;
 import xyz.skynetcloud.cybercore.item.ArmorItemBase;
-import xyz.skynetcloud.cybercore.init.ToolMaterialsInit;
 import xyz.skynetcloud.cybercore.item.CyberCoreCardItem;
 import xyz.skynetcloud.cybercore.item.SoulReturn;
 import xyz.skynetcloud.cybercore.item.UpgradeLvl;
 import xyz.skynetcloud.cybercore.item.WrenchItem;
+import xyz.skynetcloud.cybercore.item.tools.CyberCoreAxe;
+import xyz.skynetcloud.cybercore.item.tools.CyberCoreHoe;
 import xyz.skynetcloud.cybercore.item.tools.CyberCorePickaxe;
+import xyz.skynetcloud.cybercore.item.tools.CyberCoreShovel;
+import xyz.skynetcloud.cybercore.item.tools.CyberCoreSword;
 
 public class ItemInit {
 
@@ -132,6 +144,8 @@ public class ItemInit {
 
 	public static Item tomato_seed = new SeedsInit(BlockInit.TOMATO_CROP).setRegistryName(TOMAO_SEEDS_NAME);
 
+	// --------------- Foood ----------- \\
+
 	public static Item tomato = new Item(new Item.Properties().group(ItemGroup.FOOD).food(FoodInit.lettuce))
 			.setRegistryName(TOMATO_NAME);
 
@@ -144,50 +158,58 @@ public class ItemInit {
 	public static Item cheese = new Item(new Item.Properties().group(ItemGroup.FOOD).food(FoodInit.cheese))
 			.setRegistryName(CHEESE_NAME);
 
-	public static Item cyber_pickaxe = new CyberCorePickaxe(ToolMaterialsInit.cyber_ingot_materials, 10, 10,
+	// ------------------ Cyber Tools -------------- \\
+
+	public static Item cyber_pickaxe = new CyberCorePickaxe(BasisToolMaterial.cyber_ingot, 3,
 			new Item.Properties().group(CyberCoreTab.instance)).setRegistryName(CYBER_PICKAXE);
 
-	public static Item cyber_axe = new AxeItem(ToolMaterialsInit.cyber_ingot_materials, 10, 10,
+	public static Item cyber_axe = new CyberCoreAxe(BasisToolMaterial.cyber_ingot, 5F,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_AXE);
 
-	public static Item cyber_hoe = new HoeItem(ToolMaterialsInit.cyber_ingot_materials, 20,
+	public static Item cyber_hoe = new CyberCoreHoe(BasisToolMaterial.cyber_ingot,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_HOE);
 
-	public static Item cyber_shovel = new ShovelItem(ToolMaterialsInit.cyber_ingot_materials, 10, 10,
+	public static Item cyber_shovel = new CyberCoreShovel(BasisToolMaterial.cyber_ingot, 0.5F,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_SHOVEL);
 
-	public static Item cyber_sword = new SwordItem(ToolMaterialsInit.cyber_ingot_materials, 10, 10,
+	public static Item cyber_sword = new CyberCoreSword(BasisToolMaterial.cyber_ingot, 5,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_SWORD);
 
-	public static Item ruby_pickaxe = new CyberCorePickaxe(ToolMaterialsInit.ruby_ingot_materials, 10, 10,
+	// ------------------ Ruby Tools -------------- \\
+
+	public static Item ruby_pickaxe = new CyberCorePickaxe(BasisToolMaterial.ruby_gem, 1,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_PICKAXE);
 
-	public static Item ruby_axe = new AxeItem(ToolMaterialsInit.ruby_ingot_materials, 10, 10,
+	public static Item ruby_axe = new CyberCoreAxe(BasisToolMaterial.ruby_gem, 3,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_AXE);
 
-	public static Item ruby_hoe = new HoeItem(ToolMaterialsInit.ruby_ingot_materials, 20,
+	public static Item ruby_hoe = new CyberCoreHoe(BasisToolMaterial.ruby_gem,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_HOE);
 
-	public static Item ruby_shovel = new ShovelItem(ToolMaterialsInit.ruby_ingot_materials, 10, 10,
+	public static Item ruby_shovel = new CyberCoreShovel(BasisToolMaterial.ruby_gem, 0.5F,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_SHOVEL);
 
-	public static Item ruby_sword = new SwordItem(ToolMaterialsInit.ruby_ingot_materials, 10, 10,
+	public static Item ruby_sword = new CyberCoreSword(BasisToolMaterial.ruby_gem, 3,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_SWORD);
 
-	public static Item dark_steel_pickaxe = new CyberCorePickaxe(ToolMaterialsInit.dark_steel_ingot_materials, 10, 10,
+	// ------------------ Dark Steel Tools -------------- \\
+
+	public static Item dark_steel_pickaxe = new CyberCorePickaxe(BasisToolMaterial.dark_steel_ingot, 1,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_PICKAXE);
 
-	public static Item dark_steel_axe = new AxeItem(ToolMaterialsInit.dark_steel_ingot_materials, 10, 10,
+	public static Item dark_steel_axe = new CyberCoreAxe(BasisToolMaterial.dark_steel_ingot, 1,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_AXE);
 
-	public static Item dark_steel_hoe = new HoeItem(ToolMaterialsInit.dark_steel_ingot_materials, 20,
+	public static Item dark_steel_hoe = new CyberCoreHoe(BasisToolMaterial.dark_steel_ingot,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_HOE);
 
-	public static Item dark_steel_shovel = new ShovelItem(ToolMaterialsInit.dark_steel_ingot_materials, 10, 10,
+	public static Item dark_steel_shovel = new CyberCoreShovel(BasisToolMaterial.dark_steel_ingot, 1,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_SHOVEL);
 
-	public static Item dark_steel_sword = new SwordItem(ToolMaterialsInit.dark_steel_ingot_materials, 10, 10,
+	public static Item dark_steel_sword = new CyberCoreSword(BasisToolMaterial.dark_steel_ingot, 1,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_SWORD);
+
+	// ------------- Other Stuff ------------------- \\
 
 	public static Item cyber_ingot = new Item(new Item.Properties().group(CyberCoreTab.instance))
 			.setRegistryName(CYBER_INGOT);
@@ -209,6 +231,18 @@ public class ItemInit {
 
 	public static Item lunar_upgrade_card_4 = new UpgradeLvl(
 			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 4, 0).setRegistryName(LUNAR_CARD_4);
+
+	public static Item solar_upgrade_card_1 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 1, 0).setRegistryName(SOLAR_CARD_1);
+
+	public static Item solar_upgrade_card_2 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 2, 0).setRegistryName(SOLAR_CARD_2);
+
+	public static Item solar_upgrade_card_3 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 3, 0).setRegistryName(SOLAR_CARD_3);
+
+	public static Item solar_upgrade_card_4 = new UpgradeLvl(
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 4, 0).setRegistryName(SOLAR_CARD_4);
 
 	public static Item speed_upgrade_card_1 = new UpgradeLvl(new Item.Properties().group(CyberCoreTab.instance), 1, 2)
 			.setRegistryName(SPEED_CARD_1);

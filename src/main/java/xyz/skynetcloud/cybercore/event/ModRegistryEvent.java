@@ -119,6 +119,10 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ItemInit.lunar_upgrade_card_2);
 		event.getRegistry().register(ItemInit.lunar_upgrade_card_3);
 		event.getRegistry().register(ItemInit.lunar_upgrade_card_4);
+		// event.getRegistry().register(ItemInit.solar_upgrade_card_1);
+		// event.getRegistry().register(ItemInit.solar_upgrade_card_2);
+		// event.getRegistry().register(ItemInit.solar_upgrade_card_3);
+		// event.getRegistry().register(ItemInit.solar_upgrade_card_4);
 		event.getRegistry().register(ItemInit.speed_upgrade_card_1);
 		event.getRegistry().register(ItemInit.speed_upgrade_card_2);
 		event.getRegistry().register(ItemInit.speed_upgrade_card_3);

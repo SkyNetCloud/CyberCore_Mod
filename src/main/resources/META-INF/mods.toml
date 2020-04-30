@@ -3,7 +3,7 @@ loaderVersion="[31,)" #mandatory (28 is current forge version)
 issueTrackerURL="https://github.com/SkyNetCloud/CyberCore_Mod/issues"
 [[mods]] #mandatory
 modId="cybercore" #mandatory
-version="1.6.18362" #mandatory
+version="1.7.18362" #mandatory
 displayName="CyberCore" #mandatory
 authors="SkyNetCloud"
 logoFile="Logo.png" #optional
