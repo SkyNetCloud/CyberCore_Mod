@@ -42,16 +42,16 @@ public class CyberCoreConfig {
 	public static ConfigValue<Integer> durability_Dark_Steel;
 
 	public static ConfigValue<Integer> LabGenerateChance;
-	
-	public static ConfigValue<Boolean> GivenOnFirstJoin;
 
 	public static void init(ForgeConfigSpec.Builder server, ForgeConfigSpec.Builder client) {
 
 		// Client
 		client.comment("Client Side Configuration").push("client");
-		
-		LabGenerateChance = client.comment("The chance for a Lab to generate. This value is interpreted as \"1 out of X\" to generate a Lab").defineInRange("LabGenerateChance", 25, 1, Integer.MAX_VALUE);
-		
+
+		LabGenerateChance = client.comment(
+				"The chance for a Lab to generate. This value is interpreted as \"1 out of X\" to generate a Lab")
+				.defineInRange("LabGenerateChance", 25, 1, Integer.MAX_VALUE);
+
 		attackdamage_Cyber = client.comment("Cyber base attack damage").defineInRange("attackdamage_cyber", 2.0, 0.0,
 				999999999);
 		attackdamage_Ruby = client.comment("Ruby base attack damage").defineInRange("attackdamage_ruby", 3.5, 0.0,
@@ -95,12 +95,22 @@ public class CyberCoreConfig {
 
 		SpeedCardTick = client.comment("Speed Upgrade Tick default:15").define("speed_card_tick", 15);
 
-		GivenOnFirstJoin = server
-				.comment("This allow player to login in with two of the modded seeds ServerSide:False ClientSide:True ")
-				.define("give_on_first_join", true);
-
 		// Server
 		server.comment("Client Side Configuration").push("server");
+
+		attackdamage_Cyber = server.comment("Cyber base attack damage").defineInRange("attackdamage_cyber", 2.0, 0.0,
+				999999999);
+		attackdamage_Ruby = server.comment("Ruby base attack damage").defineInRange("attackdamage_ruby", 3.5, 0.0,
+				999999999);
+		attackdamage_Dark_Steel = server.comment("Dark Steel base attack damage")
+				.defineInRange("attackdamage_dark_steel", 3.5, 0.0, 999999999);
+
+		durability_Cyber = server.comment("Cyber durabilty (Default: 1000)").defineInRange("cyber_tools_durabilty",
+				1000, 0, 999999999);
+		durability_Ruby = server.comment("Ruby durabilty (Default: 2000)").defineInRange("ruby_tools_durabilty", 2000,
+				0, 999999999);
+		durability_Dark_Steel = server.comment("Dark Steel durabilty (Default: 1561)")
+				.defineInRange("dark_steel_tools_durabilty", 1561, 0, 999999999);
 
 		CanConnect = server.comment("Can Connect this block default:true").define("canConnect", true);
 
@@ -130,10 +140,6 @@ public class CyberCoreConfig {
 				.defineInRange("max_Transfer_Rate", 20, 20, 1000);
 
 		SpeedCardTick = server.comment("Speed Upgrade Tick default:15").define("speed_card_tick", 15);
-
-		GivenOnFirstJoin = server
-				.comment("This allow player to login in with two of the modded seeds ServerSide:False ClientSide:True")
-				.define("give_on_first_join", false);
 
 	}
 

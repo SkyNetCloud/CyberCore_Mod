@@ -25,10 +25,11 @@ import xyz.skynetcloud.cybercore.init.InitStructurePieceType;
 import xyz.skynetcloud.cybercore.world.gen.feature.LabConfig;
 
 public class Lab {
-	public static final ResourceLocation Lab_Build_ONE = new ResourceLocation(CyberCoreMain.MODID, "lab_build");
-
-	// public static final ResourceLocation Lab_Build_Mark_2 = new
-	// ResourceLocation(CyberCoreMain.MODID, "lab_build_mark_2");
+	public static final ResourceLocation Lab_Oak = new ResourceLocation(CyberCoreMain.MODID, "lab_oak");
+	
+	public static final ResourceLocation Lab_Dark_Oak = new ResourceLocation(CyberCoreMain.MODID, "lab_dark_oak");
+	
+	public static final ResourceLocation Lab_Desert = new ResourceLocation(CyberCoreMain.MODID, "lab_desert");
 
 	public static class Piece extends TemplateStructurePiece {
 

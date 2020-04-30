@@ -1,7 +1,6 @@
 package xyz.skynetcloud.cybercore.api;
 
 import net.minecraft.util.ResourceLocation;
-import xyz.skynetcloud.cybercore.CyberCoreMain;
 
 public class Names {
 

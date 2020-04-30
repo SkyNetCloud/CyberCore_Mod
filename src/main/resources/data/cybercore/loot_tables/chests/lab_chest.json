@@ -25,6 +25,36 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 1.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "cybercore:cyber_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 1.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "cybercore:cyber_boots"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 5,
           "functions": [
             {
@@ -51,7 +81,7 @@
               }
             }
           ],
-          "name": "minecraft:gold_ingot"
+          "name": "cybercore:cyber_ingot"
         },
         {
           "type": "minecraft:item",
@@ -59,15 +89,6 @@
           "name": "cybercore:ruby_pickaxe"
         },
         {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "minecraft:golden_chestplate"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "minecraft:flint_and_steel"
-        },
         {
           "type": "minecraft:item",
           "weight": 5,
@@ -85,23 +106,13 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
-          "name": "minecraft:saddle"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 8,
           "name": "cybercore:cyber_helmet"
         },
         {
           "type": "minecraft:item",
-          "weight": 5,
-          "name": "minecraft:iron_horse_armor"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 3,
-          "name": "minecraft:diamond_horse_armor"
+          "weight": 8,
+          "name": "cybercore:cyber_chestplate"
         },
         {
           "type": "minecraft:item",
