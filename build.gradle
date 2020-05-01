@@ -64,7 +64,7 @@ curseforge {
             
             changelog = file("CyberCore-${version}-changelog.txt")
             
-            releaseType = 'beta'
+            releaseType = 'release'
 
             mainArtifact(jar) {
                 displayName = "CyberCore ${version}"
