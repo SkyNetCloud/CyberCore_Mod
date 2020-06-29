@@ -92,7 +92,7 @@ public class CyberCoreCable extends BlockBaseCore {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public ActionResultType func_225533_a_(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
 			Hand hand, BlockRayTraceResult ray) {
 		if (!worldIn.isRemote && hand.equals(Hand.MAIN_HAND)
 				&& player.getHeldItemMainhand().getItem().equals(ItemInit.whrechItem)) {
@@ -115,7 +115,7 @@ public class CyberCoreCable extends BlockBaseCore {
 			}
 
 		}
-		return super.func_225533_a_(state, worldIn, pos, player, hand, ray);
+		return super.onBlockActivated(state, worldIn, pos, player, hand, ray);
 	}
 
 	@Override

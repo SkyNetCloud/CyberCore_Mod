@@ -1,12 +1,17 @@
 package xyz.skynetcloud.cybercore.util.container;
 
 import net.minecraft.entity.player.PlayerEntity;
+
+import static xyz.skynetcloud.cybercore.api.items.ItemInit.*;
+
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import xyz.skynetcloud.cybercore.api.containers.ContainerNames;
+import xyz.skynetcloud.cybercore.api.items.ItemInit;
 import xyz.skynetcloud.cybercore.util.TE.techblock.LunaGenTileEntity;
 
 public class LunaGenContainer extends BaseContainerCore {

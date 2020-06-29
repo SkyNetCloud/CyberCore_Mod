@@ -38,7 +38,7 @@ public class CyberChunkGen extends ChunkGenerator<GenerationSettings> {
 	}
 
 	@Override
-	public void func_225551_a_(WorldGenRegion p_225551_1_, IChunk p_225551_2_) {
+	public void generateSurface(WorldGenRegion p_225551_1_, IChunk p_225551_2_) {
 		BlockState bedrock = Blocks.BEDROCK.getDefaultState();
 		BlockState stone = Blocks.STONE.getDefaultState();
 		BlockState dirt = Blocks.DIRT.getDefaultState();

@@ -31,7 +31,7 @@ public class LabStructure extends Structure<LabConfig> {
 	}
 
 	@Override
-	public boolean func_225558_a_(BiomeManager manager, ChunkGenerator<?> generator, Random rand, int chunkX,
+	public boolean canBeGenerated(BiomeManager manager, ChunkGenerator<?> generator, Random rand, int chunkX,
 			int chunkZ, Biome biome) {
 		if (generator.hasStructure(biome, this)) {
 			((SharedSeedRandom) rand).setLargeFeatureSeedWithSalt(generator.getSeed(), chunkX, chunkZ, 0xF00D);

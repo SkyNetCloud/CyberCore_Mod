@@ -28,7 +28,8 @@ public class ModRegistryEvent {
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-
+		event.getRegistry().register(BlockInit.GrowGlass);
+		event.getRegistry().register(BlockInit.IRRIGATION_BLOCK);
 		event.getRegistry().register(BlockInit.BLOCK_LOADER);
 		event.getRegistry().register(BlockInit.BLOCK_EXTRACTOR);
 		event.getRegistry().register(BlockInit.LETTUCE_CROP);
@@ -55,6 +56,12 @@ public class ModRegistryEvent {
 
 		event.getRegistry().register(ItemInit.cyber_bits);
 		event.getRegistry().register(ItemInit.cyber_blend);
+
+		event.getRegistry().register(ItemInit.Item_Irrigation);
+		event.getRegistry().register(ItemInit.GROW_GLASS_BLOCKItem);
+
+		event.getRegistry().register(ItemInit.planter);
+		event.getRegistry().register(ItemInit.tiller);
 
 		event.getRegistry().register(ItemInit.DARK_STEEL_HELMET);
 		event.getRegistry().register(ItemInit.DARK_STEEL_CHESTPLATE);
@@ -92,8 +99,8 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ItemInit.ruby_ingot);
 		event.getRegistry().register(ItemInit.power_box);
 		event.getRegistry().register(ItemInit.lunar);
-		event.getRegistry().register(ItemInit.lettuce_crop);
-		event.getRegistry().register(ItemInit.tomato_crop);
+		//event.getRegistry().register(ItemInit.lettuce_crop);
+		//event.getRegistry().register(ItemInit.tomato_crop);
 		event.getRegistry().register(ItemInit.cheese);
 		event.getRegistry().register(ItemInit.tomato);
 		event.getRegistry().register(ItemInit.taco);
@@ -142,6 +149,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(TileEntityNames.POWER_BOX_TE.setRegistryName("tileentitypowerbox"));
 		event.getRegistry().register(TileEntityNames.POWER_FURNACE_TE.setRegistryName("tileentitypoweredfrnace"));
 		event.getRegistry().register(TileEntityNames.TE_TYPE_ITEM_PIPE.setRegistryName("itempipe_te"));
+		event.getRegistry().register(TileEntityNames.IrrigationTile.setRegistryName("tileirrigation"));
 
 		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "TileEntityType Loaded");
 	}

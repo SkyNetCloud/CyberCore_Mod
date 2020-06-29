@@ -7,6 +7,7 @@ import xyz.skynetcloud.cybercore.util.TE.cable.ItemPipeTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.techblock.LunaGenTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.techblock.PowedFurnaceTileEntity;
 import xyz.skynetcloud.cybercore.util.TE.techblock.PowerStorageTileEntity;
+import xyz.skynetcloud.cybercore.util.TE.techblock.TileIrrigation;
 
 public class TileEntityNames {
 
@@ -23,5 +24,8 @@ public class TileEntityNames {
 
 	public static final TileEntityType<PowedFurnaceTileEntity> POWER_FURNACE_TE = TileEntityType.Builder
 			.create(PowedFurnaceTileEntity::new, BlockInit.POWER_FURNACE_BLOCK).build(null);
+
+	public static final TileEntityType<TileIrrigation> IrrigationTile = TileEntityType.Builder
+			.create(TileIrrigation::new, BlockInit.IRRIGATION_BLOCK).build(null);
 
 }

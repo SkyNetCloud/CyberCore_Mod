@@ -58,7 +58,7 @@ public class TomatoCrop extends CropsBlock {
 		return new ItemStack(this.getSeedsItem());
 	}
 
-	public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
+	public boolean onBlockActivateds(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
 			BlockRayTraceResult hit) {
 		if (!world.isRemote) {
 			if (this.isMaxAge(state)) {

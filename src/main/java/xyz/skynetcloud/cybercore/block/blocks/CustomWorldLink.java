@@ -72,7 +72,7 @@ public class CustomWorldLink extends BlockBaseCore {
 	}
 
 	@Override
-	public ActionResultType func_225533_a_(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn,
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn,
 			Hand hand, BlockRayTraceResult rts) {
 
 		if (!worldIn.isRemote) {
@@ -173,7 +173,7 @@ public class CustomWorldLink extends BlockBaseCore {
 
 		serverworld.getProfiler().endSection();
 		player.setWorld(serverworld1);
-		serverworld1.func_217447_b(player);
+		serverworld1.addDuringPortalTeleport(player);
 		player.connection.setPlayerLocation(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, f1, f);
 		player.interactionManager.setWorld(serverworld1);
 		player.connection.sendPacket(new SPlayerAbilitiesPacket(player.abilities));

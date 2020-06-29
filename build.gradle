@@ -1,6 +1,5 @@
 buildscript {
     repositories {
-        mavenLocal()
         maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
         mavenCentral()
@@ -18,15 +17,18 @@ repositories {
     maven { // JEI
         url "http://dvs1.progwml6.com/files/maven"
     }
+    maven { // WorldEdit
+    	url "https://maven.enginehub.org/repo/"
+    }
 
 }
 
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
-version = "1.15.2-${mod_version}.18362"
+version = "1.15.2-${mod_version}.19041"
 group = "xyz.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
@@ -34,7 +36,7 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 
 minecraft {
 
-    mappings channel: 'snapshot', version: "20190719-1.14.3"
+    mappings channel: 'snapshot', version: '20200514-1.15.1'
 
     runs {
         client = {
@@ -49,11 +51,11 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.15.2-31.1.61'
-    
-    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+
+    minecraft 'net.minecraftforge:forge:1.15.2-31.2.20'
+
+	compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
-    
 }
 
 curseforge {
@@ -72,5 +74,3 @@ curseforge {
         }
     }
 }
-
-

@@ -82,7 +82,7 @@ public class Lab {
 		}
 
 		@Override
-		public boolean func_225577_a_(IWorld world, ChunkGenerator<?> generator, Random rand, MutableBoundingBox bounds,
+		public boolean create(IWorld world, ChunkGenerator<?> generator, Random rand, MutableBoundingBox bounds,
 				ChunkPos chunkPos) {
 			int posY = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, this.templatePosition.getX(),
 					this.templatePosition.getZ()) - 1;
@@ -102,7 +102,7 @@ public class Lab {
 				break;
 			}
 
-			return super.func_225577_a_(world, generator, rand, bounds, chunkPos);
+			return super.create(world, generator, rand, bounds, chunkPos);
 		}
 	}
 }

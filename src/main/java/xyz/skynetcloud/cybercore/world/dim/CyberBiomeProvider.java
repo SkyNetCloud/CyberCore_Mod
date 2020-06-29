@@ -24,7 +24,7 @@ public class CyberBiomeProvider extends BiomeProvider {
 	}
 
 	@Override
-	public Biome func_225526_b_(int p_225526_1_, int p_225526_2_, int p_225526_3_) {
+	public Biome getNoiseBiome(int p_225526_1_, int p_225526_2_, int p_225526_3_) {
 		return Biomes.PLAINS;
 	}
 

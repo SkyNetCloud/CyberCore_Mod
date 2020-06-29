@@ -2,6 +2,7 @@ package xyz.skynetcloud.cybercore.api.items;
 
 import static xyz.skynetcloud.cybercore.CyberCoreMain.MODID;
 import static xyz.skynetcloud.cybercore.api.Names.CHEESE_NAME;
+import static xyz.skynetcloud.cybercore.api.Names.*;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_AXE;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_BOOTS_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.CYBER_CHESTPLATE_NAME;
@@ -23,7 +24,6 @@ import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_PICKAXE;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_SHOVEL;
 import static xyz.skynetcloud.cybercore.api.Names.DARK_STEEL_SWORD;
 import static xyz.skynetcloud.cybercore.api.Names.LETTUCE_NAME;
-import static xyz.skynetcloud.cybercore.api.Names.LETTUCE_SEEDS_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.LUNAR_CARD_1;
 import static xyz.skynetcloud.cybercore.api.Names.LUNAR_CARD_2;
 import static xyz.skynetcloud.cybercore.api.Names.LUNAR_CARD_3;
@@ -50,7 +50,6 @@ import static xyz.skynetcloud.cybercore.api.Names.SPEED_CARD_2;
 import static xyz.skynetcloud.cybercore.api.Names.SPEED_CARD_3;
 import static xyz.skynetcloud.cybercore.api.Names.SPEED_CARD_4;
 import static xyz.skynetcloud.cybercore.api.Names.TACO_NAME;
-import static xyz.skynetcloud.cybercore.api.Names.TOMAO_SEEDS_NAME;
 import static xyz.skynetcloud.cybercore.api.Names.TOMATO_NAME;
 
 import net.minecraft.enchantment.Enchantment;
@@ -60,6 +59,7 @@ import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
+import net.minecraft.item.Item.Properties;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.api.blocks.BlockInit;
 import xyz.skynetcloud.cybercore.block.BlockItemCore;
@@ -76,6 +76,8 @@ import xyz.skynetcloud.cybercore.item.tools.CyberCoreHoe;
 import xyz.skynetcloud.cybercore.item.tools.CyberCorePickaxe;
 import xyz.skynetcloud.cybercore.item.tools.CyberCoreShovel;
 import xyz.skynetcloud.cybercore.item.tools.CyberCoreSword;
+import xyz.skynetcloud.cybercore.item.tools.ItemPlanter;
+import xyz.skynetcloud.cybercore.item.tools.TillerItem;
 
 public class ItemInit {
 
@@ -93,7 +95,16 @@ public class ItemInit {
 
 	public static Item card = new CyberCoreCardItem().setRegistryName(MODID + ":card");
 
+	public static Item planter = new ItemPlanter(new Properties().group(CyberCoreTab.instance))
+			.setRegistryName(MODID + ":planter");
+
+	public static Item tiller = new TillerItem(BasisToolMaterial.cyber_ingot, 1,
+			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON))
+					.setRegistryName(MODID + ":tiller");
+
 	public static Item whrechItem = new WrenchItem();
+
+	public static BlockItem GROW_GLASS_BLOCKItem = new BlockItemCore(BlockInit.GrowGlass);
 
 	public static BlockItem Item_Irrigation = new BlockItemCore(BlockInit.IRRIGATION_BLOCK);
 

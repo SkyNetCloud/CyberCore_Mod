@@ -57,21 +57,17 @@ public class CyberCoreMain {
 
 		InitStructurePieceType.init();
 
-		DistExecutor.runWhenOn(Dist.DEDICATED_SERVER, () -> () -> {
+		
 			ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ConfigLoadder.COMMON, Names.Server_CONFIG);
-			ConfigLoadder.loadConfig(ConfigLoadder.COMMON,
-					FMLPaths.CONFIGDIR.get().resolve(Names.Server_CONFIG).toString());
-		});
+			ConfigLoadder.loadConfig(ConfigLoadder.COMMON, FMLPaths.CONFIGDIR.get().resolve(Names.Server_CONFIG).toString());
+		
 
-		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 			MinecraftForge.EVENT_BUS.register(ModClientEvent.INSTANCE);
 			modBus.addListener(this::doClientStuff);
 
 			ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigLoadder.CLIENT, Names.Client_CONFIG);
-
-			ConfigLoadder.loadConfig(ConfigLoadder.CLIENT,
-					FMLPaths.CONFIGDIR.get().resolve(Names.Client_CONFIG).toString());
-		});
+			ConfigLoadder.loadConfig(ConfigLoadder.CLIENT, FMLPaths.CONFIGDIR.get().resolve(Names.Client_CONFIG).toString());
+		
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
@@ -88,10 +84,11 @@ public class CyberCoreMain {
 		RendererInit.registerEntityRenderer();
 		ScreenInit.registerGUI();
 		OreGen.setupOreGeneration();
-		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-			RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.func_228643_e_());
-			RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.func_228643_e_());
-		});
+		
+		
+	    RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.getCutout());
+	    RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.getCutout());
+
 
 	}
 
@@ -112,10 +109,10 @@ public class CyberCoreMain {
 
 	private void addLab(Biome biome, ResourceLocation templateLocation) {
 		ConfiguredFeature<LabConfig, ? extends Structure<LabConfig>> lootableLabFeature = FeaturesInit.Lab.get()
-				.func_225566_b_(new LabConfig(CyberCoreConfig.LabGenerateChance.get(), templateLocation));
-		biome.func_226711_a_(lootableLabFeature);
+				.withConfiguration(new LabConfig(CyberCoreConfig.LabGenerateChance.get(), templateLocation));
+		biome.addStructure(lootableLabFeature);
 		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-				lootableLabFeature.func_227228_a_(Placement.NOPE.func_227446_a_(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+				lootableLabFeature.withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 	}
 
 }

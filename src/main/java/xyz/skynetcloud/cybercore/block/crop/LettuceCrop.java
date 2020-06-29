@@ -11,6 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
@@ -59,7 +60,7 @@ public class LettuceCrop extends CropsBlock {
 		return new ItemStack(this.getSeedsItem());
 	}
 
-	public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
+	public boolean onBlockActivateds(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
 			BlockRayTraceResult hit) {
 		if (!world.isRemote) {
 			if (this.isMaxAge(state)) {

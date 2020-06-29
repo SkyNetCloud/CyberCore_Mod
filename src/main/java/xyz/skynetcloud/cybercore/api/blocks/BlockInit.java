@@ -6,6 +6,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemGroup;
 import xyz.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import xyz.skynetcloud.cybercore.block.BlockBaseCore;
+import xyz.skynetcloud.cybercore.block.blocks.BlockIrrigation;
+import xyz.skynetcloud.cybercore.block.blocks.CropBlockGrower;
 import xyz.skynetcloud.cybercore.block.blocks.CustomWorldLink;
 import xyz.skynetcloud.cybercore.block.blocks.CyberExtractorBlock;
 import xyz.skynetcloud.cybercore.block.blocks.CyberLoaderBlock;
@@ -22,7 +24,9 @@ public class BlockInit {
 
 	public static ItemGroup group = CyberCoreTab.instance;
 
-	public static Block IRRIGATION_BLOCK = new TechBlockFacing("irrigtion_block", group);
+	public static Block IRRIGATION_BLOCK = new BlockIrrigation("irrigtion_block", group);
+	
+	public static Block GrowGlass = new CropBlockGrower("grow_glass", group, true);
 	
 	public static Block Armor_Blender = new TechBlockFacing("armor_blender", group);
 

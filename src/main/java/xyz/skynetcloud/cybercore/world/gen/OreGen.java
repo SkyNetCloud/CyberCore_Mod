@@ -16,21 +16,21 @@ public class OreGen {
 		for (Biome biome : ForgeRegistries.BIOMES) {
 			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 					Feature.ORE
-							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+							.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
 									BlockInit.CYBER_ORE.getDefaultState(), 5))
-							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(12, 0, 0, 12))));
+							.withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(12, 0, 0, 12))));
 
 			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 					Feature.ORE
-							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+							.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
 									BlockInit.RUBY_ORE.getDefaultState(), 10))
-							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(7, 0, 0, 13))));
+							.withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(7, 0, 0, 13))));
 
 			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 					Feature.ORE
-							.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+							.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
 									BlockInit.DARK_STEEL_ORE.getDefaultState(), 10))
-							.func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(7, 0, 0, 12))));
+							.withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(7, 0, 0, 12))));
 
 		}
 
