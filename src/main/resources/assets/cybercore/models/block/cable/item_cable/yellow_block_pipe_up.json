@@ -1,0 +1,177 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "cybercore:blocks/cables/yellow_item_cable",
+		"particle": "cybercore:blocks/cables/yellow_item_cable"
+	},
+	"elements": [
+		{
+			"from": [
+				7,
+				10,
+				7
+			],
+			"to": [
+				9,
+				16,
+				9
+			],
+			"rotation": {
+				"angle": 0,
+				"axis": "y",
+				"origin": [
+					8,
+					9,
+					8
+				]
+			},
+			"faces": {
+				"north": {
+					"uv": [
+						7,
+						7,
+						9,
+						9
+					],
+					"texture": "#0"
+				},
+				"east": {
+					"uv": [
+						7,
+						7,
+						8.997,
+						8.999
+					],
+					"texture": "#0"
+				},
+				"south": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						8.999
+					],
+					"texture": "#0"
+				},
+				"west": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						9
+					],
+					"texture": "#0"
+				},
+				"up": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						8.999
+					],
+					"texture": "#0"
+				},
+				"down": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						8.998
+					],
+					"texture": "#0"
+				}
+			}
+		},
+		{
+			"from": [
+				7,
+				9,
+				7
+			],
+			"to": [
+				9,
+				16,
+				9
+			],
+			"rotation": {
+				"angle": 0,
+				"axis": "y",
+				"origin": [
+					8,
+					9,
+					8
+				]
+			},
+			"faces": {
+				"north": {
+					"uv": [
+						7,
+						7,
+						9,
+						9
+					],
+					"texture": "#0"
+				},
+				"east": {
+					"uv": [
+						7,
+						7,
+						8.997,
+						8.999
+					],
+					"texture": "#0"
+				},
+				"south": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						8.999
+					],
+					"texture": "#0"
+				},
+				"west": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						9
+					],
+					"texture": "#0"
+				},
+				"up": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						8.999
+					],
+					"texture": "#0"
+				},
+				"down": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						8.998
+					],
+					"texture": "#0"
+				}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [
+				8,
+				8,
+				8
+			],
+			"children": [
+				0,
+				1
+			]
+		}
+	]
+}

@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "cybercore:block/machine/cable_painter"
+		}
+	}
+}

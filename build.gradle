@@ -28,8 +28,8 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "1.15.2-${mod_version}.19041"
-group = "xyz.skynetcloud.cybercore"
+version = "1.15.2-1.10.19041"
+group = "ca.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
@@ -54,8 +54,7 @@ dependencies {
 
     minecraft 'net.minecraftforge:forge:1.15.2-31.2.20'
 
-	compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
+
 }
 
 curseforge {

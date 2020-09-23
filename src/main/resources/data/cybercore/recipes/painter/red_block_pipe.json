@@ -1,0 +1,11 @@
+{
+	"type": "cybercore:painter",
+	"input": {
+		"item": "cybercore:block_pipe",
+		"amount": 1
+	},
+	"result": {
+		"item": "cybercore:red_block_pipe",
+		"amount": 1
+	}
+}
