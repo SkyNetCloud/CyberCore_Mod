@@ -65,7 +65,7 @@ public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 	public void onSlotContentChanged() {
 		if (world != null) {
 			if (!world.isRemote) {
-				int newcard = getMarkcard(0, ItemType.RANGE_UPGRADE);
+				int newcard = getMarkcard(0, ItemType.POWER_UPGRADE);
 				if (currentcard != newcard) {
 					switch (currentcard) {
 					case 0:
@@ -80,13 +80,6 @@ public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 					case 3:
 						energystorage.setEnergyMaxStored(1000000);
 						break;
-					}
-					BlockState state = world.getBlockState(pos);
-					if (state != null) {
-						if (state.getBlock() == BlockInit.POWER_BOX) {
-							world.setBlockState(pos, state.with(CyberCorePowerBlock.card, newcard), 2);
-							markDirty();
-						}
 					}
 					currentcard = newcard;
 				}

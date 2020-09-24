@@ -263,15 +263,15 @@ public class ItemInit {
 			ItemType.SPEED_UPGRADE).setRegistryName(SPEED_CARD_4);
 
 	public static Item power_upgrade_card_1 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 1, ItemType.RANGE_UPGRADE)
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 1, ItemType.POWER_UPGRADE)
 					.setRegistryName(POWER_CARD_1);
 
 	public static Item power_upgrade_card_2 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 2, ItemType.RANGE_UPGRADE)
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 2, ItemType.POWER_UPGRADE)
 					.setRegistryName(POWER_CARD_2);
 
 	public static Item power_upgrade_card_3 = new UpgradeLvl(
-			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 3, ItemType.RANGE_UPGRADE)
+			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 3, ItemType.POWER_UPGRADE)
 					.setRegistryName(POWER_CARD_3);
 
 	public static Item DARK_STEEL_HELMET = new ArmorItemBase(CustomArmorMaterial.Dark_Steel, "dark_steel",

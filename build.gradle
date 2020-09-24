@@ -28,7 +28,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "1.15.2-1.10.19041"
+version = "1.15.2-1.10.18362"
 group = "ca.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
@@ -52,9 +52,10 @@ minecraft {
 
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.15.2-31.2.20'
+    minecraft 'net.minecraftforge:forge:1.15.2-31.2.41'
 
-
+    compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.2.12:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.2.12")
 }
 
 curseforge {

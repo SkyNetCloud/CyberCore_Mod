@@ -4,10 +4,13 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
+import ca.skynetcloud.cybercore.api.blocks.BlockInit;
 import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
+import ca.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
 import ca.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import ca.skynetcloud.cybercore.util.container.PowerFurnaceContainer;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -200,6 +203,41 @@ public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
 				itemstack2.grow(itemstack1.getCount());
 			}
 			itemstack.shrink(1);
+		}
+	}
+
+	private int currentcard = -1;
+
+	@Override
+	public void onSlotContentChanged() {
+		if (world != null) {
+			if (!world.isRemote) {
+				int newcard = getMarkcard(2, ItemType.POWER_UPGRADE);
+				if (currentcard != newcard) {
+					switch (currentcard) {
+					case 0:
+						energystorage.setEnergyMaxStored(1000);
+						break;
+					case 1:
+						energystorage.setEnergyMaxStored(10000);
+						break;
+					case 2:
+						energystorage.setEnergyMaxStored(100000);
+						break;
+					case 3:
+						energystorage.setEnergyMaxStored(1000000);
+						break;
+					}
+					BlockState state = world.getBlockState(pos);
+					if (state != null) {
+						if (state.getBlock() == BlockInit.POWER_FURNACE_BLOCK) {
+							world.setBlockState(pos, state.with(CyberCorePowerBlock.card, newcard), 2);
+							markDirty();
+						}
+					}
+					currentcard = newcard;
+				}
+			}
 		}
 	}
 

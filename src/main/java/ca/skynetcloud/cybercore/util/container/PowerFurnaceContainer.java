@@ -26,11 +26,11 @@ public class PowerFurnaceContainer extends BaseContainerCore {
 		String output = "slot.poweredfurnace.output";
 
 		this.addSlot(new SlotItemHandlerWithInfo(handler, 0, 21, 27, input));
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 1, 43, 27, input));
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 2, 65, 27, input));
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 3, 87, 27, input));
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 4, 109, 27, input));
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 5, 131, 27, input));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 1, 48, 27, input));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 2, 75, 27, input));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 3, 102, 27, input));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 4, 129, 27, input));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 5, 156, 27, input));
 
 		this.addSlot(new SlotItemHandlerWithInfo(handler, 6, 21, 64, output) {
 			@Override
@@ -38,38 +38,38 @@ public class PowerFurnaceContainer extends BaseContainerCore {
 				return false;
 			}
 		});
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 7, 43, 64, output) {
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 7, 48, 64, output) {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
 				return false;
 			}
 		});
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 8, 65, 64, output) {
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 8, 75, 64, output) {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
 				return false;
 			}
 		});
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 9, 87, 64, output) {
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 9, 102, 64, output) {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
 				return false;
 			}
 		});
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 10, 109, 64, output) {
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 10, 129, 64, output) {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
 				return false;
 			}
 		});
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 11, 131, 64, output) {
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 11, 156, 64, output) {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
 				return false;
 			}
 		});
 
-		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, 12, 109, 85, "slot.util.speedupgrade") {
+		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, 12, 197, 75, "slot.util.speedupgrade") {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
 				if (stack.getItem() == ItemInit.speed_upgrade_card_1) {
@@ -79,14 +79,14 @@ public class PowerFurnaceContainer extends BaseContainerCore {
 				} else if (stack.getItem() == ItemInit.speed_upgrade_card_3) {
 					return true;
 				} else if (stack.getItem() == ItemInit.speed_upgrade_card_4) {
-					return true;
+					return true; 
 				}
 				return false;
 			}
 		});
-		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 167, 38,
+		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 197, 38,
 				"slot.util.powerin"));
-		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 167, 57,
+		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 197, 56,
 				"slot.util.powerout"));
 	}
 

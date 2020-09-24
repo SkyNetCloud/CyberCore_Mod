@@ -3,6 +3,8 @@ package ca.skynetcloud.cybercore.util.screen;
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowedFurnaceTileEntity;
 import ca.skynetcloud.cybercore.util.container.PowerFurnaceContainer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -19,15 +21,20 @@ public class PowedFurnaceScreen extends ScreenBaseCore<PowerFurnaceContainer> {
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 		minecraft.getTextureManager().bindTexture(TEXTURES);
-		blit(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+		blit(this.guiLeft, this.guiTop, 0, 0, 220, 200);
 
 		for (int p = 0; p < 6; p++) {
 			int l = this.getCookProgressScaled(p, 15);
-			blit(this.guiLeft + 23 + p * 22, this.guiTop + 46, 0, 200, 12, l);
+			blit(this.guiLeft + 24 + p * 27, this.guiTop + 46, 3, 200, 13, l);
 		}
 
-		int k = this.getEnergyStoredScaled(55);
-		blit(this.guiLeft + 149, this.guiTop + 28 + (55 - k), 208, 55 - k, 16, 0 + k);
+		@SuppressWarnings("resource")
+		FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
+
+		fontRenderer.drawStringWithShadow("Powered Furnace", 270, 60, 15312);
+		fontRenderer.drawStringWithShadow("Power Stored FE: " + te.getEnergyStored(), 70, 150, 11111111);
+		fontRenderer.drawStringWithShadow("Max It Can Stored FE : " + te.getMaxEnergyStored(), 70, 130, 11111111);
+
 	}
 
 	private int getCookProgressScaled(int id, int pixels) {

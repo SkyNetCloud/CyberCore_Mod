@@ -27,7 +27,7 @@ public class LunaGenScreen extends ScreenBaseCore<LunaGenContainer> {
 		blit(this.guiLeft + 149, this.guiTop + 28 + (55 - k), 205, 55 - k, 16, 0 + k);
 
 		int l = 0;
-		switch (((LunaGenTileEntity) this.te).getMarkcard(0, ItemType.SPEED_UPGRADE)) {
+		switch (((LunaGenTileEntity) this.te).getMarkcard(0, ItemType.SOLAR_FOCUS)) {
 		case 0:
 			l = 0;
 			break;

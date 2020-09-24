@@ -51,6 +51,20 @@ public class LunaGenContainer extends BaseContainerCore {
 				return false;
 			}
 		});
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 2, 105, 31, "slot.util.storagecard") {
+			@Override
+			public boolean isItemValid(ItemStack itemstack) {
+				if (itemstack.getItem() == ItemInit.power_upgrade_card_1.asItem()) {
+					return true;
+				} else if (itemstack.getItem() == ItemInit.power_upgrade_card_2.asItem()) {
+					return true;
+				} else if (itemstack.getItem() == ItemInit.power_upgrade_card_3.asItem()) {
+					return true;
+				}
+				return false;
+			}
+		});
+
 		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 150, 86, "slot.util.powerin"));
 		this.addSlot(
 				new SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 168, 86, "slot.util.powerout"));

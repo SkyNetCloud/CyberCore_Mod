@@ -1,10 +1,13 @@
 package ca.skynetcloud.cybercore.util.TE.techblock;
 
+import ca.skynetcloud.cybercore.api.blocks.BlockInit;
 import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
+import ca.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
 import ca.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import ca.skynetcloud.cybercore.util.container.LunaGenContainer;
 import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -13,6 +16,7 @@ import net.minecraft.util.IIntArray;
 
 public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	int workload = 0;
+	private int currentcard = -1;
 	protected final IIntArray field_array = new IIntArray() {
 		public int get(int index) {
 			switch (index) {
@@ -84,6 +88,39 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 		}
 
 		return 0;
+	}
+
+	@Override
+	public void onSlotContentChanged() {
+		if (world != null) {
+			if (!world.isRemote) {
+				int newcard = getMarkcard(1, ItemType.POWER_UPGRADE);
+				if (currentcard != newcard) {
+					switch (currentcard) {
+					case 0:
+						energystorage.setEnergyMaxStored(1000);
+						break;
+					case 1:
+						energystorage.setEnergyMaxStored(10000);
+						break;
+					case 2:
+						energystorage.setEnergyMaxStored(100000);
+						break;
+					case 3:
+						energystorage.setEnergyMaxStored(1000000);
+						break;
+					}
+					BlockState state = world.getBlockState(pos);
+					if (state != null) {
+						if (state.getBlock() == BlockInit.POWER_BOX) {
+							world.setBlockState(pos, state.with(CyberCorePowerBlock.card, newcard), 2);
+							markDirty();
+						}
+					}
+					currentcard = newcard;
+				}
+			}
+		}
 	}
 
 	public int getTicksPerAmount() {

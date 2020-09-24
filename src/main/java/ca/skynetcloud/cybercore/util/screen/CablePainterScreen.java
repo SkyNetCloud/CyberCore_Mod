@@ -5,6 +5,8 @@ import ca.skynetcloud.cybercore.packets.ButtonPressMessage;
 import ca.skynetcloud.cybercore.packets.CyberCorePacketHandler;
 import ca.skynetcloud.cybercore.util.TE.techblock.CablePainterTE;
 import ca.skynetcloud.cybercore.util.container.PainterContainer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -38,7 +40,7 @@ public class CablePainterScreen extends ScreenBaseCore<PainterContainer> {
 		blit(this.guiLeft, this.guiTop, 0, 0, this.xSize, 195);
 
 		int l = this.getCookProgressScaled(70);
-		blit(this.guiLeft + 52, this.guiTop + 86, 0, 200, l, 12);
+		blit(this.guiLeft + 52, this.guiTop + 86, 0, 199, l, 12);
 
 		int k = this.getEnergyStoredScaled(55);
 		blit(this.guiLeft + 149, this.guiTop + 28 + (55 - k), 208, 55 - k, 16, 0 + k);
@@ -51,7 +53,15 @@ public class CablePainterScreen extends ScreenBaseCore<PainterContainer> {
 
 	private int getCookProgressScaled(int pixels) {
 		int i = container.getValue(2);
-		return i != 0 ? i * pixels / ((CablePainterTE) this.te).ticksPerItem() : 0;
+		return i != 0 ? i * 72 / ((CablePainterTE) this.te).ticksPerItem() : 0;
+	}
+
+	@Override
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		@SuppressWarnings("resource")
+		FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
+
+		fontRenderer.drawStringWithShadow("Power Storage", 120, 120, 10023);
 	}
 
 	private boolean inArea(double mouseX, double mouseY, int posX, int posY) {
