@@ -1,20 +1,20 @@
 package ca.skynetcloud.cybercore.util.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
+
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.api.blocks.BlockInit;
-import ca.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import ca.skynetcloud.cybercore.util.TE.powerTE.CyberCorePowerTE;
 import ca.skynetcloud.cybercore.util.container.BaseContainerCore;
 import ca.skynetcloud.cybercore.util.container.BaseContainerCore.SlotItemHandlerWithInfo;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class ScreenBaseCore<T extends BaseContainerCore> extends ContainerScreen<T> {
+public abstract class ScreenBaseCore<T extends BaseContainerCore> extends ContainerScreen<T> {
 	protected static final ResourceLocation TEXTURES = new ResourceLocation(
 			CyberCoreMain.MODID + ":textures/gui/container/lunagen.png");
 	protected final PlayerInventory player;
@@ -37,34 +37,41 @@ public class ScreenBaseCore<T extends BaseContainerCore> extends ContainerScreen
 	}
 
 	@Override
-	public void render(int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground();
-		super.render(mouseX, mouseY, partialTicks);
-		this.drawTooltips(mouseX, mouseY);
-		this.renderHoveredToolTip(mouseX, mouseY);
+	public void render(MatrixStack mStack, int mouseX, int mouseY, float partialTicks) {
+		this.renderBackground(mStack);
+		super.render(mStack, mouseX, mouseY, partialTicks);
+		this.drawTooltips(mStack, mouseX, mouseY);
+//	        this.renderHoveredToolTip(mStack, mouseX, mouseY);
+		this.renderHoveredTooltip(mStack, mouseX, mouseY);
 	}
 
-	protected void drawTooltips(int mouseX, int mouseY) {
-		drawTooltip(te.getEnergyStored() + "/" + te.getMaxEnergyStored(), mouseX, mouseY, 158, 28, 16, 55);
+	protected void drawTooltips(MatrixStack mStack, int mouseX, int mouseY) {
+		drawTooltip(mStack, te.getEnergyStored() + "/" + te.getMaxEnergyStored(), mouseX, mouseY, 148, 27, 16, 55);
 	}
 
-	public void drawTooltip(String lines, int mouseX, int mouseY, int posX, int posY, int width, int height) {
+	public void drawTooltip(MatrixStack mStack, String lines, int mouseX, int mouseY, int posX, int posY, int width,
+			int height) {
 
 		posX += this.guiLeft;
 		posY += this.guiTop;
 		if (mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height) {
-			renderTooltip(lines, mouseX, mouseY);
+			renderTooltip(mStack, new StringTextComponent(lines), mouseX, mouseY);
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		 
+	protected void drawGuiContainerBackgroundLayer(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
+		RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
+		blit(mStack, this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-
+	protected void drawGuiContainerForegroundLayer(MatrixStack mStack, int mouseX, int mouseY) {
+		String tileName = title.getString();
+		int textcolor = Integer.parseInt("000000", 16);
+		font.drawString(mStack, tileName, (this.xSize / 2.0F - font.getStringWidth(tileName) / 2.0F) + 1, 14,
+				textcolor);
 	}
 
 	protected int getEnergyStoredScaled(int pixels) {
@@ -79,18 +86,16 @@ public class ScreenBaseCore<T extends BaseContainerCore> extends ContainerScreen
 		return i != 0 && j != 0 ? i * pixels / j : 0;
 	}
 
+	// renderHoveredToolTip
 	@Override
-	protected void renderHoveredToolTip(int x, int y) {
-		if (this.minecraft.player.inventory.getItemStack().isEmpty() && this.hoveredSlot != null
+	protected void renderHoveredTooltip(MatrixStack mStack, int x, int y) {
+		if (minecraft.player.inventory.getItemStack().isEmpty() && this.hoveredSlot != null
 				&& !this.hoveredSlot.getHasStack()
-				&& this.hoveredSlot instanceof BaseContainerCore.SlotItemHandlerWithInfo) {
-			this.renderTooltip(
-					new TranslationTextComponent(((SlotItemHandlerWithInfo) this.hoveredSlot).getUsageString())
-							.getUnformattedComponentText(),
-					x, y);
-		} else {
-			super.renderHoveredToolTip(x, y);
-		}
+				&& this.hoveredSlot instanceof BaseContainerCore.SlotItemHandlerWithInfo)
+			this.renderTooltip(mStack,
+					new TranslationTextComponent(((SlotItemHandlerWithInfo) this.hoveredSlot).getUsageString()), x, y);
+		else
+			super.renderHoveredTooltip(mStack, x, y);
 	}
 
 }

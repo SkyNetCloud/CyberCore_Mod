@@ -27,9 +27,9 @@ import net.minecraftforge.common.ToolType;
 
 public class BlockIrrigation extends BlockBaseCore {
 
-	public BlockIrrigation(String name, ItemGroup group) {
+	public BlockIrrigation(ItemGroup group) {
 		super(Block.Properties.create(Material.WATER).hardnessAndResistance(1.3F).harvestTool(ToolType.PICKAXE)
-				.notSolid(), name, group, true);
+				.notSolid(), group, true);
 	}
 
 	@Override
@@ -47,7 +47,6 @@ public class BlockIrrigation extends BlockBaseCore {
 	public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip,
 			ITooltipFlag flagIn) {
 		TranslationTextComponent t = new TranslationTextComponent(getTranslationKey() + ".tooltip");
-		t.applyTextStyle(TextFormatting.GRAY);
 		tooltip.add(t);
 	}
 
@@ -58,7 +57,7 @@ public class BlockIrrigation extends BlockBaseCore {
 		double y = (double) pos.getY() + 1.5D;
 		double z = (double) pos.getZ() + 1.5D;
 		worldIn.addParticle(ParticleTypes.RAIN, x, y, z, 0.0D, 0.0D, 0.0D);
-		worldIn.addParticle(ParticleTypes.RAIN, x , y, z, 0.0D, 0.0D, 0.0D);
+		worldIn.addParticle(ParticleTypes.RAIN, x, y, z, 0.0D, 0.0D, 0.0D);
 		worldIn.addParticle(ParticleTypes.RAIN, x, y, z, 0.0D, 0.0D, 0.0D);
 		worldIn.addParticle(ParticleTypes.RAIN, x, y, z, 0.0D, 0.0D, 0.0D);
 	}

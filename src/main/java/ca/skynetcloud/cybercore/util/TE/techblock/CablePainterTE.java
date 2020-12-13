@@ -15,6 +15,7 @@ import ca.skynetcloud.cybercore.recipes.CyberRecipeTypes;
 import ca.skynetcloud.cybercore.recipes.recipeclasses.PainterRecipe;
 import ca.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import ca.skynetcloud.cybercore.util.container.PainterContainer;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -271,10 +272,10 @@ public class CablePainterTE extends CyberCoreEndPowerTE {
 	}
 
 	@Override
-	public void read(CompoundNBT compound) {
+	public void read(BlockState state, CompoundNBT compound) {
 		this.ticksPassed = compound.getInt("tickspassed");
 		this.selectedId = compound.getInt("selectedId");
-		super.read(compound);
+		super.read(state, compound);
 	}
 
 	@Override

@@ -18,8 +18,8 @@ import net.minecraft.world.World;
 
 public class TillerItem extends HoeItem {
 
-	public TillerItem(IItemTier tier, float attackSpeedIn, Properties builder) {
-		super(tier, attackSpeedIn, builder);
+	public TillerItem(IItemTier tier, float attackSpeedIn, int attackDamage, Properties builder) {
+		super(tier, attackDamage, attackSpeedIn, builder);
 
 	}
 

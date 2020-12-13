@@ -20,9 +20,9 @@ import net.minecraftforge.common.ToolType;
 
 public class CropBlockGrower extends BlockBaseCore {
 
-	public CropBlockGrower(String name, ItemGroup group, boolean hasItem) {
-		super(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F,10.0F).harvestTool(ToolType.PICKAXE).sound(SoundType.GLASS)
-		.tickRandomly(), name, group, hasItem);
+	public CropBlockGrower(ItemGroup group, boolean hasItem) {
+		super(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F, 10.0F).harvestTool(ToolType.PICKAXE)
+				.sound(SoundType.GLASS).tickRandomly(), group, hasItem);
 
 	}
 
@@ -59,11 +59,9 @@ public class CropBlockGrower extends BlockBaseCore {
 						0);
 		}
 	}
-	
-	
 
 	public Triple<BlockPos, BlockState, IGrowable> firstBlock(World world, BlockPos glassPos) {
-		BlockPos.Mutable mut = new BlockPos.Mutable(glassPos);
+		BlockPos.Mutable mut = new BlockPos.Mutable();
 		while (true) {
 			mut.setPos(mut.getX(), mut.getY() - 1, mut.getZ());
 			if (mut.getY() < 0)

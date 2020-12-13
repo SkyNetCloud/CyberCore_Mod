@@ -8,7 +8,6 @@ import ca.skynetcloud.cybercore.api.Names;
 import ca.skynetcloud.cybercore.block.BlockBaseCore;
 import ca.skynetcloud.cybercore.block.blocks.BlockIrrigation;
 import ca.skynetcloud.cybercore.block.blocks.CropBlockGrower;
-import ca.skynetcloud.cybercore.block.blocks.CustomWorldLink;
 import ca.skynetcloud.cybercore.block.blocks.CyberExtractorBlock;
 import ca.skynetcloud.cybercore.block.blocks.CyberLoaderBlock;
 import ca.skynetcloud.cybercore.block.blocks.CyberSlabBlock;
@@ -37,64 +36,107 @@ public class BlockInit {
 
 	public static ItemGroup group = CyberCoreTab.instance;
 
-	public static Block IRRIGATION_BLOCK = new BlockIrrigation("irrigtion_block", group);
-
-	public static Block GrowGlass = new CropBlockGrower("grow_glass", group, true);
+	@ObjectHolder(Names.IRRIGATION_BLOCK)
+	public static Block IRRIGATION_BLOCK = null;
 
 	@ObjectHolder(Names.ITEM_CABLE)
 	public static final CyberCoreItemPipe ITEM_PIPE = null;
 
-	public static Block CABLE = new CyberCoreCable(
-			Block.Properties.create(Material.GLASS, MaterialColor.YELLOW_TERRACOTTA).hardnessAndResistance(0.4F)
-					.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)).setRegistryName(Names.CABLE);
+	@ObjectHolder(Names.CABLE)
+	public static Block CABLE = null;
 
-	public static Block BLOCK_EXTRACTOR = new CyberExtractorBlock(Block.Properties.create(Material.IRON));
+	@ObjectHolder(Names.BLOCK_EXTRACTOR)
+	public static Block BLOCK_EXTRACTOR = null;
 
-	public static Block CABLE_PAINTER = new TechBlockFacing("cable_painter", group);
+	@ObjectHolder(Names.CABLE_PAINTER)
+	public static Block CABLE_PAINTER = null;
 
-	public static Block BLOCK_LOADER = new CyberLoaderBlock(Block.Properties.create(Material.IRON))
-			.setRegistryName("block_loader");
+	@ObjectHolder(Names.BLOCK_LOADER)
+	public static Block BLOCK_LOADER = null;
 
-	public static Block TOMATO_CROP = new TomatoCrop("tomato_crop_block");
+	@ObjectHolder(Names.TOMATO_CROP)
+	public static Block TOMATO_CROP = null;
 
-	public static Block LETTUCE_CROP = new LettuceCrop("lettuce_crop_block");
+	@ObjectHolder(Names.LETTUCE_CROP)
+	public static Block LETTUCE_CROP = null;
 
-	public static Block CYBERLAND = new CustomWorldLink("cyberland_block", CyberCoreTab.instance);
+	@ObjectHolder(Names.POWER_FURNACE_BLOCK)
+	public static Block POWER_FURNACE_BLOCK = null;
 
-	public static Block POWER_FURNACE_BLOCK = new TechBlockFacing("powered_furnace", group);
+	@ObjectHolder(Names.RUBY_BLOCK)
+	public static Block RUBY_BLOCK = null;
 
-	public static Block RUBY_BLOCK = new BlockBaseCore(Block.Properties.create(Material.IRON), "ruby_block", group,
-			true);
-	public static Block DARK_STEEL_BLOCK = new BlockBaseCore(Block.Properties.create(Material.IRON), "dark_steel_block",
-			group, true);
+	@ObjectHolder(Names.DARK_STEEL_BLOCK)
+	public static Block DARK_STEEL_BLOCK = null;
 
-	public static Block CYBER_ORE = new OreBlock(
-			Block.Properties.create(Material.ROCK).hardnessAndResistance(5.0f, 10.0f)).setRegistryName("cyber_ore");
+	@ObjectHolder(Names.CYBER_ORE)
+	public static Block CYBER_ORE = null;
 
-	public static Block DARK_STEEL_ORE = new OreBlock(
-			Block.Properties.create(Material.ROCK).hardnessAndResistance(5.0f, 15.0f))
-					.setRegistryName("dark_steel_ore");
+	@ObjectHolder(Names.DARK_STEEL_ORE)
+	public static Block DARK_STEEL_ORE = null;
 
-	public static Block RUBY_ORE = new OreBlock(
-			Block.Properties.create(Material.ROCK).hardnessAndResistance(0.5F, 7.0F)).setRegistryName("ruby_ore");
+	@ObjectHolder(Names.RUBY_ORE)
+	public static Block RUBY_ORE = null;
 
-	public static Block LUNAR_BLOCK = new TechBlockFacing("lunarsolargenerator_block", CyberCoreTab.instance);
+	@ObjectHolder(Names.LUNAR_BLOCK)
+	public static Block LUNAR_BLOCK = null;
 
-	public static Block POWER_BOX = new CyberCorePowerBlock();
+	@ObjectHolder(Names.POWER_BOX)
+	public static Block POWER_BOX = null;
 
-	public static Block RUBY_SLAB = new CyberSlabBlock(Block.Properties.create(Material.ROCK), "ruby_slab",
-			CyberCoreTab.instance);
+	@ObjectHolder(Names.RUBY_SLAB)
+	public static Block RUBY_SLAB = null;
 
-	public static Block RUBY_STAIRS = new CyberStairsBlock(RUBY_SLAB.getDefaultState(),
-			Block.Properties.create(Material.ROCK), "ruby_stairs", CyberCoreTab.instance);
+	@ObjectHolder(Names.RUBY_STAIRS)
+	public static Block RUBY_STAIRS = null;
 
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
 
+		registerBlock(registry, new TechBlockFacing(group), Names.CABLE_PAINTER);
+
+		registerBlock(registry, new CyberLoaderBlock(Block.Properties.create(Material.IRON)), Names.BLOCK_LOADER);
+
+		registerBlock(registry, new CyberExtractorBlock(Block.Properties.create(Material.IRON)), Names.BLOCK_EXTRACTOR);
+
+		registerBlock(registry, new CyberCoreItemPipe(), Names.ITEM_CABLE);
+
+		registerBlock(registry, new OreBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(5.0f, 15.0f)),
+				Names.DARK_STEEL_ORE);
+
+		registerBlock(registry, new OreBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.5F, 7.0F)),
+				Names.RUBY_ORE);
+
+		registerBlock(registry, new OreBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(5.0f, 10.0f)),
+				Names.CYBER_ORE);
+
+		registerBlock(registry, new CyberCoreItemPipe(), Names.ITEM_CABLE);
+
+		registerBlock(registry, new CyberCorePowerBlock(), Names.POWER_BOX);
+
+		registerBlock(registry, new TomatoCrop(), Names.TOMATO_CROP);
+
+		registerBlock(registry, new LettuceCrop(), Names.LETTUCE_CROP);
+
+		registerBlock(registry, new CyberSlabBlock(Block.Properties.create(Material.ROCK), CyberCoreTab.instance),
+				Names.RUBY_SLAB);
+
+		registerBlock(registry, new BlockIrrigation(group), Names.IRRIGATION_BLOCK);
+
+		registerBlock(registry, new TechBlockFacing(group), Names.LUNAR_BLOCK);
+
+		registerBlock(registry, new TechBlockFacing(group), Names.POWER_FURNACE_BLOCK);
+
+		registerBlock(registry, new BlockBaseCore(Block.Properties.create(Material.IRON), group, true),
+				Names.RUBY_BLOCK);
+
+		registerBlock(registry, new BlockBaseCore(Block.Properties.create(Material.IRON), group, true),
+				Names.DARK_STEEL_BLOCK);
+
 		registerBlock(registry,
-				new CyberCoreItemPipe(Block.Properties.create(Material.GLASS, MaterialColor.YELLOW_TERRACOTTA)
+				new CyberCoreCable(Block.Properties.create(Material.GLASS, MaterialColor.YELLOW_TERRACOTTA)
 						.hardnessAndResistance(0.4F).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
-				Names.ITEM_CABLE);
+				Names.CABLE);
 
 		IntStream.range(0, 16)
 				.forEach(i -> registerBlock(registry,

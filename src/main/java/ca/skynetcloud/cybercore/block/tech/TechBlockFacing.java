@@ -15,8 +15,8 @@ public class TechBlockFacing extends TechBlockBaseSubCore {
 
 	public static final DirectionProperty FACING = DirectionalBlock.FACING;
 
-	public TechBlockFacing(String name, ItemGroup tab) {
-		super(name, tab);
+	public TechBlockFacing(ItemGroup tab) {
+		super(tab);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
 	}
 

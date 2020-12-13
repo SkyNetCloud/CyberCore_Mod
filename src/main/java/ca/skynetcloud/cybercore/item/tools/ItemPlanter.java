@@ -124,7 +124,7 @@ public class ItemPlanter extends Item {
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
 			ITooltipFlag flagIn) {
 		TranslationTextComponent t = new TranslationTextComponent(getTranslationKey() + ".tooltip");
-		t.applyTextStyle(TextFormatting.GRAY);
+
 		tooltip.add(t);
 	}
 }

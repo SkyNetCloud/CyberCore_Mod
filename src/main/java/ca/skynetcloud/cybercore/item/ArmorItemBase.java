@@ -56,7 +56,7 @@ public class ArmorItemBase extends ArmorItem {
 				&& player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem() == ItemInit.RUBY_LEGGINGS.getItem()) {
 			if (world.isRemote) {
 				player.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
-						+ TextFormatting.RED + "The Armor is Bound to it's rightful owner"));
+						+ TextFormatting.RED + "The Armor is Bound to it's rightful owner"), null);
 			}
 			player.addPotionEffect(new EffectInstance(Effects.SATURATION, 20, 1, false, false, true));
 			player.addPotionEffect(new EffectInstance(Effects.HASTE, 20, 1, false, false, true));

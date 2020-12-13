@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import ca.skynetcloud.cybercore.block.blocks.CyberExtractorBlock;
 import ca.skynetcloud.cybercore.block.blocks.CyberLoaderBlock;
 import ca.skynetcloud.cybercore.block.tech.blocks.color.ColorItemCable;
@@ -17,10 +16,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.block.ILiquidContainer;
 import net.minecraft.block.SixWayBlock;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
@@ -36,6 +37,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, ILiquidContainer {
@@ -51,16 +53,15 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 
 	protected final VoxelShape[] shapes;
 
-	public CyberCoreItemPipe(Properties properties) {
-		super(properties);
+	public CyberCoreItemPipe() {
+		super(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.4F).harvestTool(ToolType.PICKAXE)
+				.sound(SoundType.METAL));
 		this.setDefaultState(this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false))
 				.with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false))
 				.with(WEST, Boolean.valueOf(false)).with(DOWN, Boolean.valueOf(false)).with(UP, Boolean.valueOf(false))
 				.with(WATERLOGGED, Boolean.valueOf(false)));
 		this.shapes = this.makeShapes();
 	}
-
-	/// basic block properties
 
 	@Override
 	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
@@ -114,7 +115,7 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		IBlockReader world = context.getWorld();
 		BlockPos pos = context.getPos();
-		IFluidState fluidstate = context.getWorld().getFluidState(context.getPos());
+		FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
 		return super.getStateForPlacement(context).with(DOWN, this.canConnectTo(world, pos, Direction.DOWN))
 				.with(UP, this.canConnectTo(world, pos, Direction.UP))
 				.with(NORTH, this.canConnectTo(world, pos, Direction.NORTH))
@@ -249,7 +250,7 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 	}
 
 	@Override
-	public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn) {
+	public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
 		if (!state.get(WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER) {
 			if (!worldIn.isRemote()) {
 				worldIn.setBlockState(pos, state.with(WATERLOGGED, Boolean.valueOf(true)), 3);
@@ -275,7 +276,7 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 
 	@SuppressWarnings({ "deprecation", "unused" })
 	@Override
-	public IFluidState getFluidState(BlockState state) {
+	public FluidState getFluidState(BlockState state) {
 		HashMap<Direction, Direction> map = new HashMap<>();
 		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
 	}

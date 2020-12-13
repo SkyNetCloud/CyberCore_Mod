@@ -5,6 +5,7 @@ import java.util.List;
 
 import ca.skynetcloud.cybercore.item.UpgradeLvl;
 import ca.skynetcloud.cybercore.util.networking.util.IItemChargeable;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -75,12 +76,12 @@ abstract public class CyberCoreEndPowerTE extends CyberCorePowerTE {
 	}
 
 	@Override
-	public void read(CompoundNBT compound) {
+	public void read(BlockState state, CompoundNBT compound) {
 		int slotamount = itemhandler.getSlots();
 		itemhandler.deserializeNBT(compound.getCompound("inventory"));
 		if (itemhandler.getSlots() != slotamount)
 			itemhandler.setSize(slotamount);
-		super.read(compound);
+		super.read(state, compound);
 	}
 
 	public static void spawnAsEntity(World worldIn, BlockPos pos, ItemStack stack) {
@@ -99,11 +100,9 @@ abstract public class CyberCoreEndPowerTE extends CyberCorePowerTE {
 
 	public int getMarkcard(int slot, UpgradeLvl.ItemType itemtype) {
 		ItemStack stack = itemhandler.getStackInSlot(slot);
-		if (!stack.isEmpty() && stack.getItem() instanceof UpgradeLvl)
-		{
+		if (!stack.isEmpty() && stack.getItem() instanceof UpgradeLvl) {
 			UpgradeLvl item = (UpgradeLvl) stack.getItem();
-			if (item.getItemType() == itemtype)
-			{
+			if (item.getItemType() == itemtype) {
 				return item.getLevel();
 			}
 		}

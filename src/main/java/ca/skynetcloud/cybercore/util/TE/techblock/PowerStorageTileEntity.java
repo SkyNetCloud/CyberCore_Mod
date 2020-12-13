@@ -88,8 +88,8 @@ public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 	}
 
 	@Override
-	public void read(CompoundNBT compound) {
-		super.read(compound);
+	public void read(BlockState state, CompoundNBT compound) {
+		super.read(state, compound);
 	}
 
 	@Override

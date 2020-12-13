@@ -1,5 +1,6 @@
 modLoader="javafml" #mandatory
-loaderVersion="[31,)" #mandatory (28 is current forge version)
+license="All Rights Reserved"
+loaderVersion="[35,)" #mandatory (28 is current forge version)
 issueTrackerURL="https://github.com/SkyNetCloud/CyberCore_Mod/issues"
 [[mods]] #mandatory
 modId="cybercore" #mandatory

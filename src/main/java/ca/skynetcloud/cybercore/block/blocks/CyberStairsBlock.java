@@ -12,8 +12,8 @@ import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.pathfinding.PathType;
@@ -34,7 +34,6 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -95,8 +94,8 @@ public class CyberStairsBlock extends BlockBaseCore implements IWaterLoggable {
 		return voxelshape;
 	}
 
-	public CyberStairsBlock(BlockState state, Properties builder, String name, ItemGroup group) {
-		super(builder, name, group, true);
+	public CyberStairsBlock(BlockState state, Properties builder, ItemGroup group) {
+		super(builder, group, true);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM)
 				.with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, Boolean.valueOf(false)));
 		this.modelBlock = state.getBlock();
@@ -134,10 +133,6 @@ public class CyberStairsBlock extends BlockBaseCore implements IWaterLoggable {
 		return this.modelBlock.getExplosionResistance();
 	}
 
-	public int tickRate(IWorldReader worldIn) {
-		return this.modelBlock.tickRate(worldIn);
-	}
-
 	@SuppressWarnings("deprecation")
 	public void onBlockAdded(BlockState p_220082_1_, World worldIn, BlockPos pos, BlockState p_220082_4_,
 			boolean p_220082_5_) {
@@ -164,7 +159,7 @@ public class CyberStairsBlock extends BlockBaseCore implements IWaterLoggable {
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		Direction direction = context.getFace();
 		BlockPos blockpos = context.getPos();
-		IFluidState ifluidstate = context.getWorld().getFluidState(blockpos);
+		FluidState ifluidstate = context.getWorld().getFluidState(blockpos);
 		BlockState blockstate = this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing()).with(HALF,
 				direction != Direction.DOWN
 						&& (direction == Direction.UP || !(context.getHitVec().y - (double) blockpos.getY() > 0.5D))
@@ -276,7 +271,7 @@ public class CyberStairsBlock extends BlockBaseCore implements IWaterLoggable {
 	}
 
 	@SuppressWarnings("deprecation")
-	public IFluidState getFluidState(BlockState state) {
+	public FluidState getFluidState(BlockState state) {
 		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
 	}
 

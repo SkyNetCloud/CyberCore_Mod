@@ -32,7 +32,7 @@ public class CyberExtractorBlock extends BlockBaseCore {
 	protected final VoxelShape[] shapes;
 
 	public CyberExtractorBlock(Properties properties) {
-		super(properties, "block_extractor", CyberCoreTab.instance, true);
+		super(properties, CyberCoreTab.instance, true);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP));
 		this.shapes = this.makeShapes();
 	}
@@ -68,14 +68,11 @@ public class CyberExtractorBlock extends BlockBaseCore {
 		}
 	}
 
-	private ItemStack extractNextStack(IItemHandler handler)
-	{
+	private ItemStack extractNextStack(IItemHandler handler) {
 		int slots = handler.getSlots();
-		for (int i=0; i<slots; i++)
-		{
+		for (int i = 0; i < slots; i++) {
 			ItemStack stack = handler.extractItem(i, 64, false);
-			if (stack.getCount() > 0)
-			{
+			if (stack.getCount() > 0) {
 				return stack.copy();
 			}
 		}

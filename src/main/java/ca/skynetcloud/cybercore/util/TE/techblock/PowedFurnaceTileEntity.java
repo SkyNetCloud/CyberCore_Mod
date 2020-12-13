@@ -259,11 +259,11 @@ public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
 	}
 
 	@Override
-	public void read(CompoundNBT compound) {
+	public void read(BlockState state, CompoundNBT compound) {
 		for (int i = 0; i < 6; i++) {
 			this.ticksPassed[i] = compound.getInt("cooktime_" + i);
 		}
-		super.read(compound);
+		super.read(state, compound);
 	}
 
 	@Override

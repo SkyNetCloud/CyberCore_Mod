@@ -62,8 +62,9 @@ public class CableTileEntity extends TileEntity implements ITickableTileEntity {
 	}
 
 	public void tick() {
-		if (!this.world.isRemote && this.isMaster)
+		if (world != null && !world.isRemote && isMaster) {
 			transferEnergy();
+		}
 	}
 
 	private void transferEnergy() {
@@ -455,8 +456,8 @@ public class CableTileEntity extends TileEntity implements ITickableTileEntity {
 		return super.write(compound);
 	}
 
-	public void read(CompoundNBT compound) {
-		super.read(compound);
+	public void read(BlockState state, CompoundNBT compound) {
+		super.read(state, compound);
 		if (compound.contains("ismaster"))
 			this.isMaster = compound.getBoolean("ismaster");
 		if (compound.contains("masterposx"))
@@ -534,14 +535,14 @@ public class CableTileEntity extends TileEntity implements ITickableTileEntity {
 		return write(new CompoundNBT());
 	}
 
-	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+	public void onDataPacket(BlockState state, NetworkManager net, SUpdateTileEntityPacket pkt) {
 		super.onDataPacket(net, pkt);
-		handleUpdateTag(pkt.getNbtCompound());
+		handleUpdateTag(state, pkt.getNbtCompound());
 	}
 
 	private void sendUpdates() {
 		this.world.markAndNotifyBlock(this.pos, this.world.getChunkAt(this.pos), this.world.getBlockState(this.pos),
-				this.world.getBlockState(this.pos), 0);
+				this.world.getBlockState(this.pos), 0, maxTransferRate);
 	}
 
 	public void rotateConnection(Direction dir) {

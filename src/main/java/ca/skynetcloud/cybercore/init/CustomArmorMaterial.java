@@ -17,14 +17,15 @@ import net.minecraft.inventory.EquipmentSlotType;
 
 public enum CustomArmorMaterial implements IArmorMaterial {
 
-	Ruby("ruby", 5, new int[] { 1, 2, 3, 1 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F, () -> {
+	Ruby("ruby", 5, new int[] { 1, 2, 3, 1 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {
 		return Ingredient.fromItems(ruby_ingot);
-	}), Dark_Steel("dark_steel", 15, new int[] { 1, 4, 5, 2 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F, () -> {
-		return Ingredient.fromItems(dark_steel_ingot);
 	}),
-	Cyber_Ingot("cyber_ingot", 15, new int[] { 10, 34, 25, 14 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F, () -> {
-		return Ingredient.fromItems(cyber_ingot);
-	});
+	Dark_Steel("dark_steel", 15, new int[] { 1, 4, 5, 2 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {
+		return Ingredient.fromItems(dark_steel_ingot);
+	}), Cyber_Ingot("cyber_ingot", 15, new int[] { 10, 34, 25, 14 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F,
+			0.0F, () -> {
+				return Ingredient.fromItems(cyber_ingot);
+			});
 
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };
 	private final String name;
@@ -33,16 +34,19 @@ public enum CustomArmorMaterial implements IArmorMaterial {
 	private final int enchantability;
 	private final SoundEvent soundEvent;
 	private final float toughness;
+	private final float knockback;
 	private final LazyValue<Ingredient> repairMaterial;
 
 	private CustomArmorMaterial(String nameIn, int maxDamageFactor, int[] damageReductionAmountArray,
-			int enchantability, SoundEvent soundEvent, float toughness, Supplier<Ingredient> repairMaterial) {
+			int enchantability, SoundEvent soundEvent, float toughness, float knockback,
+			Supplier<Ingredient> repairMaterial) {
 		this.name = nameIn;
 		this.maxDamageFactor = maxDamageFactor;
 		this.damageReductionAmountArray = damageReductionAmountArray;
 		this.enchantability = enchantability;
 		this.soundEvent = soundEvent;
 		this.toughness = toughness;
+		this.knockback = knockback;
 		this.repairMaterial = new LazyValue<>(repairMaterial);
 	}
 
@@ -87,6 +91,12 @@ public enum CustomArmorMaterial implements IArmorMaterial {
 	public float getToughness() {
 
 		return this.toughness;
+	}
+
+	@Override
+	public float getKnockbackResistance() {
+		// TODO Auto-generated method stub
+		return this.knockback;
 	}
 
 }

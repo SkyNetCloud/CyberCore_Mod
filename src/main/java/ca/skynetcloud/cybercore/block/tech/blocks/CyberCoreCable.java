@@ -26,10 +26,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -95,7 +95,7 @@ public class CyberCoreCable extends Block {
 			Hand hand, BlockRayTraceResult ray) {
 		if (!worldIn.isRemote && hand.equals(Hand.MAIN_HAND)
 				&& player.getHeldItemMainhand().getItem().equals(ItemInit.whrechItem)) {
-			Vec3d hitvec = ray.getHitVec();
+			Vector3d hitvec = ray.getHitVec();
 			hitvec = hitvec.add(-pos.getX(), -pos.getY(), -pos.getZ());
 			VoxelShape tempshape;
 			for (Direction dir : Direction.values()) {
@@ -125,11 +125,6 @@ public class CyberCoreCable extends Block {
 			world.setBlockState(pos, getCurrentState(state, world, pos));
 		}
 
-	}
-
-	@Override
-	public boolean hasTileEntity() {
-		return true;
 	}
 
 	@Override
@@ -164,7 +159,7 @@ public class CyberCoreCable extends Block {
 	}
 
 	@Nullable
-	protected HashMap<Integer, RayTraceResult> rayTraceList(BlockPos pos, Vec3d start, Vec3d end,
+	protected HashMap<Integer, RayTraceResult> rayTraceList(BlockPos pos, Vector3d start, Vector3d end,
 			HashMap<Integer, AxisAlignedBB> boxes) {
 		HashMap<Integer, RayTraceResult> list = new HashMap<Integer, RayTraceResult>();
 

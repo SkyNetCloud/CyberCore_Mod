@@ -79,7 +79,7 @@ public class CyberCorePickaxe extends PickaxeItem {
 		if (playerIn.getItemStackFromSlot(EquipmentSlotType.MAINHAND).getItem() == ItemInit.cyber_pickaxe.getItem()) {
 			if (worldIn.isRemote) {
 				playerIn.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
-						+ TextFormatting.RED + "Hmm What Did It added to you"));
+						+ TextFormatting.RED + "Hmm What Did It added to you"), null);
 			}
 
 			playerIn.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 500, 1, false, false, true));
@@ -89,7 +89,7 @@ public class CyberCorePickaxe extends PickaxeItem {
 		if (playerIn.getItemStackFromSlot(EquipmentSlotType.MAINHAND).getItem() == ItemInit.ruby_pickaxe.getItem()) {
 			if (worldIn.isRemote) {
 				playerIn.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
-						+ TextFormatting.RED + "This Tool Seem To Like You"));
+						+ TextFormatting.RED + "This Tool Seem To Like You"), null);
 			}
 			playerIn.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 500, 1, false, false, true));
 			playerIn.addPotionEffect(new EffectInstance(Effects.HERO_OF_THE_VILLAGE, 255, 1, false, false, true));
@@ -99,7 +99,7 @@ public class CyberCorePickaxe extends PickaxeItem {
 				.getItem()) {
 			if (worldIn.isRemote) {
 				playerIn.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
-						+ TextFormatting.RED + "The Shadow Are Coming For You"));
+						+ TextFormatting.RED + "The Shadow Are Coming For You"), null);
 			}
 			playerIn.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 255, 1, false, false, true));
 			playerIn.addPotionEffect(new EffectInstance(Effects.REGENERATION, 255, 1, false, false, true));

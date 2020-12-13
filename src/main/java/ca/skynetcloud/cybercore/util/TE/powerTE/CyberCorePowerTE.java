@@ -1,6 +1,7 @@
 package ca.skynetcloud.cybercore.util.TE.powerTE;
 
 import ca.skynetcloud.cybercore.enegry.CyberSystemPowerStorage;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.nbt.CompoundNBT;
@@ -56,8 +57,8 @@ abstract public class CyberCorePowerTE extends TileEntity implements ITickableTi
 	}
 
 	@Override
-	public void read(CompoundNBT compound) {
-		super.read(compound);
+	public void read(BlockState state, CompoundNBT compound) {
+		super.read(state, compound);
 		this.energystorage.deserializeNBT(compound.getCompound("energy"));
 	}
 

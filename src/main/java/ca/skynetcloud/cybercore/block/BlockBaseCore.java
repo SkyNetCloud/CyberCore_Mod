@@ -14,11 +14,9 @@ public class BlockBaseCore extends Block {
 
 	private ItemGroup group;
 
-	public BlockBaseCore(Block.Properties property, String name, ItemGroup group, boolean hasItem) {
+	public BlockBaseCore(Block.Properties property, ItemGroup group, boolean hasItem) {
 		super(property);
 		this.group = group;
-		this.name = name;
-		setRegistryName(name);
 	}
 
 	protected VoxelShape[] makeShapes(float nodeWidth, float extensionWidth, float p_196408_3_, float p_196408_4_,

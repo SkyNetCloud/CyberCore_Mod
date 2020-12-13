@@ -1,7 +1,6 @@
 package ca.skynetcloud.cybercore.item;
 
 import ca.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
-import ca.skynetcloud.cybercore.block.blocks.CustomWorldLink;
 import ca.skynetcloud.cybercore.block.blocks.CyberExtractorBlock;
 import ca.skynetcloud.cybercore.block.blocks.CyberLoaderBlock;
 import ca.skynetcloud.cybercore.block.tech.TechBlockFacing;
@@ -58,12 +57,6 @@ public class WrenchItem extends ItemBaseCore {
 					Block.spawnAsEntity(world, pos, new ItemStack(target.getBlock()));
 					return ActionResultType.SUCCESS;
 				} else if (!stack.isEmpty() && target.getBlock() instanceof CyberLoaderBlock) {
-					if (stack.getItem() instanceof WrenchItem && player.isCrouching()) {
-						world.removeBlock(pos, false);
-						Block.spawnAsEntity(world, pos, new ItemStack(target.getBlock()));
-						return ActionResultType.SUCCESS;
-					}
-				} else if (!stack.isEmpty() && target.getBlock() instanceof CustomWorldLink) {
 					if (stack.getItem() instanceof WrenchItem && player.isCrouching()) {
 						world.removeBlock(pos, false);
 						Block.spawnAsEntity(world, pos, new ItemStack(target.getBlock()));

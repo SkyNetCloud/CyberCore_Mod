@@ -80,5 +80,10 @@
 	"item.cybercore.cyber_leggings": "Cyber Leggings",
 	"item.cybercore.cyber_boots": "Cyber Boots",
 	"item.cybercore.cyber_bits": "Cyber Ore Bits",
+	"cybercore.painter": "Painter",
+	"slot.painter.input" "Input Slot",
+	"block.cybercore.cabler_painter": "Painter Block",
+	"item.cybercore.tiller": "Tiller Tool",
+	"item.cybercore.planter": "Planter Tool",
 	"item.cybercore.cyber_blend": "Cyber Ingot Blend"
 }

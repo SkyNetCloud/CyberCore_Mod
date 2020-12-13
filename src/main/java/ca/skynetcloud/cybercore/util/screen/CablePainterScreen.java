@@ -1,5 +1,7 @@
 package ca.skynetcloud.cybercore.util.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.packets.ButtonPressMessage;
 import ca.skynetcloud.cybercore.packets.CyberCorePacketHandler;
@@ -33,21 +35,21 @@ public class CablePainterScreen extends ScreenBaseCore<PainterContainer> {
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
+	protected void drawGuiContainerBackgroundLayer(MatrixStack mstack, float partialTicks, int mouseX, int mouseY) {
+		super.drawGuiContainerBackgroundLayer(mstack, partialTicks, mouseX, mouseY);
 
 		minecraft.getTextureManager().bindTexture(BACKGROUND);
-		blit(this.guiLeft, this.guiTop, 0, 0, this.xSize, 195);
+		blit(null, this.guiLeft, this.guiTop, 0, 0, this.xSize, 195);
 
 		int l = this.getCookProgressScaled(70);
-		blit(this.guiLeft + 52, this.guiTop + 86, 0, 199, l, 12);
+		blit(null, this.guiLeft + 52, this.guiTop + 86, 0, 199, l, 12);
 
 		int k = this.getEnergyStoredScaled(55);
-		blit(this.guiLeft + 149, this.guiTop + 28 + (55 - k), 208, 55 - k, 16, 0 + k);
+		blit(null, this.guiLeft + 149, this.guiTop + 28 + (55 - k), 208, 55 - k, 16, 0 + k);
 
 		int i = container.getValue(3);
 		if (i >= 0) {
-			blit(this.guiLeft + 35 + (i % 6) * 18, this.guiTop + 26 + (i / 6) * 18, 221, 0, 18, 18);
+			blit(null, this.guiLeft + 35 + (i % 6) * 18, this.guiTop + 26 + (i / 6) * 18, 221, 0, 18, 18);
 		}
 	}
 
@@ -57,11 +59,11 @@ public class CablePainterScreen extends ScreenBaseCore<PainterContainer> {
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+	protected void drawGuiContainerForegroundLayer(MatrixStack mstack, int mouseX, int mouseY) {
 		@SuppressWarnings("resource")
 		FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
 
-		fontRenderer.drawStringWithShadow("Power Storage", 120, 120, 10023);
+		fontRenderer.drawStringWithShadow(null, "Power Storage", 120, 120, 10023);
 	}
 
 	private boolean inArea(double mouseX, double mouseY, int posX, int posY) {

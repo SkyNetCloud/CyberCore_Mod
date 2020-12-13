@@ -7,6 +7,7 @@ import ca.skynetcloud.cybercore.api.containers.ContainerNames;
 import ca.skynetcloud.cybercore.api.items.ItemInit;
 import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import ca.skynetcloud.cybercore.recipes.recipeclasses.PainterRecipe;
+import ca.skynetcloud.cybercore.world.gen.ModFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
@@ -14,7 +15,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -22,27 +26,23 @@ import net.minecraftforge.fml.common.Mod;
 public class ModRegistryEvent {
 
 	@SubscribeEvent
+	public void onBiomeLoading(final BiomeLoadingEvent biome) {
+		if (biome.getCategory() == Biome.Category.NETHER || biome.getCategory() == Biome.Category.THEEND)
+			return;
+
+		biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES)
+				.add(() -> ModFeatures.CYBER_ORE_CONFIG);
+
+		biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES)
+				.add(() -> ModFeatures.DARK_STEEL_ORE_CONFIG);
+
+		biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES)
+				.add(() -> ModFeatures.RUBY_ORE_CONFIG);
+	}
+
+	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 
-		event.getRegistry().register(BlockInit.GrowGlass);
-		event.getRegistry().register(BlockInit.CABLE_PAINTER);
-		event.getRegistry().register(BlockInit.IRRIGATION_BLOCK);
-		event.getRegistry().register(BlockInit.BLOCK_LOADER);
-		event.getRegistry().register(BlockInit.BLOCK_EXTRACTOR);
-		event.getRegistry().register(BlockInit.LETTUCE_CROP);
-		event.getRegistry().register(BlockInit.CYBERLAND);
-		event.getRegistry().register(BlockInit.TOMATO_CROP);
-		event.getRegistry().register(BlockInit.CABLE);
-		event.getRegistry().register(BlockInit.CYBER_ORE);
-		event.getRegistry().register(BlockInit.RUBY_ORE);
-		event.getRegistry().register(BlockInit.DARK_STEEL_ORE);
-		event.getRegistry().register(BlockInit.RUBY_BLOCK);
-		event.getRegistry().register(BlockInit.DARK_STEEL_BLOCK);
-		event.getRegistry().register(BlockInit.RUBY_SLAB);
-		event.getRegistry().register(BlockInit.RUBY_STAIRS);
-		event.getRegistry().register(BlockInit.LUNAR_BLOCK);
-		event.getRegistry().register(BlockInit.POWER_BOX);
-		event.getRegistry().register(BlockInit.POWER_FURNACE_BLOCK);
 		BlockInit.registerBlocks(event);
 
 		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "Loaded Blocks");
@@ -59,10 +59,6 @@ public class ModRegistryEvent {
 		ItemInit.registerItems(event);
 		event.getRegistry().register(ItemInit.cyber_bits);
 		event.getRegistry().register(ItemInit.cyber_blend);
-		event.getRegistry().register(ItemInit.CABLE_PAINTER);
-
-		event.getRegistry().register(ItemInit.Item_Irrigation);
-		event.getRegistry().register(ItemInit.GROW_GLASS_BLOCKItem);
 
 		event.getRegistry().register(ItemInit.planter);
 		event.getRegistry().register(ItemInit.tiller);
@@ -82,28 +78,12 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ItemInit.CYBER_LEGGINGS);
 		event.getRegistry().register(ItemInit.CYBER_BOOTS);
 
-		event.getRegistry().register(ItemInit.card);
-		event.getRegistry().register(ItemInit.block_loader);
 		event.getRegistry().register(ItemInit.whrechItem);
-		event.getRegistry().register(ItemInit.block_extractor);
-		event.getRegistry().register(ItemInit.ruby_block);
-		event.getRegistry().register(ItemInit.cyberland_land);
+
 		event.getRegistry().register(ItemInit.dark_steel_block);
-		event.getRegistry().register(ItemInit.power_furnace_block);
+
 		event.getRegistry().register(ItemInit.taco_shell);
-		event.getRegistry().register(ItemInit.cable);
-		event.getRegistry().register(ItemInit.cyber_ore);
-		event.getRegistry().register(ItemInit.dark_steel_ore);
-		event.getRegistry().register(ItemInit.ruby_ore);
-		event.getRegistry().register(ItemInit.cyber_ingot);
-		event.getRegistry().register(ItemInit.ruby_slabs);
-		event.getRegistry().register(ItemInit.ruby_stairs);
-		event.getRegistry().register(ItemInit.dark_steel_ingot);
-		event.getRegistry().register(ItemInit.ruby_ingot);
-		event.getRegistry().register(ItemInit.power_box);
-		event.getRegistry().register(ItemInit.lunar);
-		// event.getRegistry().register(ItemInit.lettuce_crop);
-		// event.getRegistry().register(ItemInit.tomato_crop);
+
 		event.getRegistry().register(ItemInit.cheese);
 		event.getRegistry().register(ItemInit.tomato);
 		event.getRegistry().register(ItemInit.taco);

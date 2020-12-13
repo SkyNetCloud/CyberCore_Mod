@@ -1,5 +1,7 @@
 package ca.skynetcloud.cybercore.util.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowedFurnaceTileEntity;
 import ca.skynetcloud.cybercore.util.container.PowerFurnaceContainer;
@@ -18,22 +20,23 @@ public class PowedFurnaceScreen extends ScreenBaseCore<PowerFurnaceContainer> {
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
+	protected void drawGuiContainerBackgroundLayer(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
+		super.drawGuiContainerBackgroundLayer(mStack, partialTicks, mouseX, mouseY);
 		minecraft.getTextureManager().bindTexture(TEXTURES);
-		blit(this.guiLeft, this.guiTop, 0, 0, 220, 200);
+		blit(mStack, this.guiLeft, this.guiTop, 0, 0, 220, 200);
 
 		for (int p = 0; p < 6; p++) {
 			int l = this.getCookProgressScaled(p, 15);
-			blit(this.guiLeft + 24 + p * 27, this.guiTop + 46, 3, 200, 13, l);
+			blit(mStack, this.guiLeft + 24 + p * 27, this.guiTop + 46, 3, 200, 13, l);
 		}
 
 		@SuppressWarnings("resource")
 		FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
 
-		fontRenderer.drawStringWithShadow("Powered Furnace", 270, 60, 15312);
-		fontRenderer.drawStringWithShadow("Power Stored FE: " + te.getEnergyStored(), 70, 150, 11111111);
-		fontRenderer.drawStringWithShadow("Max It Can Stored FE : " + te.getMaxEnergyStored(), 70, 130, 11111111);
+		fontRenderer.drawStringWithShadow(mStack, "Powered Furnace", 270, 60, 15312);
+		fontRenderer.drawStringWithShadow(mStack, "Power Stored FE: " + te.getEnergyStored(), 70, 150, 11111111);
+		fontRenderer.drawStringWithShadow(mStack, "Max It Can Stored FE : " + te.getMaxEnergyStored(), 70, 130,
+				11111111);
 
 	}
 

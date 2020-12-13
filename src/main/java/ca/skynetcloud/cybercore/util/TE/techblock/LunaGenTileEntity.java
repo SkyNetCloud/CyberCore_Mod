@@ -135,9 +135,9 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	}
 
 	@Override
-	public void read(CompoundNBT compound) {
+	public void read(BlockState state, CompoundNBT compound) {
 		this.workload = compound.getInt("workload");
-		super.read(compound);
+		super.read(state, compound);
 	}
 
 	@Override

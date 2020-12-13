@@ -281,8 +281,8 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	}
 
 	@Override
-	public void read(CompoundNBT compound) {
-		super.read(compound);
+	public void read(BlockState state, CompoundNBT compound) {
+		super.read(state, compound);
 
 		if (compound.contains(INV_NBT_KEY_RESET)) // only update inventory if the compound has an inv. key
 		{ // this lets the client receive packets without the inventory being cleared
@@ -364,7 +364,28 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	 */
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet) {
-		this.read(packet.getNbtCompound());
+		this.readNBT(packet.getNbtCompound());
+	}
+
+	public void readNBT(CompoundNBT compound) {
+
+		if (compound.contains(INV_NBT_KEY_RESET)) // only update inventory if the compound has an inv. key
+		{ // this lets the client receive packets without the inventory being cleared
+			ListNBT invList = compound.getList(INV_NBT_KEY_RESET, 10);
+			Queue<ItemInTubeWrapper> inventory = new LinkedList<ItemInTubeWrapper>();
+			for (int i = 0; i < invList.size(); i++) {
+				CompoundNBT itemTag = invList.getCompound(i);
+				inventory.add(ItemInTubeWrapper.readFromNBT(itemTag));
+			}
+			this.inventory = inventory;
+		} else if (compound.contains(INV_NBT_KEY_ADD)) // add newly inserted items to this tube
+		{
+			ListNBT invList = compound.getList(INV_NBT_KEY_ADD, 10);
+			for (int i = 0; i < invList.size(); i++) {
+				CompoundNBT itemTag = invList.getCompound(i);
+				this.inventory.add(ItemInTubeWrapper.readFromNBT(itemTag));
+			}
+		}
 	}
 
 }

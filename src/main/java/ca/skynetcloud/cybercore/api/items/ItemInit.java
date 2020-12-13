@@ -96,26 +96,24 @@ public class ItemInit {
 	private static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[] { EquipmentSlotType.HEAD,
 			EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET };
 
-	public static BlockItem CABLE_PAINTER = new BlockItemCore(BlockInit.CABLE_PAINTER);
+	public static BlockItem CABLE_PAINTER = null;
 
 	public static Item card = new CyberCoreCardItem().setRegistryName(MODID + ":card");
 
 	public static Item planter = new ItemPlanter(new Properties().group(CyberCoreTab.instance))
 			.setRegistryName(MODID + ":planter");
 
-	public static Item tiller = new TillerItem(BasisToolMaterial.cyber_ingot, 1,
+	public static Item tiller = new TillerItem(BasisToolMaterial.cyber_ingot, 1, 0,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON))
 					.setRegistryName(MODID + ":tiller");
 
 	public static Item whrechItem = new WrenchItem();
 
-	public static BlockItem GROW_GLASS_BLOCKItem = new BlockItemCore(BlockInit.GrowGlass);
+	public static BlockItem Item_Irrigation = null;
 
-	public static BlockItem Item_Irrigation = new BlockItemCore(BlockInit.IRRIGATION_BLOCK);
+	public static Item block_loader = null;
 
-	public static Item block_loader = new BlockItemCore(BlockInit.BLOCK_LOADER);
-
-	public static Item block_extractor = new BlockItemCore(BlockInit.BLOCK_EXTRACTOR);
+	public static Item block_extractor = null;
 
 	public static Item taco_shell = new Item(new Item.Properties().group(CyberCoreTab.instance))
 			.setRegistryName("taco_shell");
@@ -126,33 +124,31 @@ public class ItemInit {
 	public static Item cyber_blend = new Item(new Item.Properties().group(CyberCoreTab.instance))
 			.setRegistryName("cyber_blend");
 
-	public static BlockItem ruby_block = new BlockItemCore(BlockInit.RUBY_BLOCK);
+	public static BlockItem ruby_block = null;
 
-	public static BlockItem ruby_slabs = new BlockItemCore(BlockInit.RUBY_SLAB);
+	public static BlockItem ruby_slabs = null;
 
-	public static BlockItem ruby_stairs = new BlockItemCore(BlockInit.RUBY_STAIRS);
+	public static BlockItem ruby_stairs = null;
 
-	public static BlockItem dark_steel_block = new BlockItemCore(BlockInit.DARK_STEEL_BLOCK);
+	public static BlockItem dark_steel_block = null;
 
-	public static BlockItem lettuce_crop = new BlockItemCore(BlockInit.LETTUCE_CROP);
+	public static BlockItem lettuce_crop = null;
 
-	public static BlockItem power_furnace_block = new BlockItemCore(BlockInit.POWER_FURNACE_BLOCK);
+	public static BlockItem power_furnace_block = null;
 
-	public static BlockItem cyber_ore = new BlockItemCore(BlockInit.CYBER_ORE);
+	public static BlockItem cyber_ore = null;
 
-	public static BlockItem dark_steel_ore = new BlockItemCore(BlockInit.DARK_STEEL_ORE);
+	public static BlockItem dark_steel_ore = null;
 
-	public static BlockItem ruby_ore = new BlockItemCore(BlockInit.RUBY_ORE);
+	public static BlockItem ruby_ore = null;;
 
-	public static BlockItem tomato_crop = new BlockItemCore(BlockInit.TOMATO_CROP);
+	public static BlockItem tomato_crop = null;
 
-	public static BlockItem lunar = new BlockItemCore(BlockInit.LUNAR_BLOCK);
+	public static BlockItem lunar = null;
 
-	public static BlockItem cyberland_land = new BlockItemCore(BlockInit.CYBERLAND);
+	public static BlockItem cable = null;
 
-	public static BlockItem cable = new BlockItemCore(BlockInit.CABLE);
-
-	public static BlockItem power_box = new BlockItemCore(BlockInit.POWER_BOX);
+	public static BlockItem power_box = null;
 
 	public static Item lettuce_seed = new SeedsInit(BlockInit.LETTUCE_CROP).setRegistryName(LETTUCE_SEEDS_NAME);
 
@@ -180,7 +176,7 @@ public class ItemInit {
 	public static Item cyber_axe = new CyberCoreAxe(BasisToolMaterial.cyber_ingot, 5F,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_AXE);
 
-	public static Item cyber_hoe = new CyberCoreHoe(BasisToolMaterial.cyber_ingot,
+	public static Item cyber_hoe = new CyberCoreHoe(BasisToolMaterial.cyber_ingot, 0,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_HOE);
 
 	public static Item cyber_shovel = new CyberCoreShovel(BasisToolMaterial.cyber_ingot, 0.5F,
@@ -197,7 +193,7 @@ public class ItemInit {
 	public static Item ruby_axe = new CyberCoreAxe(BasisToolMaterial.ruby_gem, 3,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_AXE);
 
-	public static Item ruby_hoe = new CyberCoreHoe(BasisToolMaterial.ruby_gem,
+	public static Item ruby_hoe = new CyberCoreHoe(BasisToolMaterial.ruby_gem, 0,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(RUBY_HOE);
 
 	public static Item ruby_shovel = new CyberCoreShovel(BasisToolMaterial.ruby_gem, 0.5F,
@@ -214,7 +210,7 @@ public class ItemInit {
 	public static Item dark_steel_axe = new CyberCoreAxe(BasisToolMaterial.dark_steel_ingot, 1,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_AXE);
 
-	public static Item dark_steel_hoe = new CyberCoreHoe(BasisToolMaterial.dark_steel_ingot,
+	public static Item dark_steel_hoe = new CyberCoreHoe(BasisToolMaterial.dark_steel_ingot, 0,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.EPIC)).setRegistryName(DARK_STEEL_HOE);
 
 	public static Item dark_steel_shovel = new CyberCoreShovel(BasisToolMaterial.dark_steel_ingot, 1,
@@ -321,6 +317,19 @@ public class ItemInit {
 
 		IForgeRegistry<Item> registry = event.getRegistry();
 
+		registerItem(registry, new BlockItem(BlockInit.RUBY_ORE, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.RUBY_ORE);
+		registerItem(registry,
+				new BlockItem(BlockInit.DARK_STEEL_ORE, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.DARK_STEEL_ORE);
+		registerItem(registry, new BlockItem(BlockInit.CYBER_ORE, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.CYBER_ORE);
+		registerItem(registry,
+				new BlockItem(BlockInit.DARK_STEEL_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.DARK_STEEL_BLOCK);
+		registerItem(registry, new BlockItem(BlockInit.RUBY_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.RUBY_BLOCK);
+
 		registerItem(registry, new BlockItem(BlockInit.ITEM_PIPE, new Item.Properties().group(CyberCoreTab.instance)),
 				Names.ITEM_CABLE);
 
@@ -331,7 +340,6 @@ public class ItemInit {
 										.getValue(new ResourceLocation("cybercore", Names.COLORED_Item_TUBE_NAMES[i])),
 								new Item.Properties().group(CyberCoreTab.instance)),
 						Names.COLORED_Item_TUBE_NAMES[i]));
-		// real items
 
 	}
 

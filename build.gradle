@@ -28,7 +28,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "1.15.2-1.10.18362"
+version = "1.16.4-1.10.18362"
 group = "ca.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
@@ -36,7 +36,7 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 
 minecraft {
 
-    mappings channel: 'snapshot', version: '20200514-1.15.1'
+    mappings channel: 'snapshot', version: '20201028-1.16.3'
 
     runs {
         client = {
@@ -52,10 +52,9 @@ minecraft {
 
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.15.2-31.2.41'
+    minecraft 'net.minecraftforge:forge:1.16.4-35.1.0'
 
-    compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.2.12:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.2.12")
+
 }
 
 curseforge {

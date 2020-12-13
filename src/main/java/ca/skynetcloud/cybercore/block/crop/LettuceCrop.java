@@ -27,9 +27,9 @@ public class LettuceCrop extends CropsBlock {
 
 	public static final IntegerProperty AGE_3 = IntegerProperty.create("age", 0, 3);
 
-	public LettuceCrop(String name) {
+	public LettuceCrop() {
 		super(Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.CROP));
-		this.setRegistryName(new ResourceLocation(CyberCoreMain.MODID, name));
+		this.setRegistryName(new ResourceLocation(CyberCoreMain.MODID));
 		this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
 
 	}

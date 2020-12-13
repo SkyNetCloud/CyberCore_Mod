@@ -30,7 +30,7 @@ public class CyberCorePowerBlock extends TechBlockBaseSubCore {
 	public static final IntegerProperty card = IntegerProperty.create("card", 0, 3);
 
 	public CyberCorePowerBlock() {
-		super("power_storage", CyberCoreTab.instance);
+		super(CyberCoreTab.instance);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(card, 0));
 	}
 

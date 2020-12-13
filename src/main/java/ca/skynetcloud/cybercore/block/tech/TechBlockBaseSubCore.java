@@ -32,8 +32,8 @@ import net.minecraft.world.World;
 
 public class TechBlockBaseSubCore extends BlockBaseCore {
 
-	public TechBlockBaseSubCore(String name, ItemGroup group) {
-		super(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0f, 10.0f).notSolid(), name, group, true);
+	public TechBlockBaseSubCore(ItemGroup group) {
+		super(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0f, 10.0f).notSolid(), group, true);
 
 	}
 
@@ -57,11 +57,6 @@ public class TechBlockBaseSubCore extends BlockBaseCore {
 		}
 
 		return ActionResultType.SUCCESS;
-	}
-
-	@Override
-	public boolean hasTileEntity() {
-		return true;
 	}
 
 	@SuppressWarnings("deprecation")

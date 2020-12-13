@@ -41,7 +41,7 @@ public class RegUtil {
 	@SuppressWarnings("deprecation")
 	public static void registerStructure(String key, Structure<?> structure) {
 		Registry.register(Registry.STRUCTURE_FEATURE, key.toLowerCase(Locale.ROOT), structure);
-		Feature.STRUCTURES.put(key.toLowerCase(Locale.ROOT), structure);
+		
 	}
 
 	public static class Items {

@@ -8,7 +8,7 @@ public class ColorItemCable extends CyberCoreItemPipe {
 	private DyeColor color;
 
 	public ColorItemCable(DyeColor color, Properties properties) {
-		super(properties);
+		super();
 		this.color = color;
 	}
 
