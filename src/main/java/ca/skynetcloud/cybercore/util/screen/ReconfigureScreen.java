@@ -5,17 +5,17 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.packets.ButtonPressMessage;
 import ca.skynetcloud.cybercore.packets.CyberCorePacketHandler;
-import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
-import ca.skynetcloud.cybercore.util.container.ColorChangeContainer;
+import ca.skynetcloud.cybercore.util.TE.techblock.ReconfigureTileEntity;
+import ca.skynetcloud.cybercore.util.container.ReconfigureContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class ColorChangeScreen extends ScreenBaseCore<ColorChangeContainer> {
+public class ReconfigureScreen extends ScreenBaseCore<ReconfigureContainer> {
 	private static final ResourceLocation BACK = new ResourceLocation(
 			CyberCoreMain.MODID + ":textures/gui/container/painter_gui.png");
 
-	public ColorChangeScreen(ColorChangeContainer container, PlayerInventory player, ITextComponent name) {
+	public ReconfigureScreen(ReconfigureContainer container, PlayerInventory player, ITextComponent name) {
 		super(container, player, name);
 	}
 
@@ -50,7 +50,7 @@ public class ColorChangeScreen extends ScreenBaseCore<ColorChangeContainer> {
 
 	private int getCookProgressScaled(int pixels) {
 		int i = container.getValue(2);
-		return i != 0 ? i * 72 / ((ColorChangeTileEntity) this.te).ticksPerItem() : 0;
+		return i != 0 ? i * 72 / ((ReconfigureTileEntity) this.te).ticksPerItem() : 0;
 	}
 
 	private boolean inArea(double mouseX, double mouseY, int posX, int posY) {

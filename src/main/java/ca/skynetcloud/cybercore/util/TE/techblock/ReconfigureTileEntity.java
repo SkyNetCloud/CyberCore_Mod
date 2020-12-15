@@ -14,7 +14,7 @@ import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
 import ca.skynetcloud.cybercore.recipes.CyberRecipeTypes;
 import ca.skynetcloud.cybercore.recipes.recipeclasses.PainterRecipe;
-import ca.skynetcloud.cybercore.util.container.ColorChangeContainer;
+import ca.skynetcloud.cybercore.util.container.ReconfigureContainer;
 import ca.skynetcloud.cybercore.util.networking.util.CyberCoreConstants;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -37,7 +37,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.RangedWrapper;
 
-public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
+public class ReconfigureTileEntity extends CoreEnergyInventoryTileEntity {
 	private int ticksPassed = 0;
 	private int selectedId = -1;
 	private HashMap<Integer, Pair<ItemStack, Integer>> recipeList = new HashMap<Integer, Pair<ItemStack, Integer>>();
@@ -52,19 +52,19 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 		public int get(int index) {
 			switch (index) {
 			case 0:
-				return ColorChangeTileEntity.this.energystorage.getEnergyStored();
+				return ReconfigureTileEntity.this.energystorage.getEnergyStored();
 			case 1:
-				return ColorChangeTileEntity.this.energystorage.getMaxEnergyStored();
+				return ReconfigureTileEntity.this.energystorage.getMaxEnergyStored();
 			case 2:
-				return ColorChangeTileEntity.this.ticksPassed;
+				return ReconfigureTileEntity.this.ticksPassed;
 			case 3:
-				return ColorChangeTileEntity.this.selectedId;
+				return ReconfigureTileEntity.this.selectedId;
 			case 4:
-				return ColorChangeTileEntity.this.pos.getX();
+				return ReconfigureTileEntity.this.pos.getX();
 			case 5:
-				return ColorChangeTileEntity.this.pos.getY();
+				return ReconfigureTileEntity.this.pos.getY();
 			case 6:
-				return ColorChangeTileEntity.this.pos.getZ();
+				return ReconfigureTileEntity.this.pos.getZ();
 			default:
 				return 0;
 			}
@@ -73,31 +73,31 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 		public void set(int index, int value) {
 			switch (index) {
 			case 0:
-				ColorChangeTileEntity.this.energystorage.setEnergyStored(value);
+				ReconfigureTileEntity.this.energystorage.setEnergyStored(value);
 				break;
 			case 1:
-				ColorChangeTileEntity.this.energystorage.setEnergyMaxStored(value);
+				ReconfigureTileEntity.this.energystorage.setEnergyMaxStored(value);
 				break;
 			case 2:
-				ColorChangeTileEntity.this.ticksPassed = value;
+				ReconfigureTileEntity.this.ticksPassed = value;
 				break;
 			case 3:
-				ColorChangeTileEntity.this.selectedId = value;
+				ReconfigureTileEntity.this.selectedId = value;
 				break;
 			case 4:
-				BlockPos newPos = new BlockPos(value, ColorChangeTileEntity.this.pos.getY(),
-						ColorChangeTileEntity.this.pos.getZ());
-				ColorChangeTileEntity.this.pos = newPos;
+				BlockPos newPos = new BlockPos(value, ReconfigureTileEntity.this.pos.getY(),
+						ReconfigureTileEntity.this.pos.getZ());
+				ReconfigureTileEntity.this.pos = newPos;
 				break;
 			case 5:
-				BlockPos newPos2 = new BlockPos(ColorChangeTileEntity.this.pos.getX(), value,
-						ColorChangeTileEntity.this.pos.getZ());
-				ColorChangeTileEntity.this.pos = newPos2;
+				BlockPos newPos2 = new BlockPos(ReconfigureTileEntity.this.pos.getX(), value,
+						ReconfigureTileEntity.this.pos.getZ());
+				ReconfigureTileEntity.this.pos = newPos2;
 				break;
 			case 6:
-				BlockPos newPos3 = new BlockPos(ColorChangeTileEntity.this.pos.getX(),
-						ColorChangeTileEntity.this.pos.getY(), value);
-				ColorChangeTileEntity.this.pos = newPos3;
+				BlockPos newPos3 = new BlockPos(ReconfigureTileEntity.this.pos.getX(),
+						ReconfigureTileEntity.this.pos.getY(), value);
+				ReconfigureTileEntity.this.pos = newPos3;
 				break;
 			}
 
@@ -108,7 +108,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 		}
 	};
 
-	public ColorChangeTileEntity() {
+	public ReconfigureTileEntity() {
 		super(TileEntityNames.CABLE_PAINTER_TE, 1000, 26, CyberCoreConstants.MACHINETIER_PRIENTER);
 		inputs = new RangedWrapper(itemhandler, 0, 1);
 		outputs = new RangedWrapper(itemhandler, 1, 2);
@@ -282,7 +282,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 
 	@Override
 	public Container createMenu(int id, PlayerInventory inv, PlayerEntity player) {
-		return new ColorChangeContainer(id, inv, this);
+		return new ReconfigureContainer(id, inv, this);
 	}
 
 	@Override
@@ -297,7 +297,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 	
 	@Override
 	public ITextComponent getDisplayName() {
-		return new TranslationTextComponent(TextFormatting.BLUE + "The Reconfigure");
+		return new TranslationTextComponent(TextFormatting.BLUE + "Reconfigure");
 	}
 	
 }
