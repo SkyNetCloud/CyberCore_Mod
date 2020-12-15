@@ -1,22 +1,16 @@
 package ca.skynetcloud.cybercore.block.tech;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import ca.skynetcloud.cybercore.api.blocks.BlockInit;
-import ca.skynetcloud.cybercore.block.BlockBaseCore;
-import ca.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
-import ca.skynetcloud.cybercore.util.TE.techblock.CablePainterTE;
-import ca.skynetcloud.cybercore.util.TE.techblock.LunaGenTileEntity;
-import ca.skynetcloud.cybercore.util.TE.techblock.PowedFurnaceTileEntity;
-import ca.skynetcloud.cybercore.util.TE.techblock.PowerStorageTileEntity;
+import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -30,15 +24,22 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public class TechBlockBaseSubCore extends BlockBaseCore {
+public class TechBlockBaseSubCore extends Block {
 
-	public TechBlockBaseSubCore(ItemGroup group) {
-		super(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0f, 10.0f).notSolid(), group, true);
+	private final Supplier<? extends TileEntity> teCreator;
 
+	public TechBlockBaseSubCore(Supplier<? extends TileEntity> teCreator) {
+		super(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0f, 10.0f).notSolid());
+		this.teCreator = teCreator;
 	}
 
 	public IItemProvider getItemDropped(BlockState state, World worldIn, BlockPos pos, int fortune) {
 		return this;
+	}
+
+	@Override
+	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+		return teCreator.get();
 	}
 
 	@Override
@@ -51,8 +52,8 @@ public class TechBlockBaseSubCore extends BlockBaseCore {
 			Hand hand, BlockRayTraceResult ray) {
 		if (!world.isRemote) {
 			TileEntity te = world.getTileEntity(pos);
-			if (te instanceof CyberCoreEndPowerTE) {
-				((ServerPlayerEntity) player).openContainer((CyberCoreEndPowerTE) te);
+			if (te instanceof CoreEnergyInventoryTileEntity) {
+				player.openContainer((CoreEnergyInventoryTileEntity) te);
 			}
 		}
 
@@ -75,20 +76,6 @@ public class TechBlockBaseSubCore extends BlockBaseCore {
 	}
 
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		if (this == BlockInit.LUNAR_BLOCK)
-			return new LunaGenTileEntity();
-		else if (this == BlockInit.POWER_BOX)
-			return new PowerStorageTileEntity();
-		else if (this == BlockInit.POWER_FURNACE_BLOCK)
-			return new PowedFurnaceTileEntity();
-		else if (this == BlockInit.CABLE_PAINTER)
-			return new CablePainterTE();
-		else
-			return new LunaGenTileEntity();
-	}
-
-	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
@@ -97,8 +84,8 @@ public class TechBlockBaseSubCore extends BlockBaseCore {
 	@Override
 	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (state.getBlock() != newState.getBlock()) {
-			if (worldIn.getTileEntity(pos) instanceof CyberCoreEndPowerTE) {
-				CyberCoreEndPowerTE te = (CyberCoreEndPowerTE) worldIn.getTileEntity(pos);
+			if (worldIn.getTileEntity(pos) instanceof CoreEnergyInventoryTileEntity) {
+				CoreEnergyInventoryTileEntity te = (CoreEnergyInventoryTileEntity) worldIn.getTileEntity(pos);
 				List<ItemStack> toSpawn = te.getInventoryContent();
 				for (ItemStack stack : toSpawn) {
 					worldIn.addEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack));

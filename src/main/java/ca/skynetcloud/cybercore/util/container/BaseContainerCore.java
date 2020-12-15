@@ -1,6 +1,6 @@
 package ca.skynetcloud.cybercore.util.container;
 
-import ca.skynetcloud.cybercore.util.TE.powerTE.CyberCorePowerTE;
+import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -13,10 +13,10 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class BaseContainerCore extends Container {
 
-	protected final CyberCorePowerTE tileentity;
+	protected final CoreEnergyTileEntity tileentity;
 	protected final IIntArray field_array;
 
-	public BaseContainerCore(int id, ContainerType<?> type, PlayerInventory player, CyberCorePowerTE tileentity,
+	public BaseContainerCore(int id, ContainerType<?> type, PlayerInventory player, CoreEnergyTileEntity tileentity,
 			int slots) {
 		super(type, id);
 		for (int y = 0; y < 3; y++) {
@@ -44,7 +44,7 @@ public class BaseContainerCore extends Container {
 		return tileentity.isUsableByPlayer(playerIn);
 	}
 
-	public CyberCorePowerTE getTE() {
+	public CoreEnergyTileEntity getTE() {
 		return tileentity;
 	}
 

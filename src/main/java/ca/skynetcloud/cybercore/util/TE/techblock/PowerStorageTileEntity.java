@@ -1,20 +1,22 @@
 package ca.skynetcloud.cybercore.util.TE.techblock;
 
-import ca.skynetcloud.cybercore.api.blocks.BlockInit;
+import ca.skynetcloud.cybercore.api.Names;
 import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
-import ca.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
+import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
-import ca.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import ca.skynetcloud.cybercore.util.container.PowerStorageContainer;
 import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
+import ca.skynetcloud.cybercore.util.networking.util.CyberCoreConstants;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IIntArray;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
-public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
+public class PowerStorageTileEntity extends CoreEnergyInventoryTileEntity {
 
 	private int currentcard = -1;
 	protected final IIntArray field_array = new IIntArray() {
@@ -47,7 +49,7 @@ public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 	};
 
 	public PowerStorageTileEntity() {
-		super(TileEntityNames.POWER_BOX_TE, CyberCoreConfig.POWERLMIT.get(), 3);
+		super(TileEntityNames.POWER_BOX_TE, CyberCoreConfig.POWERLMIT.get(), 3, CyberCoreConstants.POWER_STORAGE);
 
 	}
 
@@ -93,11 +95,6 @@ public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 	}
 
 	@Override
-	public String getNameString() {
-		return "power_storage";
-	}
-
-	@Override
 	public Container createMenu(int id, PlayerInventory inv, PlayerEntity player) {
 		return new PowerStorageContainer(id, inv, this);
 	}
@@ -110,5 +107,10 @@ public class PowerStorageTileEntity extends CyberCoreEndPowerTE {
 	@Override
 	public int getEnergyOutSlot() {
 		return 2;
+	}
+
+	@Override
+	public ITextComponent getDisplayName() {
+		return new TranslationTextComponent(Names.POWER_BOX_CON_NAME);
 	}
 }

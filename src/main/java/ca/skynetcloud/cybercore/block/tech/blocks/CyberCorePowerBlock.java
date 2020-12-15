@@ -1,5 +1,6 @@
 package ca.skynetcloud.cybercore.block.tech.blocks;
 
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import ca.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
@@ -9,10 +10,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer.Builder;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -29,8 +32,8 @@ public class CyberCorePowerBlock extends TechBlockBaseSubCore {
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	public static final IntegerProperty card = IntegerProperty.create("card", 0, 3);
 
-	public CyberCorePowerBlock() {
-		super(CyberCoreTab.instance);
+	public CyberCorePowerBlock(Supplier<? extends TileEntity> teCreator) {
+		super(teCreator);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(card, 0));
 	}
 
@@ -52,8 +55,7 @@ public class CyberCorePowerBlock extends TechBlockBaseSubCore {
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
 	}
-	
-	
+
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
 		worldIn.setBlockState(pos, this.getDefaultState().with(FACING, placer.getHorizontalFacing().getOpposite()), 2);

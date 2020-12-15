@@ -3,18 +3,22 @@ package ca.skynetcloud.cybercore.util.TE.techblock;
 import ca.skynetcloud.cybercore.api.blocks.BlockInit;
 import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import ca.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
+import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
-import ca.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import ca.skynetcloud.cybercore.util.container.LunaGenContainer;
 import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
+import ca.skynetcloud.cybercore.util.networking.util.CyberCoreConstants;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IIntArray;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 
-public class LunaGenTileEntity extends CyberCoreEndPowerTE {
+public class LunaGenTileEntity extends CoreEnergyInventoryTileEntity {
 	int workload = 0;
 	private int currentcard = -1;
 	protected final IIntArray field_array = new IIntArray() {
@@ -53,7 +57,7 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	};
 
 	public LunaGenTileEntity() {
-		super(TileEntityNames.LUNAR_GEN_MACHINE_TE, CyberCoreConfig.POWERLMIT.get(), 6);
+		super(TileEntityNames.LUNAR_GEN_MACHINE_TE, CyberCoreConfig.POWERLMIT.get(), 6, CyberCoreConstants.LUNAR_Block);
 
 	}
 
@@ -141,11 +145,6 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 	}
 
 	@Override
-	public String getNameString() {
-		return "solargenerator";
-	}
-
-	@Override
 	public Container createMenu(int id, PlayerInventory inv, PlayerEntity player) {
 		return new LunaGenContainer(id, inv, this);
 	}
@@ -156,6 +155,11 @@ public class LunaGenTileEntity extends CyberCoreEndPowerTE {
 
 	public int getEnergyOutSlot() {
 		return 3;
+	}
+
+	@Override
+	public ITextComponent getDisplayName() {
+		return new TranslationTextComponent(TextFormatting.BLUE + "Lunar Gen");
 	}
 
 }

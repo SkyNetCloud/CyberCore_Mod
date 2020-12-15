@@ -23,6 +23,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
@@ -53,6 +54,8 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 
 	protected final VoxelShape[] shapes;
 
+	
+	
 	public CyberCoreItemPipe() {
 		super(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.4F).harvestTool(ToolType.PICKAXE)
 				.sound(SoundType.METAL));
@@ -61,6 +64,7 @@ public class CyberCoreItemPipe extends Block implements IBucketPickupHandler, IL
 				.with(WEST, Boolean.valueOf(false)).with(DOWN, Boolean.valueOf(false)).with(UP, Boolean.valueOf(false))
 				.with(WATERLOGGED, Boolean.valueOf(false)));
 		this.shapes = this.makeShapes();
+
 	}
 
 	@Override

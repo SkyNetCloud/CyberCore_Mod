@@ -17,7 +17,7 @@ public class LunaGenContainer extends BaseContainerCore {
 	}
 
 	public LunaGenContainer(int id, PlayerInventory player, LunaGenTileEntity tileentity) {
-		super(id, ContainerNames.LUNARGEN_CON, player, tileentity, 4);
+		super(id, ContainerNames.LUNARGEN_CON, player, tileentity, id);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
 
@@ -51,23 +51,10 @@ public class LunaGenContainer extends BaseContainerCore {
 				return false;
 			}
 		});
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 2, 105, 31, "slot.util.storagecard") {
-			@Override
-			public boolean isItemValid(ItemStack itemstack) {
-				if (itemstack.getItem() == ItemInit.power_upgrade_card_1.asItem()) {
-					return true;
-				} else if (itemstack.getItem() == ItemInit.power_upgrade_card_2.asItem()) {
-					return true;
-				} else if (itemstack.getItem() == ItemInit.power_upgrade_card_3.asItem()) {
-					return true;
-				}
-				return false;
-			}
-		});
 
-		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 150, 86, "slot.util.powerin"));
+		this.addSlot(new SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 167, 38, "slot.util.powerin"));
 		this.addSlot(
-				new SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 168, 86, "slot.util.powerout"));
+				new SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 167, 57, "slot.util.powerout"));
 	}
 
 	@Override

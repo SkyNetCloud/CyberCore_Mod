@@ -30,12 +30,8 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 
-@Mod("cybercore")
+@Mod(Names.MODID)
 public class CyberCoreMain {
-	private static final String PROTOCOL_VERSION = "1";
-	public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(
-			new ResourceLocation("cybercore", "cybercore"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals,
-			PROTOCOL_VERSION::equals);
 	public static final String NAME = Names.NAME;
 	public static final String MODID = Names.MODID;
 	public static final Logger LOGGER = LogManager.getLogger();
@@ -44,35 +40,17 @@ public class CyberCoreMain {
 
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ConfigLoadder.COMMON);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigLoadder.CLIENT);
+
 		modBus.addListener(this::setup);
-
-		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ConfigLoadder.COMMON, Names.Server_CONFIG);
-		ConfigLoadder.loadConfig(ConfigLoadder.COMMON,
-				FMLPaths.CONFIGDIR.get().resolve(Names.Server_CONFIG).toString());
-
-		modBus.addListener(this::doClientStuff);
-
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigLoadder.CLIENT, Names.Client_CONFIG);
-		ConfigLoadder.loadConfig(ConfigLoadder.CLIENT,
-				FMLPaths.CONFIGDIR.get().resolve(Names.Client_CONFIG).toString());
 
 	}
 
-	private void setup(FMLCommonSetupEvent event) {
+	private void setup(final FMLCommonSetupEvent event) {
 
 		new CyberRecipeTypes();
 		CyberCorePacketHandler.register();
-
-	}
-
-	private void doClientStuff(final FMLClientSetupEvent event) {
-
-		RendererInit.registerEntityRenderer();
-		ScreenInit.registerGUI();
-
-		RenderTypeLookup.setRenderLayer(BlockInit.POWER_BOX, RenderType.getCutoutMipped());
-		RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.getCutout());
 
 	}
 

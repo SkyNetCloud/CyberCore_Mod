@@ -30,7 +30,7 @@ public class TomatoCrop extends CropsBlock {
 
 	public TomatoCrop() {
 		super(Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.CROP));
-		this.setRegistryName(new ResourceLocation(CyberCoreMain.MODID));
+		
 		this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
 	}
 

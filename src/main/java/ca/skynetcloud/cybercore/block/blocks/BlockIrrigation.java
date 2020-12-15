@@ -27,9 +27,9 @@ import net.minecraftforge.common.ToolType;
 
 public class BlockIrrigation extends BlockBaseCore {
 
-	public BlockIrrigation(ItemGroup group) {
+	public BlockIrrigation() {
 		super(Block.Properties.create(Material.WATER).hardnessAndResistance(1.3F).harvestTool(ToolType.PICKAXE)
-				.notSolid(), group, true);
+				.notSolid(), true);
 	}
 
 	@Override

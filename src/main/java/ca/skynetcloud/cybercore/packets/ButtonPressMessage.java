@@ -2,7 +2,7 @@ package ca.skynetcloud.cybercore.packets;
 
 import java.util.function.Supplier;
 
-import ca.skynetcloud.cybercore.util.TE.techblock.CablePainterTE;
+import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
@@ -39,11 +39,11 @@ public class ButtonPressMessage {
 			ServerPlayerEntity serverPlayer = ctx.get().getSender();
 			BlockPos pos = new BlockPos(pkt.x, pkt.y, pkt.z);
 			int buttonId = pkt.buttonId;
-			if (serverPlayer.world.isBlockLoaded(pos)) {
+			if (serverPlayer != null && serverPlayer.world.isBlockLoaded(pos)) {
 				TileEntity te = serverPlayer.world.getTileEntity(pos);
 				if (te != null) {
-					if (te instanceof CablePainterTE) {
-						((CablePainterTE) te).setSelectedId(buttonId);
+					if (te instanceof ColorChangeTileEntity) {
+						((ColorChangeTileEntity) te).setSelectedId(buttonId);
 					}
 				}
 			}

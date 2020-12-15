@@ -1,7 +1,5 @@
 package ca.skynetcloud.cybercore.block.blocks;
 
-import net.minecraft.item.ItemGroup;
-
 import java.util.Random;
 
 import org.apache.commons.lang3.tuple.Triple;
@@ -12,7 +10,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -20,9 +18,9 @@ import net.minecraftforge.common.ToolType;
 
 public class CropBlockGrower extends BlockBaseCore {
 
-	public CropBlockGrower(ItemGroup group, boolean hasItem) {
+	public CropBlockGrower(boolean hasItem) {
 		super(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F, 10.0F).harvestTool(ToolType.PICKAXE)
-				.sound(SoundType.GLASS).tickRandomly(), group, hasItem);
+				.sound(SoundType.GLASS).tickRandomly(), hasItem);
 
 	}
 

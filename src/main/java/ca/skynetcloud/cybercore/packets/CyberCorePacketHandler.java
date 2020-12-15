@@ -8,17 +8,21 @@ import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 
+import static java.util.Optional.of;
+
 public class CyberCorePacketHandler {
+
 	private static final String PROTOCOL_VERSION = Integer.toString(1);
-	public static final SimpleChannel INSTANCE = NetworkRegistry.ChannelBuilder
+	private static final SimpleChannel INSTANCE = NetworkRegistry.ChannelBuilder
 			.named(new ResourceLocation(CyberCoreMain.MODID, "main_channel"))
-			.networkProtocolVersion(() -> PROTOCOL_VERSION).clientAcceptedVersions(PROTOCOL_VERSION::equals)
-			.serverAcceptedVersions(PROTOCOL_VERSION::equals).simpleChannel();
+			.clientAcceptedVersions(PROTOCOL_VERSION::equals).serverAcceptedVersions(PROTOCOL_VERSION::equals)
+			.networkProtocolVersion(() -> PROTOCOL_VERSION).simpleChannel();
+	static int ID = 0;
 
-	public static final void register() {
+	public static void register() {
 
-		INSTANCE.registerMessage(0, ButtonPressMessage.class, ButtonPressMessage::encode, ButtonPressMessage::decode,
-				ButtonPressMessage::handle);
+		INSTANCE.registerMessage(ID++, ButtonPressMessage.class, ButtonPressMessage::encode, ButtonPressMessage::decode,
+				ButtonPressMessage::handle, of(NetworkDirection.PLAY_TO_SERVER));
 	}
 
 	public static void sendToServer(Object msg) {

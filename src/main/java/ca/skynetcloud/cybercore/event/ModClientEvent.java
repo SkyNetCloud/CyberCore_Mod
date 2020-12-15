@@ -1,6 +1,7 @@
 package ca.skynetcloud.cybercore.event;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,41 +22,39 @@ public class ModClientEvent {
 
 	@SubscribeEvent
 	public static void handlePlayerLoggedInEvent(EntityJoinWorldEvent event) {
-		CheckResult versionRAW = VersionChecker
-				.getResult(ModList.get().getModFileById(CyberCoreMain.MODID).getMods().get(0));
-		Status result = versionRAW.status;
+		VersionChecker.CheckResult res = VersionChecker
+				.getResult(ModList.get().getModContainerById(CyberCoreMain.MODID).get().getModInfo());
 
-		if (!(result.equals(Status.BETA_OUTDATED) || result.equals(Status.UP_TO_DATE)
-				|| result.equals(Status.AHEAD) && !hasSendUpdateAvailable)) {
+		if (event.getEntity() instanceof ClientPlayerEntity && res.status == VersionChecker.Status.OUTDATED
+				&& !hasSendUpdateAvailable) {
 			event.getEntity()
-					.sendMessage(
-							new StringTextComponent(
-									TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] " + TextFormatting.WHITE
-											+ "A new version is available (" + versionRAW.target + "), please update!"),
+					.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
+							+ TextFormatting.WHITE + "A new version is available (" + res.target + "), please update!"),
 							null);
 			event.getEntity().sendMessage(new StringTextComponent(TextFormatting.YELLOW + "Changelog:"), null);
 
-			String changes = versionRAW.changes.get(versionRAW.target);
+			String changes = res.changes.get(res.target);
 			if (changes != null) {
 				String changesFormat[] = changes.split("\n");
 
 				for (String change : changesFormat) {
 					event.getEntity().sendMessage(new StringTextComponent(TextFormatting.WHITE + "- " + change), null);
 				}
-				if (versionRAW.changes.size() > 1) {
+				if (res.changes.size() > 1) {
 					event.getEntity().sendMessage(new StringTextComponent(TextFormatting.WHITE + "- And more..."),
 							null);
 				}
 			}
 		}
-		if (result.equals(Status.UP_TO_DATE)) {
+
+		if (res.status == VersionChecker.Status.UP_TO_DATE && !hasSendUpdateAvailable) {
 			event.getEntity()
 					.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + TextFormatting.WHITE
 							+ CyberCoreMain.NAME + TextFormatting.GREEN + "] " + TextFormatting.WHITE + "No New Version"
 							+ " Join Discord https://discord.gg/8jwjjyK"), null);
 		}
 
-		if (result.equals(Status.AHEAD)) {
+		if (res.status == VersionChecker.Status.AHEAD && !hasSendUpdateAvailable) {
 			event.getEntity()
 					.sendMessage(
 							new StringTextComponent(TextFormatting.GREEN + "[" + TextFormatting.WHITE
@@ -63,6 +62,16 @@ public class ModClientEvent {
 									+ "Your a Head in The Version List" + " Join Discord https://discord.gg/8jwjjyK"),
 							null);
 		}
+
+		if (res.status == VersionChecker.Status.BETA && !hasSendUpdateAvailable) {
+			event.getEntity()
+					.sendMessage(
+							new StringTextComponent(TextFormatting.GREEN + "[" + TextFormatting.WHITE
+									+ CyberCoreMain.NAME + TextFormatting.GREEN + "] " + TextFormatting.WHITE
+									+ "Your a Head in The Version List" + " Join Discord https://discord.gg/8jwjjyK"),
+							null);
+		}
+		hasSendUpdateAvailable = true;
 	}
 
 }

@@ -59,31 +59,25 @@ public class ModRegistryEvent {
 		ItemInit.registerItems(event);
 		event.getRegistry().register(ItemInit.cyber_bits);
 		event.getRegistry().register(ItemInit.cyber_blend);
-
 		event.getRegistry().register(ItemInit.planter);
 		event.getRegistry().register(ItemInit.tiller);
-
 		event.getRegistry().register(ItemInit.DARK_STEEL_HELMET);
 		event.getRegistry().register(ItemInit.DARK_STEEL_CHESTPLATE);
 		event.getRegistry().register(ItemInit.DARK_STEEL_LEGGINGS);
 		event.getRegistry().register(ItemInit.DARK_STEEL_BOOTS);
-
 		event.getRegistry().register(ItemInit.RUBY_HELMET);
 		event.getRegistry().register(ItemInit.RUBY_CHESTPLATE);
 		event.getRegistry().register(ItemInit.RUBY_LEGGINGS);
 		event.getRegistry().register(ItemInit.RUBY_BOOTS);
-
 		event.getRegistry().register(ItemInit.CYBER_HELMET);
 		event.getRegistry().register(ItemInit.CYBER_CHESTPLATE);
 		event.getRegistry().register(ItemInit.CYBER_LEGGINGS);
+		event.getRegistry().register(ItemInit.dark_steel_ingot);
+		event.getRegistry().register(ItemInit.ruby_ingot);
+		event.getRegistry().register(ItemInit.cyber_ingot);
 		event.getRegistry().register(ItemInit.CYBER_BOOTS);
-
 		event.getRegistry().register(ItemInit.whrechItem);
-
-		event.getRegistry().register(ItemInit.dark_steel_block);
-
 		event.getRegistry().register(ItemInit.taco_shell);
-
 		event.getRegistry().register(ItemInit.cheese);
 		event.getRegistry().register(ItemInit.tomato);
 		event.getRegistry().register(ItemInit.taco);
@@ -123,11 +117,11 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerTileEntityType(RegistryEvent.Register<TileEntityType<?>> event) {
 
-		event.getRegistry().register(TileEntityNames.LUNAR_GEN_MACHINE_TE.setRegistryName("lunarsolargenerator_block"));
-		event.getRegistry().register(TileEntityNames.CABLE_PAINTER_TE.setRegistryName("cable_painter"));
-		event.getRegistry().register(TileEntityNames.POWER_BOX_TE.setRegistryName("power_storage"));
-		event.getRegistry().register(TileEntityNames.POWER_FURNACE_TE.setRegistryName("powered_furnace"));
-		event.getRegistry().register(TileEntityNames.IrrigationTile.setRegistryName("block_irrigation"));
+		event.getRegistry().register(TileEntityNames.LUNAR_GEN_MACHINE_TE.setRegistryName(Names.LUNAR_BLOCK));
+		event.getRegistry().register(TileEntityNames.CABLE_PAINTER_TE.setRegistryName(Names.CABLE_PAINTER));
+		event.getRegistry().register(TileEntityNames.POWER_BOX_TE.setRegistryName(Names.POWER_BOX));
+		event.getRegistry().register(TileEntityNames.POWER_FURNACE_TE.setRegistryName(Names.POWER_FURNACE_BLOCK));
+		event.getRegistry().register(TileEntityNames.IrrigationTile.setRegistryName(Names.IRRIGATION_BLOCK));
 		event.getRegistry().register(TileEntityNames.CABLE_TE.setRegistryName(Names.CABLE));
 
 		TileEntityNames.registerTileEntities(event);
@@ -143,7 +137,7 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerContainerType(RegistryEvent.Register<ContainerType<?>> event) {
 		event.getRegistry().register(ContainerNames.LUNARGEN_CON.setRegistryName(Names.LUNARGEN_CON));
-		event.getRegistry().register(ContainerNames.CABLE_PAINTER_CON.setRegistryName("cable_painter"));
+		event.getRegistry().register(ContainerNames.CABLE_PAINTER_CON.setRegistryName(Names.CABLE_PAINTER));
 		event.getRegistry().register(ContainerNames.POWER_BOX_CON.setRegistryName(Names.POWER_BOX_CON));
 		event.getRegistry().register(ContainerNames.POWER_FURNCAE_CON.setRegistryName(Names.POWERED_FURNACE_CON));
 

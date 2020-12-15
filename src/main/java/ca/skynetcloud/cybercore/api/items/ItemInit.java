@@ -55,7 +55,6 @@ import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import ca.skynetcloud.cybercore.api.Names;
 import ca.skynetcloud.cybercore.api.blocks.BlockInit;
-import ca.skynetcloud.cybercore.block.BlockItemCore;
 import ca.skynetcloud.cybercore.init.BasisToolMaterial;
 import ca.skynetcloud.cybercore.init.CustomArmorMaterial;
 import ca.skynetcloud.cybercore.init.SeedsInit;
@@ -132,8 +131,6 @@ public class ItemInit {
 
 	public static BlockItem dark_steel_block = null;
 
-	public static BlockItem lettuce_crop = null;
-
 	public static BlockItem power_furnace_block = null;
 
 	public static BlockItem cyber_ore = null;
@@ -141,8 +138,6 @@ public class ItemInit {
 	public static BlockItem dark_steel_ore = null;
 
 	public static BlockItem ruby_ore = null;;
-
-	public static BlockItem tomato_crop = null;
 
 	public static BlockItem lunar = null;
 
@@ -319,19 +314,50 @@ public class ItemInit {
 
 		registerItem(registry, new BlockItem(BlockInit.RUBY_ORE, new Item.Properties().group(CyberCoreTab.instance)),
 				Names.RUBY_ORE);
+
 		registerItem(registry,
 				new BlockItem(BlockInit.DARK_STEEL_ORE, new Item.Properties().group(CyberCoreTab.instance)),
 				Names.DARK_STEEL_ORE);
+
 		registerItem(registry, new BlockItem(BlockInit.CYBER_ORE, new Item.Properties().group(CyberCoreTab.instance)),
 				Names.CYBER_ORE);
+
 		registerItem(registry,
 				new BlockItem(BlockInit.DARK_STEEL_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
 				Names.DARK_STEEL_BLOCK);
 		registerItem(registry, new BlockItem(BlockInit.RUBY_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
 				Names.RUBY_BLOCK);
 
-		registerItem(registry, new BlockItem(BlockInit.ITEM_PIPE, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.ITEM_CABLE);
+		registerItem(registry, new BlockItem(BlockInit.BLOCK_PIPE, new Item.Properties()), Names.BLOCK_PIPE);
+
+		registerItem(registry, new BlockItem(BlockInit.CABLE, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.CABLE);
+
+		registerItem(registry,
+				new BlockItem(BlockInit.BLOCK_EXTRACTOR, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.BLOCK_EXTRACTOR);
+
+		registerItem(registry,
+				new BlockItem(BlockInit.BLOCK_LOADER, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.BLOCK_LOADER);
+
+		registerItem(registry, new BlockItem(BlockInit.POWER_BOX, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.POWER_BOX);
+
+		registerItem(registry,
+				new BlockItem(BlockInit.POWER_FURNACE_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.POWER_FURNACE_BLOCK);
+
+		registerItem(registry, new BlockItem(BlockInit.LUNAR_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.LUNAR_BLOCK);
+
+		registerItem(registry,
+				new BlockItem(BlockInit.IRRIGATION_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.IRRIGATION_BLOCK);
+
+		registerItem(registry,
+				new BlockItem(BlockInit.CABLE_PAINTER, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.CABLE_PAINTER);
 
 		IntStream.range(0, 16)
 				.forEach(i -> registerItem(registry,

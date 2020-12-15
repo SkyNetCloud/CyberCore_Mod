@@ -2,12 +2,13 @@ modLoader="javafml" #mandatory
 license="All Rights Reserved"
 loaderVersion="[35,)" #mandatory (28 is current forge version)
 issueTrackerURL="https://github.com/SkyNetCloud/CyberCore_Mod/issues"
+logoFile="Logo.png" #optional
+
 [[mods]] #mandatory
 modId="cybercore" #mandatory
-version="1.10.19041" #mandatory
+version="${file.jarVersion}" #mandatory
 displayName="CyberCore" #mandatory
 authors="SkyNetCloud"
-logoFile="Logo.png" #optional
 updateJSONURL="https://raw.githubusercontent.com/SkyNetCloud/CyberCore_Mod/master/update.json" #optional
 description='''
 A small Tech Mod With a lot being adding when I have the Time :D

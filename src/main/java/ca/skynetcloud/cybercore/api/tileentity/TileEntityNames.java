@@ -7,7 +7,7 @@ import ca.skynetcloud.cybercore.api.Names;
 import ca.skynetcloud.cybercore.api.blocks.BlockInit;
 import ca.skynetcloud.cybercore.util.TE.cable.CableTileEntity;
 import ca.skynetcloud.cybercore.util.TE.cable.ItemPipeTileEntity;
-import ca.skynetcloud.cybercore.util.TE.techblock.CablePainterTE;
+import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.LunaGenTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowedFurnaceTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerStorageTileEntity;
@@ -31,10 +31,10 @@ public class TileEntityNames {
 	public static final TileEntityType<CableTileEntity> CABLE_TE = TileEntityType.Builder
 			.create(CableTileEntity::new, BlockInit.CABLE).build(null);
 
-	public static final TileEntityType<CablePainterTE> CABLE_PAINTER_TE = TileEntityType.Builder
-			.create(CablePainterTE::new, BlockInit.CABLE_PAINTER).build(null);
+	public static final TileEntityType<ColorChangeTileEntity> CABLE_PAINTER_TE = TileEntityType.Builder
+			.create(ColorChangeTileEntity::new, BlockInit.CABLE_PAINTER).build(null);
 
-	@ObjectHolder(Names.ITEM_CABLE)
+	@ObjectHolder(Names.BLOCK_PIPE)
 	public static final TileEntityType<ItemPipeTileEntity> ITEM_CABLE = null;
 
 	public static final TileEntityType<PowedFurnaceTileEntity> POWER_FURNACE_TE = TileEntityType.Builder
@@ -48,10 +48,10 @@ public class TileEntityNames {
 		Block[] pipe = new Block[17];
 		IntStream.range(0, 16).forEach(i -> pipe[i] = ForgeRegistries.BLOCKS
 				.getValue(new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Item_TUBE_NAMES[i])));
-		pipe[16] = BlockInit.ITEM_PIPE;
+		pipe[16] = BlockInit.BLOCK_PIPE;
 
 		event.getRegistry().register(TileEntityType.Builder.create(ItemPipeTileEntity::new, pipe).build(null)
-				.setRegistryName(Names.ITEM_CABLE));
+				.setRegistryName(Names.BLOCK_PIPE));
 
 	}
 

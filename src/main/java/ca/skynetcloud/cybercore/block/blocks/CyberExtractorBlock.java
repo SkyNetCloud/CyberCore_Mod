@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -32,7 +33,7 @@ public class CyberExtractorBlock extends BlockBaseCore {
 	protected final VoxelShape[] shapes;
 
 	public CyberExtractorBlock(Properties properties) {
-		super(properties, CyberCoreTab.instance, true);
+		super(properties, true);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP));
 		this.shapes = this.makeShapes();
 	}

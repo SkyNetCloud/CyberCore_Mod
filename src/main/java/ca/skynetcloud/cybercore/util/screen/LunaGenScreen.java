@@ -3,7 +3,7 @@ package ca.skynetcloud.cybercore.util.screen;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
+import ca.skynetcloud.cybercore.item.UpgradeLvl;
 import ca.skynetcloud.cybercore.util.TE.techblock.LunaGenTileEntity;
 import ca.skynetcloud.cybercore.util.container.LunaGenContainer;
 import net.minecraft.entity.player.PlayerInventory;
@@ -18,19 +18,15 @@ public class LunaGenScreen extends ScreenBaseCore<LunaGenContainer> {
 		super(container, player, name);
 	}
 
-
 	@Override
-	protected void drawGuiContainerBackgroundLayer(MatrixStack mStack,  float partialTicks, int mouseX, int mouseY) {
-
-		minecraft.getTextureManager().bindTexture(TEXTURES);
-
-		blit(mStack, this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+	protected void drawGuiContainerBackgroundLayer(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
+		super.drawGuiContainerBackgroundLayer(mStack, partialTicks, mouseX, mouseY);
 
 		int k = this.getEnergyStoredScaled(55);
-		blit(mStack, this.guiLeft + 149, this.guiTop + 28 + (55 - k), 205, 55 - k, 16, 0 + k);
+		blit(mStack, this.guiLeft + 150, this.guiTop + 28 + (55 - k), 208, 55 - k, 16, 0 + k);
 
 		int l = 0;
-		switch (((LunaGenTileEntity) this.te).getMarkcard(0, ItemType.SOLAR_FOCUS)) {
+		switch (((LunaGenTileEntity) this.te).getMarkcard(0, UpgradeLvl.ItemType.SOLAR_FOCUS)) {
 		case 0:
 			l = 0;
 			break;
@@ -47,15 +43,18 @@ public class LunaGenScreen extends ScreenBaseCore<LunaGenContainer> {
 			l = 35;
 			break;
 		}
-
 		int j = getWorkLoadScaled(17);
 		blit(mStack, this.guiLeft + 136, this.guiTop + 36, 205, 56, j, l);
-
 	}
 
 	private int getWorkLoadScaled(int pixels) {
 		int i = container.getValue(2);
 		int j = ((LunaGenTileEntity) this.te).getTicksPerAmount();
 		return i != 0 && j != 0 ? i * pixels / j : 0;
+	}
+
+	@Override
+	protected ResourceLocation getBackgroundTexture() {
+		return TEXTURES;
 	}
 }

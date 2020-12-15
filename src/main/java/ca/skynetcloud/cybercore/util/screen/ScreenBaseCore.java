@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.util.TE.powerTE.CyberCorePowerTE;
+import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyTileEntity;
 import ca.skynetcloud.cybercore.util.container.BaseContainerCore;
 import ca.skynetcloud.cybercore.util.container.BaseContainerCore.SlotItemHandlerWithInfo;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -16,9 +16,10 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public abstract class ScreenBaseCore<T extends BaseContainerCore> extends ContainerScreen<T> {
 	protected static final ResourceLocation TEXTURES = new ResourceLocation(
-			CyberCoreMain.MODID + ":textures/gui/container/lunagen.png");
+			CyberCoreMain.MODID + ":textures/gui/container/new_lunagen.png");
 	protected final PlayerInventory player;
-	protected final CyberCorePowerTE te;
+	protected final CoreEnergyTileEntity te;
+	protected abstract ResourceLocation getBackgroundTexture();
 
 	@SuppressWarnings("unchecked")
 	public ScreenBaseCore(BaseContainerCore inventorySlotsIn, PlayerInventory inventoryPlayer, ITextComponent title) {
@@ -31,7 +32,7 @@ public abstract class ScreenBaseCore<T extends BaseContainerCore> extends Contai
 	public void init() {
 		super.init();
 		this.xSize = 205;
-		this.ySize = 202;
+		this.ySize = 197;
 		this.guiLeft = (this.width - this.xSize) / 2;
 		this.guiTop = (this.height - this.ySize) / 2;
 	}
@@ -46,7 +47,7 @@ public abstract class ScreenBaseCore<T extends BaseContainerCore> extends Contai
 	}
 
 	protected void drawTooltips(MatrixStack mStack, int mouseX, int mouseY) {
-		drawTooltip(mStack, te.getEnergyStored() + "/" + te.getMaxEnergyStored(), mouseX, mouseY, 148, 27, 16, 55);
+		
 	}
 
 	public void drawTooltip(MatrixStack mStack, String lines, int mouseX, int mouseY, int posX, int posY, int width,
@@ -63,6 +64,7 @@ public abstract class ScreenBaseCore<T extends BaseContainerCore> extends Contai
 	@Override
 	protected void drawGuiContainerBackgroundLayer(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
 		RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
+		minecraft.getTextureManager().bindTexture(getBackgroundTexture());
 		blit(mStack, this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}
 

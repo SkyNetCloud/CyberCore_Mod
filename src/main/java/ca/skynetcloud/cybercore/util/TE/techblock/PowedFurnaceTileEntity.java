@@ -4,12 +4,14 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
+import ca.skynetcloud.cybercore.api.Names;
 import ca.skynetcloud.cybercore.api.blocks.BlockInit;
 import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import ca.skynetcloud.cybercore.block.tech.blocks.CyberCorePowerBlock;
+import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
-import ca.skynetcloud.cybercore.util.TE.powerTE.CyberCoreEndPowerTE;
 import ca.skynetcloud.cybercore.util.container.PowerFurnaceContainer;
+import ca.skynetcloud.cybercore.util.networking.util.CyberCoreConstants;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -20,6 +22,8 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -28,7 +32,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RangedWrapper;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
-public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
+public class PowedFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 
 	public int[] ticksPassed = new int[6];
 	boolean isSmelting;
@@ -99,7 +103,7 @@ public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
 	};
 
 	public PowedFurnaceTileEntity() {
-		super(TileEntityNames.POWER_FURNACE_TE, 10000, 15);
+		super(TileEntityNames.POWER_FURNACE_TE, 10000, 15, CyberCoreConstants.POWERED_COOKER);
 		inputs = new RangedWrapper(itemhandler, 0, 6);
 		outputs = new RangedWrapper(itemhandler, 6, 12);
 		inputs_provider = LazyOptional.of(() -> inputs);
@@ -267,11 +271,6 @@ public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
 	}
 
 	@Override
-	public String getNameString() {
-		return "megafurnace";
-	}
-
-	@Override
 	public Container createMenu(int id, PlayerInventory inv, PlayerEntity player) {
 		return new PowerFurnaceContainer(id, inv, this);
 	}
@@ -284,6 +283,11 @@ public class PowedFurnaceTileEntity extends CyberCoreEndPowerTE {
 	@Override
 	public int getEnergyOutSlot() {
 		return 14;
+	}
+	
+	@Override
+	public ITextComponent getDisplayName() {
+		return new TranslationTextComponent(Names.POWER_COOKER_CON_NAME);
 	}
 
 }

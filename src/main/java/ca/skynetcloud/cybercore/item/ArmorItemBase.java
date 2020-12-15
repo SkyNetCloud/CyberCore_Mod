@@ -8,6 +8,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.text.StringTextComponent;
@@ -24,7 +25,9 @@ public class ArmorItemBase extends ArmorItem {
 	}
 
 	@Override
-	public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+	public void inventoryTick(ItemStack stack, World world, Entity entityIn, int itemSlot, boolean isSelected) {
+
+		PlayerEntity player = (PlayerEntity) entityIn;
 
 		if (player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == ItemInit.CYBER_BOOTS.getItem()
 				&& player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() == ItemInit.CYBER_CHESTPLATE.getItem()
@@ -34,7 +37,12 @@ public class ArmorItemBase extends ArmorItem {
 			player.addPotionEffect(new EffectInstance(Effects.HASTE, 255, 4, false, false, true));
 			player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 11, 1, false, false, true));
 			player.addPotionEffect(new EffectInstance(Effects.HERO_OF_THE_VILLAGE, 255, 1, false, false, true));
+		} else {
+			if (player.getArmorInventoryList() == Items.AIR.getItem()) {
+				player.clearActivePotions();
+
 			}
+		}
 
 		if (player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == ItemInit.DARK_STEEL_BOOTS.getItem()
 				&& player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() == ItemInit.DARK_STEEL_CHESTPLATE
@@ -61,6 +69,9 @@ public class ArmorItemBase extends ArmorItem {
 			player.addPotionEffect(new EffectInstance(Effects.SATURATION, 20, 1, false, false, true));
 			player.addPotionEffect(new EffectInstance(Effects.HASTE, 20, 1, false, false, true));
 			player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 20, 1, false, false, true));
+		} else if (player.inventory.armorInventory.isEmpty()) {
+
+			player.clearActivePotions();
 		}
 
 	}
