@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class ReconfigureContainer extends BaseContainerCore
+public class ReconfigureContainer extends BaseContainerCore 
 {
 	public ReconfigureContainer(int id, PlayerInventory inv)
 	{
