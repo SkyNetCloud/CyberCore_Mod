@@ -109,6 +109,8 @@ public class ItemInit {
 
 	public static Item whrechItem = new WrenchItem();
 
+	// public static Item cable = new BlockItemCore(BlockInit.CABLE);
+
 	public static Item taco_shell = new Item(new Item.Properties().group(CyberCoreTab.instance))
 			.setRegistryName("taco_shell");
 
@@ -119,6 +121,8 @@ public class ItemInit {
 			.setRegistryName("cyber_blend");
 
 	public static BlockItem ruby_block = new BlockItemCore(BlockInit.RUBY_BLOCK);
+
+	public static BlockItem power_cube = new BlockItemCore(BlockInit.Battery);
 
 	public static BlockItem dark_steel_block = new BlockItemCore(BlockInit.DARK_STEEL_BLOCK);
 
@@ -214,19 +218,19 @@ public class ItemInit {
 	public static Item dark_steel_ingot = new Item(new Item.Properties().group(CyberCoreTab.instance))
 			.setRegistryName(DARK_STEEL_INGOT);
 
-	public static Item lunar_upgrade_card_1 = new UpgradeLvl(
+	public static Item power_up_card_1 = new UpgradeLvl(
 			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 1, ItemType.SOLAR_FOCUS)
 					.setRegistryName(LUNAR_CARD_1);
 
-	public static Item lunar_upgrade_card_2 = new UpgradeLvl(
+	public static Item power_up_card_2 = new UpgradeLvl(
 			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 2, ItemType.SOLAR_FOCUS)
 					.setRegistryName(LUNAR_CARD_2);
 
-	public static Item lunar_upgrade_card_3 = new UpgradeLvl(
+	public static Item power_up_card_3 = new UpgradeLvl(
 			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 3, ItemType.SOLAR_FOCUS)
 					.setRegistryName(LUNAR_CARD_3);
 
-	public static Item lunar_upgrade_card_4 = new UpgradeLvl(
+	public static Item power_up_card_4 = new UpgradeLvl(
 			new Item.Properties().group(CyberCoreTab.instance).maxStackSize(1), 4, ItemType.SOLAR_FOCUS)
 					.setRegistryName(LUNAR_CARD_4);
 
@@ -296,5 +300,26 @@ public class ItemInit {
 
 	public static Item CYBER_BOOTS = new ArmorItemBase(CustomArmorMaterial.Cyber_Ingot, "cyber", EquipmentSlotType.FEET,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_BOOTS_NAME);
+
+	public static void registerItems(RegistryEvent.Register<Item> event) {
+		IForgeRegistry<Item> registry = event.getRegistry();
+
+		registerItem(registry, new BlockItem(BlockInit.CABLE, new Item.Properties().group(CyberCoreTab.instance)),
+				Names.CABLE);
+
+		IntStream.range(0, 16).forEach(i -> registerItem(registry,
+				new BlockItem(
+						ForgeRegistries.BLOCKS.getValue(
+								new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Power_Cable_Names[i])),
+						new Item.Properties().group(CyberCoreTab.instance)),
+				Names.COLORED_Power_Cable_Names[i]));
+	}
+
+	private static <T extends Item> T registerItem(IForgeRegistry<Item> registry, T newItem, String name) {
+		String prefixedName = CyberCoreMain.MODID + ":" + name;
+		newItem.setRegistryName(prefixedName);
+		registry.register(newItem);
+		return newItem;
+	}
 
 }

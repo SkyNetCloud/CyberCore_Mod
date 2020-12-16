@@ -3,7 +3,6 @@ package ca.skynetcloud.cybercore.api;
 import java.util.Arrays;
 
 import net.minecraft.item.DyeColor;
-import net.minecraft.util.ResourceLocation;
 
 public class Names {
 
@@ -14,20 +13,10 @@ public class Names {
 	public static final String MODID = "cybercore";
 	public static final String INFO = "INFO";
 
-	public static final String CYBERVILLAGER = MODID + ":cybervillager";
-	public static final String PLAYER_AVOIDING_ROBOT = MODID + ":player_avoiding_robot";
-	public static final String CYBERVILLAGERTRADESERIALIZER = MODID + ":villagertradeserializer";
 
-	public static final ResourceLocation CYBERVILLAGERTRUSTCAP = new ResourceLocation(MODID, "villagertrustcap");
-
-	public static final ResourceLocation ROBOT_TEXTURES = new ResourceLocation(MODID, "robot_textures");
-
-	public static final String Client_CONFIG = "cybercore-client.toml";
-	public static final String Server_CONFIG = "cybercore-server.toml";
-
-	public static final String Villager_Client_CONFIG = "villager-trade-client.toml";
-	public static final String Villager_Server_CONFIG = "cybercore-trade-server.toml";
-
+	public static final String[] COLORED_Power_Cable_Names = Arrays.stream(DyeColor.values())
+			.map(color -> color.toString() + "_cable").toArray(String[]::new);
+	
 	public static final String[] COLORED_Item_TUBE_NAMES = Arrays.stream(DyeColor.values())
 			.map(color -> color.toString() + "_block_pipe").toArray(String[]::new);
 
@@ -48,10 +37,10 @@ public class Names {
 	public static final String SPEED_CARD_3 = (MODID + ":speed_upgrade_card_3");
 	public static final String SPEED_CARD_4 = (MODID + ":speed_upgrade_card_4");
 
-	public static final String LUNAR_CARD_1 = (MODID + ":lunar_upgrade_card_1");
-	public static final String LUNAR_CARD_2 = (MODID + ":lunar_upgrade_card_2");
-	public static final String LUNAR_CARD_3 = (MODID + ":lunar_upgrade_card_3");
-	public static final String LUNAR_CARD_4 = (MODID + ":lunar_upgrade_card_4");
+	public static final String LUNAR_CARD_1 = (MODID + ":power_up_card_1");
+	public static final String LUNAR_CARD_2 = (MODID + ":power_up_card_2");
+	public static final String LUNAR_CARD_3 = (MODID + ":power_up_card_3");
+	public static final String LUNAR_CARD_4 = (MODID + ":power_up_card_4");
 
 	public static final String SOLAR_CARD_1 = (MODID + ":solar_upgrade_card_1");
 	public static final String SOLAR_CARD_2 = (MODID + ":solar_upgrade_card_2");

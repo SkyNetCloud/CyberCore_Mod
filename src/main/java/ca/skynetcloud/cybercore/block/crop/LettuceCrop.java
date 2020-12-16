@@ -1,6 +1,5 @@
 package ca.skynetcloud.cybercore.block.crop;
 
-import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.api.items.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -15,7 +14,6 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;

@@ -12,7 +12,7 @@
         },
         "B": 
         {
-            "item": "cybercore:lunar_upgrade_card_1"
+            "item": "cybercore:power_up_card_1"
         },
         "C": 
         {
@@ -20,7 +20,7 @@
         }
     },
     "result": {
-        "item": "cybercore:lunar_upgrade_card_2",
+        "item": "cybercore:power_up_card_2",
         "count": 1
     }
 }

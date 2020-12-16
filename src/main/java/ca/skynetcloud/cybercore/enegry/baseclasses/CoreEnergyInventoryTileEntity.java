@@ -28,14 +28,9 @@ abstract public class CoreEnergyInventoryTileEntity extends CoreEnergyTileEntity
 		super(type, energyStorage);
 		itemhandler = new ItemStackHandler(invSize);
 		inventoryCap = LazyOptional.of(() -> itemhandler);
-		this.tier = tier;
 	}
 
-	/**
-	 * Get Items that will be spawned in the world when the block is destroyed
-	 *
-	 * @return list of items to spawn
-	 */
+
 	public List<ItemStack> getInventoryContent() {
 		List<ItemStack> stack = new ArrayList<ItemStack>();
 

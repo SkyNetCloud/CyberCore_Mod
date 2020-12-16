@@ -1,7 +1,6 @@
 package ca.skynetcloud.cybercore;
 
 import ca.skynetcloud.cybercore.api.blocks.BlockInit;
-import ca.skynetcloud.cybercore.init.RendererInit;
 import ca.skynetcloud.cybercore.init.ScreenInit;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -18,7 +17,6 @@ public class CyberCoreClient {
 
 		ScreenInit.registerGUI();
 
-	
 		RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.getCutout());
 	}

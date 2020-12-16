@@ -5,8 +5,8 @@ import org.apache.logging.log4j.Logger;
 
 import ca.skynetcloud.cybercore.api.Names;
 import ca.skynetcloud.cybercore.api.items.ItemInit;
-import ca.skynetcloud.cybercore.recipes.CyberRecipeTypes;
 import ca.skynetcloud.cybercore.util.networking.config.ConfigLoadder;
+import ca.skynetcloud.cybercore.world.gen.OreGeneration;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,7 +35,7 @@ public class CyberCoreMain {
 
 	private void setup(final FMLCommonSetupEvent event) {
 
-		new CyberRecipeTypes();
+		OreGeneration.registerOres();
 
 	}
 

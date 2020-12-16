@@ -62,7 +62,6 @@ abstract public class CoreEnergyTileEntity extends TileEntity implements ITickab
 		this.energystorage.deserializeNBT(compound.getCompound("energy"));
 	}
 
-
 	public int getEnergyStored() {
 		return this.energystorage.getEnergyStored();
 	}

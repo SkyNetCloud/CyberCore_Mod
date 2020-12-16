@@ -8,7 +8,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.text.StringTextComponent;
@@ -18,6 +17,10 @@ import net.minecraft.world.World;
 public class ArmorItemBase extends ArmorItem {
 	private String resString;
 
+	public static boolean hasSendBoundMessage = false;
+	
+	public static boolean hasTakenOff = false;
+
 	public ArmorItemBase(IArmorMaterial mat, String resString, EquipmentSlotType equipmentSlotIn,
 			Properties properties) {
 		super(mat, equipmentSlotIn, properties);
@@ -25,24 +28,25 @@ public class ArmorItemBase extends ArmorItem {
 	}
 
 	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entityIn, int itemSlot, boolean isSelected) {
-
-		PlayerEntity player = (PlayerEntity) entityIn;
+	public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
 
 		if (player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == ItemInit.CYBER_BOOTS.getItem()
 				&& player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() == ItemInit.CYBER_CHESTPLATE.getItem()
 				&& player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == ItemInit.CYBER_HELMET.getItem()
 				&& player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem() == ItemInit.CYBER_LEGGINGS.getItem()) {
 			player.addPotionEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 255, 1, false, false, true));
-			player.addPotionEffect(new EffectInstance(Effects.HASTE, 255, 4, false, false, true));
+			player.addPotionEffect(new EffectInstance(Effects.HASTE, 255, 1, false, false, true));
 			player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 11, 1, false, false, true));
 			player.addPotionEffect(new EffectInstance(Effects.HERO_OF_THE_VILLAGE, 255, 1, false, false, true));
+			player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 255, 1, false, false, true));
+		
 		} else {
-			if (player.getArmorInventoryList() == Items.AIR.getItem()) {
+			if (player.inventory.armorInventory != null) {
 				player.clearActivePotions();
-
+				
 			}
 		}
+		
 
 		if (player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == ItemInit.DARK_STEEL_BOOTS.getItem()
 				&& player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() == ItemInit.DARK_STEEL_CHESTPLATE
@@ -53,25 +57,34 @@ public class ArmorItemBase extends ArmorItem {
 			if (world.isRemote) {
 
 			}
-			player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 255, 1, false, false, true));
-			player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 255, 4, false, false, true));
-			player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 11, 1, false, false, true));
+			player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200000, 1, false, false, false));
+			player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 200000, 1, false, false, false));
+			player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 200000, 1, false, false, false));
+		} else if (player.inventory.armorInventory != null) {
+
+			player.clearActivePotions();
+
 		}
 
 		if (player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == ItemInit.RUBY_BOOTS.getItem()
 				&& player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() == ItemInit.RUBY_CHESTPLATE.getItem()
 				&& player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == ItemInit.RUBY_HELMET.getItem()
 				&& player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem() == ItemInit.RUBY_LEGGINGS.getItem()) {
-			if (world.isRemote) {
-				player.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
-						+ TextFormatting.RED + "The Armor is Bound to it's rightful owner"), null);
+			if (!hasSendBoundMessage) {
+				player.sendMessage(
+						new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
+								+ TextFormatting.RED
+								+ "The Armor is Bound to it's rightful owner. While you seem to get some cool effect"),
+						null);
 			}
-			player.addPotionEffect(new EffectInstance(Effects.SATURATION, 20, 1, false, false, true));
-			player.addPotionEffect(new EffectInstance(Effects.HASTE, 20, 1, false, false, true));
-			player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 20, 1, false, false, true));
-		} else if (player.inventory.armorInventory.isEmpty()) {
+			hasSendBoundMessage = true;
+			player.addPotionEffect(new EffectInstance(Effects.SATURATION, 200000, 1, false, false, false));
+			player.addPotionEffect(new EffectInstance(Effects.HASTE, 200000, 1, false, false, false));
+			player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 200000, 1, false, false, false));
+		} else if (player.inventory.armorInventory != null) {
 
 			player.clearActivePotions();
+
 		}
 
 	}

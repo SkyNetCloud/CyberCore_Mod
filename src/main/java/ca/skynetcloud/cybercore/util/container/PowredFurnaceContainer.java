@@ -27,17 +27,17 @@ public class PowredFurnaceContainer extends BaseContainerCore {
 
 		String card = "slot.poweredfurnace.cardcard";
 
-		this.addSlot(new SlotItemHandlerWithInfo(handler, 16, 300, 60, card) {
+		this.addSlot(new SlotItemHandlerWithInfo(handler, 16, 180, 10, card) {
 			@Override
 			public boolean isItemValid(ItemStack itemstack) {
 
-				if (itemstack.getItem() == ItemInit.lunar_upgrade_card_1.asItem()) {
+				if (itemstack.getItem() == ItemInit.power_up_card_1.asItem()) {
 					return true;
-				} else if (itemstack.getItem() == ItemInit.lunar_upgrade_card_2.asItem()) {
+				} else if (itemstack.getItem() == ItemInit.power_up_card_2.asItem()) {
 					return true;
-				} else if (itemstack.getItem() == ItemInit.lunar_upgrade_card_3.asItem()) {
+				} else if (itemstack.getItem() == ItemInit.power_up_card_3.asItem()) {
 					return true;
-				} else if (itemstack.getItem() == ItemInit.lunar_upgrade_card_4.asItem()) {
+				} else if (itemstack.getItem() == ItemInit.power_up_card_4.asItem()) {
 					return true;
 				}
 				return false;
@@ -47,13 +47,13 @@ public class PowredFurnaceContainer extends BaseContainerCore {
 		this.addSlot(new SlotItemHandlerWithInfo(handler, 0, 21, 27, input) {
 			@Override
 			public boolean isItemValid(ItemStack itemstack) {
-				if (itemstack.getItem() == ItemInit.lunar_upgrade_card_1.asItem()) {
+				if (itemstack.getItem() == ItemInit.power_up_card_1.asItem()) {
 					return false;
-				} else if (itemstack.getItem() == ItemInit.lunar_upgrade_card_2.asItem()) {
+				} else if (itemstack.getItem() == ItemInit.power_up_card_2.asItem()) {
 					return false;
-				} else if (itemstack.getItem() == ItemInit.lunar_upgrade_card_3.asItem()) {
+				} else if (itemstack.getItem() == ItemInit.power_up_card_3.asItem()) {
 					return false;
-				} else if (itemstack.getItem() == ItemInit.lunar_upgrade_card_4.asItem()) {
+				} else if (itemstack.getItem() == ItemInit.power_up_card_4.asItem()) {
 					return false;
 				}
 				return true;
@@ -102,7 +102,7 @@ public class PowredFurnaceContainer extends BaseContainerCore {
 			}
 		});
 
-		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, 12, 197, 75, "slot.util.speedupgrade") {
+		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, 12, 180, 65, "slot.util.speedupgrade") {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
 				if (stack.getItem() == ItemInit.speed_upgrade_card_1) {
@@ -117,9 +117,9 @@ public class PowredFurnaceContainer extends BaseContainerCore {
 				return false;
 			}
 		});
-		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 197, 38,
+		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, tileentity.getEnergyInSlot(), 180, 27,
 				"slot.util.powerin"));
-		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 197, 56,
+		this.addSlot(new BaseContainerCore.SlotItemHandlerWithInfo(handler, tileentity.getEnergyOutSlot(), 180, 46,
 				"slot.util.powerout"));
 	}
 

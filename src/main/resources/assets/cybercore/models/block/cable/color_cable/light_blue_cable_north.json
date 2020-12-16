@@ -1,0 +1,76 @@
+{
+	"credit": "Yeet",
+	"textures": {
+		"cable_texture": "cybercore:blocks/cables/light_blue_item_cable"
+	},
+	"elements": [
+		{
+			"from": [
+				7,
+				7,
+				0
+			],
+			"to": [
+				9,
+				9,
+				7
+			],
+			"faces": {
+				"north": {
+					"uv": [
+						7,
+						7,
+						9,
+						9
+					],
+					"texture": "#cable_texture"
+				},
+				"east": {
+					"uv": [
+						7,
+						7,
+						8.997,
+						8.999
+					],
+					"texture": "#cable_texture"
+				},
+				"south": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						8.999
+					],
+					"texture": "#cable_texture"
+				},
+				"west": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						9
+					],
+					"texture": "#cable_texture"
+				},
+				"up": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						8.999
+					],
+					"texture": "#cable_texture"
+				},
+				"down": {
+					"uv": [
+						7,
+						7,
+						8.999,
+						8.998
+					],
+					"texture": "#cable_texture"
+				}
+			}
+		}
+	]
+}
