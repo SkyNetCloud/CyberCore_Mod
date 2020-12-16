@@ -55,6 +55,7 @@ import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import ca.skynetcloud.cybercore.api.Names;
 import ca.skynetcloud.cybercore.api.blocks.BlockInit;
+import ca.skynetcloud.cybercore.block.BlockItemCore;
 import ca.skynetcloud.cybercore.init.BasisToolMaterial;
 import ca.skynetcloud.cybercore.init.CustomArmorMaterial;
 import ca.skynetcloud.cybercore.init.SeedsInit;
@@ -95,7 +96,7 @@ public class ItemInit {
 	private static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[] { EquipmentSlotType.HEAD,
 			EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET };
 
-	public static BlockItem CABLE_PAINTER = null;
+	public static BlockItem CABLE_PAINTER;
 
 	public static Item card = new CyberCoreCardItem().setRegistryName(MODID + ":card");
 
@@ -108,12 +109,6 @@ public class ItemInit {
 
 	public static Item whrechItem = new WrenchItem();
 
-	public static BlockItem Item_Irrigation = null;
-
-	public static Item block_loader = null;
-
-	public static Item block_extractor = null;
-
 	public static Item taco_shell = new Item(new Item.Properties().group(CyberCoreTab.instance))
 			.setRegistryName("taco_shell");
 
@@ -123,27 +118,21 @@ public class ItemInit {
 	public static Item cyber_blend = new Item(new Item.Properties().group(CyberCoreTab.instance))
 			.setRegistryName("cyber_blend");
 
-	public static BlockItem ruby_block = null;
+	public static BlockItem ruby_block = new BlockItemCore(BlockInit.RUBY_BLOCK);
 
-	public static BlockItem ruby_slabs = null;
+	public static BlockItem dark_steel_block = new BlockItemCore(BlockInit.DARK_STEEL_BLOCK);
 
-	public static BlockItem ruby_stairs = null;
+	public static BlockItem lettuce_crop = new BlockItemCore(BlockInit.LETTUCE_CROP);
 
-	public static BlockItem dark_steel_block = null;
+	public static BlockItem power_furnace_block = new BlockItemCore(BlockInit.POWER_FURNACE_BLOCK);
 
-	public static BlockItem power_furnace_block = null;
+	public static BlockItem cyber_ore = new BlockItemCore(BlockInit.CYBER_ORE);
 
-	public static BlockItem cyber_ore = null;
+	public static BlockItem dark_steel_ore = new BlockItemCore(BlockInit.DARK_STEEL_ORE);
 
-	public static BlockItem dark_steel_ore = null;
+	public static BlockItem ruby_ore = new BlockItemCore(BlockInit.RUBY_ORE);
 
-	public static BlockItem ruby_ore = null;;
-
-	public static BlockItem lunar = null;
-
-	public static BlockItem cable = null;
-
-	public static BlockItem power_box = null;
+	public static BlockItem tomato_crop = new BlockItemCore(BlockInit.TOMATO_CROP);
 
 	public static Item lettuce_seed = new SeedsInit(BlockInit.LETTUCE_CROP).setRegistryName(LETTUCE_SEEDS_NAME);
 
@@ -307,73 +296,5 @@ public class ItemInit {
 
 	public static Item CYBER_BOOTS = new ArmorItemBase(CustomArmorMaterial.Cyber_Ingot, "cyber", EquipmentSlotType.FEET,
 			new Item.Properties().group(CyberCoreTab.instance).rarity(Rarity.RARE)).setRegistryName(CYBER_BOOTS_NAME);
-
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-
-		IForgeRegistry<Item> registry = event.getRegistry();
-
-		registerItem(registry, new BlockItem(BlockInit.RUBY_ORE, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.RUBY_ORE);
-
-		registerItem(registry,
-				new BlockItem(BlockInit.DARK_STEEL_ORE, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.DARK_STEEL_ORE);
-
-		registerItem(registry, new BlockItem(BlockInit.CYBER_ORE, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.CYBER_ORE);
-
-		registerItem(registry,
-				new BlockItem(BlockInit.DARK_STEEL_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.DARK_STEEL_BLOCK);
-		registerItem(registry, new BlockItem(BlockInit.RUBY_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.RUBY_BLOCK);
-
-		registerItem(registry, new BlockItem(BlockInit.BLOCK_PIPE, new Item.Properties()), Names.BLOCK_PIPE);
-
-		registerItem(registry, new BlockItem(BlockInit.CABLE, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.CABLE);
-
-		registerItem(registry,
-				new BlockItem(BlockInit.BLOCK_EXTRACTOR, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.BLOCK_EXTRACTOR);
-
-		registerItem(registry,
-				new BlockItem(BlockInit.BLOCK_LOADER, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.BLOCK_LOADER);
-
-		registerItem(registry, new BlockItem(BlockInit.POWER_BOX, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.POWER_BOX);
-
-		registerItem(registry,
-				new BlockItem(BlockInit.POWER_FURNACE_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.POWER_FURNACE_BLOCK);
-
-		registerItem(registry, new BlockItem(BlockInit.LUNAR_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.LUNAR_BLOCK);
-
-		registerItem(registry,
-				new BlockItem(BlockInit.IRRIGATION_BLOCK, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.IRRIGATION_BLOCK);
-
-		registerItem(registry,
-				new BlockItem(BlockInit.CABLE_PAINTER, new Item.Properties().group(CyberCoreTab.instance)),
-				Names.CABLE_PAINTER);
-
-		IntStream.range(0, 16)
-				.forEach(i -> registerItem(registry,
-						new BlockItem(
-								ForgeRegistries.BLOCKS
-										.getValue(new ResourceLocation("cybercore", Names.COLORED_Item_TUBE_NAMES[i])),
-								new Item.Properties().group(CyberCoreTab.instance)),
-						Names.COLORED_Item_TUBE_NAMES[i]));
-
-	}
-
-	private static <T extends Item> T registerItem(IForgeRegistry<Item> registry, T newItem, String name) {
-		String prefixedName = CyberCoreMain.MODID + ":" + name;
-		newItem.setRegistryName(prefixedName);
-		registry.register(newItem);
-		return newItem;
-	}
 
 }

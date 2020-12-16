@@ -6,13 +6,10 @@ import ca.skynetcloud.cybercore.api.blocks.BlockInit;
 import ca.skynetcloud.cybercore.api.containers.ContainerNames;
 import ca.skynetcloud.cybercore.api.items.ItemInit;
 import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
-import ca.skynetcloud.cybercore.recipes.recipeclasses.PainterRecipe;
 import ca.skynetcloud.cybercore.world.gen.ModFeatures;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
-import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.biome.Biome;
@@ -42,42 +39,35 @@ public class ModRegistryEvent {
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-
-		BlockInit.registerBlocks(event);
+		;
+		event.getRegistry().register(BlockInit.LETTUCE_CROP);
+		event.getRegistry().register(BlockInit.TOMATO_CROP);
+		event.getRegistry().register(BlockInit.CYBER_ORE);
+		event.getRegistry().register(BlockInit.RUBY_ORE);
+		event.getRegistry().register(BlockInit.DARK_STEEL_ORE);
+		event.getRegistry().register(BlockInit.RUBY_BLOCK);
+		event.getRegistry().register(BlockInit.DARK_STEEL_BLOCK);
+		event.getRegistry().register(BlockInit.POWER_FURNACE_BLOCK);
 
 		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "Loaded Blocks");
 	}
 
 	@SubscribeEvent
-	public static void registerRecipeSerializers(RegistryEvent.Register<IRecipeSerializer<?>> event) {
-		event.getRegistry().register(new PainterRecipe.Serializer().setRegistryName("painter"));
-	}
-
-	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
-		ItemInit.registerItems(event);
-		event.getRegistry().register(ItemInit.cyber_bits);
-		event.getRegistry().register(ItemInit.cyber_blend);
-		event.getRegistry().register(ItemInit.planter);
-		event.getRegistry().register(ItemInit.tiller);
-		event.getRegistry().register(ItemInit.DARK_STEEL_HELMET);
-		event.getRegistry().register(ItemInit.DARK_STEEL_CHESTPLATE);
-		event.getRegistry().register(ItemInit.DARK_STEEL_LEGGINGS);
-		event.getRegistry().register(ItemInit.DARK_STEEL_BOOTS);
-		event.getRegistry().register(ItemInit.RUBY_HELMET);
-		event.getRegistry().register(ItemInit.RUBY_CHESTPLATE);
-		event.getRegistry().register(ItemInit.RUBY_LEGGINGS);
-		event.getRegistry().register(ItemInit.RUBY_BOOTS);
-		event.getRegistry().register(ItemInit.CYBER_HELMET);
-		event.getRegistry().register(ItemInit.CYBER_CHESTPLATE);
-		event.getRegistry().register(ItemInit.CYBER_LEGGINGS);
+		event.getRegistry().register(ItemInit.whrechItem);
+		event.getRegistry().register(ItemInit.ruby_block);
+		event.getRegistry().register(ItemInit.dark_steel_block);
+		event.getRegistry().register(ItemInit.power_furnace_block);
+		event.getRegistry().register(ItemInit.taco_shell);
+		event.getRegistry().register(ItemInit.cyber_ore);
+		event.getRegistry().register(ItemInit.dark_steel_ore);
+		event.getRegistry().register(ItemInit.ruby_ore);
+		event.getRegistry().register(ItemInit.cyber_ingot);
 		event.getRegistry().register(ItemInit.dark_steel_ingot);
 		event.getRegistry().register(ItemInit.ruby_ingot);
-		event.getRegistry().register(ItemInit.cyber_ingot);
-		event.getRegistry().register(ItemInit.CYBER_BOOTS);
-		event.getRegistry().register(ItemInit.whrechItem);
-		event.getRegistry().register(ItemInit.taco_shell);
+		event.getRegistry().register(ItemInit.lettuce_crop);
+		event.getRegistry().register(ItemInit.tomato_crop);
 		event.getRegistry().register(ItemInit.cheese);
 		event.getRegistry().register(ItemInit.tomato);
 		event.getRegistry().register(ItemInit.taco);
@@ -117,28 +107,13 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerTileEntityType(RegistryEvent.Register<TileEntityType<?>> event) {
 
-		event.getRegistry().register(TileEntityNames.LUNAR_GEN_MACHINE_TE.setRegistryName(Names.LUNAR_BLOCK));
-		event.getRegistry().register(TileEntityNames.CABLE_PAINTER_TE.setRegistryName(Names.CABLE_PAINTER));
-		event.getRegistry().register(TileEntityNames.POWER_BOX_TE.setRegistryName(Names.POWER_BOX));
 		event.getRegistry().register(TileEntityNames.POWER_FURNACE_TE.setRegistryName(Names.POWER_FURNACE_BLOCK));
-		event.getRegistry().register(TileEntityNames.IrrigationTile.setRegistryName(Names.IRRIGATION_BLOCK));
-		event.getRegistry().register(TileEntityNames.CABLE_TE.setRegistryName(Names.CABLE));
-
-		TileEntityNames.registerTileEntities(event);
 
 		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "TileEntityType Loaded");
 	}
 
 	@SubscribeEvent
-	public static void registerEntityTypes(RegistryEvent.Register<EntityType<?>> event) {
-		// EntitesNameType.registerAll(event);
-	}
-
-	@SubscribeEvent
 	public static void registerContainerType(RegistryEvent.Register<ContainerType<?>> event) {
-		event.getRegistry().register(ContainerNames.LUNARGEN_CON.setRegistryName(Names.LUNARGEN_CON));
-		event.getRegistry().register(ContainerNames.CABLE_PAINTER_CON.setRegistryName(Names.CABLE_PAINTER));
-		event.getRegistry().register(ContainerNames.POWER_BOX_CON.setRegistryName(Names.POWER_BOX_CON));
 		event.getRegistry().register(ContainerNames.POWER_FURNCAE_CON.setRegistryName(Names.POWERED_FURNACE_CON));
 
 		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "ContainerType Loaded");

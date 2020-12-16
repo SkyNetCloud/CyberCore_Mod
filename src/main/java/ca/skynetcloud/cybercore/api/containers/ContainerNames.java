@@ -1,30 +1,11 @@
 package ca.skynetcloud.cybercore.api.containers;
 
-import static ca.skynetcloud.cybercore.CyberCoreMain.MODID;
-
-import ca.skynetcloud.cybercore.util.container.ColorChangeContainer;
-import ca.skynetcloud.cybercore.util.container.LunaGenContainer;
-import ca.skynetcloud.cybercore.util.container.PowerFurnaceContainer;
-import ca.skynetcloud.cybercore.util.container.PowerStorageContainer;
+import ca.skynetcloud.cybercore.util.container.PowredFurnaceContainer;
 import net.minecraft.inventory.container.ContainerType;
 
 public class ContainerNames {
 
-	public static class ContainerNameInit {
-		public static final String LUNARGEN_CON = (MODID + ":lunar_gen_machine_con");
-		public static final String POWER_BOX_CON = (MODID + ":power_box_con");
-	}
-
-	public static final ContainerType<LunaGenContainer> LUNARGEN_CON = new ContainerType<LunaGenContainer>(
-			LunaGenContainer::new);
-	
-	public static final ContainerType<PowerStorageContainer> POWER_BOX_CON = new ContainerType<PowerStorageContainer>(
-			PowerStorageContainer::new);
-
-	public static final ContainerType<ColorChangeContainer> CABLE_PAINTER_CON = new ContainerType<ColorChangeContainer>(
-			ColorChangeContainer::new);
-
-	public static final ContainerType<PowerFurnaceContainer> POWER_FURNCAE_CON = new ContainerType<PowerFurnaceContainer>(
-			PowerFurnaceContainer::new);
+	public static final ContainerType<PowredFurnaceContainer> POWER_FURNCAE_CON = new ContainerType<PowredFurnaceContainer>(
+			PowredFurnaceContainer::new);
 
 }

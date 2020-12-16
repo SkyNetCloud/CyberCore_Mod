@@ -18,7 +18,7 @@ public class CyberCoreClient {
 
 		ScreenInit.registerGUI();
 
-		RenderTypeLookup.setRenderLayer(BlockInit.POWER_BOX, RenderType.getCutoutMipped());
+	
 		RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.getCutout());
 	}

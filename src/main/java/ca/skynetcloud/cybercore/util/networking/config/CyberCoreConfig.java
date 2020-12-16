@@ -56,14 +56,6 @@ public class CyberCoreConfig {
 
 		PLANTER_RANGE = client.comment("Range of planter item").defineInRange("planter.range", 9, 2, 32);
 
-		IRRIG_RANGE = client.comment("Watering radius of irrigation block").defineInRange("irrigator.radius", 4, 1, 16);
-
-		MOISTURE = client.comment("Moisture level set by cultivator").defineInRange("cultivator.moisture", 7, 0, 7);
-
-		LabGenerateChance = client.comment(
-				"The chance for a Lab to generate. This value is interpreted as \"1 out of X\" to generate a Lab")
-				.defineInRange("LabGenerateChance", 25, 1, Integer.MAX_VALUE);
-
 		attackdamage_Cyber = client.comment("Cyber base attack damage").defineInRange("tool.attackdamage_cyber", 2.0,
 				0.0, 999999999);
 		attackdamage_Ruby = client.comment("Ruby base attack damage").defineInRange("tool.attackdamage_ruby", 3.5, 0.0,
@@ -77,19 +69,6 @@ public class CyberCoreConfig {
 				2000, 0, 999999999);
 		durability_Dark_Steel = client.comment("Dark_Steel durabilty (Default: 1561)")
 				.defineInRange("cybercore.dark_steel_tools_durabilty", 1561, 0, 999999999);
-
-		CanConnect = client.comment("Can Connect this block default:true").define("block.canConnect", true);
-
-		MAX_ITEMS_IN_PIPE = client.comment(
-				"Max items that can fit in a single tube. A tube block will break of the number of itemstacks contained with them is greater than this value, dropping their items on the ground")
-				.defineInRange("block.max_items_in_tube", Integer.MAX_VALUE, 1, Integer.MAX_VALUE);
-		SOFT_CAP = client.comment(
-				"Soft cap on how many tubes can exist in a contiguous network of Item Pipes. Items are transported slowlier in networks of greater size than this value.")
-				.defineInRange("block.soft_item_pipe_cap", 400, 1, 10000);
-
-		TICKS_PIPE = client.comment(
-				"Base time in ticks that a moving itemstack spends in each individual tube block. Adjusted by other factors.")
-				.defineInRange("block.ticks_in_tube", 10, 1, 72000);
 
 		POWERLMIT = client.comment("Power Limit For All Blocks default:1000").define("block.cybercore_power_limit",
 				1000);
@@ -105,7 +84,6 @@ public class CyberCoreConfig {
 
 		SpeedCardTick = client.comment("Speed Upgrade Tick default:15").define("other.speed_card_tick", 15);
 
-		
 	}
 
 	public static int getTillingRange() {
