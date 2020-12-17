@@ -45,14 +45,14 @@ public class ModClientEvent {
 			}
 		}
 
-		if (res.status == VersionChecker.Status.UP_TO_DATE && !hasSendUpdateAvailable) {
+		if (res.status == VersionChecker.Status.UP_TO_DATE) {
 			event.getEntity()
 					.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + TextFormatting.WHITE
 							+ CyberCoreMain.NAME + TextFormatting.GREEN + "] " + TextFormatting.WHITE + "No New Version"
 							+ " Join Discord https://discord.gg/8jwjjyK"), null);
 		}
 
-		if (res.status == VersionChecker.Status.AHEAD && !hasSendUpdateAvailable) {
+		if (res.status == VersionChecker.Status.AHEAD) {
 			event.getEntity()
 					.sendMessage(
 							new StringTextComponent(TextFormatting.GREEN + "[" + TextFormatting.WHITE
@@ -61,7 +61,7 @@ public class ModClientEvent {
 							null);
 		}
 
-		if (res.status == VersionChecker.Status.BETA && !hasSendUpdateAvailable) {
+		if (res.status == VersionChecker.Status.BETA) {
 			event.getEntity()
 					.sendMessage(
 							new StringTextComponent(TextFormatting.GREEN + "[" + TextFormatting.WHITE
@@ -69,7 +69,7 @@ public class ModClientEvent {
 									+ "Your a Head in The Version List" + " Join Discord https://discord.gg/8jwjjyK"),
 							null);
 		}
-		hasSendUpdateAvailable = true;
+	
 	}
 
 }
