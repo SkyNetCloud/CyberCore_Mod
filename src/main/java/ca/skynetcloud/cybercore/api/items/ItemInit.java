@@ -304,15 +304,26 @@ public class ItemInit {
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
 
-		registerItem(registry, new BlockItem(BlockInit.CABLE, new Item.Properties().group(CyberCoreTab.instance)),
+		registerItem(registry, new BlockItem(BlockInit.CABLE, new Item.Properties().group(CyberCoreTab.power_cable)),
 				Names.CABLE);
+
+		registerItem(registry,
+				new BlockItem(BlockInit.BLOCK_PIPE, new Item.Properties().group(CyberCoreTab.item_cable)),
+				Names.BLOCK_PIPE);
 
 		IntStream.range(0, 16).forEach(i -> registerItem(registry,
 				new BlockItem(
 						ForgeRegistries.BLOCKS.getValue(
 								new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Power_Cable_Names[i])),
-						new Item.Properties().group(CyberCoreTab.instance)),
+						new Item.Properties().group(CyberCoreTab.power_cable)),
 				Names.COLORED_Power_Cable_Names[i]));
+
+		IntStream.range(0, 16).forEach(i -> registerItem(registry,
+				new BlockItem(
+						ForgeRegistries.BLOCKS
+								.getValue(new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Item_TUBE_NAMES[i])),
+						new Item.Properties().group(CyberCoreTab.item_cable)),
+				Names.COLORED_Item_TUBE_NAMES[i]));
 	}
 
 	private static <T extends Item> T registerItem(IForgeRegistry<Item> registry, T newItem, String name) {

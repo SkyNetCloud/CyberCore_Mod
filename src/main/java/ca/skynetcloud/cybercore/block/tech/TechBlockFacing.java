@@ -32,6 +32,7 @@ public class TechBlockFacing extends TechBlockBaseSubCore {
 		return state.with(FACING, rot.rotate((Direction) state.get(FACING)));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState mirror(BlockState state, Mirror mirrorIn) {
 		return state.rotate(mirrorIn.toRotation((Direction) state.get(FACING)));

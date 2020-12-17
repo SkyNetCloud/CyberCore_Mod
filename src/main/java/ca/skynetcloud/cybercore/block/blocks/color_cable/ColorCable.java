@@ -8,7 +8,7 @@ public class ColorCable extends CableBlock {
 
 	private DyeColor color;
 
-	public ColorCable(ResourceLocation textureLocation, DyeColor color, Properties properties) {
+	public ColorCable(DyeColor color, Properties properties) {
 		super();
 		this.color = color;
 	}

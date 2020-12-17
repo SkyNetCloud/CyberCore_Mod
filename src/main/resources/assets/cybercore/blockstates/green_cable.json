@@ -2,7 +2,7 @@
 	"multipart": [
 		{
 			"apply": {
-				"model": "cybercore:block/cable/cable_core"
+				"model": "cybercore:block/cable/color_cable/green_cable_core"
 			}
 		},
 		{
@@ -10,7 +10,7 @@
 				"north": 1
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_north"
+				"model": "cybercore:block/cable/color_cable/green_cable_north"
 			}
 		},
 		{
@@ -18,7 +18,7 @@
 				"east": 1
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_north",
+				"model": "cybercore:block/cable/color_cable/green_cable_north",
 				"y": 90
 			}
 		},
@@ -27,7 +27,7 @@
 				"south": 1
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_north",
+				"model": "cybercore:block/cable/color_cable/green_cable_north",
 				"y": 180
 			}
 		},
@@ -36,7 +36,7 @@
 				"west": 1
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_north",
+				"model": "cybercore:block/cable/color_cable/green_cable_north",
 				"y": 270
 			}
 		},
@@ -45,7 +45,7 @@
 				"up": 1
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_north",
+				"model": "cybercore:block/cable/color_cable/green_cable_north",
 				"x": 270
 			}
 		},
@@ -54,7 +54,7 @@
 				"down": 1
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_north",
+				"model": "cybercore:block/cable/color_cable/green_cable_north",
 				"x": 90
 			}
 		},
@@ -63,7 +63,7 @@
 				"north": 2
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_in"
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_in"
 			}
 		},
 		{
@@ -71,7 +71,7 @@
 				"east": 2
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_in",
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_in",
 				"y": 90
 			}
 		},
@@ -80,7 +80,7 @@
 				"south": 2
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_in",
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_in",
 				"y": 180
 			}
 		},
@@ -89,7 +89,7 @@
 				"west": 2
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_in",
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_in",
 				"y": 270
 			}
 		},
@@ -98,7 +98,7 @@
 				"up": 2
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_in",
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_in",
 				"x": 270
 			}
 		},
@@ -107,7 +107,7 @@
 				"down": 2
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_in",
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_in",
 				"x": 90
 			}
 		},
@@ -116,7 +116,7 @@
 				"north": 3
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_out"
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_out"
 			}
 		},
 		{
@@ -124,7 +124,7 @@
 				"east": 3
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_out",
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_out",
 				"y": 90
 			}
 		},
@@ -133,7 +133,7 @@
 				"south": 3
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_out",
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_out",
 				"y": 180
 			}
 		},
@@ -142,7 +142,7 @@
 				"west": 3
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_out",
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_out",
 				"y": 270
 			}
 		},
@@ -151,7 +151,7 @@
 				"up": 3
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_out",
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_out",
 				"x": 270
 			}
 		},
@@ -160,7 +160,7 @@
 				"down": 3
 			},
 			"apply": {
-				"model": "cybercore:block/cable/cable_connection_north_out",
+				"model": "cybercore:block/cable/color_cable/green_cable_connection_north_out",
 				"x": 90
 			}
 		}

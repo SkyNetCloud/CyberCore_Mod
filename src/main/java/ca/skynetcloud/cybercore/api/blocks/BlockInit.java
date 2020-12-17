@@ -7,21 +7,21 @@ import ca.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import ca.skynetcloud.cybercore.api.Names;
 import ca.skynetcloud.cybercore.block.BlockBaseCore;
 import ca.skynetcloud.cybercore.block.blocks.CableBlock;
+import ca.skynetcloud.cybercore.block.blocks.ItemCable;
 import ca.skynetcloud.cybercore.block.blocks.PowerCube;
 import ca.skynetcloud.cybercore.block.blocks.color_cable.ColorCable;
+import ca.skynetcloud.cybercore.block.blocks.color_cable.ColorItemCable;
 import ca.skynetcloud.cybercore.block.crop.LettuceCrop;
 import ca.skynetcloud.cybercore.block.crop.TomatoCrop;
 import ca.skynetcloud.cybercore.block.tech.TechBlockFacing;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCubeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowredFurnaceTileEntity;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -34,6 +34,9 @@ public class BlockInit {
 
 	@ObjectHolder(Names.CABLE)
 	public static Block CABLE = null;
+
+	@ObjectHolder(Names.BLOCK_PIPE)
+	public static Block BLOCK_PIPE = null;
 
 	@ObjectHolder(Names.POWER_BOX)
 	public static Block Battery = new PowerCube(PowerCubeTileEntity::new).setRegistryName(Names.POWER_BOX);
@@ -73,13 +76,21 @@ public class BlockInit {
 		IForgeRegistry<Block> registry = event.getRegistry();
 
 		registerBlock(registry, new CableBlock(), Names.CABLE);
+		registerBlock(registry, new ItemCable(), Names.BLOCK_PIPE);
 
-		IntStream.range(0, 16).forEach(i -> registerBlock(registry,
-				new ColorCable(new ResourceLocation(CyberCoreMain.MODID, "block/" + Names.COLORED_Power_Cable_Names[i]),
-						DyeColor.values()[i],
-						AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.4F)
-								.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
-				Names.COLORED_Power_Cable_Names[i]));
+		IntStream.range(0, 16)
+				.forEach(i -> registerBlock(registry,
+						new ColorItemCable(DyeColor.values()[i],
+								Block.Properties.create(Material.GLASS).hardnessAndResistance(0.4F)
+										.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
+						Names.COLORED_Item_TUBE_NAMES[i]));
+
+		IntStream.range(0, 16)
+				.forEach(i -> registerBlock(registry,
+						new ColorCable(DyeColor.values()[i],
+								Block.Properties.create(Material.GLASS).hardnessAndResistance(0.4F)
+										.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
+						Names.COLORED_Power_Cable_Names[i]));
 
 	}
 

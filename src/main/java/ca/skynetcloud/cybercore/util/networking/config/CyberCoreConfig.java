@@ -3,7 +3,6 @@ package ca.skynetcloud.cybercore.util.networking.config;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class CyberCoreConfig {
 
@@ -12,6 +11,8 @@ public class CyberCoreConfig {
 	public static ConfigValue<Integer> MAX_ITEMS_IN_PIPE;
 
 	public static ConfigValue<Integer> SOFT_CAP;
+
+	public static ConfigValue<Integer> HARD_CAP;
 
 	public static ConfigValue<Integer> TICKS_PIPE;
 
@@ -22,6 +23,8 @@ public class CyberCoreConfig {
 	public static ConfigValue<Integer> PerTick;
 
 	public static ConfigValue<Integer> MaxTranfterCap;
+
+	public static ConfigValue<Double> Max_Remote_Connection;
 
 	public static ConfigValue<Integer> SpeedCardTick;
 
@@ -73,6 +76,18 @@ public class CyberCoreConfig {
 		POWERLMIT = client.comment("Power Limit For All Blocks default:1000").define("block.cybercore_power_limit",
 				1000);
 
+		MAX_ITEMS_IN_PIPE = client.comment(
+				"Max items that can fit in a single tube. A tube block will break of the number of itemstacks contained with them is greater than this value, dropping their items on the ground")
+				.defineInRange("block.max_items_in_tube", Integer.MAX_VALUE, 1, Integer.MAX_VALUE);
+
+		SOFT_CAP = client.comment(
+				"Hard cap on how many tubes can exist in a contiguous network of tubes. If a player attempts to make a network of greater size from this value, not all tubes in the attempted network will become part of that network.")
+				.translation("tubesreloaded.config.hard_tube_cap").defineInRange("hard_tube_cap", 500, 1, 10000);
+
+		HARD_CAP = client.comment(
+				"Hard cap on how many item cables can exist in a contiguous network of item cable. If a player attempts to make a network of greater size from this value, not all tubes in the attempted network will become part of that network.")
+				.translation("tubesreloaded.config.hard_tube_cap").defineInRange("hard_tube_cap", 500, 1, 10000);
+
 		creaitstartOff = client.comment("Creadit Player Start off with Default:100")
 				.defineInRange("item.creait_start_off", 100, 1, 1000);
 
@@ -81,6 +96,11 @@ public class CyberCoreConfig {
 
 		MaxTranfterCap = client.comment("Cable maxTransferRate is how much cable can Tranfer default:20")
 				.defineInRange("other.max_Transfer_Rate", 20, 20, 1000);
+
+		Max_Remote_Connection = client.comment(
+				"Maximum range at which tubes can be remotely connected to each other. This also affects how many nearby chunks are checked for longtube intersections when placing a block.")
+				.translation("cybercore.config.max_remote_item_cable_connection_range")
+				.defineInRange("max_remote_tube_connection_range", 16D, 0D, Double.MAX_VALUE);
 
 		SpeedCardTick = client.comment("Speed Upgrade Tick default:15").define("other.speed_card_tick", 15);
 

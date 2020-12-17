@@ -70,6 +70,10 @@ public class Names {
 	public static final String POWER_BOX_CON_NAME = ("container." + POWER_BOX);
 
 	public static final String CyberTAB = "cybercore";
+	
+	public static final String CyberTAB_Item_Cable = "cybercore_item_cable";
+	
+	public static final String CyberTAB_Power_Cable = "cybercore_power_cable";
 
 	public static final String CABLE = "cable";
 	public static final String BLOCK_PIPE = "block_pipe";
