@@ -13,7 +13,9 @@ import ca.skynetcloud.cybercore.block.blocks.color_cable.ColorCable;
 import ca.skynetcloud.cybercore.block.blocks.color_cable.ColorItemCable;
 import ca.skynetcloud.cybercore.block.crop.LettuceCrop;
 import ca.skynetcloud.cybercore.block.crop.TomatoCrop;
+import ca.skynetcloud.cybercore.block.tech.TechBlockBaseSubCore;
 import ca.skynetcloud.cybercore.block.tech.TechBlockFacing;
+import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCubeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowredFurnaceTileEntity;
 import net.minecraft.block.Block;
@@ -34,6 +36,8 @@ public class BlockInit {
 
 	@ObjectHolder(Names.CABLE)
 	public static Block CABLE = null;
+
+	public static Block C_Changer_Block = new TechBlockBaseSubCore(ColorChangeTileEntity::new).setRegistryName("color_changer");
 
 	@ObjectHolder(Names.BLOCK_PIPE)
 	public static Block BLOCK_PIPE = null;

@@ -1,8 +1,8 @@
 {
 	"credit": "Yeet",
 	"textures": {
-		"particle": "cybercore:blocks/cables/orange_item_cable",
-		"cable_texture": "cybercore:blocks/cables/orange_item_cable"
+		"particle": "cybercore:blocks/cables/orange_cable",
+		"cable_texture": "cybercore:blocks/cables/orange_cable"
 	},
 	"elements": [
 		{

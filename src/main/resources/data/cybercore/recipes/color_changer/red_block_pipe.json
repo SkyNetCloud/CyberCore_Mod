@@ -1,5 +1,5 @@
 {
-	"type": "cybercore:painter",
+	"type": "cybercore:coloring",
 	"input": {
 		"item": "cybercore:block_pipe",
 		"amount": 1

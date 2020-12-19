@@ -122,6 +122,8 @@ public class ItemInit {
 
 	public static BlockItem ruby_block = new BlockItemCore(BlockInit.RUBY_BLOCK);
 
+	public static BlockItem color_changer = new BlockItemCore(BlockInit.C_Changer_Block);
+
 	public static BlockItem power_cube = new BlockItemCore(BlockInit.Battery);
 
 	public static BlockItem dark_steel_block = new BlockItemCore(BlockInit.DARK_STEEL_BLOCK);

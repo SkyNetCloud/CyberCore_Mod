@@ -6,8 +6,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer.Builder;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
@@ -16,6 +18,7 @@ import net.minecraft.util.Rotation;
 public class TechBlockFacing extends TechBlockBaseSubCore {
 
 	public static final DirectionProperty FACING = DirectionalBlock.FACING;
+	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
 	public TechBlockFacing(Supplier<? extends TileEntity> teCreator) {
 		super(teCreator);
@@ -40,7 +43,7 @@ public class TechBlockFacing extends TechBlockBaseSubCore {
 
 	@Override
 	protected void fillStateContainer(Builder<Block, BlockState> builder) {
-		builder.add(FACING);
+		builder.add(FACING, LIT);
 	}
 
 }

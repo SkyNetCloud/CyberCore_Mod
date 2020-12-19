@@ -3,6 +3,7 @@ package ca.skynetcloud.cybercore.api;
 import java.util.Arrays;
 
 import net.minecraft.item.DyeColor;
+import net.minecraft.state.BooleanProperty;
 
 public class Names {
 
@@ -13,10 +14,11 @@ public class Names {
 	public static final String MODID = "cybercore";
 	public static final String INFO = "INFO";
 
+	public static final BooleanProperty LIT = BooleanProperty.create("cooking");
 
 	public static final String[] COLORED_Power_Cable_Names = Arrays.stream(DyeColor.values())
 			.map(color -> color.toString() + "_cable").toArray(String[]::new);
-	
+
 	public static final String[] COLORED_Item_TUBE_NAMES = Arrays.stream(DyeColor.values())
 			.map(color -> color.toString() + "_block_pipe").toArray(String[]::new);
 
@@ -70,9 +72,9 @@ public class Names {
 	public static final String POWER_BOX_CON_NAME = ("container." + POWER_BOX);
 
 	public static final String CyberTAB = "cybercore";
-	
+
 	public static final String CyberTAB_Item_Cable = "cybercore_item_cable";
-	
+
 	public static final String CyberTAB_Power_Cable = "cybercore_power_cable";
 
 	public static final String CABLE = "cable";

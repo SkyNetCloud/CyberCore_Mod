@@ -13,15 +13,15 @@ plugins {
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
-repositories {  
-    maven { // JEI
-        url "http://dvs1.progwml6.com/files/maven"
-    }
-    maven { // WorldEdit
-    	url "https://maven.enginehub.org/repo/"
-    }
+
+
+repositories {
+	jcenter()
+
+	maven { url 'http://dvs1.progwml6.com/files/maven/' } // JEI + Tinker's
 
 }
+
 
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -50,10 +50,16 @@ minecraft {
     }
 }
 
+
+
 dependencies {
 
     minecraft 'net.minecraftforge:forge:1.16.4-35.1.0'
-
+    
+    compileOnly fg.deobf("mezz.jei:jei-1.16.4:7.6.0.62:api")
+    
+    runtimeOnly fg.deobf("mezz.jei:jei-1.16.4:7.6.0.62")
+    
 
 }
 

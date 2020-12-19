@@ -128,7 +128,7 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 			if (energystorage.getMaxEnergyStored() - energystorage.getEnergyStored() > 0) {
 				workload++;
 				if (workload >= getTicksPerAmount()) {
-					energystorage.receiveEnergy(getEnergyPerTick(getMarkcard(16, ItemType.SOLAR_FOCUS)) * this.getTicksPerItem());
+					energystorage.receiveEnergy(getEnergyPerTick(getMarkcard(16, ItemType.SOLAR_FOCUS)) + getTicksPerAmount());
 					workload = 0;
 				}
 			}

@@ -5,6 +5,7 @@ import java.util.stream.IntStream;
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.api.Names;
 import ca.skynetcloud.cybercore.api.blocks.BlockInit;
+import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCablesTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCubeTileEntity;
@@ -31,11 +32,13 @@ public class TileEntityNames {
 	public static final TileEntityType<PowerCubeTileEntity> POWER_CUBE_TE = TileEntityType.Builder
 			.create(PowerCubeTileEntity::new, BlockInit.Battery).build(null);
 
+	public static final TileEntityType<ColorChangeTileEntity> COLOR_Changer_TE = TileEntityType.Builder.create(ColorChangeTileEntity::new, BlockInit.C_Changer_Block).build(null);
+
 	public static void registerTileEntities(RegistryEvent.Register<TileEntityType<?>> event) {
 
 		Block[] item_cables = new Block[17];
 		IntStream.range(0, 16).forEach(i -> item_cables[i] = ForgeRegistries.BLOCKS
-				.getValue(new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Power_Cable_Names[i])));
+				.getValue(new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Item_TUBE_NAMES[i])));
 		item_cables[16] = BlockInit.BLOCK_PIPE; // need an array with all the color tubes + the original tube since they
 												// use the
 		// same TE

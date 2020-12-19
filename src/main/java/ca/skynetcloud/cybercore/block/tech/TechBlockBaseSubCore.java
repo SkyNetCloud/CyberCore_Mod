@@ -3,6 +3,7 @@ package ca.skynetcloud.cybercore.block.tech;
 import java.util.List;
 import java.util.function.Supplier;
 
+import ca.skynetcloud.cybercore.api.blocks.BlockInit;
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -18,6 +19,8 @@ import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
@@ -39,6 +42,15 @@ public class TechBlockBaseSubCore extends Block {
 		return teCreator.get();
 	}
 
+	@SuppressWarnings("deprecation")
+	@Override
+	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+		if (this == BlockInit.C_Changer_Block)
+			return Block.makeCuboidShape(1, 0, 1, 15, 14.1f, 15);
+		else
+			return super.getShape(state, worldIn, pos, context);
+	}
+
 	@Override
 	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos,
 			PlayerEntity player) {
@@ -56,7 +68,6 @@ public class TechBlockBaseSubCore extends Block {
 
 		return ActionResultType.SUCCESS;
 	}
-
 
 	@Override
 	public boolean hasTileEntity(BlockState state) {

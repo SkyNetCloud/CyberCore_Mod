@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import ca.skynetcloud.cybercore.block.blocks.color_cable.ColorCable;
+import ca.skynetcloud.cybercore.block.blocks.color_cable.ColorItemCable;
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;
 import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 import net.minecraft.block.Block;
@@ -130,7 +131,11 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 		Block block = state.getBlock();
 
 		if (block instanceof ColorCable) {
-			return CyberCoreConfig.CanConnect.get();
+			return false;
+		}
+
+		if (block instanceof ColorItemCable) {
+			return true;
 		}
 
 		if (block instanceof ItemCable)

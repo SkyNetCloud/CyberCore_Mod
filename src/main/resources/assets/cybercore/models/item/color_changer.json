@@ -1,0 +1,9 @@
+{
+	"parent": "forge:block/default",
+	"loader": "forge:obj",
+	"model": "cybercore:models/block/machine/cable_painter.obj",
+	"flip-v": true,
+	"textures": {
+		"particle": "block/cobblestone"
+	}
+}

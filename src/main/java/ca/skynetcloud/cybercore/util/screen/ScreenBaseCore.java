@@ -87,6 +87,9 @@ public abstract class ScreenBaseCore<T extends BaseContainerCore> extends Contai
 		int j = container.getValue(3);
 		return i != 0 && j != 0 ? i * pixels / j : 0;
 	}
+	
+	
+
 
 	// renderHoveredToolTip
 	@Override

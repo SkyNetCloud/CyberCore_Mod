@@ -1,0 +1,11 @@
+{
+	"type": "cybercore:coloring",
+	"input": {
+		"item": "cybercore:block_pipe",
+		"amount": 1
+	},
+	"result": {
+		"item": "cybercore:green_block_pipe",
+		"amount": 1
+	}
+}
