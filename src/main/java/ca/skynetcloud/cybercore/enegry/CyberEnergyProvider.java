@@ -23,7 +23,7 @@ public class CyberEnergyProvider implements ICapabilitySerializable<CompoundNBT>
 	@Override
 	public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side)
 	{
-		if (cap == CapabilityEnergy.ENERGY)
+		if (cap == CapabilityEnergy.ENERGY && side == Direction.DOWN)
 		{
 		    return energyCap.cast();
 		}

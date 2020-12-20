@@ -37,7 +37,7 @@ public class BlockInit {
 	@ObjectHolder(Names.CABLE)
 	public static Block CABLE = null;
 
-	public static Block C_Changer_Block = new TechBlockBaseSubCore(ColorChangeTileEntity::new).setRegistryName("color_changer");
+	public static Block C_Changer_Block = new TechBlockFacing(ColorChangeTileEntity::new).setRegistryName("color_changer");
 
 	@ObjectHolder(Names.BLOCK_PIPE)
 	public static Block BLOCK_PIPE = null;

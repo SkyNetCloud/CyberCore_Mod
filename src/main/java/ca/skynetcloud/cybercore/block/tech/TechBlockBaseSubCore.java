@@ -46,7 +46,7 @@ public class TechBlockBaseSubCore extends Block {
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		if (this == BlockInit.C_Changer_Block)
-			return Block.makeCuboidShape(1, 0, 1, 15, 14.1f, 15);
+			return Block.makeCuboidShape(0, 0, 0, 16, 9, 16);
 		else
 			return super.getShape(state, worldIn, pos, context);
 	}
@@ -64,6 +64,7 @@ public class TechBlockBaseSubCore extends Block {
 			if (te instanceof CoreEnergyInventoryTileEntity) {
 				player.openContainer((CoreEnergyInventoryTileEntity) te);
 			}
+			
 		}
 
 		return ActionResultType.SUCCESS;

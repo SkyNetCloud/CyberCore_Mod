@@ -126,7 +126,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 			return inventoryCap.cast();
 		}
 
-		return super.getCapability(capability, facing);
+		return super.getCapability(capability, Direction.DOWN);
 	}
 
 	@Override
