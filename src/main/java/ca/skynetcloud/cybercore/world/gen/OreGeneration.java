@@ -4,16 +4,13 @@ import java.util.ArrayList;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.api.blocks.BlockInit;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
