@@ -1,6 +1,0 @@
-# Made in Blockbench 3.7.4
-newmtl m_0
-map_Kd cybercore:blocks/machine/device_side.png 
-newmtl m_1
-map_Kd cybercore:blocks/machine/pasted.png
-newmtl none

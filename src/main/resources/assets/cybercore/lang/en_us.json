@@ -44,7 +44,7 @@
 	"block.cybercore.lime_cable": "Lime Power Conduit",
 	"block.cybercore.pink_cable": "Pink Power Conduit",
 	"block.cybercore.gray_cable": "Gray Power Conduit",
-	"block.cybercore.light_cable": "Light Gray Power Conduit",
+	"block.cybercore.light_gray_cable": "Light Gray Power Conduit",
 	"block.cybercore.cyan_cable": "Cyan Power Conduit",
 	"block.cybercore.purple_cable": "Purple Power Conduit",
 	"block.cybercore.blue_cable": "Blue Power Conduit",
@@ -121,6 +121,7 @@
 	"item.cybercore.planter": "Planter Tool",
 	"item.cybercore.cyber_blend": "Cyber Ingot Blend",
 	"container.lunargen": "Lunar Gen",
-	"container.poweredfurnace": "Powered Furnace"
+	"container.poweredfurnace": "Powered Furnace",
+	"cybercore.color_changer": "Color Changer"
 
 }
