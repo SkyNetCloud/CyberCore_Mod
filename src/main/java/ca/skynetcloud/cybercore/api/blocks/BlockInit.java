@@ -2,8 +2,8 @@ package ca.skynetcloud.cybercore.api.blocks;
 
 import java.util.stream.IntStream;
 
+import ca.skynetcloud.cybercore.CyberCoreClient.CyberCoreTab;
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
 import ca.skynetcloud.cybercore.api.Names;
 import ca.skynetcloud.cybercore.block.BlockBaseCore;
 import ca.skynetcloud.cybercore.block.blocks.CableBlock;

@@ -1,6 +1,6 @@
 package ca.skynetcloud.cybercore.item.tools;
 
-import ca.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
+import ca.skynetcloud.cybercore.CyberCoreClient.CyberCoreTab;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.IItemTier;
 import net.minecraftforge.common.ToolType;

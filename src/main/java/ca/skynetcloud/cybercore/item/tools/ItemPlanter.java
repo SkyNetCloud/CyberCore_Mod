@@ -1,6 +1,7 @@
 package ca.skynetcloud.cybercore.item.tools;
 
 import java.util.List;
+
 import javax.annotation.Nullable;
 
 import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
@@ -16,7 +17,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;

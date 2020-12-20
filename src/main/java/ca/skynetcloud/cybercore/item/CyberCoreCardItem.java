@@ -2,7 +2,7 @@ package ca.skynetcloud.cybercore.item;
 
 import java.util.List;
 
-import ca.skynetcloud.cybercore.CyberCoreMain.CyberCoreTab;
+import ca.skynetcloud.cybercore.CyberCoreClient.CyberCoreTab;
 import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;

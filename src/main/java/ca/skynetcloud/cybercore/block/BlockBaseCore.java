@@ -2,7 +2,6 @@ package ca.skynetcloud.cybercore.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.state.StateHolder;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
