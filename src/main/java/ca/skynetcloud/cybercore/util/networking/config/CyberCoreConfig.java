@@ -1,7 +1,5 @@
 package ca.skynetcloud.cybercore.util.networking.config;
 
-import ca.skynetcloud.cybercore.CyberCoreMain;
-import mezz.jei.config.forge.Config;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
