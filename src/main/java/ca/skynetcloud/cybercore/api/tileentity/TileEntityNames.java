@@ -21,7 +21,7 @@ import net.minecraftforge.registries.ObjectHolder;
 public class TileEntityNames {
 
 	public static final TileEntityType<PowredFurnaceTileEntity> POWER_FURNACE_TE = TileEntityType.Builder
-			.create(PowredFurnaceTileEntity::new, BlockInit.POWER_FURNACE_BLOCK).build(null);
+			.of(PowredFurnaceTileEntity::new, BlockInit.POWER_FURNACE_BLOCK).build(null);
 
 	@ObjectHolder(Names.CABLE)
 	public static final TileEntityType<PowerCablesTileEntity> Cable = null;
@@ -30,9 +30,10 @@ public class TileEntityNames {
 	public static final TileEntityType<ItemPipeTileEntity> BLOCK_PIPE = null;
 
 	public static final TileEntityType<PowerCubeTileEntity> POWER_CUBE_TE = TileEntityType.Builder
-			.create(PowerCubeTileEntity::new, BlockInit.Battery).build(null);
+			.of(PowerCubeTileEntity::new, BlockInit.Battery).build(null);
 
-	public static final TileEntityType<ColorChangeTileEntity> COLOR_Changer_TE = TileEntityType.Builder.create(ColorChangeTileEntity::new, BlockInit.C_Changer_Block).build(null);
+	public static final TileEntityType<ColorChangeTileEntity> COLOR_Changer_TE = TileEntityType.Builder
+			.of(ColorChangeTileEntity::new, BlockInit.C_Changer_Block).build(null);
 
 	public static void registerTileEntities(RegistryEvent.Register<TileEntityType<?>> event) {
 
@@ -43,16 +44,16 @@ public class TileEntityNames {
 												// use the
 		// same TE
 
-		event.getRegistry().register(TileEntityType.Builder.create(ItemPipeTileEntity::new, item_cables).build(null)
+		event.getRegistry().register(TileEntityType.Builder.of(ItemPipeTileEntity::new, item_cables).build(null)
 				.setRegistryName(Names.BLOCK_PIPE));
 
 		Block[] tubes = new Block[17];
 		IntStream.range(0, 16).forEach(i -> tubes[i] = ForgeRegistries.BLOCKS
 				.getValue(new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Power_Cable_Names[i])));
-		tubes[16] = BlockInit.CABLE; // need an array with all the color tubes + the original tube since they use the
-										// same TE
-		event.getRegistry().register(TileEntityType.Builder.create(PowerCablesTileEntity::new, tubes).build(null)
-				.setRegistryName(Names.CABLE));
+		tubes[16] = BlockInit.CABLE;
+
+		event.getRegistry().register(
+				TileEntityType.Builder.of(PowerCablesTileEntity::new, tubes).build(null).setRegistryName(Names.CABLE));
 	}
 
 }

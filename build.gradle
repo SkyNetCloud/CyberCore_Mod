@@ -1,11 +1,10 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
-        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
     }
 }
 
@@ -19,48 +18,73 @@ repositories {
 	jcenter()
 
 	maven { url 'http://dvs1.progwml6.com/files/maven/' } // JEI + Tinker's
-
+	    
+    maven {
+        url "https://www.cursemaven.com"
+    }
+	
 }
 
 
 
 apply plugin: 'net.minecraftforge.gradle'
+// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "1.16.4-1.10.19041"
+version = "1.16.5-1.12.19042"
 group = "ca.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
 minecraft {
 
-    mappings channel: 'snapshot', version: '20201028-1.16.3'
+    mappings channel: 'official', version: '1.16.5'
 
     runs {
-        client = {
-            workingDirectory = project.file("run").canonicalPath
-            source sourceSets.main
+        client {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
         }
-        server = {
-            workingDirectory = project.file("run").canonicalPath
-            source sourceSets.main
+
+        server {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
 
 
-
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.16.4-35.1.4'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.1.6'
     
-    compileOnly fg.deobf("mezz.jei:jei-1.16.4:7.6.0.62:api")
+    compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.4.88:api")
     
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.4:7.6.0.62")
-    
-
+    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.4.88")
+     
+ 
 }
 
 curseforge {

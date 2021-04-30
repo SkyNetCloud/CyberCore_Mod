@@ -21,7 +21,7 @@ public class ItemPipeInventoryHandler extends ItemStackHandler {
 			return ItemStack.EMPTY;
 		}
 		if (!simulate) {
-			this.tube.markDirty();
+			this.tube.setChanged();
 		}
 		return this.tube.enqueueItemStack(stack.copy(), this.face, simulate);
 	}

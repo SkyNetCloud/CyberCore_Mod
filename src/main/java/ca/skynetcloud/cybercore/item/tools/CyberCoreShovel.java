@@ -9,10 +9,10 @@ public class CyberCoreShovel extends ShovelItem {
 
 	public CyberCoreShovel(IItemTier material, float speed) {
 		super(material, 1.5F, speed,
-				new Properties().group(CyberCoreTab.instance).addToolType(ToolType.SHOVEL, material.getHarvestLevel()));
+				new Properties().tab(CyberCoreTab.instance).addToolType(ToolType.SHOVEL, material.getLevel()));
 	}
 
 	public CyberCoreShovel(IItemTier material, float speed, Properties properties) {
-		super(material, 1.5F, speed, properties.addToolType(ToolType.SHOVEL, material.getHarvestLevel()));
+		super(material, 1.5F, speed, properties.addToolType(ToolType.SHOVEL, material.getLevel()));
 	}
 }

@@ -10,9 +10,9 @@ public class ScreenInit {
 
 	public static final void registerGUI() {
 
-		ScreenManager.registerFactory(ContainerNames.POWER_FURNCAE_CON, PowredFurnaceScreen::new);
-		ScreenManager.registerFactory(ContainerNames.POWER_CUBE_CON, PowerCubeScreen::new);
-		ScreenManager.registerFactory(ContainerNames.c_changer_CON, ColorChangeScreen::new);
+		ScreenManager.register(ContainerNames.POWER_FURNCAE_CON, PowredFurnaceScreen::new);
+		ScreenManager.register(ContainerNames.POWER_CUBE_CON, PowerCubeScreen::new);
+		ScreenManager.register(ContainerNames.c_changer_CON, ColorChangeScreen::new);
 	}
 
 }

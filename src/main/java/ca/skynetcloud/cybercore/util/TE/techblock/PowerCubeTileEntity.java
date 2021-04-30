@@ -42,13 +42,13 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 
 		}
 
-		public int size() {
+		public int getCount() {
 			return 2;
 		}
 	};
 
 	public PowerCubeTileEntity() {
-		super(TileEntityNames.POWER_CUBE_TE, CyberCoreConfig.POWERLMIT.get(), 3, 0);
+		super(TileEntityNames.POWER_CUBE_TE, CyberCoreConfig.POWERLMIT.get(), 3);
 	}
 
 	@Override
@@ -58,8 +58,8 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 
 	@Override
 	public void onSlotContentChanged() {
-		if (world != null) {
-			if (!world.isRemote) {
+		if (level != null) {
+			if (!level.isClientSide) {
 				int newLvl = getMarkcard(0, ItemType.POWER_UPGRADE);
 				if (currentLvl != newLvl) {
 					switch (currentLvl) {
@@ -88,19 +88,19 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 	}
 
 	@Override
-	public void read(BlockState state, CompoundNBT compound) {
-		super.read(state, compound);
+	public void load(BlockState state, CompoundNBT compound) {
+		super.load(state, compound);
 	}
 
 	@Override
 	public ITextComponent getDisplayName() {
-		// TODO Auto-generated method stub
+		
 		return new TranslationTextComponent(Names.POWER_BOX_CON_NAME);
 	}
 
 	@Override
 	public Container createMenu(int id, PlayerInventory inv, PlayerEntity player) {
-		// TODO Auto-generated method stub
+		
 		return new PowerCubeCon(id, inv, this);
 	}
 

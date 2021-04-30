@@ -39,7 +39,7 @@ public class ItemInTubeWrapper {
 	}
 
 	public static ItemInTubeWrapper readFromNBT(CompoundNBT compound) {
-		ItemStack stack = ItemStack.read(compound);
+		ItemStack stack = ItemStack.of(compound);
 		int[] moveBuffer = compound.getIntArray(MOVES_REMAINING_TAG);
 		int ticksElapsed = compound.getInt(TICKS_REMAINING_TAG);
 		int maxDuration = compound.getInt(TICKS_DURATION_TAG);
@@ -51,12 +51,13 @@ public class ItemInTubeWrapper {
 		return wrapper;
 	}
 
+	@SuppressWarnings("static-access")
 	public CompoundNBT writeToNBT(CompoundNBT compound) {
 		compound.put(MOVES_REMAINING_TAG, compressMoveList(this.remainingMoves));
 		compound.putInt(TICKS_REMAINING_TAG, this.ticksElapsed);
 		compound.putInt(TICKS_DURATION_TAG, this.maximumDurationInTube);
 		compound.putBoolean(IS_FRESHLY_INSERTED, this.freshlyInserted);
-		this.stack.write(compound);
+		this.stack.of(compound);
 
 		return compound;
 	}
@@ -68,12 +69,12 @@ public class ItemInTubeWrapper {
 		int moveIndex = 0;
 		ArrayList<Integer> buffer = new ArrayList<Integer>();
 		Direction currentMove = moves.peek();
-		buffer.add(currentMove.getIndex());
+		buffer.add(currentMove.get2DDataValue());
 		buffer.add(0);
 
 		for (Direction dir : moves) {
 			if (!dir.equals(currentMove)) {
-				buffer.add(dir.getIndex());
+				buffer.add(dir.get2DDataValue());
 				buffer.add(1);
 				currentMove = dir;
 				moveIndex += 2;
@@ -97,7 +98,7 @@ public class ItemInTubeWrapper {
 		int pairCount = size / 2;
 
 		for (int i = 0; i < pairCount; i++) {
-			Direction dir = Direction.byIndex(buffer[i * 2]);
+			Direction dir = Direction.from3DDataValue(buffer[i * 2]);
 			int moveCount = buffer[i * 2 + 1];
 			for (int count = 0; count < moveCount; count++) {
 				moves.add(dir);

@@ -19,21 +19,21 @@ public class PowerCubeScreen extends ScreenBaseCore<PowerCubeCon> {
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
-		super.drawGuiContainerBackgroundLayer(mStack, partialTicks, mouseX, mouseY);
+	protected void renderBg(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
+		super.renderBg(mStack, partialTicks, mouseX, mouseY);
 
 		int k = this.getEnergyStoredScaled(55);
-		blit(mStack, this.guiLeft + 97, this.guiTop + 19 + (55 - k), 205, 55 - k, 16, k);
+		blit(mStack, this.leftPos + 97, this.topPos + 19 + (55 - k), 205, 55 - k, 16, k);
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(MatrixStack mStack, int mouseX, int mouseY) {
+	protected void renderLabels(MatrixStack mStack, int mouseX, int mouseY) {
 		@SuppressWarnings("resource")
-		FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
+		FontRenderer fontRenderer = Minecraft.getInstance().font;
 
 		// fontRenderer.drawStringWithShadow(mStack, "Power Storage", 70, 5, 15312);
-		fontRenderer.drawStringWithShadow(mStack, "Power Stored: " + te.getEnergyStored(), -50, 20, 11111111);
-		fontRenderer.drawStringWithShadow(mStack, "Max Stored: " + te.getMaxEnergyStored(), -50, 35, 11111111);
+		fontRenderer.drawShadow(mStack, "Power Stored: " + te.getEnergyStored(), -50, 20, 11111111);
+		fontRenderer.drawShadow(mStack, "Max Stored: " + te.getMaxEnergyStored(), -50, 35, 11111111);
 	}
 
 	protected void drawTooltips(MatrixStack mStack, int mouseX, int mouseY) {

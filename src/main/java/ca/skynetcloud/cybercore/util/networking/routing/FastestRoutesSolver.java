@@ -41,7 +41,7 @@ public class FastestRoutesSolver {
 
 			List<Direction> dirs = ItemCable.getConnectedDirections(state);
 			for (Direction face : dirs) {
-				BlockPos checkPos = node.pos.offset(face);
+				BlockPos checkPos = node.pos.relative(face);
 				Endpoint maybeEndpoint = new Endpoint(checkPos, face.getOpposite());
 
 				if (!visitedTubes.contains(checkPos) && network.tubes.contains(checkPos)) {

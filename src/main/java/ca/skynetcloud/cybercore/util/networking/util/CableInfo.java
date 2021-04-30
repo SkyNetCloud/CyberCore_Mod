@@ -64,7 +64,7 @@ public class CableInfo {
 			y.add(blockPos.getY());
 			z.add(blockPos.getZ());
 			if (direction)
-				d.add(connection.direction.getIndex());
+				d.add(connection.direction.get2DDataValue());
 		});
 		subCompound.putIntArray("x", x);
 		subCompound.putIntArray("y", y);
@@ -82,7 +82,7 @@ public class CableInfo {
 		int[] z = subCompound.getIntArray("z");
 		int[] d = subCompound.getIntArray("d");
 		for (int i = 0; i < subCompound.getIntArray("x").length; i++)
-			connections.add(new Connection(new BlockPos(x[i], y[i], z[i]), Direction.byIndex(d[i])));
+			connections.add(new Connection(new BlockPos(x[i], y[i], z[i]), Direction.from3DDataValue(d[i])));
 		return connections;
 	}
 

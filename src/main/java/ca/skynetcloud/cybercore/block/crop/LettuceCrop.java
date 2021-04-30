@@ -26,13 +26,13 @@ public class LettuceCrop extends CropsBlock {
 	public static final IntegerProperty AGE_3 = IntegerProperty.create("age", 0, 3);
 
 	public LettuceCrop() {
-		super(Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.CROP));
-		this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
+		super(Properties.of(Material.PLANT).noCollission().randomTicks().sound(SoundType.CROP));
+		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)));
 
 	}
 
 	@Override
-	protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
+	protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
 		return state.getBlock() instanceof FarmlandBlock;
 	}
 
@@ -58,18 +58,18 @@ public class LettuceCrop extends CropsBlock {
 
 	public boolean onBlockActivateds(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
 			BlockRayTraceResult hit) {
-		if (!world.isRemote) {
+		if (!world.isClientSide) {
 			if (this.isMaxAge(state)) {
-				world.addEntity(
+				world.addFreshEntity(
 						new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemInit.lettuce, 1)));
-				world.setBlockState(pos, this.withAge(0));
+				world.setBlock(pos, this.getStateForAge(0), 0);
 				return true;
 			}
 		}
 		return false;
 	}
 
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(AGE_3);
 	}
 }

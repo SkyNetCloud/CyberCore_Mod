@@ -18,7 +18,7 @@ public class RecipeLoadded {
 	public static List<ColorChangerRecipe> getColorChangerRecipes() {
 		List<ColorChangerRecipe> results = new ArrayList<ColorChangerRecipe>();
 		@SuppressWarnings("resource")
-		ClientWorld world = Minecraft.getInstance().world;
+		ClientWorld world = Minecraft.getInstance().level;
 		RecipeManager recipeManager = world.getRecipeManager();
 		Iterator<IRecipe<?>> it = recipeManager.getRecipes().iterator();
 		while (it.hasNext()) {

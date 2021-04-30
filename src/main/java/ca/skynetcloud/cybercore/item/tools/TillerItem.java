@@ -1,5 +1,6 @@
 package ca.skynetcloud.cybercore.item.tools;
 
+import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -24,36 +25,36 @@ public class TillerItem extends HoeItem {
 	}
 
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
+	public ActionResultType useOn(ItemUseContext context) {
 		// ActionResultType succ = super.onItemUse(context);
-		if (context.getFace() == Direction.DOWN) {
+		if (context.getClickedFace() == Direction.DOWN) {
 			return ActionResultType.FAIL;
 		}
 		// so we got a success from the initial block
-		World world = context.getWorld();
-		BlockPos center = context.getPos();
+		World world = context.getLevel();
+		BlockPos center = context.getClickedPos();
 		// context.getPlayer().getHorizontalFacing()
-		Direction face = context.getPlacementHorizontalFacing();
+		Direction face = context.getHorizontalDirection();
 		BlockPos blockpos = null;
 		for (int dist = 0; dist < CyberCoreConfig.getTillingRange(); dist++) {
-			blockpos = center.offset(face, dist);
-			if (world.isAirBlock(blockpos)) {
+			blockpos = center.relative(face, dist);
+			if (world.isEmptyBlock(blockpos)) {
 				// air here, went off an edge. try to go down 1
-				blockpos = blockpos.down();
-				if (world.isAirBlock(blockpos.up())) {
+				blockpos = blockpos.below();
+				if (world.isEmptyBlock(blockpos.above())) {
 					if (hoeBlock(context, blockpos)) {
-						center = center.down();// go down the hill
+						center = center.below();// go down the hill
 					}
 				}
-			} else if (world.isAirBlock(blockpos.up())) {
+			} else if (world.isEmptyBlock(blockpos.above())) {
 				// at my elevation
 				hoeBlock(context, blockpos);
 			} else {
 				// try going up by 1
-				blockpos = blockpos.up();
-				if (world.isAirBlock(blockpos.up())) {
+				blockpos = blockpos.above();
+				if (world.isEmptyBlock(blockpos.above())) {
 					if (hoeBlock(context, blockpos)) {
-						center = center.up();// go up the hill
+						center = center.above();// go up the hill
 					}
 				}
 			}
@@ -62,17 +63,17 @@ public class TillerItem extends HoeItem {
 	}
 
 	private boolean hoeBlock(ItemUseContext context, BlockPos blockpos) {
-		World world = context.getWorld();
+		World world = context.getLevel();
 		Block blockHere = world.getBlockState(blockpos).getBlock();
-		BlockState blockstate = HOE_LOOKUP.get(blockHere);
+		BlockState blockstate = TILLABLES.get(blockHere);
 		if (blockstate != null) {
 			blockstate = this.moisturize(blockstate);
-			if (world.setBlockState(blockpos, blockstate, 11)) {
+			if (world.setBlock(blockpos, blockstate, 11)) {
 				PlayerEntity playerentity = context.getPlayer();
-				world.playSound(playerentity, blockpos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				world.playSound(playerentity, blockpos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				if (playerentity != null) {
-					context.getItem().damageItem(1, playerentity, (p) -> {
-						p.sendBreakAnimation(context.getHand());
+					context.getItemInHand().hurtAndBreak(1, playerentity, (p) -> {
+						p.broadcastBreakEvent(context.getHand());
 					});
 				}
 				return true;
@@ -83,10 +84,11 @@ public class TillerItem extends HoeItem {
 
 	private BlockState moisturize(BlockState blockstate) {
 		try {
-			if (blockstate.getBlock() == Blocks.FARMLAND && CyberCoreConfig.getMoisture() > 0)
-				blockstate = blockstate.with(FarmlandBlock.MOISTURE, CyberCoreConfig.getMoisture());
+			if (blockstate.getBlock() == Blocks.FARMLAND && CyberCoreConfig.getMoisture() > 0) {
+				blockstate = blockstate.setValue(FarmlandBlock.MOISTURE, CyberCoreConfig.getMoisture());
+			}
 		} catch (Exception e) {
-			System.out.println(e.getLocalizedMessage());
+			//CyberCoreMain.LOGGER.error("Tiller Item Moisturize error", e);
 		}
 		return blockstate;
 	}

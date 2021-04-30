@@ -17,15 +17,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public enum CustomArmorMaterial implements IArmorMaterial {
 
-	Ruby("ruby", 5, new int[] { 1, 2, 3, 1 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {
-		return Ingredient.fromItems(ruby_ingot);
+	Ruby("ruby", 5, new int[] { 1, 2, 3, 1 }, 15, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {
+		return Ingredient.of(ruby_ingot);
+	}), Dark_Steel("dark_steel", 15, new int[] { 1, 4, 5, 2 }, 12, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {
+		return Ingredient.of(dark_steel_ingot);
 	}),
-	Dark_Steel("dark_steel", 15, new int[] { 1, 4, 5, 2 }, 12, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {
-		return Ingredient.fromItems(dark_steel_ingot);
-	}), Cyber_Ingot("cyber_ingot", 15, new int[] { 10, 34, 25, 14 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F,
-			0.0F, () -> {
-				return Ingredient.fromItems(cyber_ingot);
-			});
+	Cyber_Ingot("cyber_ingot", 15, new int[] { 10, 34, 25, 14 }, 9, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {
+		return Ingredient.of(cyber_ingot);
+	});
 
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };
 	private final String name;
@@ -51,33 +50,33 @@ public enum CustomArmorMaterial implements IArmorMaterial {
 	}
 
 	@Override
-	public int getDurability(EquipmentSlotType slotIn) {
+	public int getDurabilityForSlot(EquipmentSlotType slotIn) {
 
 		return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
 	}
 
 	@Override
-	public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+	public int getDefenseForSlot(EquipmentSlotType slotIn) {
 
 		return this.damageReductionAmountArray[slotIn.getIndex()];
 	}
 
 	@Override
-	public int getEnchantability() {
+	public int getEnchantmentValue() {
 
 		return this.enchantability;
 	}
 
 	@Override
-	public SoundEvent getSoundEvent() {
+	public SoundEvent getEquipSound() {
 
 		return this.soundEvent;
 	}
 
 	@Override
-	public Ingredient getRepairMaterial() {
+	public Ingredient getRepairIngredient() {
 
-		return this.repairMaterial.getValue();
+		return this.repairMaterial.get();
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -95,7 +94,6 @@ public enum CustomArmorMaterial implements IArmorMaterial {
 
 	@Override
 	public float getKnockbackResistance() {
-		// TODO Auto-generated method stub
 		return this.knockback;
 	}
 

@@ -53,19 +53,13 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 	protected final VoxelShape[] shapes;
 
 	public ItemCable() {
-		super(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.4F).harvestTool(ToolType.PICKAXE)
-				.sound(SoundType.METAL));
-		this.setDefaultState(this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false))
-				.with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false))
-				.with(WEST, Boolean.valueOf(false)).with(DOWN, Boolean.valueOf(false)).with(UP, Boolean.valueOf(false))
-				.with(WATERLOGGED, Boolean.valueOf(false)));
+		super(Block.Properties.of(Material.GLASS).strength(0.4F).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL));
+		this.registerDefaultState(stateDefinition.any().setValue(NORTH, Boolean.valueOf(false))
+				.setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false))
+				.setValue(WEST, Boolean.valueOf(false)).setValue(DOWN, Boolean.valueOf(false))
+				.setValue(UP, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
 		this.shapes = this.makeShapes();
 
-	}
-
-	@Override
-	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-		return false;
 	}
 
 	@Override
@@ -80,53 +74,54 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 
 	// block behaviour
 
+	@SuppressWarnings("deprecation")
 	@Override
-	@Deprecated
-	public void onReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
+
+	public void onRemove(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (state.getBlock() == newState.getBlock()) {
 
 		} else {
-			super.onReplaced(state, world, pos, newState, isMoving);
+			super.onRemove(state, world, pos, newState, isMoving);
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	@Deprecated
 	public void neighborChanged(BlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos,
 			boolean wat) {
-		if (!world.isRemote) {
+		if (!world.isClientSide) {
 			ItemPipeTileEntity.getTubeTEAt(world, pos).ifPresent(te -> te.onPossibleNetworkUpdateRequired());
 		}
 		super.neighborChanged(state, world, pos, blockIn, fromPos, wat);
 	}
 
 	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer,
+	public void setPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer,
 			ItemStack stack) {
-		if (!world.isRemote) {
+		if (!world.isClientSide) {
 			ItemPipeTileEntity.getTubeTEAt(world, pos).ifPresent(te -> te.onPossibleNetworkUpdateRequired());
 		}
-		super.onBlockPlacedBy(world, pos, state, placer, stack);
+		super.setPlacedBy(world, pos, state, placer, stack);
 	}
 
 	/// connections and states
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		IBlockReader world = context.getWorld();
-		BlockPos pos = context.getPos();
-		FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
-		return super.getStateForPlacement(context).with(DOWN, this.canConnectTo(world, pos, Direction.DOWN))
-				.with(UP, this.canConnectTo(world, pos, Direction.UP))
-				.with(NORTH, this.canConnectTo(world, pos, Direction.NORTH))
-				.with(SOUTH, this.canConnectTo(world, pos, Direction.SOUTH))
-				.with(WEST, this.canConnectTo(world, pos, Direction.WEST))
-				.with(EAST, this.canConnectTo(world, pos, Direction.EAST))
-				.with(WATERLOGGED, Boolean.valueOf(fluidstate.getFluid() == Fluids.WATER));
+		IBlockReader world = context.getLevel();
+		BlockPos pos = context.getClickedPos();
+		FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+		return super.getStateForPlacement(context).setValue(DOWN, this.canConnectTo(world, pos, Direction.DOWN))
+				.setValue(UP, this.canConnectTo(world, pos, Direction.UP))
+				.setValue(NORTH, this.canConnectTo(world, pos, Direction.NORTH))
+				.setValue(SOUTH, this.canConnectTo(world, pos, Direction.SOUTH))
+				.setValue(WEST, this.canConnectTo(world, pos, Direction.WEST))
+				.setValue(EAST, this.canConnectTo(world, pos, Direction.EAST))
+				.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
 	}
 
 	protected boolean canConnectTo(IBlockReader world, BlockPos pos, Direction face) {
-		BlockPos newPos = pos.offset(face);
+		BlockPos newPos = pos.relative(face);
 		BlockState state = world.getBlockState(newPos);
 		Block block = state.getBlock();
 
@@ -137,11 +132,14 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 		if (block instanceof ColorItemCable) {
 			return true;
 		}
+		
+		if (block instanceof ExtractorBlock && state.getValue(ExtractorBlock.FACING).equals(face.getOpposite()))
+			return true;
 
 		if (block instanceof ItemCable)
 			return this.isTubeCompatible((ItemCable) block);
 
-		TileEntity te = world.getTileEntity(newPos);
+		TileEntity te = world.getBlockEntity(newPos);
 
 		if (te == null)
 			return false;
@@ -161,7 +159,7 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 		ArrayList<Direction> dirs = new ArrayList<Direction>();
 		if (block instanceof ItemCable) {
 			for (Direction dir : Direction.values()) {
-				if (state.get(SixWayBlock.FACING_TO_PROPERTY_MAP.get(dir))) {
+				if (state.getValue(SixWayBlock.PROPERTY_BY_DIRECTION.get(dir))) {
 					dirs.add(dir);
 				}
 			}
@@ -170,18 +168,18 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(DOWN, UP, NORTH, SOUTH, WEST, EAST, WATERLOGGED);
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn,
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn,
 			BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) {
-			worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+		if (stateIn.getValue(WATERLOGGED)) {
+			worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
 
-		return stateIn.with(SixWayBlock.FACING_TO_PROPERTY_MAP.get(facing),
+		return stateIn.setValue(SixWayBlock.PROPERTY_BY_DIRECTION.get(facing),
 				Boolean.valueOf(this.canConnectTo(worldIn, currentPos, facing)));
 	}
 
@@ -191,14 +189,14 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 
 		VoxelShape[] shapes = new VoxelShape[64];
 
-		VoxelShape core = Block.makeCuboidShape(7F, 7F, 7F, 9F, 9F, 9F);
+		VoxelShape core = Block.box(7F, 7F, 7F, 9F, 9F, 9F);
 
-		VoxelShape down = Block.makeCuboidShape(7F, 0F, 7F, 9F, 7F, 9F);
-		VoxelShape up = Block.makeCuboidShape(7F, 9F, 7F, 9F, 16F, 9F);
-		VoxelShape north = Block.makeCuboidShape(7F, 7F, 0F, 9F, 9F, 7F);
-		VoxelShape south = Block.makeCuboidShape(7F, 7F, 9F, 9F, 9F, 16F);
-		VoxelShape west = Block.makeCuboidShape(0F, 7F, 7F, 7F, 9F, 9F);
-		VoxelShape east = Block.makeCuboidShape(9F, 7F, 7F, 16F, 9F, 9F);
+		VoxelShape down = Block.box(7F, 0F, 7F, 9F, 7F, 9F);
+		VoxelShape up = Block.box(7F, 9F, 7F, 9F, 16F, 9F);
+		VoxelShape north = Block.box(7F, 7F, 0F, 9F, 9F, 7F);
+		VoxelShape south = Block.box(7F, 7F, 9F, 9F, 9F, 16F);
+		VoxelShape west = Block.box(0F, 7F, 7F, 7F, 9F, 9F);
+		VoxelShape east = Block.box(9F, 7F, 7F, 16F, 9F, 9F);
 
 		VoxelShape[] dunswe = { down, up, north, south, west, east };
 
@@ -215,7 +213,7 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 	}
 
 	@Override
-	public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
+	public VoxelShape getOcclusionShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
 		return state.getShape(worldIn, pos);
 	}
 
@@ -234,7 +232,7 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 		int index = 0;
 
 		for (int j = 0; j < FACING_VALUES.length; ++j) {
-			if (state.get(SixWayBlock.FACING_TO_PROPERTY_MAP.get(FACING_VALUES[j]))) {
+			if (state.getValue(SixWayBlock.PROPERTY_BY_DIRECTION.get(FACING_VALUES[j]))) {
 				index |= 1 << j;
 			}
 		}
@@ -243,17 +241,17 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 	}
 
 	@Override
-	public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-		return !state.get(WATERLOGGED) && fluidIn == Fluids.WATER;
+	public boolean canPlaceLiquid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+		return !state.getValue(WATERLOGGED) && fluidIn == Fluids.WATER;
 	}
 
 	@Override
-	public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-		if (!state.get(WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER) {
-			if (!worldIn.isRemote()) {
-				worldIn.setBlockState(pos, state.with(WATERLOGGED, Boolean.valueOf(true)), 3);
-				worldIn.getPendingFluidTicks().scheduleTick(pos, fluidStateIn.getFluid(),
-						fluidStateIn.getFluid().getTickRate(worldIn));
+	public boolean placeLiquid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+		if (!state.getValue(WATERLOGGED) && fluidStateIn.getType() == Fluids.WATER) {
+			if (!worldIn.isClientSide()) {
+				worldIn.setBlock(pos, state.setValue(WATERLOGGED, Boolean.valueOf(true)), 3);
+				worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getType(),
+						fluidStateIn.getType().getTickDelay(worldIn));
 			}
 
 			return true;
@@ -263,9 +261,9 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 	}
 
 	@Override
-	public Fluid pickupFluid(IWorld worldIn, BlockPos pos, BlockState state) {
-		if (state.get(WATERLOGGED)) {
-			worldIn.setBlockState(pos, state.with(WATERLOGGED, Boolean.valueOf(false)), 3);
+	public Fluid takeLiquid(IWorld worldIn, BlockPos pos, BlockState state) {
+		if (state.getValue(WATERLOGGED)) {
+			worldIn.setBlock(pos, state.setValue(WATERLOGGED, Boolean.valueOf(false)), 3);
 			return Fluids.WATER;
 		} else {
 			return Fluids.EMPTY;
@@ -276,7 +274,7 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 	@Override
 	public FluidState getFluidState(BlockState state) {
 		HashMap<Direction, Direction> map = new HashMap<>();
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 
 }

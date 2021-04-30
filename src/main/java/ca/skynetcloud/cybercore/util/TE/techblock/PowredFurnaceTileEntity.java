@@ -10,6 +10,7 @@ import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
 import ca.skynetcloud.cybercore.util.container.PowredFurnaceContainer;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -17,6 +18,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.text.ITextComponent;
@@ -31,6 +35,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 
+	private int power_storage_card = 1;
 	public int[] ticksPassed = new int[6];
 	boolean isSmelting;
 	int workload = 0;
@@ -95,13 +100,13 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 
 		}
 
-		public int size() {
+		public int getCount() {
 			return 8;
 		}
 	};
 
 	public PowredFurnaceTileEntity() {
-		super(TileEntityNames.POWER_FURNACE_TE, 10000, 20, 4);
+		super(TileEntityNames.POWER_FURNACE_TE, 10000, 20);
 		inputs = new RangedWrapper(itemhandler, 0, 6);
 		outputs = new RangedWrapper(itemhandler, 6, 12);
 		inputs_provider = LazyOptional.of(() -> inputs);
@@ -124,11 +129,12 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 	@Override
 	public void doUpdate() {
 
-		if (world.isDaytime() && world.canBlockSeeSky(pos.up())) {
+		if (level.isDay() || level.isNight() && level.canSeeSkyFromBelowWater(worldPosition.above())) {
 			if (energystorage.getMaxEnergyStored() - energystorage.getEnergyStored() > 0) {
 				workload++;
 				if (workload >= getTicksPerAmount()) {
-					energystorage.receiveEnergy(getEnergyPerTick(getMarkcard(16, ItemType.SOLAR_FOCUS)) + getTicksPerAmount());
+					energystorage.receiveEnergy(
+							getEnergyPerTick(getMarkcard(13, ItemType.SOLAR_FOCUS)) + getTicksPerAmount());
 					workload = 0;
 				}
 			}
@@ -144,6 +150,7 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 					if (ticksPassed[i] >= this.getTicksPerItem()) {
 						this.smeltItem(i);
 						ticksPassed[i] = 0;
+
 					}
 				} else if (ticksPassed[i] > 0) {
 					ticksPassed[i] = 0;
@@ -157,28 +164,29 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 		}
 		if (isSmelting) {
 			this.energystorage.extractEnergy(getEnergyPerTickPerItem(), false);
+
 		}
 
 		doEnergyLoop();
 	}
-	
+
 	private int getEnergyPerTick(int focusLevel) {
 		switch (focusLevel) {
 		case 1:
-			return 20;
+			return 100;
 		case 2:
-			return 60;
+			return 200;
 		case 3:
-			return 180;
+			return 15000;
 		case 4:
-			return 1000;
+			return 250000;
 		}
 
 		return 0;
 	}
 
 	public int getTicksPerAmount() {
-		return 100 - (getMarkcard(1, ItemType.SPEED_UPGRADE) * 15);
+		return 100 + (getMarkcard(12, ItemType.SPEED_UPGRADE));
 	}
 
 	@Override
@@ -188,39 +196,37 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 
 	private boolean canSmelt(int slot) {
 		ItemStack itemstack = itemhandler.getStackInSlot(slot);
-		if (itemstack.isEmpty()) {
+		if (itemstack.isEmpty())
 			return false;
-		} else {
+		else {
 
 			ItemStack output = getOutput(slot);
-			if (output.isEmpty()) {
+			if (output.isEmpty())
 				return false;
-			} else {
+			else {
 				ItemStack outputslot = itemhandler.getStackInSlot(slot + 6);
-				if (outputslot.isEmpty()) {
+				if (outputslot.isEmpty())
 					return true;
-				} else if (!output.isItemEqual(outputslot)) {
+				else if (!output.sameItem(outputslot))
 					return false;
-				} else if (outputslot.getCount() + output.getCount() <= 64
-						&& outputslot.getCount() + output.getCount() <= outputslot.getMaxStackSize()) {
+				else if (outputslot.getCount() + output.getCount() <= 64
+						&& outputslot.getCount() + output.getCount() <= outputslot.getMaxStackSize())
 					return true;
-				} else {
+				else
 					return outputslot.getCount() + output.getCount() <= output.getMaxStackSize();
-				}
 
 			}
 		}
 	}
 
 	public ItemStack getOutput(int slot) {
+		if (level == null)
+			return ItemStack.EMPTY;
 		dummyitemhandler.setStackInSlot(0, itemhandler.getStackInSlot(slot));
 		RecipeWrapper wrapper = new RecipeWrapper(dummyitemhandler);
-		Optional<FurnaceRecipe> recipeopt = world.getRecipeManager().getRecipe(IRecipeType.SMELTING, wrapper, world);
+		Optional<FurnaceRecipe> recipeopt = level.getRecipeManager().getRecipeFor(IRecipeType.SMELTING, wrapper, level);
 		FurnaceRecipe recipe = recipeopt.orElse(null);
-		if (recipe != null) {
-			return recipe.getRecipeOutput();
-		}
-		return ItemStack.EMPTY;
+		return recipe == null ? ItemStack.EMPTY : recipe.getResultItem();
 	}
 
 	public void smeltItem(int slot) {
@@ -228,25 +234,21 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 			ItemStack itemstack = this.itemhandler.getStackInSlot(slot);
 			ItemStack itemstack1 = getOutput(slot);
 			ItemStack itemstack2 = this.itemhandler.getStackInSlot(slot + 6);
-
-			if (itemstack2.isEmpty()) {
+			if (itemstack2.isEmpty())
 				this.itemhandler.setStackInSlot(slot + 6, itemstack1.copy());
-			} else if (itemstack2.getItem() == itemstack1.getItem()) {
+			else if (itemstack2.getItem() == itemstack1.getItem())
 				itemstack2.grow(itemstack1.getCount());
-			}
-			itemstack.shrink(1);
+			itemstack.shrink(5);
 		}
 	}
 
-	private int currentcard = -1;
-
 	@Override
 	public void onSlotContentChanged() {
-		if (world != null) {
-			if (!world.isRemote) {
-				int newcard = getMarkcard(2, ItemType.POWER_UPGRADE);
-				if (currentcard != newcard) {
-					switch (currentcard) {
+		if (level != null) {
+			if (!level.isClientSide) {
+				int newcard = getMarkcard(13, ItemType.POWER_UPGRADE);
+				if (power_storage_card != newcard) {
+					switch (power_storage_card) {
 					case 0:
 						energystorage.setEnergyMaxStored(1000);
 						break;
@@ -260,14 +262,14 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 						energystorage.setEnergyMaxStored(1000000);
 						break;
 					}
-					BlockState state = world.getBlockState(pos);
+					BlockState state = level.getBlockState(worldPosition);
 					if (state != null) {
 						if (state.getBlock() == BlockInit.POWER_FURNACE_BLOCK) {
-							world.setBlockState(pos, state.with(null, newcard), 2);
-							markDirty();
+							level.setBlock(worldPosition, state.setValue(null, newcard), 2);
+							setChanged();
 						}
 					}
-					currentcard = newcard;
+					power_storage_card = newcard;
 				}
 			}
 		}
@@ -282,20 +284,20 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
+	public CompoundNBT save(CompoundNBT compound) {
 		for (int i = 0; i < 6; i++) {
 			compound.putInt("cooktime_" + i, ticksPassed[i]);
 		}
-		super.write(compound);
+		super.save(compound);
 		return compound;
 	}
 
 	@Override
-	public void read(BlockState state, CompoundNBT compound) {
+	public void load(BlockState state, CompoundNBT compound) {
 		for (int i = 0; i < 6; i++) {
 			this.ticksPassed[i] = compound.getInt("cooktime_" + i);
 		}
-		super.read(state, compound);
+		super.load(state, compound);
 	}
 
 	@Override

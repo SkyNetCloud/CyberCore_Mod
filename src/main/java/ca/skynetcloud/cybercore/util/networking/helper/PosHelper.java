@@ -10,7 +10,7 @@ public class PosHelper {
 	@Nullable
 	public static Direction getTravelDirectionFromTo(BlockPos startPos, BlockPos nextPos) {
 		for (Direction face : Direction.values()) {
-			if (startPos.offset(face).equals(nextPos)) {
+			if (startPos.relative(face).equals(nextPos)) {
 				return face;
 			}
 		}

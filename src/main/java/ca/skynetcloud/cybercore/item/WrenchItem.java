@@ -16,28 +16,28 @@ import net.minecraft.world.World;
 public class WrenchItem extends ItemBaseCore {
 
 	public WrenchItem() {
-		super(new Item.Properties().maxStackSize(1).group(CyberCoreTab.instance));
+		super(new Item.Properties().stacksTo(1).tab(CyberCoreTab.instance));
 		this.setRegistryName("wrench");
 
 	}
 
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
-		World world = context.getWorld();
-		BlockPos pos = context.getPos();
+	public ActionResultType useOn(ItemUseContext context) {
+		World world = context.getLevel();
+		BlockPos pos = context.getClickedPos();
 		PlayerEntity player = context.getPlayer();
-		if (!world.isRemote) {
+		if (!world.isClientSide) {
 			BlockState target = world.getBlockState(pos);
-			ItemStack stack = player.getHeldItem(Hand.MAIN_HAND);
+			ItemStack stack = player.getItemInHand(Hand.MAIN_HAND);
 			if (!stack.isEmpty() && target.getBlock() instanceof TechBlockFacing) {
 				if (stack.getItem() instanceof WrenchItem && player.isCrouching()) {
 					world.removeBlock(pos, false);
-					Block.spawnAsEntity(world, pos, new ItemStack(target.getBlock()));
+					Block.popResource(world, pos, new ItemStack(target.getBlock()));
 					return ActionResultType.SUCCESS;
 				}
 			}
 		}
 
-		return super.onItemUse(context);
+		return super.useOn(context);
 	}
 }

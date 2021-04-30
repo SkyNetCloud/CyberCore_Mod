@@ -21,16 +21,16 @@ public class CyberCoreClient {
 
 		ScreenInit.registerGUI();
 
-		RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.cutout());
 	}
 
 	public static class CyberCoreTab extends ItemGroup {
 
-		public static final CyberCoreTab instance = new CyberCoreTab(ItemGroup.GROUPS.length, Names.CyberTAB);
-		public static final CyberCoreTab item_cable = new CyberCoreTab(ItemGroup.GROUPS.length,
+		public static final CyberCoreTab instance = new CyberCoreTab(ItemGroup.TABS.length, Names.CyberTAB);
+		public static final CyberCoreTab item_cable = new CyberCoreTab(ItemGroup.TABS.length,
 				Names.CyberTAB_Item_Cable);
-		public static final CyberCoreTab power_cable = new CyberCoreTab(ItemGroup.GROUPS.length,
+		public static final CyberCoreTab power_cable = new CyberCoreTab(ItemGroup.TABS.length,
 				Names.CyberTAB_Power_Cable);
 
 		private CyberCoreTab(int index, String label) {
@@ -38,7 +38,7 @@ public class CyberCoreClient {
 		}
 
 		@Override
-		public ItemStack createIcon() {
+		public ItemStack makeIcon() {
 
 			if (this == instance) {
 				return new ItemStack(ItemInit.cyber_ingot);

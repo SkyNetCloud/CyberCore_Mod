@@ -7,6 +7,7 @@ import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.api.Names;
 import ca.skynetcloud.cybercore.block.BlockBaseCore;
 import ca.skynetcloud.cybercore.block.blocks.CableBlock;
+import ca.skynetcloud.cybercore.block.blocks.ExtractorBlock;
 import ca.skynetcloud.cybercore.block.blocks.ItemCable;
 import ca.skynetcloud.cybercore.block.blocks.PowerCube;
 import ca.skynetcloud.cybercore.block.blocks.color_cable.ColorCable;
@@ -39,6 +40,9 @@ public class BlockInit {
 	public static Block C_Changer_Block = new TechBlockFacing(ColorChangeTileEntity::new)
 			.setRegistryName("color_changer");
 
+	public static Block BlockExp = new ExtractorBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f))
+			.setRegistryName("block_extractor");
+
 	@ObjectHolder(Names.BLOCK_PIPE)
 	public static Block BLOCK_PIPE = null;
 
@@ -56,25 +60,24 @@ public class BlockInit {
 			.setRegistryName(Names.POWER_FURNACE_BLOCK);
 
 	@ObjectHolder(Names.RUBY_BLOCK)
-	public static Block RUBY_BLOCK = new BlockBaseCore(Block.Properties.create(Material.IRON), true)
+	public static Block RUBY_BLOCK = new BlockBaseCore(Block.Properties.of(Material.METAL), true)
 			.setRegistryName(Names.RUBY_BLOCK);
 
 	@ObjectHolder(Names.DARK_STEEL_BLOCK)
-	public static Block DARK_STEEL_BLOCK = new BlockBaseCore(Block.Properties.create(Material.IRON), true)
+	public static Block DARK_STEEL_BLOCK = new BlockBaseCore(Block.Properties.of(Material.METAL), true)
 			.setRegistryName(Names.DARK_STEEL_BLOCK);
 
 	@ObjectHolder(Names.CYBER_ORE)
-	public static Block CYBER_ORE = new OreBlock(
-			Block.Properties.create(Material.ROCK).hardnessAndResistance(5.0f, 10.0f)).setRegistryName(Names.CYBER_ORE);
+	public static Block CYBER_ORE = new OreBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f))
+			.setRegistryName(Names.CYBER_ORE);
 
 	@ObjectHolder(Names.DARK_STEEL_ORE)
-	public static Block DARK_STEEL_ORE = new OreBlock(
-			Block.Properties.create(Material.ROCK).hardnessAndResistance(5.0f, 15.0f))
-					.setRegistryName(Names.DARK_STEEL_ORE);
+	public static Block DARK_STEEL_ORE = new OreBlock(Block.Properties.of(Material.STONE).strength(5.0f, 15.0f))
+			.setRegistryName(Names.DARK_STEEL_ORE);
 
 	@ObjectHolder(Names.RUBY_ORE)
-	public static Block RUBY_ORE = new OreBlock(
-			Block.Properties.create(Material.ROCK).hardnessAndResistance(0.5F, 7.0F)).setRegistryName(Names.RUBY_ORE);
+	public static Block RUBY_ORE = new OreBlock(Block.Properties.of(Material.STONE).strength(0.5F, 7.0F))
+			.setRegistryName(Names.RUBY_ORE);
 
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
@@ -84,16 +87,14 @@ public class BlockInit {
 
 		IntStream.range(0, 16)
 				.forEach(i -> registerBlock(registry,
-						new ColorItemCable(DyeColor.values()[i],
-								Block.Properties.create(Material.GLASS).hardnessAndResistance(0.4F)
-										.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
+						new ColorItemCable(DyeColor.values()[i], Block.Properties.of(Material.GLASS).strength(0.4F)
+								.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
 						Names.COLORED_Item_TUBE_NAMES[i]));
 
 		IntStream.range(0, 16)
 				.forEach(i -> registerBlock(registry,
-						new ColorCable(DyeColor.values()[i],
-								Block.Properties.create(Material.GLASS).hardnessAndResistance(0.4F)
-										.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
+						new ColorCable(DyeColor.values()[i], Block.Properties.of(Material.GLASS).strength(0.4F)
+								.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
 						Names.COLORED_Power_Cable_Names[i]));
 
 	}

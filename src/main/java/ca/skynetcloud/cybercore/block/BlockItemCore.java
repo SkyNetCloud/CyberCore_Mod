@@ -7,7 +7,7 @@ import net.minecraft.item.BlockItem;
 public class BlockItemCore extends BlockItem {
 
 	public BlockItemCore(Block blockIn) {
-		super(blockIn, new Properties().group(CyberCoreTab.instance));
+		super(blockIn, new Properties().tab(CyberCoreTab.instance));
 		setRegistryName(blockIn.getRegistryName());
 	}
 

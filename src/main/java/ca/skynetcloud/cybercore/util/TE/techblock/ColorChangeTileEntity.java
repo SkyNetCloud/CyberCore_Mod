@@ -60,11 +60,11 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 			case 3:
 				return ColorChangeTileEntity.this.selectedId;
 			case 4:
-				return ColorChangeTileEntity.this.pos.getX();
+				return ColorChangeTileEntity.this.worldPosition.getX();
 			case 5:
-				return ColorChangeTileEntity.this.pos.getY();
+				return ColorChangeTileEntity.this.worldPosition.getY();
 			case 6:
-				return ColorChangeTileEntity.this.pos.getZ();
+				return ColorChangeTileEntity.this.worldPosition.getZ();
 			default:
 				return 0;
 			}
@@ -85,31 +85,31 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 				ColorChangeTileEntity.this.selectedId = value;
 				break;
 			case 4:
-				BlockPos newPos = new BlockPos(value, ColorChangeTileEntity.this.pos.getY(),
-						ColorChangeTileEntity.this.pos.getZ());
-				ColorChangeTileEntity.this.pos = newPos;
+				BlockPos newPos = new BlockPos(value, ColorChangeTileEntity.this.worldPosition.getY(),
+						ColorChangeTileEntity.this.worldPosition.getZ());
+				ColorChangeTileEntity.this.worldPosition = newPos;
 				break;
 			case 5:
-				BlockPos newPos2 = new BlockPos(ColorChangeTileEntity.this.pos.getX(), value,
-						ColorChangeTileEntity.this.pos.getZ());
-				ColorChangeTileEntity.this.pos = newPos2;
+				BlockPos newPos2 = new BlockPos(ColorChangeTileEntity.this.worldPosition.getX(), value,
+						ColorChangeTileEntity.this.worldPosition.getZ());
+				ColorChangeTileEntity.this.worldPosition = newPos2;
 				break;
 			case 6:
-				BlockPos newPos3 = new BlockPos(ColorChangeTileEntity.this.pos.getX(),
-						ColorChangeTileEntity.this.pos.getY(), value);
-				ColorChangeTileEntity.this.pos = newPos3;
+				BlockPos newPos3 = new BlockPos(ColorChangeTileEntity.this.worldPosition.getX(),
+						ColorChangeTileEntity.this.worldPosition.getY(), value);
+				ColorChangeTileEntity.this.worldPosition = newPos3;
 				break;
 			}
 
 		}
 
-		public int size() {
+		public int getCount() {
 			return 7;
 		}
 	};
 
 	public ColorChangeTileEntity() {
-		super(TileEntityNames.COLOR_Changer_TE, CyberCoreConfig.POWERLMIT.get(), 25, 3);
+		super(TileEntityNames.COLOR_Changer_TE, CyberCoreConfig.POWERLMIT.get(), 25);
 		inputs = new RangedWrapper(itemhandler, 0, 1);
 		outputs = new RangedWrapper(itemhandler, 1, 2);
 		inputs_provider = LazyOptional.of(() -> inputs);
@@ -210,26 +210,26 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 
 		if (!particleStack.isEmpty()) {
 			Item particle = particleStack.getItem();
-			if (world != null) {
-				for (IRecipe<?> recipe : this.world.getRecipeManager().getRecipes()) {
+			if (level != null) {
+				for (IRecipe<?> recipe : this.level.getRecipeManager().getRecipes()) {
 					if (recipe.getType() == ModedRecipeTypes.COLORING) {
 						ColorChangerRecipe compRecipe = (ColorChangerRecipe) recipe;
 						if (compRecipe.getInput().getItem() == particle) {
-							temprecipeList.put(Item.getIdFromItem(compRecipe.getRecipeOutput().getItem()),
-									Pair.of(compRecipe.getRecipeOutput(), compRecipe.getAmountInput()));
-							keys.add(Item.getIdFromItem(compRecipe.getRecipeOutput().getItem()));
+							temprecipeList.put(Item.getId(compRecipe.getResultItem().getItem()),
+									Pair.of(compRecipe.getResultItem(), compRecipe.getAmountInput()));
+							keys.add(Item.getId(compRecipe.getResultItem().getItem()));
 						}
 					}
 
 				}
 			} else {
-				for (IRecipe<?> recipe : Minecraft.getInstance().world.getRecipeManager().getRecipes()) {
+				for (IRecipe<?> recipe : Minecraft.getInstance().level.getRecipeManager().getRecipes()) {
 					if (recipe.getType() == ModedRecipeTypes.COLORING) {
 						ColorChangerRecipe compRecipe = (ColorChangerRecipe) recipe;
 						if (compRecipe.getInput().getItem() == particle) {
-							temprecipeList.put(Item.getIdFromItem(compRecipe.getRecipeOutput().getItem()),
-									Pair.of(compRecipe.getRecipeOutput(), compRecipe.getAmountInput()));
-							keys.add(Item.getIdFromItem(compRecipe.getRecipeOutput().getItem()));
+							temprecipeList.put(Item.getId(compRecipe.getResultItem().getItem()),
+									Pair.of(compRecipe.getResultItem(), compRecipe.getAmountInput()));
+							keys.add(Item.getId(compRecipe.getResultItem().getItem()));
 						}
 					}
 
@@ -266,18 +266,18 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
+	public CompoundNBT save(CompoundNBT compound) {
 		compound.putInt("tickspassed", ticksPassed);
 		compound.putInt("selectedId", selectedId);
-		super.write(compound);
+		super.save(compound);
 		return compound;
 	}
 
 	@Override
-	public void read(BlockState state, CompoundNBT compound) {
+	public void load(BlockState state, CompoundNBT compound) {
 		this.ticksPassed = compound.getInt("tickspassed");
 		this.selectedId = compound.getInt("selectedId");
-		super.read(state, compound);
+		super.load(state, compound);
 	}
 
 	@Override

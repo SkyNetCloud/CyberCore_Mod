@@ -27,8 +27,8 @@ public class ColorChangeScreen extends ScreenBaseCore<ColorChangeContainer> {
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 6; x++) {
 				if (inArea(mouseX, mouseY, 35 + x * 18, 26 + y * 18)) {
-					CyberCorePacketHandler.sendToServer(new ButtonPressMessage(te.getPos().getX(), te.getPos().getY(),
-							te.getPos().getZ(), x + y * 6));
+					CyberCorePacketHandler.sendToServer(new ButtonPressMessage(te.getBlockPos().getX(),
+							te.getBlockPos().getY(), te.getBlockPos().getZ(), x + y * 6));
 				}
 			}
 		}
@@ -36,52 +36,52 @@ public class ColorChangeScreen extends ScreenBaseCore<ColorChangeContainer> {
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
-		super.drawGuiContainerBackgroundLayer(mStack, partialTicks, mouseX, mouseY);
+	protected void renderBg(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
+		super.renderBg(mStack, partialTicks, mouseX, mouseY);
 
 		int l = this.getCookProgressScaled(72);
-		blit(mStack, this.guiLeft + 55, this.guiTop + 87, 0, 200, l, 8);
+		blit(mStack, this.leftPos + 55, this.topPos + 87, 0, 200, l, 8);
 
 		// int k = this.getEnergyStoredScaled(55);
 		// blit(mStack, this.guiLeft + 149, this.guiTop + 29 + (55 - k), 208, 55 - k,
 		// 16, k);
-		int i = container.getValue(3);
+		int i = menu.getValue(3);
 		if (i >= 0)
-			blit(mStack, this.guiLeft + 34 + (i % 6) * 18, this.guiTop + 26 + (i / 6) * 18, 224, 0, 18, 18);
+			blit(mStack, this.leftPos + 34 + (i % 6) * 18, this.topPos + 26 + (i / 6) * 18, 224, 0, 18, 18);
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(MatrixStack mStack, int mouseX, int mouseY) {
+	protected void renderLabels(MatrixStack mStack, int mouseX, int mouseY) {
+
 		@SuppressWarnings("resource")
-		FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
+		FontRenderer fontRenderer = Minecraft.getInstance().font;
 
 		// fontRenderer.drawStringWithShadow(mStack, "Powered Furnace", 270, 60, 15312);
-		fontRenderer.drawStringWithShadow(mStack,
-				"Max It Can Stored FE : " + TextFormatting.RED + te.getMaxEnergyStored(), -155, 50,
-				TextFormatting.DARK_GREEN.getColor());
-		fontRenderer.drawStringWithShadow(mStack, "Power Stored FE: " + TextFormatting.GREEN + te.getEnergyStored(),
-				-155, 70, TextFormatting.BLUE.getColor());
+		fontRenderer.drawShadow(mStack, "Max It Can Stored FE : " + TextFormatting.RED + te.getMaxEnergyStored(), -155,
+				50, TextFormatting.DARK_GREEN.getColor());
+		fontRenderer.drawShadow(mStack, "Power Stored FE: " + TextFormatting.GREEN + te.getEnergyStored(), -155, 70,
+				TextFormatting.BLUE.getColor());
 		if (te.getEnergyStored() >= 1000) {
-			fontRenderer.drawStringWithShadow(mStack, "Power Stored FE: " + TextFormatting.RED + te.getEnergyStored(),
-					-155, 70, TextFormatting.BLUE.getColor());
+			fontRenderer.drawShadow(mStack, "Power Stored FE: " + TextFormatting.RED + te.getEnergyStored(), -155, 70,
+					TextFormatting.BLUE.getColor());
 		} else if (te.getEnergyStored() >= 500) {
-			fontRenderer.drawStringWithShadow(mStack, "Power Stored FE: " + TextFormatting.YELLOW + te.getEnergyStored(),
-					-155, 70, TextFormatting.BLUE.getColor());
+			fontRenderer.drawShadow(mStack, "Power Stored FE: " + TextFormatting.YELLOW + te.getEnergyStored(), -155,
+					70, TextFormatting.BLUE.getColor());
 		} else if (te.getEnergyStored() >= 100) {
-			fontRenderer.drawStringWithShadow(mStack, "Power Stored FE: " + TextFormatting.GREEN + te.getEnergyStored(),
-					-155, 70, TextFormatting.BLUE.getColor());
+			fontRenderer.drawShadow(mStack, "Power Stored FE: " + TextFormatting.GREEN + te.getEnergyStored(), -155, 70,
+					TextFormatting.BLUE.getColor());
 		}
 	}
 
 	private int getCookProgressScaled(int pixels) {
-		int i = container.getValue(2);
+		int i = menu.getValue(2);
 		return i != 0 ? i * pixels / ((ColorChangeTileEntity) this.te).ticksPerItem() : 0;
 	}
 
 	@SuppressWarnings("unused")
 	private boolean inArea(double mouseX, double mouseY, int posX, int posY) {
-		posX += this.guiLeft;
-		posY += this.guiTop;
+		posX += this.leftPos;
+		posY += this.topPos;
 		return mouseX >= posX && mouseX <= posX + 18 && mouseY >= posY && mouseY <= posY + 18;
 	}
 

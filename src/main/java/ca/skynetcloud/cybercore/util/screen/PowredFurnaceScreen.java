@@ -23,29 +23,30 @@ public class PowredFurnaceScreen extends ScreenBaseCore<PowredFurnaceContainer> 
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
-		super.drawGuiContainerBackgroundLayer(mStack, partialTicks, mouseX, mouseY);
+	protected void renderBg(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
+		super.renderBg(mStack, partialTicks, mouseX, mouseY);
 
 		for (int p = 0; p < 6; p++) {
 			int l = this.getCookProgressScaled(p, 15);
-			blit(mStack, this.guiLeft + 24 + p * 27, this.guiTop + 46, 3, 200, 12, l);
+			blit(mStack, this.leftPos + 24 + p * 27, this.topPos + 46, 3, 200, 12, l);
 		}
 
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(MatrixStack mStack, int mouseX, int mouseY) {
+	protected void renderLabels(MatrixStack mStack, int mouseX, int mouseY) {
 		@SuppressWarnings("resource")
-		FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
+		FontRenderer fontRenderer = Minecraft.getInstance().font;
 
 		// fontRenderer.drawStringWithShadow(mStack, "Powered Furnace", 270, 60, 15312);
-		fontRenderer.drawStringWithShadow(mStack, "Power Stored FE: " + TextFormatting.GREEN + te.getEnergyStored(), -155, 70, TextFormatting.BLUE.getColor());
-		fontRenderer.drawStringWithShadow(mStack, "Max It Can Stored FE : " + TextFormatting.GREEN + te.getMaxEnergyStored(), -155, 50,
-				TextFormatting.DARK_GREEN.getColor());
+		fontRenderer.drawShadow(mStack, "Power Stored FE: " + TextFormatting.GREEN + te.getEnergyStored(), -155, 70,
+				TextFormatting.BLUE.getColor());
+		fontRenderer.drawShadow(mStack, "Max It Can Stored FE : " + TextFormatting.GREEN + te.getMaxEnergyStored(),
+				-155, 50, TextFormatting.DARK_GREEN.getColor());
 	}
 
 	private int getCookProgressScaled(int id, int pixels) {
-		int i = container.getValue(id + 2);
+		int i = menu.getValue(id + 2);
 		return i != 0 ? i * pixels / ((PowredFurnaceTileEntity) this.te).getTicksPerItem() : 0;
 	}
 

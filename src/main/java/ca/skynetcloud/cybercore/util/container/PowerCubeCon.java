@@ -27,32 +27,32 @@ public class PowerCubeCon extends BaseContainerCore {
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+	public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
 		ItemStack stack = ItemStack.EMPTY;
-		Slot slot = (Slot) this.inventorySlots.get(index);
-		if (slot != null && slot.getHasStack()) {
-			ItemStack stack1 = slot.getStack();
+		Slot slot = (Slot) this.slots.get(index);
+		if (slot != null && slot.hasItem()) {
+			ItemStack stack1 = slot.getItem();
 			stack = stack1.copy();
 
 			if (index > 35) {
-				if (!this.mergeItemStack(stack1, 0, 34, true)) {
+				if (!this.moveItemStackTo(stack1, 0, 34, true)) {
 					return ItemStack.EMPTY;
 				}
 			} else if (index < 36) {
 				if (index >= 0 && index < 27) {
-					if (!this.mergeItemStack(stack1, 27, 35, false))
+					if (!this.moveItemStackTo(stack1, 27, 35, false))
 						return ItemStack.EMPTY;
-				} else if (index >= 27 && index < 36 && !this.mergeItemStack(stack1, 0, 26, false)) {
+				} else if (index >= 27 && index < 36 && !this.moveItemStackTo(stack1, 0, 26, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.mergeItemStack(stack1, 0, 35, false)) {
+			} else if (!this.moveItemStackTo(stack1, 0, 35, false)) {
 				return ItemStack.EMPTY;
 			}
 
 			if (stack1.isEmpty()) {
-				slot.putStack(ItemStack.EMPTY);
+				slot.set(ItemStack.EMPTY);
 			} else {
-				slot.onSlotChanged();
+				slot.setChanged();
 
 			}
 			if (stack1.getCount() == stack.getCount())
@@ -72,9 +72,10 @@ public class PowerCubeCon extends BaseContainerCore {
 		}
 
 		@Override
-		public void onSlotChanged() {
+		public void setChanged() {
 			te.onSlotContentChanged();
-			super.onSlotChanged();
+			super.setChanged();
 		}
 	}
+
 }

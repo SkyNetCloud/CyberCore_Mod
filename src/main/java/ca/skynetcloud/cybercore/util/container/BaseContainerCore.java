@@ -31,16 +31,16 @@ public class BaseContainerCore extends Container {
 
 		this.tileentity = tileentity;
 		field_array = tileentity.getIntArray();
-		trackIntArray(field_array);
+		addDataSlots(field_array);
 	}
 
 	@Override
-	public void detectAndSendChanges() {
-		super.detectAndSendChanges();
+	public void broadcastChanges() {
+		super.broadcastChanges();
 	}
 
 	@Override
-	public boolean canInteractWith(PlayerEntity playerIn) {
+	public boolean stillValid(PlayerEntity playerIn) {
 		return tileentity.isUsableByPlayer(playerIn);
 	}
 
@@ -74,12 +74,12 @@ public class BaseContainerCore extends Container {
 		}
 
 		@Override
-		public boolean canTakeStack(PlayerEntity playerIn) {
+		public boolean mayPickup(PlayerEntity playerIn) {
 			return false;
 		}
 
 		@Override
-		public boolean isItemValid(ItemStack stack) {
+		public boolean mayPlace(ItemStack stack) {
 			return false;
 		}
 	}

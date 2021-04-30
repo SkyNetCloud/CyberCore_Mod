@@ -25,22 +25,21 @@ public class OreGeneration {
 	public static void registerOres() {
 		overworldOres.add(register("cyber_ore",
 				Feature.ORE
-						.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD,
-								BlockInit.CYBER_ORE.getDefaultState(), 4)) // Vein Size
-						.range(12).square() // Spawn height start
-						.func_242731_b(50))); // Chunk spawn frequency
+						.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+								BlockInit.CYBER_ORE.defaultBlockState(), 4)) // Vein Size
+						.range(12).squared().chance(50))); // Chunk spawn frequency
 		overworldOres.add(register("ruby_ore",
 				Feature.ORE
-						.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD,
-								BlockInit.RUBY_ORE.getDefaultState(), 4)) // Vein Size
-						.range(12).square() // Spawn height start
-						.func_242731_b(5))); // Chunk spawn frequency
+						.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+								BlockInit.RUBY_ORE.defaultBlockState(), 4)) // Vein Size
+						.range(12).squared() // Spawn height start
+						.chance(5))); // Chunk spawn frequency
 		overworldOres.add(register("dark_steel_ore",
 				Feature.ORE
-						.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD,
-								BlockInit.DARK_STEEL_ORE.getDefaultState(), 4)) // Vein Size
-						.range(12).square() // Spawn height start
-						.func_242731_b(20))); // Chunk spawn frequency
+						.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+								BlockInit.DARK_STEEL_ORE.defaultBlockState(), 4)) // Vein Size
+						.range(12).squared() // Spawn height start
+						.chance(20))); // Chunk spawn frequency
 
 	}
 
@@ -49,7 +48,7 @@ public class OreGeneration {
 		BiomeGenerationSettingsBuilder generation = event.getGeneration();
 		for (ConfiguredFeature<?, ?> ore : overworldOres) {
 			if (ore != null)
-				generation.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
+				generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
 		}
 
 	}

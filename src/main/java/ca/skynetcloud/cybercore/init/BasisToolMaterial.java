@@ -2,6 +2,7 @@ package ca.skynetcloud.cybercore.init;
 
 import java.util.function.Supplier;
 
+import ca.skynetcloud.cybercore.api.items.ItemInit;
 import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.IItemTier;
@@ -11,12 +12,12 @@ import net.minecraft.util.LazyValue;
 
 public class BasisToolMaterial {
 
-	public static final IItemTier cyber_ingot = new ToolMaterial(3, CyberCoreConfig.durability_Cyber.get(), 6.0F,
-			CyberCoreConfig.attackdamage_Cyber.get(), 14, () -> Ingredient.fromItems(Items.QUARTZ));
-	public static final IItemTier ruby_gem = new ToolMaterial(3, CyberCoreConfig.durability_Ruby.get(), 7F,
-			CyberCoreConfig.attackdamage_Ruby.get(), 10, () -> Ingredient.fromItems(Blocks.OBSIDIAN));
+	public static final IItemTier cyber_ingot = new ToolMaterial(3, 2500, 6.0F, 2500, 14,
+			() -> Ingredient.of(ItemInit.cyber_ingot));
+	public static final IItemTier ruby_gem = new ToolMaterial(3, 2500, 7F, 2500, 10,
+			() -> Ingredient.of(ItemInit.ruby_ingot));
 	public static final IItemTier dark_steel_ingot = new ToolMaterial(3, CyberCoreConfig.durability_Dark_Steel.get(),
-			9.5F, CyberCoreConfig.attackdamage_Dark_Steel.get(), 10, () -> Ingredient.fromItems(Items.EMERALD));
+			9.5F, 2500, 10, () -> Ingredient.of(ItemInit.dark_steel_ingot));
 
 	private static class ToolMaterial implements IItemTier {
 
@@ -27,7 +28,7 @@ public class BasisToolMaterial {
 		private final int enchantability;
 		private final LazyValue<Ingredient> repair;
 
-		public ToolMaterial(int harvestLevel, int maxUses, float efficiency, double attackDamage, int enchantability,
+		public ToolMaterial(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability,
 				Supplier<Ingredient> supplier) {
 			this.harvestLevel = harvestLevel;
 			this.maxUses = maxUses;
@@ -38,33 +39,33 @@ public class BasisToolMaterial {
 		}
 
 		@Override
-		public int getMaxUses() {
+		public int getUses() {
 			return maxUses;
 		}
 
 		@Override
-		public float getEfficiency() {
+		public float getSpeed() {
 			return efficiency;
 		}
 
 		@Override
-		public float getAttackDamage() {
+		public float getAttackDamageBonus() {
 			return attackDamage;
 		}
 
 		@Override
-		public int getHarvestLevel() {
+		public int getLevel() {
 			return harvestLevel;
 		}
 
 		@Override
-		public int getEnchantability() {
+		public int getEnchantmentValue() {
 			return enchantability;
 		}
 
 		@Override
-		public Ingredient getRepairMaterial() {
-			return repair.getValue();
+		public Ingredient getRepairIngredient() {
+			return repair.get();
 		}
 	}
 

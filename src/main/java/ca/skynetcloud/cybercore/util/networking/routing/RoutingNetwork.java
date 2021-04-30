@@ -96,7 +96,7 @@ public class RoutingNetwork {
 		if (this.invalid)
 			return false;
 
-		TileEntity te = world.getTileEntity(pos);
+		TileEntity te = world.getBlockEntity(pos);
 		return (te != null && (te instanceof ItemPipeTileEntity
 				|| te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, face).isPresent()));
 
@@ -150,14 +150,14 @@ public class RoutingNetwork {
 		// narrow down the endpoint TEs to useable ones
 		for (BlockPos endPos : potentialEndpoints) {
 			// Endpoint point = Endpoint.createEndpoint(endPos, world, network.tubes);
-			TileEntity te = world.getTileEntity(endPos);
+			TileEntity te = world.getBlockEntity(endPos);
 			if (te == null)
 				continue; // just in case
 
 			for (Direction face : Direction.values()) {
 				// if the te has an item handler on this face, add an endpoint (representing
 				// that face) to the network
-				if (network.tubes.contains(endPos.offset(face))) {
+				if (network.tubes.contains(endPos.relative(face))) {
 					LazyOptional<IItemHandler> possibleHandler = te
 							.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, face);
 					possibleHandler.ifPresent(handler -> network.endpoints.add(new Endpoint(endPos, face)));
@@ -179,12 +179,12 @@ public class RoutingNetwork {
 
 			BlockPos visitedPos = blocksToVisit.poll();
 			visited.add(visitedPos);
-			TileEntity te = world.getTileEntity(visitedPos);
+			TileEntity te = world.getBlockEntity(visitedPos);
 			if (te instanceof ItemPipeTileEntity) {
 				network.tubes.add(visitedPos);
 				List<Direction> dirs = ((ItemPipeTileEntity) te).getConnectedDirections();
 				for (Direction face : dirs) {
-					BlockPos checkPos = visitedPos.offset(face);
+					BlockPos checkPos = visitedPos.relative(face);
 					if (!visited.contains(checkPos)) {
 						blocksToVisit.add(checkPos);
 					}

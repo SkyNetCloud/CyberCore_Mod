@@ -5,13 +5,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
+import ca.skynetcloud.cybercore.ClientProxy;
+import ca.skynetcloud.cybercore.PlayerData;
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -26,8 +28,8 @@ public class WorldHelper {
 	public static List<ItemPipeTileEntity> getTubesAdjacentTo(World world, BlockPos pos) {
 		List<ItemPipeTileEntity> tes = new ArrayList<ItemPipeTileEntity>(6);
 		for (Direction face : Direction.values()) {
-			BlockPos checkPos = pos.offset(face);
-			TileEntity te = world.getTileEntity(checkPos);
+			BlockPos checkPos = pos.relative(face);
+			TileEntity te = world.getBlockEntity(checkPos);
 			if (te instanceof ItemPipeTileEntity) {
 				tes.add((ItemPipeTileEntity) te);
 			}
@@ -38,25 +40,25 @@ public class WorldHelper {
 
 	public static Stream<ItemPipeTileEntity> getBlockPositionsAsTubeTileEntities(World world,
 			Collection<BlockPos> posCollection) {
-		Stream<TileEntity> teStream = posCollection.stream().map(tubePos -> world.getTileEntity(tubePos));
+		Stream<TileEntity> teStream = posCollection.stream().map(tubePos -> world.getBlockEntity(tubePos));
 		Stream<TileEntity> filteredStream = teStream.filter(te -> te instanceof ItemPipeTileEntity);
 		return filteredStream.map(te -> (ItemPipeTileEntity) te);
 	}
 
 	public static Optional<TileEntity> getTileEntityAt(World world, BlockPos pos) {
-		TileEntity te = world.getTileEntity(pos);
+		TileEntity te = world.getBlockEntity(pos);
 		return Optional.ofNullable(te);
 	}
 
 	@SuppressWarnings("unchecked")
 	public static <T extends TileEntity> Optional<T> getTileEntityAt(Class<? extends T> clazz, IWorldReader world,
 			BlockPos pos) {
-		TileEntity te = world.getTileEntity(pos);
+		TileEntity te = world.getBlockEntity(pos);
 		return Optional.ofNullable(te != null && clazz.isInstance(te) ? (T) te : null);
 	}
 
 	public static LazyOptional<IItemHandler> getTEItemHandlerAt(World world, BlockPos pos, Direction faceOfBlockPos) {
-		TileEntity te = world.getTileEntity(pos);
+		TileEntity te = world.getBlockEntity(pos);
 
 		return te != null ? te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, faceOfBlockPos)
 				: LazyOptional.empty();
@@ -64,7 +66,7 @@ public class WorldHelper {
 
 	public static LazyOptional<IItemHandler> getTEItemHandlerAtIf(World world, BlockPos pos, Direction faceOfBlockPos,
 			Predicate<TileEntity> pred) {
-		TileEntity te = world.getTileEntity(pos);
+		TileEntity te = world.getBlockEntity(pos);
 
 		if (te == null)
 			return LazyOptional.empty();
@@ -80,17 +82,17 @@ public class WorldHelper {
 		double x, y, z, xVel, yVel, zVel, xOff, yOff, zOff;
 		BlockPos output_pos;
 		if (output_dir != null) {
-			output_pos = from_pos.offset(output_dir);
-			xOff = output_dir.getXOffset();
-			yOff = output_dir.getYOffset();
-			zOff = output_dir.getZOffset();
+			output_pos = from_pos.relative(output_dir);
+			xOff = output_dir.getStepX();
+			yOff = output_dir.getStepY();
+			zOff = output_dir.getStepZ();
 		} else {
 			output_pos = from_pos;
 			xOff = 0D;
 			yOff = 0D;
 			zOff = 0D;
 		}
-		if (!world.getBlockState(output_pos).isSolid()) {
+		if (!world.getBlockState(output_pos).canOcclude()) {
 			x = from_pos.getX() + 0.5D + xOff * 0.75D;
 			y = from_pos.getY() + 0.25D + yOff * 0.75D;
 			z = from_pos.getZ() + 0.5D + zOff * 0.75D;
@@ -107,9 +109,9 @@ public class WorldHelper {
 			zVel = 0D;
 		}
 		ItemEntity itementity = new ItemEntity(world, x, y, z, stack);
-		itementity.setDefaultPickupDelay();
-		itementity.setMotion(xVel, yVel, zVel);
-		world.addEntity(itementity);
+		itementity.setDefaultPickUpDelay();
+		itementity.setDeltaMovement(xVel, yVel, zVel);
+		world.addFreshEntity(itementity);
 	}
 
 	// inserts as much of the item as we can into a given handler
@@ -129,9 +131,25 @@ public class WorldHelper {
 		return stack.copy();
 	}
 
-	public static boolean doesItemHandlerHaveAnyExtractableItems(IItemHandler handler,
-			Predicate<ItemStack> doesCallerWantItem) {
-		return IntStream.range(0, handler.getSlots()).mapToObj(i -> handler.extractItem(i, 1, true))
-				.anyMatch(stack -> stack.getCount() > 0 && doesCallerWantItem.test(stack));
+	@SuppressWarnings("resource")
+	public static Direction getBlockFacingForPlacement(BlockItemUseContext context) {
+		// if sprint is being held (i.e. ctrl by default), facing is based on the face
+		// of the block that was clicked on
+		// otherwise, facing is based on the look vector of the player
+		// holding sneak reverses the facing of the placement to the opposite face
+		boolean isSprintKeyHeld;
+		if (context.getLevel().isClientSide) // client thread
+		{
+			isSprintKeyHeld = ClientProxy.INSTANCE.map(client -> client.getWasSprinting()).orElse(false);
+		} else // server thread
+		{
+			isSprintKeyHeld = PlayerData.getSprinting(context.getPlayer().getUUID());
+		}
+
+		Direction placeDir = isSprintKeyHeld ? context.getClickedFace().getOpposite()
+				: context.getNearestLookingDirection();
+		placeDir = context.isSecondaryUseActive() ? placeDir : placeDir.getOpposite(); // is player sneaking
+		return placeDir;
 	}
+
 }

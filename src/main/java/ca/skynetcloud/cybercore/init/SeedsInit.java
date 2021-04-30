@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 public class SeedsInit extends BlockNamedItem {
 
 	public SeedsInit(Block crop) {
-		super(crop, new Item.Properties().group(CyberCoreTab.instance));
+		super(crop, new Item.Properties().tab(CyberCoreTab.instance));
 
 	}
 

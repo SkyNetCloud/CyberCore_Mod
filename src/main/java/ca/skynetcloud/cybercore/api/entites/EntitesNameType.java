@@ -22,8 +22,8 @@ public class EntitesNameType {
 	private static <T extends Entity> EntityType<T> build(ResourceLocation id, Function<World, T> function, float width,
 			float height) {
 		EntityType<T> type = EntityType.Builder
-				.<T>create((entityType, world) -> function.apply(world), EntityClassification.CREATURE)
-				.size(width, height).setCustomClientFactory((spawnEntity, world) -> function.apply(world))
+				.<T>of((entityType, world) -> function.apply(world), EntityClassification.CREATURE)
+				.sized(width, height).setCustomClientFactory((spawnEntity, world) -> function.apply(world))
 				.build(id.toString());
 		type.setRegistryName(id);
 		ENTITY_TYPES.add(type);

@@ -33,7 +33,7 @@ public class ColorChangerCategory extends JeiCategoryAbstract<ColorChangerRecipe
 	public void setIngredients(ColorChangerRecipe recipe, IIngredients ingredients)
 	{
 		ingredients.setInput(VanillaTypes.ITEM, recipe.getInput());
-		ingredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
+		ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
 	}
 
 

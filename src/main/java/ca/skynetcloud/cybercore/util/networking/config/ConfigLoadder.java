@@ -6,12 +6,15 @@ import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
+
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 
 @EventBusSubscriber(modid = CyberCoreMain.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ConfigLoadder {
+	
+	
 
 	private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
 	public static final ForgeConfigSpec COMMON;

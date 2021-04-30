@@ -10,8 +10,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -31,7 +29,7 @@ abstract public class CoreEnergyTileEntity extends TileEntity implements ITickab
 
 	@Override
 	public void tick() {
-		if (this.world != null && !this.world.isRemote) {
+		if (this.level != null && !this.level.isClientSide) {
 			doUpdate();
 		}
 	}
@@ -49,16 +47,16 @@ abstract public class CoreEnergyTileEntity extends TileEntity implements ITickab
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
+	public CompoundNBT save(CompoundNBT compound) {
 
 		compound.put("energy", this.energystorage.serializeNBT());
-		super.write(compound);
+		super.save(compound);
 		return compound;
 	}
 
 	@Override
-	public void read(BlockState state, CompoundNBT compound) {
-		super.read(state, compound);
+	public void load(BlockState state, CompoundNBT compound) {
+		super.load(state, compound);
 		this.energystorage.deserializeNBT(compound.getCompound("energy"));
 	}
 
@@ -71,9 +69,9 @@ abstract public class CoreEnergyTileEntity extends TileEntity implements ITickab
 	}
 
 	public boolean isUsableByPlayer(PlayerEntity player) {
-		return this.world.getTileEntity(this.pos) != this ? false
-				: player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D,
-						(double) this.pos.getZ() + 0.5D) <= 64.0D;
+		return this.level.getBlockEntity(this.worldPosition) != this ? false
+				: player.distanceToSqr((double) this.worldPosition.getX() + 0.5D,
+						(double) this.worldPosition.getY() + 0.5D, (double) this.worldPosition.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public void onSlotContentChanged() {
@@ -81,5 +79,10 @@ abstract public class CoreEnergyTileEntity extends TileEntity implements ITickab
 	}
 
 	public abstract IIntArray getIntArray();
+
+	public String getNameString() {
+
+		return "default";
+	}
 
 }

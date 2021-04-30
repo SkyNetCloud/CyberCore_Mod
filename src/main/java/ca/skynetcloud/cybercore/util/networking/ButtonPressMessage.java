@@ -38,7 +38,7 @@ public class ButtonPressMessage {
 			BlockPos pos = new BlockPos(pkt.x, pkt.y, pkt.z);
 			int buttonId = pkt.buttonId;
 
-			TileEntity te = serverPlayer.world.getTileEntity(pos);
+			TileEntity te = serverPlayer.level.getBlockEntity(pos);
 			if (te != null) {
 				if (te instanceof ColorChangeTileEntity) {
 					((ColorChangeTileEntity) te).setSelectedId(buttonId);

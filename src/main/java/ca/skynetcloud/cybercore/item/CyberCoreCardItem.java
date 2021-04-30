@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 public class CyberCoreCardItem extends ItemBaseCore {
 
 	public CyberCoreCardItem() {
-		super(new Item.Properties().maxStackSize(1).group(CyberCoreTab.instance));
+		super(new Item.Properties().stacksTo(1).tab(CyberCoreTab.instance));
 	}
 
 	public static boolean hasCredits(ItemStack stack) {
@@ -64,8 +64,8 @@ public class CyberCoreCardItem extends ItemBaseCore {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+	public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(new StringTextComponent("CyberCoreDollars: " + getCredits(stack)));
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 }

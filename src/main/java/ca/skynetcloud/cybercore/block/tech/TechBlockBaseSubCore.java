@@ -1,15 +1,12 @@
 package ca.skynetcloud.cybercore.block.tech;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 import ca.skynetcloud.cybercore.api.blocks.BlockInit;
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -29,7 +26,7 @@ public class TechBlockBaseSubCore extends Block {
 	private final Supplier<? extends TileEntity> teCreator;
 
 	public TechBlockBaseSubCore(Supplier<? extends TileEntity> teCreator) {
-		super(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0f, 10.0f).notSolid());
+		super(Block.Properties.of(Material.METAL).strength(5.0f, 10.0f).noOcclusion());
 		this.teCreator = teCreator;
 	}
 
@@ -46,7 +43,7 @@ public class TechBlockBaseSubCore extends Block {
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		if (this == BlockInit.C_Changer_Block)
-			return Block.makeCuboidShape(0, 0, 0, 16, 9, 16);
+			return Block.box(0, 0, 0, 16, 9, 16);
 		else
 			return super.getShape(state, worldIn, pos, context);
 	}
@@ -57,14 +54,15 @@ public class TechBlockBaseSubCore extends Block {
 		return new ItemStack(this);
 	}
 
-	public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player,
-			Hand hand, BlockRayTraceResult ray) {
-		if (!world.isRemote) {
-			TileEntity te = world.getTileEntity(pos);
+	@Override
+	public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
+			BlockRayTraceResult ray) {
+		if (!world.isClientSide) {
+			TileEntity te = world.getBlockEntity(pos);
 			if (te instanceof CoreEnergyInventoryTileEntity) {
-				player.openContainer((CoreEnergyInventoryTileEntity) te);
+				player.openMenu((CoreEnergyInventoryTileEntity) te);
 			}
-			
+
 		}
 
 		return ActionResultType.SUCCESS;
@@ -73,26 +71,6 @@ public class TechBlockBaseSubCore extends Block {
 	@Override
 	public boolean hasTileEntity(BlockState state) {
 		return true;
-	}
-
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-		if (state.getBlock() != newState.getBlock()) {
-			if (worldIn.getTileEntity(pos) instanceof CoreEnergyInventoryTileEntity) {
-				CoreEnergyInventoryTileEntity te = (CoreEnergyInventoryTileEntity) worldIn.getTileEntity(pos);
-				List<ItemStack> toSpawn = te.getInventoryContent();
-				for (ItemStack stack : toSpawn) {
-					worldIn.addEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack));
-				}
-			}
-			super.onReplaced(state, worldIn, pos, newState, isMoving);
-		}
 	}
 
 }

@@ -73,7 +73,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	/**** Getters and Setters ****/
 	public RoutingNetwork getNetwork() {
 		if (this.network.invalid) {
-			this.network = RoutingNetwork.buildNetworkFrom(this.pos, this.world);
+			this.network = RoutingNetwork.buildNetworkFrom(this.worldPosition, this.level);
 		}
 		return this.network;
 	}
@@ -97,23 +97,23 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	}
 
 	public static Optional<ItemPipeTileEntity> getTubeTEAt(World world, BlockPos pos) {
-		TileEntity te = world.getTileEntity(pos);
+		TileEntity te = world.getBlockEntity(pos);
 		return Optional.ofNullable(te instanceof ItemPipeTileEntity ? (ItemPipeTileEntity) te : null);
 	}
 
 	// insertionSide is the side of this block the item was inserted from
 	public Route getBestRoute(Direction insertionSide, ItemStack stack) {
-		return this.getNetwork().getBestRoute(this.world, this.pos, insertionSide, stack);
+		return this.getNetwork().getBestRoute(this.level, this.worldPosition, insertionSide, stack);
 	}
 
 	/**** Event Handling ****/
 
 	@Override
-	public void remove() {
+	public void setRemoved() {
 		this.dropItems();
 		this.network.invalid = true;
 		Arrays.stream(this.handlerOptionals).forEach(optional -> optional.invalidate());
-		super.remove();
+		super.setRemoved();
 	}
 
 	public void onPossibleNetworkUpdateRequired() {
@@ -124,12 +124,12 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 
 	private boolean didNetworkChange() {
 		for (Direction face : Direction.values()) {
-			BlockPos checkPos = this.pos.offset(face);
+			BlockPos checkPos = this.worldPosition.relative(face);
 			// if the adjacent block is a tube or endpoint but isn't in the network
 			// OR if the adjacent block is in the network but isn't a tube or endpoint
 			// then the network changed
-			if (this.getNetwork().contains(this.pos, face.getOpposite()) != this.getNetwork()
-					.isValidToBeInNetwork(checkPos, this.world, face.getOpposite()))
+			if (this.getNetwork().contains(this.worldPosition, face.getOpposite()) != this.getNetwork()
+					.isValidToBeInNetwork(checkPos, this.level, face.getOpposite()))
 				return true;
 		}
 		return false;
@@ -140,9 +140,9 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 		this.merge_buffer();
 		if (!this.inventory.isEmpty()) // if inventory is empty, skip the tick
 		{
-			if (!this.world.isRemote) // block has changes that need to be saved (serverside)
+			if (!this.level.isClientSide) // block has changes that need to be saved (serverside)
 			{
-				this.markDirty();
+				this.setChanged();
 			}
 			Queue<ItemInTubeWrapper> remainingWrappers = new LinkedList<ItemInTubeWrapper>();
 			for (ItemInTubeWrapper wrapper : this.inventory) {
@@ -162,8 +162,8 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 			}
 			this.inventory = remainingWrappers;
 		}
-		if (!this.world.isRemote && this.inventory.size() > CyberCoreConfig.MAX_ITEMS_IN_PIPE.get()) {
-			this.world.removeBlock(this.pos, false);
+		if (!this.level.isClientSide && this.inventory.size() > CyberCoreConfig.MAX_ITEMS_IN_PIPE.get()) {
+			this.level.removeBlock(this.worldPosition, false);
 		}
 	}
 
@@ -171,11 +171,11 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 		if (!wrapper.remainingMoves.isEmpty()) // wrapper has remaining moves
 		{
 			Direction dir = wrapper.remainingMoves.poll();
-			TileEntity te = this.world.getTileEntity(this.pos.offset(dir));
+			TileEntity te = this.level.getBlockEntity(this.worldPosition.relative(dir));
 			if (te instanceof ItemPipeTileEntity && this.isItemPipeCompatible((ItemPipeTileEntity) te)) {
 				((ItemPipeTileEntity) te).enqueueItemStack(wrapper.stack, wrapper.remainingMoves,
 						wrapper.maximumDurationInTube);
-			} else if (!this.world.isRemote) {
+			} else if (!this.level.isClientSide) {
 				if (te != null) // te exists but is not a tube
 				{
 					ItemStack remaining = te
@@ -189,12 +189,12 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 					}
 				} else // no TE -- eject stack
 				{
-					WorldHelper.ejectItemstack(this.world, this.pos, dir, wrapper.stack);
+					WorldHelper.ejectItemstack(this.level, this.worldPosition, dir, wrapper.stack);
 				}
 			}
-		} else if (!this.world.isRemote) // wrapper has no remaining moves -- this isn't expected, eject the item
+		} else if (!this.level.isClientSide) // wrapper has no remaining moves -- this isn't expected, eject the item
 		{
-			WorldHelper.ejectItemstack(this.world, this.pos, null, wrapper.stack);
+			WorldHelper.ejectItemstack(this.level, this.worldPosition, null, wrapper.stack);
 		}
 	}
 
@@ -204,7 +204,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	@Nonnull
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
 		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && side != null) {
-			return this.handlerOptionals[side.getIndex()].cast(); // T is <IItemHandler> here, which our handler
+			return this.handlerOptionals[side.get3DDataValue()].cast(); // T is <IItemHandler> here, which our handler
 																	// implements
 		}
 		return super.getCapability(cap, side);
@@ -213,7 +213,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	// insert a new itemstack into the tube network from a direction
 	// and determine a route for it
 	public ItemStack enqueueItemStack(ItemStack stack, Direction face, boolean simulate) {
-		Route route = this.getNetwork().getBestRoute(this.world, this.pos, face, stack);
+		Route route = this.getNetwork().getBestRoute(this.level, this.worldPosition, face, stack);
 		if (route == null || route.sequenceOfMoves.isEmpty())
 			return stack.copy();
 
@@ -224,7 +224,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 		this.wrappers_to_send_to_client
 				.add(new ItemInTubeWrapper(stack, route.sequenceOfMoves, ticks_per_tube, face.getOpposite()));
 
-		this.world.notifyBlockUpdate(this.pos, this.getBlockState(), this.getBlockState(), 2);
+		this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 2);
 
 		return this.enqueueItemStack(new ItemInTubeWrapper(stack, route.sequenceOfMoves, 10, face.getOpposite()));
 	}
@@ -250,7 +250,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	public void dropItems() {
 		this.merge_buffer();
 		for (ItemInTubeWrapper wrapper : this.inventory) {
-			InventoryHelper.spawnItemStack(this.world, this.pos.getX(), this.pos.getY(), this.pos.getZ(),
+			InventoryHelper.dropItemStack(this.level, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(),
 					wrapper.stack);
 		}
 
@@ -264,7 +264,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 
 	public boolean isAnyInventoryAdjacent() {
 		for (Direction face : Direction.values()) {
-			TileEntity te = this.world.getTileEntity(this.pos.offset(face));
+			TileEntity te = this.level.getBlockEntity(this.worldPosition.relative(face));
 			if (te != null && !(te instanceof ItemPipeTileEntity)) {
 				// if a nearby inventory that is not a tube exists
 				LazyOptional<IItemHandler> cap = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY,
@@ -281,8 +281,8 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	}
 
 	@Override
-	public void read(BlockState state, CompoundNBT compound) {
-		super.read(state, compound);
+	public void load(BlockState state, CompoundNBT compound) {
+		super.load(state, compound);
 
 		if (compound.contains(INV_NBT_KEY_RESET)) // only update inventory if the compound has an inv. key
 		{ // this lets the client receive packets without the inventory being cleared
@@ -305,7 +305,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 
 	@Override // write entire inventory by default (for server -> hard disk purposes this is
 				// what is called)
-	public CompoundNBT write(CompoundNBT compound) {
+	public CompoundNBT save(CompoundNBT compound) {
 
 		ListNBT invList = new ListNBT();
 		this.merge_buffer();
@@ -319,7 +319,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 			compound.put(INV_NBT_KEY_RESET, invList);
 		}
 
-		return super.write(compound);
+		return super.save(compound);
 	}
 
 	/**
@@ -330,7 +330,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	 */
 	@Override
 	public CompoundNBT getUpdateTag() {
-		return this.write(new CompoundNBT()); // okay to send entire inventory on chunk load
+		return this.save(new CompoundNBT()); // okay to send entire inventory on chunk load
 	}
 
 	/**
@@ -341,7 +341,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	@Override
 	public SUpdateTileEntityPacket getUpdatePacket() {
 		CompoundNBT nbt = new CompoundNBT();
-		super.write(nbt); // write the basic TE stuff
+		super.save(nbt); // write the basic TE stuff
 
 		ListNBT invList = new ListNBT();
 
@@ -356,7 +356,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 			nbt.put(INV_NBT_KEY_ADD, invList);
 		}
 
-		return new SUpdateTileEntityPacket(this.getPos(), 1, nbt);
+		return new SUpdateTileEntityPacket(this.getBlockPos(), 1, nbt);
 	}
 
 	/**
@@ -364,7 +364,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	 */
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet) {
-		this.readNBT(packet.getNbtCompound());
+		this.readNBT(packet.getTag());
 	}
 
 	public void readNBT(CompoundNBT compound) {

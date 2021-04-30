@@ -56,7 +56,7 @@ public class Endpoint
 	 */
 	public boolean canInsertItem(World world, ItemStack stack)
 	{
-		TileEntity te = world.getTileEntity(this.pos);
+		TileEntity te = world.getBlockEntity(this.pos);
 		
 		if (te == null) return false;
 		

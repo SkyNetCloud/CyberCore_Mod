@@ -33,13 +33,13 @@ public class ItemPlanter extends Item {
 	}
 
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
-		super.onItemUse(context);
-		World world = context.getWorld();
+	public ActionResultType useOn(ItemUseContext context) {
+		super.useOn(context);
+		World world = context.getLevel();
 		PlayerEntity player = context.getPlayer();
 		ItemStack seeds = ItemStack.EMPTY;
-		Direction face = context.getPlacementHorizontalFacing();
-		BlockPos center = context.getPos().up();
+		Direction face = context.getHorizontalDirection();
+		BlockPos center = context.getClickedPos().above();
 		BlockPos blockpos = null;
 		int countPlanted = 0;
 		for (int dist = 0; dist < CyberCoreConfig.getPlantingRange(); dist++) {
@@ -51,29 +51,29 @@ public class ItemPlanter extends Item {
 				}
 			}
 			// advance position
-			blockpos = center.offset(face, dist);
-			// manage going up/down by 1 elevation
+			blockpos = center.relative(face, dist);
+			// manage going above/below by 1 elevation
 			boolean didPlant = false;
-			if (world.isAirBlock(blockpos.down())) {
-				// air here, went off an edge. try to go down 1
-				blockpos = blockpos.down();
-				if (world.isAirBlock(blockpos)) {
+			if (world.isEmptyBlock(blockpos.below())) {
+				// air here, went off an edge. try to go below 1
+				blockpos = blockpos.below();
+				if (world.isEmptyBlock(blockpos)) {
 					if (tryPlantHere(world, seeds, blockpos)) {
-						center = center.down();// go down the hill
+						center = center.below();// go below the hill
 						didPlant = true;
 					}
 				}
-			} else if (world.isAirBlock(blockpos)) {
+			} else if (world.isEmptyBlock(blockpos)) {
 				// at my elevation
 				if (tryPlantHere(world, seeds, blockpos)) {
 					didPlant = true;
 				}
 			} else {
-				// try going up by 1
-				blockpos = blockpos.up();
-				if (world.isAirBlock(blockpos.up())) {
+				// try going above by 1
+				blockpos = blockpos.above();
+				if (world.isEmptyBlock(blockpos.above())) {
 					if (tryPlantHere(world, seeds, blockpos)) {
-						center = center.up();// go up the hill
+						center = center.above();// go above the hill
 						didPlant = true;
 					}
 				}
@@ -85,8 +85,8 @@ public class ItemPlanter extends Item {
 		}
 		// loop is complete
 		if (player != null && countPlanted > 0) {
-			context.getItem().damageItem(countPlanted, player, (p) -> {
-				p.sendBreakAnimation(context.getHand());
+			context.getItemInHand().hurtAndBreak(countPlanted, player, (p) -> {
+				p.broadcastBreakEvent(context.getHand());
 			});
 		}
 		return ActionResultType.SUCCESS;
@@ -94,9 +94,9 @@ public class ItemPlanter extends Item {
 
 	private boolean tryPlantHere(World world, ItemStack seeds, BlockPos blockpos) {
 		boolean didPlant = false;
-		if (world.getBlockState(blockpos.down()).getBlock() == Blocks.FARMLAND && world.isAirBlock(blockpos)) {
+		if (world.getBlockState(blockpos.below()).getBlock() == Blocks.FARMLAND && world.isEmptyBlock(blockpos)) {
 			// looks valid. try to plant
-			if (world.setBlockState(blockpos, Block.getBlockFromItem(seeds.getItem()).getDefaultState())) {
+			if (world.setBlock(blockpos, Block.byItem(seeds.getItem()).defaultBlockState(), 0)) {
 				didPlant = true;
 			}
 		}
@@ -105,7 +105,7 @@ public class ItemPlanter extends Item {
 
 	private ItemStack getSeed(PlayerEntity player) {
 		ItemStack seeds = ItemStack.EMPTY;
-		for (ItemStack s : player.inventory.mainInventory) {
+		for (ItemStack s : player.inventory.items) {
 			if (!s.isEmpty()) {
 				Item item = s.getItem();
 				for (ResourceLocation st : item.getTags()) {
@@ -121,9 +121,9 @@ public class ItemPlanter extends Item {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
 			ITooltipFlag flagIn) {
-		TranslationTextComponent t = new TranslationTextComponent(getTranslationKey() + ".tooltip");
+		TranslationTextComponent t = new TranslationTextComponent(getDescriptionId() + ".tooltip");
 
 		tooltip.add(t);
 	}

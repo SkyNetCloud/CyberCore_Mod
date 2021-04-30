@@ -22,14 +22,12 @@ import net.minecraftforge.items.ItemStackHandler;
 abstract public class CoreEnergyInventoryTileEntity extends CoreEnergyTileEntity {
 	protected ItemStackHandler itemhandler;
 	protected LazyOptional<IItemHandler> inventoryCap;
-	protected int tier;
 
-	public CoreEnergyInventoryTileEntity(TileEntityType<?> type, int energyStorage, int invSize, int tier) {
+	public CoreEnergyInventoryTileEntity(TileEntityType<?> type, int energyStorage, int invSize) {
 		super(type, energyStorage);
 		itemhandler = new ItemStackHandler(invSize);
 		inventoryCap = LazyOptional.of(() -> itemhandler);
 	}
-
 
 	public List<ItemStack> getInventoryContent() {
 		List<ItemStack> stack = new ArrayList<ItemStack>();
@@ -55,7 +53,8 @@ abstract public class CoreEnergyInventoryTileEntity extends CoreEnergyTileEntity
 		if (stack2 != null) {
 			if (stack2.getItem() instanceof IItemChargeable) {
 				if (energystorage.getEnergyStored() >= 1) {
-					energystorage.extractEnergy(((IItemChargeable) stack2.getItem()).receiveEnergyLoad(stack2, 1, false));
+					energystorage
+							.extractEnergy(((IItemChargeable) stack2.getItem()).receiveEnergyLoad(stack2, 1, false));
 				}
 			}
 		}
@@ -70,34 +69,35 @@ abstract public class CoreEnergyInventoryTileEntity extends CoreEnergyTileEntity
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT compound) {
+	public CompoundNBT save(CompoundNBT compound) {
 		compound.put("inventory", itemhandler.serializeNBT());
-		super.write(compound);
+		super.save(compound);
 		return compound;
 	}
 
 	@Override
-	public void read(BlockState state, CompoundNBT compound) {
+	public void load(BlockState state, CompoundNBT compound) {
 		int slotamount = itemhandler.getSlots();// prevent crash
 		itemhandler.deserializeNBT(compound.getCompound("inventory"));
 		if (itemhandler.getSlots() != slotamount)
 			itemhandler.setSize(slotamount);// prevent crash when invsize changed while update
-		super.read(state, compound);
+		super.load(state, compound);
 	}
+
 
 	public static void spawnAsEntity(World worldIn, BlockPos pos, ItemStack stack) {
 		// TODO Implement Gamerule "doTileDrops"
-		if (!worldIn.isRemote && !stack.isEmpty() && !worldIn.restoringBlockSnapshots) // do not drop items while
-																						// restoring
+		if (!worldIn.isClientSide && !stack.isEmpty() && !worldIn.restoringBlockSnapshots) // do not drop items while
+																							// restoring
 		// blockstates, prevents item dupe
 		{
-			double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-			double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-			double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+			double d0 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
+			double d1 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
+			double d2 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
 			ItemEntity entityitem = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1,
 					(double) pos.getZ() + d2, stack);
-			entityitem.setDefaultPickupDelay();
-			worldIn.addEntity(entityitem);
+			entityitem.setDefaultPickUpDelay();
+			worldIn.addFreshEntity(entityitem);
 		}
 	}
 

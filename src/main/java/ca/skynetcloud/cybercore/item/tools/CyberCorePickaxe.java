@@ -24,18 +24,18 @@ import net.minecraftforge.common.ToolType;
 public class CyberCorePickaxe extends PickaxeItem {
 
 	public CyberCorePickaxe(IItemTier material, float speed) {
-		super(material, 1, speed, new Properties().group(CyberCoreTab.instance).addToolType(ToolType.PICKAXE,
-				material.getHarvestLevel()));
+		super(material, 1, speed,
+				new Properties().tab(CyberCoreTab.instance).addToolType(ToolType.PICKAXE, material.getLevel()));
 	}
 
 	public CyberCorePickaxe(IItemTier material, float speed, Properties properties) {
-		super(material, 1, speed, properties.addToolType(ToolType.PICKAXE, material.getHarvestLevel()));
+		super(material, 1, speed, properties.addToolType(ToolType.PICKAXE, material.getLevel()));
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+	public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-		if (stack.isItemEqual(new ItemStack(ItemInit.cyber_pickaxe))) {
+		if (stack.sameItem(new ItemStack(ItemInit.cyber_pickaxe))) {
 			tooltip.add(new StringTextComponent("Hmm someone is watching you"));
 
 			tooltip.add(new StringTextComponent(
@@ -45,7 +45,7 @@ public class CyberCorePickaxe extends PickaxeItem {
 
 		}
 
-		if (stack.isItemEqual(new ItemStack(ItemInit.ruby_pickaxe))) {
+		if (stack.sameItem(new ItemStack(ItemInit.ruby_pickaxe))) {
 			tooltip.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Seem To Be Good"));
 
 			tooltip.add(new StringTextComponent(
@@ -56,7 +56,7 @@ public class CyberCorePickaxe extends PickaxeItem {
 
 		}
 
-		if (stack.isItemEqual(new ItemStack(ItemInit.dark_steel_pickaxe))) {
+		if (stack.sameItem(new ItemStack(ItemInit.dark_steel_pickaxe))) {
 			tooltip.add(new StringTextComponent(
 					TextFormatting.DARK_PURPLE + "A shadow loom over you while you hold this tool"));
 
@@ -70,43 +70,42 @@ public class CyberCorePickaxe extends PickaxeItem {
 					new StringTextComponent(TextFormatting.RED + "SLOWNESS" + " " + TextFormatting.AQUA + "12 Sec"));
 		}
 
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
 
-		if (playerIn.getItemStackFromSlot(EquipmentSlotType.MAINHAND).getItem() == ItemInit.cyber_pickaxe.getItem()) {
-			if (worldIn.isRemote) {
+		if (playerIn.getItemBySlot(EquipmentSlotType.MAINHAND).getItem() == ItemInit.cyber_pickaxe.getItem()) {
+			if (worldIn.isClientSide) {
 				playerIn.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
 						+ TextFormatting.RED + "Hmm What Did It added to you"), null);
 			}
 
-			playerIn.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 500, 1, false, false, true));
-			playerIn.addPotionEffect(new EffectInstance(Effects.HASTE, 500, 1, false, false, true));
+			playerIn.addEffect(new EffectInstance(Effects.NIGHT_VISION, 500, 1, false, false, true));
+			playerIn.addEffect(new EffectInstance(Effects.DIG_SPEED, 500, 1, false, false, true));
 		}
 
-		if (playerIn.getItemStackFromSlot(EquipmentSlotType.MAINHAND).getItem() == ItemInit.ruby_pickaxe.getItem()) {
-			if (worldIn.isRemote) {
+		if (playerIn.getItemBySlot(EquipmentSlotType.MAINHAND).getItem() == ItemInit.ruby_pickaxe.getItem()) {
+			if (worldIn.isClientSide) {
 				playerIn.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
 						+ TextFormatting.RED + "This Tool Seem To Like You"), null);
 			}
-			playerIn.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 500, 1, false, false, true));
-			playerIn.addPotionEffect(new EffectInstance(Effects.HERO_OF_THE_VILLAGE, 255, 1, false, false, true));
+			playerIn.addEffect(new EffectInstance(Effects.NIGHT_VISION, 500, 1, false, false, true));
+			playerIn.addEffect(new EffectInstance(Effects.HERO_OF_THE_VILLAGE, 255, 1, false, false, true));
 		}
 
-		if (playerIn.getItemStackFromSlot(EquipmentSlotType.MAINHAND).getItem() == ItemInit.dark_steel_pickaxe
-				.getItem()) {
-			if (worldIn.isRemote) {
+		if (playerIn.getItemBySlot(EquipmentSlotType.MAINHAND).getItem() == ItemInit.dark_steel_pickaxe.getItem()) {
+			if (worldIn.isClientSide) {
 				playerIn.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
 						+ TextFormatting.RED + "The Shadow Are Coming For You"), null);
 			}
-			playerIn.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 255, 1, false, false, true));
-			playerIn.addPotionEffect(new EffectInstance(Effects.REGENERATION, 255, 1, false, false, true));
-			playerIn.addPotionEffect(new EffectInstance(Effects.BLINDNESS, 255, 1, false, false, true));
+			playerIn.addEffect(new EffectInstance(Effects.DIG_SLOWDOWN, 255, 1, false, false, true));
+			playerIn.addEffect(new EffectInstance(Effects.REGENERATION, 255, 1, false, false, true));
+			playerIn.addEffect(new EffectInstance(Effects.BLINDNESS, 255, 1, false, false, true));
 		}
 
-		return super.onItemRightClick(worldIn, playerIn, handIn);
+		return super.use(worldIn, playerIn, handIn);
 	}
 
 }

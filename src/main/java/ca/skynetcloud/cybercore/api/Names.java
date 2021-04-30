@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import net.minecraft.item.DyeColor;
 import net.minecraft.state.BooleanProperty;
+import net.minecraft.util.text.TextFormatting;
 
 public class Names {
 

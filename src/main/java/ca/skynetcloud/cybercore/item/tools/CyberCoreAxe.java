@@ -9,11 +9,11 @@ public class CyberCoreAxe extends AxeItem {
 
 	public CyberCoreAxe(IItemTier material, float speed) {
 		super(material, 6, speed,
-				new Properties().group(CyberCoreTab.instance).addToolType(ToolType.AXE, material.getHarvestLevel()));
+				new Properties().tab(CyberCoreTab.instance).addToolType(ToolType.AXE, material.getLevel()));
 	}
 
 	public CyberCoreAxe(IItemTier material, float speed, Properties properties) {
-		super(material, 6, speed, properties.addToolType(ToolType.AXE, material.getHarvestLevel()));
+		super(material, 6, speed, properties.addToolType(ToolType.AXE, material.getLevel()));
 	}
 
 }
