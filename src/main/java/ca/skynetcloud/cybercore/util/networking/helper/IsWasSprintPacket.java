@@ -2,7 +2,6 @@ package ca.skynetcloud.cybercore.util.networking.helper;
 
 import java.util.function.Supplier;
 
-import ca.skynetcloud.cybercore.PlayerData;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;

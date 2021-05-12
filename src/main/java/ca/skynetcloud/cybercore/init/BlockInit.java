@@ -2,8 +2,8 @@ package ca.skynetcloud.cybercore.init;
 
 import java.util.stream.IntStream;
 
-import ca.skynetcloud.cybercore.CyberCoreClient.CyberCoreTab;
 import ca.skynetcloud.cybercore.CyberCoreMain;
+import ca.skynetcloud.cybercore.CyberCoreTab;
 import ca.skynetcloud.cybercore.block.BlockBaseCore;
 import ca.skynetcloud.cybercore.block.blocks.CableBlock;
 import ca.skynetcloud.cybercore.block.blocks.ExtractorBlock;
@@ -45,7 +45,7 @@ public class BlockInit {
 
 	@ObjectHolder(Names.BLOCK_PIPE)
 	public static Block BLOCK_PIPE = null;
-	
+
 	@ObjectHolder(Names.POWER_BOX)
 	public static Block Battery = new PowerCube(PowerCubeTileEntity::new).setRegistryName(Names.POWER_BOX);
 

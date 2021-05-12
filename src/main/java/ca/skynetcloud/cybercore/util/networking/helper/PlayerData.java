@@ -1,4 +1,4 @@
-package ca.skynetcloud.cybercore;
+package ca.skynetcloud.cybercore.util.networking.helper;
 
 import java.util.HashSet;
 import java.util.Set;

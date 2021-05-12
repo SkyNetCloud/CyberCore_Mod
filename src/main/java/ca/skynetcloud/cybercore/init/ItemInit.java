@@ -47,8 +47,8 @@ import static ca.skynetcloud.cybercore.util.networking.helper.Names.TOMATO_NAME;
 
 import java.util.stream.IntStream;
 
-import ca.skynetcloud.cybercore.CyberCoreClient.CyberCoreTab;
 import ca.skynetcloud.cybercore.CyberCoreMain;
+import ca.skynetcloud.cybercore.CyberCoreTab;
 import ca.skynetcloud.cybercore.block.BlockItemCore;
 import ca.skynetcloud.cybercore.init.material.BasisToolMaterial;
 import ca.skynetcloud.cybercore.init.material.CustomArmorMaterial;

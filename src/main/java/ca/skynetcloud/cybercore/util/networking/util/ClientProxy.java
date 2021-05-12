@@ -1,4 +1,4 @@
-package ca.skynetcloud.cybercore;
+package ca.skynetcloud.cybercore.util.networking.util;
 
 import java.util.HashMap;
 import java.util.Map;

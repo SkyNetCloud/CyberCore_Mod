@@ -1,8 +1,8 @@
 package ca.skynetcloud.cybercore.item.tools;
 
-import ca.skynetcloud.cybercore.CyberCoreClient.CyberCoreTab;
-import ca.skynetcloud.cybercore.init.ItemInit;
 import ca.skynetcloud.cybercore.CyberCoreMain;
+import ca.skynetcloud.cybercore.CyberCoreTab;
+import ca.skynetcloud.cybercore.init.ItemInit;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;

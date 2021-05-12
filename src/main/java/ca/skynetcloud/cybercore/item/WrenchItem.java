@@ -1,6 +1,6 @@
 package ca.skynetcloud.cybercore.item;
 
-import ca.skynetcloud.cybercore.CyberCoreClient.CyberCoreTab;
+import ca.skynetcloud.cybercore.CyberCoreTab;
 import ca.skynetcloud.cybercore.block.tech.TechBlockFacing;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

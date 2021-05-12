@@ -9,9 +9,8 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
-import ca.skynetcloud.cybercore.ClientProxy;
-import ca.skynetcloud.cybercore.PlayerData;
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;
+import ca.skynetcloud.cybercore.util.networking.util.ClientProxy;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
