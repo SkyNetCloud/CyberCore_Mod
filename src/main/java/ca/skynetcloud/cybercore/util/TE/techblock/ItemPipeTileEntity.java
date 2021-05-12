@@ -9,9 +9,9 @@ import java.util.Queue;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import ca.skynetcloud.cybercore.block.blocks.ItemCable;
-import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
+import ca.skynetcloud.cybercore.init.TileEntityInit;
+import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import ca.skynetcloud.cybercore.util.networking.handler.ItemPipeInventoryHandler;
 import ca.skynetcloud.cybercore.util.networking.helper.WorldHelper;
 import ca.skynetcloud.cybercore.util.networking.routing.Route;
@@ -67,7 +67,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	}
 
 	public ItemPipeTileEntity() {
-		this(TileEntityNames.BLOCK_PIPE);
+		this(TileEntityInit.BLOCK_PIPE);
 	}
 
 	/**** Getters and Setters ****/
@@ -162,7 +162,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 			}
 			this.inventory = remainingWrappers;
 		}
-		if (!this.level.isClientSide && this.inventory.size() > CyberCoreConfig.MAX_ITEMS_IN_PIPE.get()) {
+		if (!this.level.isClientSide && this.inventory.size() > Config.MAX_ITEMS_IN_PIPE.get()) {
 			this.level.removeBlock(this.worldPosition, false);
 		}
 	}
@@ -205,7 +205,7 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
 		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && side != null) {
 			return this.handlerOptionals[side.get3DDataValue()].cast(); // T is <IItemHandler> here, which our handler
-																	// implements
+			// implements
 		}
 		return super.getCapability(cap, side);
 	}
@@ -250,8 +250,8 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	public void dropItems() {
 		this.merge_buffer();
 		for (ItemInTubeWrapper wrapper : this.inventory) {
-			InventoryHelper.dropItemStack(this.level, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(),
-					wrapper.stack);
+			InventoryHelper.dropItemStack(this.level, this.worldPosition.getX(), this.worldPosition.getY(),
+					this.worldPosition.getZ(), wrapper.stack);
 		}
 
 		this.inventory = new LinkedList<ItemInTubeWrapper>(); // clear it in case this is being called without

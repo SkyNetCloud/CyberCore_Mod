@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import ca.skynetcloud.cybercore.api.items.ItemInit;
-import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
+import ca.skynetcloud.cybercore.init.ItemInit;
+import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCablesTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

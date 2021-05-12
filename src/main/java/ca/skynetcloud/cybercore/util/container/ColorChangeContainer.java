@@ -1,6 +1,6 @@
 package ca.skynetcloud.cybercore.util.container;
 
-import ca.skynetcloud.cybercore.api.containers.ContainerNames;
+import ca.skynetcloud.cybercore.init.ContainerInit;
 import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
 import ca.skynetcloud.cybercore.util.container.BaseContainerCore.SlotItemHandlerWithInfo;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +16,7 @@ public class ColorChangeContainer extends BaseContainerCore {
 	}
 
 	public ColorChangeContainer(int id, PlayerInventory player, ColorChangeTileEntity tileentity) {
-		super(id, ContainerNames.c_changer_CON, player, tileentity, 25);
+		super(id, ContainerInit.c_changer_CON, player, tileentity, 25);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
 

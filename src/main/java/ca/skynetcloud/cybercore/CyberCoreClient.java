@@ -1,9 +1,9 @@
 package ca.skynetcloud.cybercore;
 
-import ca.skynetcloud.cybercore.api.Names;
-import ca.skynetcloud.cybercore.api.blocks.BlockInit;
-import ca.skynetcloud.cybercore.api.items.ItemInit;
+import ca.skynetcloud.cybercore.init.BlockInit;
+import ca.skynetcloud.cybercore.init.ItemInit;
 import ca.skynetcloud.cybercore.init.ScreenInit;
+import ca.skynetcloud.cybercore.util.networking.helper.Names;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
@@ -20,9 +20,9 @@ public class CyberCoreClient {
 	static void clientSetup(final FMLClientSetupEvent event) {
 
 		ScreenInit.registerGUI();
-
 		RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.cutout());
+		CyberCoreMain.LOGGER.info("Client Event Loadded");
 	}
 
 	public static class CyberCoreTab extends ItemGroup {

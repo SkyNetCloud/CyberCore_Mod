@@ -2,7 +2,7 @@ package ca.skynetcloud.cybercore.util.networking.handler;
 
 import java.util.List;
 
-import ca.skynetcloud.cybercore.item.CyberCoreCardItem;
+import ca.skynetcloud.cybercore.item.CyberCoreCard;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 
@@ -87,8 +87,8 @@ public class PlayerInventoryUtils {
 		for (int i = 0; i < 36; i++) {
 			ItemStack invstack = inv.getItem(i);
 			if (!invstack.isEmpty()) {
-				if (invstack.getItem() instanceof CyberCoreCardItem) {
-					count += CyberCoreCardItem.getCredits(invstack);
+				if (invstack.getItem() instanceof CyberCoreCard) {
+					count += CyberCoreCard.getCoins(invstack);
 					if (count >= amount) {
 						return true;
 					}
@@ -106,9 +106,9 @@ public class PlayerInventoryUtils {
 		for (int i = 0; i < 36; i++) {
 			ItemStack invstack = inv.getItem(i);
 			if (!invstack.isEmpty()) {
-				if (invstack.getItem() instanceof CyberCoreCardItem) {
-					int credits = CyberCoreCardItem.getCredits(invstack);
-					credits -= CyberCoreCardItem.shrinkCredits(invstack, count);
+				if (invstack.getItem() instanceof CyberCoreCard) {
+					int credits = CyberCoreCard.getCoins(invstack);
+					credits -= CyberCoreCard.shrinkCoins(invstack, count);
 					count -= credits;
 					if (count <= 0) {
 						return true;
@@ -123,8 +123,8 @@ public class PlayerInventoryUtils {
 		for (int i = 0; i < 36; i++) {
 			ItemStack invstack = inv.getItem(i);
 			if (!invstack.isEmpty()) {
-				if (invstack.getItem() instanceof CyberCoreCardItem) {
-					CyberCoreCardItem.addCredits(invstack, amount);
+				if (invstack.getItem() instanceof CyberCoreCard) {
+					CyberCoreCard.addCoins(invstack, amount);
 				}
 			}
 		}

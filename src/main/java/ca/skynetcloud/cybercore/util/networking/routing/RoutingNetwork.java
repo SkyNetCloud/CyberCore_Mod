@@ -9,7 +9,7 @@ import java.util.Set;
 import javax.annotation.Nullable;
 
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;
-import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
+import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import ca.skynetcloud.cybercore.util.networking.helper.WorldHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -45,9 +45,9 @@ public class RoutingNetwork {
 	}
 
 	private void setTicksPerTube() {
-		int baseDuration = CyberCoreConfig.TICKS_PIPE.get();
+		int baseDuration = Config.TICKS_PIPE.get();
 		int size = this.tubes.size();
-		int softCap = CyberCoreConfig.SOFT_CAP.get();
+		int softCap = Config.SOFT_CAP.get();
 
 		if (size < softCap) {
 			this.ticksPerTube = baseDuration;

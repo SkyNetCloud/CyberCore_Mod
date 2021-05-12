@@ -1,6 +1,6 @@
 package ca.skynetcloud.cybercore.block.crop;
 
-import ca.skynetcloud.cybercore.api.items.ItemInit;
+import ca.skynetcloud.cybercore.init.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;

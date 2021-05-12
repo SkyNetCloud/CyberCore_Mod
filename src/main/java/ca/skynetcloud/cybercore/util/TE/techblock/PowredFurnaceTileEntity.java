@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
-import ca.skynetcloud.cybercore.api.blocks.BlockInit;
-import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
+import ca.skynetcloud.cybercore.init.BlockInit;
+import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
 import ca.skynetcloud.cybercore.util.container.PowredFurnaceContainer;
 import net.minecraft.block.BlockState;
@@ -106,7 +106,7 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 	};
 
 	public PowredFurnaceTileEntity() {
-		super(TileEntityNames.POWER_FURNACE_TE, 10000, 20);
+		super(TileEntityInit.POWER_FURNACE_TE, 10000, 20);
 		inputs = new RangedWrapper(itemhandler, 0, 6);
 		outputs = new RangedWrapper(itemhandler, 6, 12);
 		inputs_provider = LazyOptional.of(() -> inputs);
@@ -143,7 +143,7 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 
 		isSmelting = false;
 		for (int i = 0; i < 6; i++) {
-			if (this.energystorage.getEnergyStored() > this.getEnergyPerTickPerItem()) {
+			if (this.energystorage.getEnergyStored() > this.energyPerAction()) {
 				if (this.canSmelt(i)) {
 					isSmelting = true;
 					ticksPassed[i]++;
@@ -163,12 +163,19 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 			}
 		}
 		if (isSmelting) {
-			this.energystorage.extractEnergy(getEnergyPerTickPerItem(), false);
+			this.energystorage.extractEnergy(energyPerAction(), false);
+			
 
 		}
 
 		doEnergyLoop();
 	}
+	
+	public int energyPerAction()
+	{
+		return 4 + getMarkcard(12, ItemType.SPEED_UPGRADE) * 4;
+	}
+
 
 	private int getEnergyPerTick(int focusLevel) {
 		switch (focusLevel) {
@@ -182,7 +189,7 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 			return 250000;
 		}
 
-		return 0;
+		return 100;
 	}
 
 	public int getTicksPerAmount() {
@@ -319,5 +326,6 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 	public ITextComponent getDisplayName() {
 		return new TranslationTextComponent("");
 	}
+
 
 }

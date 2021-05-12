@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
+import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.util.networking.util.CableInfo;
 import ca.skynetcloud.cybercore.util.networking.util.CableInfo.Connection;
 import net.minecraft.block.BlockState;
@@ -34,7 +34,7 @@ public class PowerCablesTileEntity extends TileEntity implements ITickableTileEn
 	}
 
 	public PowerCablesTileEntity() {
-		this(TileEntityNames.Cable);
+		this(TileEntityInit.Cable);
 	}
 
 	@Override

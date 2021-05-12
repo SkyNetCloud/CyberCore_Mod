@@ -1,5 +1,6 @@
 package ca.skynetcloud.cybercore.block.blocks;
 
+import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import ca.skynetcloud.cybercore.util.networking.helper.WorldHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -9,9 +10,11 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -23,26 +26,38 @@ import net.minecraftforge.items.IItemHandler;
 
 public class ExtractorBlock extends Block {
 
-	// output is current facing, input is face.getOpposite()
 	public static final DirectionProperty FACING = DirectionalBlock.FACING;
-
-	public static World worldIn;
+	// public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
 	protected final VoxelShape[] shapes;
 
 	public ExtractorBlock(Properties properties) {
 		super(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f));
-		this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.UP));
+		this.registerDefaultState(
+				stateDefinition.any().setValue(FACING, Direction.UP).setValue(BlockStateProperties.POWERED, false));
 		this.shapes = this.makeShapes();
+
 	}
 
-	@Override
 	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos,
 			boolean isMoving) {
-		
-			this.ejectItems(state, pos, worldIn);
-		
-		worldIn.setBlock(pos, state, 2);
+		if (!worldIn.isClientSide) {
+			boolean isReceivingPower = worldIn.hasNeighborSignal(pos);
+			boolean isStatePowered = state.getValue(BlockStateProperties.POWERED);
+			if (isReceivingPower != isStatePowered) {
+				if (isReceivingPower) {
+					this.ejectItems(state, pos, worldIn);
+					worldIn.playSound(null, pos, SoundEvents.PISTON_CONTRACT, SoundCategory.BLOCKS, 0.3F,
+							worldIn.random.nextFloat() * 0.1F + 0.8F);
+				} else {
+					worldIn.playSound(null, pos, SoundEvents.PISTON_CONTRACT, SoundCategory.BLOCKS, 0.1F,
+							worldIn.random.nextFloat() * 0.1F + 0.9F);
+				}
+				worldIn.setBlock(pos, state.setValue(BlockStateProperties.POWERED, Boolean.valueOf(isReceivingPower)),
+						2);
+			}
+
+		}
 	}
 
 	private void ejectItems(BlockState state, BlockPos pos, World world) {
@@ -72,7 +87,8 @@ public class ExtractorBlock extends Block {
 		int slots = handler.getSlots();
 
 		for (int i = 0; i < slots; i++) {
-			ItemStack stack = handler.extractItem(i, 64, false);
+
+			ItemStack stack = handler.extractItem(i, Config.ITEM_OUT_SIZE.get(), false);
 
 			if (stack.getCount() > 0) {
 				return stack.copy();
@@ -106,12 +122,8 @@ public class ExtractorBlock extends Block {
 		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
-	public BlockState mirror(BlockState state, Mirror mirrorIn) {
-		return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
-	}
-
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(FACING);
+		builder.add(FACING, BlockStateProperties.POWERED);
 	}
 
 	// model shapes

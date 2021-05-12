@@ -9,13 +9,14 @@ import javax.annotation.Nullable;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
+import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
 import ca.skynetcloud.cybercore.util.container.ColorChangeContainer;
 import ca.skynetcloud.cybercore.util.crafting.ModedRecipeTypes;
 import ca.skynetcloud.cybercore.util.crafting.recipeclasses.ColorChangerRecipe;
-import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
+import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
+import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
@@ -109,7 +110,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 	};
 
 	public ColorChangeTileEntity() {
-		super(TileEntityNames.COLOR_Changer_TE, CyberCoreConfig.POWERLMIT.get(), 25);
+		super(TileEntityInit.COLOR_Changer_TE, Config.POWERLMIT.get(), 25);
 		inputs = new RangedWrapper(itemhandler, 0, 1);
 		outputs = new RangedWrapper(itemhandler, 1, 2);
 		inputs_provider = LazyOptional.of(() -> inputs);

@@ -1,6 +1,6 @@
 package ca.skynetcloud.cybercore.util.container;
 
-import ca.skynetcloud.cybercore.api.containers.ContainerNames;
+import ca.skynetcloud.cybercore.init.ContainerInit;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCubeTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -16,7 +16,7 @@ public class PowerCubeCon extends BaseContainerCore {
 	}
 
 	public PowerCubeCon(int id, PlayerInventory player, PowerCubeTileEntity tileentity) {
-		super(id, ContainerNames.POWER_CUBE_CON, player, tileentity, 3);
+		super(id, ContainerInit.POWER_CUBE_CON, player, tileentity, 3);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
 

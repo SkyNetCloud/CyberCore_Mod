@@ -1,62 +1,66 @@
 package ca.skynetcloud.cybercore.world.gen;
 
-import java.util.ArrayList;
-
-import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.api.blocks.BlockInit;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.WorldGenRegistries;
+import ca.skynetcloud.cybercore.init.BlockInit;
+import net.minecraft.block.BlockState;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
 public class OreGeneration {
 
-	private static final ArrayList<ConfiguredFeature<?, ?>> overworldOres = new ArrayList<ConfiguredFeature<?, ?>>();
+	public static void generateOres(final BiomeLoadingEvent event) {
 
-	public static void registerOres() {
-		overworldOres.add(register("cyber_ore",
-				Feature.ORE
-						.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-								BlockInit.CYBER_ORE.defaultBlockState(), 4)) // Vein Size
-						.range(12).squared().chance(50))); // Chunk spawn frequency
-		overworldOres.add(register("ruby_ore",
-				Feature.ORE
-						.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-								BlockInit.RUBY_ORE.defaultBlockState(), 4)) // Vein Size
-						.range(12).squared() // Spawn height start
-						.chance(5))); // Chunk spawn frequency
-		overworldOres.add(register("dark_steel_ore",
-				Feature.ORE
-						.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-								BlockInit.DARK_STEEL_ORE.defaultBlockState(), 4)) // Vein Size
-						.range(12).squared() // Spawn height start
-						.chance(20))); // Chunk spawn frequency
+		generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+				BlockInit.DARK_STEEL_ORE.defaultBlockState(), 5, 11, 41, 24);
+
+		generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+				BlockInit.CYBER_ORE.defaultBlockState(), 5, 1, 34, 15);
+
+		generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+				BlockInit.RUBY_ORE.defaultBlockState(), 5, 2, 20, 11);
 
 	}
 
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public static void gen(BiomeLoadingEvent event) {
-		BiomeGenerationSettingsBuilder generation = event.getGeneration();
-		for (ConfiguredFeature<?, ?> ore : overworldOres) {
-			if (ore != null)
-				generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
-		}
-
+	private static void generateOre(BiomeGenerationSettingsBuilder settings, RuleTest fillerType, BlockState state,
+			int veinSize, int minHeight, int maxHeight, int amount) {
+		settings.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
+				Feature.ORE.configured(new OreFeatureConfig(fillerType, state, veinSize))
+						.decorated(Placement.RANGE.configured(new TopSolidRangeConfig(minHeight, 0, maxHeight)))
+						.squared().count(amount));
 	}
 
-	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name,
-			ConfiguredFeature<FC, ?> configuredFeature) {
-		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, CyberCoreMain.MODID + ":" + name,
-				configuredFeature);
-	}
-
+	/*
+	 * private static final ArrayList<ConfiguredFeature<?, ?>> overworldOres = new
+	 * ArrayList<ConfiguredFeature<?, ?>>();
+	 * 
+	 * public static void registerOres() {
+	 * 
+	 * overworldOres.add(register("cyber_ore", Feature.ORE.configured(new
+	 * OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+	 * BlockInit.CYBER_ORE.defaultBlockState(), 9)).range(12).chance(50)));
+	 * overworldOres.add(register("ruby_ore", Feature.ORE.configured(new
+	 * OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+	 * BlockInit.RUBY_ORE.defaultBlockState(), 12)).range(12).chance(24)));
+	 * overworldOres.add(register("dark_steel_ore", Feature.ORE.configured(new
+	 * OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+	 * BlockInit.DARK_STEEL_ORE.defaultBlockState(), 5)).range(12).chance(20)));
+	 * 
+	 * }
+	 * 
+	 * @SubscribeEvent() public void gen(BiomeLoadingEvent event,
+	 * ConfiguredFeature<?, ?> configuredFeature, boolean enabled) { if (enabled) {
+	 * event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES
+	 * ).add(() -> configuredFeature); } }
+	 * 
+	 * private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?>
+	 * register(String name, ConfiguredFeature<FC, ?> configuredFeature) { return
+	 * Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, CyberCoreMain.MODID
+	 * + ":" + name, configuredFeature); }
+	 */
 }

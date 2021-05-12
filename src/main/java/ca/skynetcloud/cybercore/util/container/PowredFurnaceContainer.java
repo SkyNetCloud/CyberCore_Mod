@@ -1,7 +1,7 @@
 package ca.skynetcloud.cybercore.util.container;
 
-import ca.skynetcloud.cybercore.api.containers.ContainerNames;
-import ca.skynetcloud.cybercore.api.items.ItemInit;
+import ca.skynetcloud.cybercore.init.ContainerInit;
+import ca.skynetcloud.cybercore.init.ItemInit;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowredFurnaceTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -17,7 +17,7 @@ public class PowredFurnaceContainer extends BaseContainerCore {
 	}
 
 	public PowredFurnaceContainer(int id, PlayerInventory player, PowredFurnaceTileEntity tileentity) {
-		super(id, ContainerNames.POWER_FURNCAE_CON, player, tileentity, 20);
+		super(id, ContainerInit.POWER_FURNCAE_CON, player, tileentity, 20);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
+import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
@@ -42,7 +42,7 @@ public class ItemPlanter extends Item {
 		BlockPos center = context.getClickedPos().above();
 		BlockPos blockpos = null;
 		int countPlanted = 0;
-		for (int dist = 0; dist < CyberCoreConfig.getPlantingRange(); dist++) {
+		for (int dist = 0; dist < CyberConfig.Config.getPlantingRange(); dist++) {
 			// get seed ready if any are left
 			if (seeds.isEmpty()) {
 				seeds = getSeed(player);

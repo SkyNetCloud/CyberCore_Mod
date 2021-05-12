@@ -2,13 +2,16 @@ package ca.skynetcloud.cybercore.block.tech;
 
 import java.util.function.Supplier;
 
-import ca.skynetcloud.cybercore.api.blocks.BlockInit;
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
+import ca.skynetcloud.cybercore.init.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -22,6 +25,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 public class TechBlockBaseSubCore extends Block {
+
+	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
 	private final Supplier<? extends TileEntity> teCreator;
 
@@ -52,6 +57,12 @@ public class TechBlockBaseSubCore extends Block {
 	public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos,
 			PlayerEntity player) {
 		return new ItemStack(this);
+	}
+
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		if (this == BlockInit.POWER_FURNACE_BLOCK) {
+			builder.add(LIT);
+		}
 	}
 
 	@Override

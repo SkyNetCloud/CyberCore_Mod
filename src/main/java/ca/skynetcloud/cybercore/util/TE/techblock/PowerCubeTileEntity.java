@@ -1,11 +1,11 @@
 package ca.skynetcloud.cybercore.util.TE.techblock;
 
-import ca.skynetcloud.cybercore.api.Names;
-import ca.skynetcloud.cybercore.api.tileentity.TileEntityNames;
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
+import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
 import ca.skynetcloud.cybercore.util.container.PowerCubeCon;
-import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
+import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
+import ca.skynetcloud.cybercore.util.networking.helper.Names;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -48,7 +48,7 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 	};
 
 	public PowerCubeTileEntity() {
-		super(TileEntityNames.POWER_CUBE_TE, CyberCoreConfig.POWERLMIT.get(), 3);
+		super(TileEntityInit.POWER_CUBE_TE, Config.POWERLMIT.get(), 3);
 	}
 
 	@Override
@@ -94,13 +94,13 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 
 	@Override
 	public ITextComponent getDisplayName() {
-		
+
 		return new TranslationTextComponent(Names.POWER_BOX_CON_NAME);
 	}
 
 	@Override
 	public Container createMenu(int id, PlayerInventory inv, PlayerEntity player) {
-		
+
 		return new PowerCubeCon(id, inv, this);
 	}
 
@@ -113,5 +113,4 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 	public int getEnergyOutSlot() {
 		return 2;
 	}
-
 }

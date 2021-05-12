@@ -1,12 +1,12 @@
 modLoader="javafml" #mandatory
 license="All Rights Reserved"
-loaderVersion="[35,)" #mandatory (28 is current forge version)
+loaderVersion="[36,)" #mandatory (28 is current forge version)
 issueTrackerURL="https://github.com/SkyNetCloud/CyberCore_Mod/issues"
 logoFile="Logo.png" #optional
 
 [[mods]] #mandatory
 modId="cybercore" #mandatory
-version="1.12.19042" #mandatory
+version="1.13.19042" #mandatory
 displayName="CyberCore" #mandatory
 authors="SkyNetCloud"
 updateJSONURL="https://raw.githubusercontent.com/SkyNetCloud/CyberCore_Mod/master/update.json" #optional

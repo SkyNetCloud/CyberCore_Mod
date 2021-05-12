@@ -1,7 +1,6 @@
 package ca.skynetcloud.cybercore.item.tools;
 
-import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.util.networking.config.CyberCoreConfig;
+import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -36,7 +35,7 @@ public class TillerItem extends HoeItem {
 		// context.getPlayer().getHorizontalFacing()
 		Direction face = context.getHorizontalDirection();
 		BlockPos blockpos = null;
-		for (int dist = 0; dist < CyberCoreConfig.getTillingRange(); dist++) {
+		for (int dist = 0; dist < CyberConfig.Config.getTillingRange(); dist++) {
 			blockpos = center.relative(face, dist);
 			if (world.isEmptyBlock(blockpos)) {
 				// air here, went off an edge. try to go down 1
@@ -84,11 +83,11 @@ public class TillerItem extends HoeItem {
 
 	private BlockState moisturize(BlockState blockstate) {
 		try {
-			if (blockstate.getBlock() == Blocks.FARMLAND && CyberCoreConfig.getMoisture() > 0) {
-				blockstate = blockstate.setValue(FarmlandBlock.MOISTURE, CyberCoreConfig.getMoisture());
+			if (blockstate.getBlock() == Blocks.FARMLAND && CyberConfig.Config.getMoisture() > 0) {
+				blockstate = blockstate.setValue(FarmlandBlock.MOISTURE, CyberConfig.Config.getMoisture());
 			}
 		} catch (Exception e) {
-			//CyberCoreMain.LOGGER.error("Tiller Item Moisturize error", e);
+			// CyberCoreMain.LOGGER.error("Tiller Item Moisturize error", e);
 		}
 		return blockstate;
 	}
