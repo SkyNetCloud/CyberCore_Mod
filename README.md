@@ -3,4 +3,4 @@
 [![Version](http://cf.way2muchnoise.eu/versions/356097.svg)]() [![Download](http://cf.way2muchnoise.eu/356097.svg)](https://www.curseforge.com/minecraft/mc-mods/cybercore-mod)
 
 
-This is a some what small mod with really cool blocks, items and tools I've been working on learning more java to beable to make this mod even more better then other mods
+This is a some what small mod with really cool blocks, items and tools I've been working on learning more java to be able to make this mod even better then other mods out there
