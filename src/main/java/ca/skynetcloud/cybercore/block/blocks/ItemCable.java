@@ -130,7 +130,7 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 		if (block instanceof ColorItemCable) {
 			return true;
 		}
-		
+
 		if (block instanceof ExtractorBlock && state.getValue(ExtractorBlock.FACING).equals(face.getOpposite()))
 			return true;
 
@@ -268,7 +268,7 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 		}
 	}
 
-	@SuppressWarnings({ "deprecation", "unused" })
+	@SuppressWarnings("deprecation")
 	@Override
 	public FluidState getFluidState(BlockState state) {
 		HashMap<Direction, Direction> map = new HashMap<>();

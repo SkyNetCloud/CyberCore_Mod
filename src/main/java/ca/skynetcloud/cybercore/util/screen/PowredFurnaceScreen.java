@@ -1,7 +1,5 @@
 package ca.skynetcloud.cybercore.util.screen;
 
-import java.awt.Color;
-
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
@@ -44,6 +42,8 @@ public class PowredFurnaceScreen extends ScreenBaseCore<PowredFurnaceContainer> 
 		fontRenderer.drawShadow(mStack, "Max It Can Stored FE : " + TextFormatting.GREEN + te.getMaxEnergyStored(),
 				-155, 50, TextFormatting.DARK_GREEN.getColor());
 	}
+	
+	
 
 	private int getCookProgressScaled(int id, int pixels) {
 		int i = menu.getValue(id + 2);

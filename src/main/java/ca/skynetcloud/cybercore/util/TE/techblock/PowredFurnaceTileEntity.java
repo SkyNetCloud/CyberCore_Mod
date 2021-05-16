@@ -129,12 +129,11 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 	@Override
 	public void doUpdate() {
 
-		if (level.isDay() || level.isNight() && level.canSeeSkyFromBelowWater(worldPosition.above())) {
+		if (level.isDay() || level.isNight() && level.canSeeSky(worldPosition.above())) {
 			if (energystorage.getMaxEnergyStored() - energystorage.getEnergyStored() > 0) {
 				workload++;
 				if (workload >= getTicksPerAmount()) {
-					energystorage.receiveEnergy(
-							getEnergyPerTick(getMarkcard(13, ItemType.SOLAR_FOCUS)) + getTicksPerAmount());
+					energystorage.receiveEnergy(getEnergyPerTick(getTicksPerAmount()));
 					workload = 0;
 				}
 			}
@@ -164,36 +163,33 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 		}
 		if (isSmelting) {
 			this.energystorage.extractEnergy(energyPerAction(), false);
-			
 
 		}
 
 		doEnergyLoop();
 	}
-	
-	public int energyPerAction()
-	{
-		return 4 + getMarkcard(12, ItemType.SPEED_UPGRADE) * 4;
-	}
 
+	public int energyPerAction() {
+		return 5 + getMarkcard(12, ItemType.SPEED_UPGRADE) * 4;
+	}
 
 	private int getEnergyPerTick(int focusLevel) {
 		switch (focusLevel) {
 		case 1:
-			return 100;
+			return 1000;
 		case 2:
-			return 200;
+			return 2000;
 		case 3:
-			return 15000;
+			return 150000;
 		case 4:
-			return 250000;
+			return 2500000;
 		}
 
 		return 100;
 	}
 
 	public int getTicksPerAmount() {
-		return 100 + (getMarkcard(12, ItemType.SPEED_UPGRADE));
+		return 100 + (getMarkcard(12, ItemType.SPEED_UPGRADE)) - 5;
 	}
 
 	@Override
@@ -326,6 +322,5 @@ public class PowredFurnaceTileEntity extends CoreEnergyInventoryTileEntity {
 	public ITextComponent getDisplayName() {
 		return new TranslationTextComponent("");
 	}
-
 
 }

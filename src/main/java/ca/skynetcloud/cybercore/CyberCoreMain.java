@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ca.skynetcloud.cybercore.init.BlockInit;
+import ca.skynetcloud.cybercore.init.RenderInit;
 import ca.skynetcloud.cybercore.init.ScreenInit;
 import ca.skynetcloud.cybercore.item.enchantment.EnchantmentSoulbound;
 import ca.skynetcloud.cybercore.util.crafting.ModedRecipeTypes;
@@ -44,7 +45,7 @@ public class CyberCoreMain {
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {
-
+		RenderInit.registerEntityRenderer();
 		ScreenInit.registerGUI();
 		RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.cutout());

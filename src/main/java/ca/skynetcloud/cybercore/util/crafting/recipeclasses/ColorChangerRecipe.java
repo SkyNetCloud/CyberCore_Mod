@@ -74,9 +74,10 @@ public class ColorChangerRecipe implements IRecipe<IInventory> {
 	public IRecipeType<?> getType() {
 		return ModedRecipeTypes.COLORING;
 	}
+
 	public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
 			implements IRecipeSerializer<ColorChangerRecipe> {
-		
+
 		// private static ResourceLocation NAME = new
 		// ResourceLocation(PlantTechMain.MODID, "compressing");
 
@@ -158,8 +159,6 @@ public class ColorChangerRecipe implements IRecipe<IInventory> {
 			buffer.writeItem(recipe.input);
 			buffer.writeItem(recipe.output);
 		}
-
-
 
 	}
 

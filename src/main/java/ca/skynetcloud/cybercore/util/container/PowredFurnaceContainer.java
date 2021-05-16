@@ -20,6 +20,7 @@ public class PowredFurnaceContainer extends BaseContainerCore {
 		super(id, ContainerInit.POWER_FURNCAE_CON, player, tileentity, 20);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
+		
 
 		String input = "slot.poweredfurnace.input";
 
