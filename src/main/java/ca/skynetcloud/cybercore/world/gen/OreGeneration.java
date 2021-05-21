@@ -2,7 +2,6 @@ package ca.skynetcloud.cybercore.world.gen;
 
 import ca.skynetcloud.cybercore.init.BlockInit;
 import net.minecraft.block.BlockState;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;

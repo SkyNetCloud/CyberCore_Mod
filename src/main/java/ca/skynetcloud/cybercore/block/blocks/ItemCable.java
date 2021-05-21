@@ -1,7 +1,6 @@
 package ca.skynetcloud.cybercore.block.blocks;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -271,7 +270,6 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 	@SuppressWarnings("deprecation")
 	@Override
 	public FluidState getFluidState(BlockState state) {
-		HashMap<Direction, Direction> map = new HashMap<>();
 		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 

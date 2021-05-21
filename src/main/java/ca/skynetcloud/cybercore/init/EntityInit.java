@@ -13,10 +13,10 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
 public class EntityInit {
-	
+
 	public static Item entity_egg_item;
 
-	public static List<EntityType> ENTITIES = Lists.newArrayList();
+	public static List<EntityType<?>> ENTITIES = Lists.newArrayList();
 
 	public static final EntityType<RobotEnemy> RoBot = createEntity(RobotEnemy.class, RobotEnemy::new,
 			EntityClassification.MONSTER, "robot_golem", 1.75F, 4.25F, 0, 0);

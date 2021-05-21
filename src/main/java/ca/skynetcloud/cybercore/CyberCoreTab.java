@@ -30,4 +30,3 @@ public class CyberCoreTab extends ItemGroup {
 		return new ItemStack(ItemInit.cyber_ingot);
 	}
 }
- 

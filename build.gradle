@@ -28,7 +28,6 @@ repositories {
 
 
 apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
@@ -36,7 +35,7 @@ version = "1.16.5-1.12.19042"
 group = "ca.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
+java.toolchain.languageVersion = JavaLanguageVersion.of(13)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
@@ -96,7 +95,9 @@ curseforge {
             changelog = file("CyberCore-${version}-changelog.txt")
             
             releaseType = 'release'
-
+            
+            addGameVersion '1.16.5'
+            
             mainArtifact(jar) {
                 displayName = "CyberCore ${version}"
             }

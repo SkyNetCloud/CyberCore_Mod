@@ -19,6 +19,7 @@ public abstract class ScreenBaseCore<T extends BaseContainerCore> extends Contai
 			CyberCoreMain.MODID + ":textures/gui/container/new_lunagen.png");
 	protected final PlayerInventory player;
 	protected final CoreEnergyTileEntity te;
+
 	protected abstract ResourceLocation getBackgroundTexture();
 
 	@SuppressWarnings("unchecked")
@@ -47,7 +48,7 @@ public abstract class ScreenBaseCore<T extends BaseContainerCore> extends Contai
 	}
 
 	protected void drawTooltips(MatrixStack mStack, int mouseX, int mouseY) {
-		
+
 	}
 
 	public void drawTooltip(MatrixStack mStack, String lines, int mouseX, int mouseY, int posX, int posY, int width,
@@ -60,7 +61,6 @@ public abstract class ScreenBaseCore<T extends BaseContainerCore> extends Contai
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void renderBg(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
 		RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -72,8 +72,7 @@ public abstract class ScreenBaseCore<T extends BaseContainerCore> extends Contai
 	protected void renderLabels(MatrixStack mStack, int mouseX, int mouseY) {
 		String tileName = title.getString();
 		int textcolor = Integer.parseInt("000000", 16);
-		font.draw(mStack, tileName, (this.imageWidth / 2.0F - font.width(tileName) / 2.0F) + 1, 14,
-				textcolor);
+		font.draw(mStack, tileName, (this.imageWidth / 2.0F - font.width(tileName) / 2.0F) + 1, 14, textcolor);
 	}
 
 	protected int getEnergyStoredScaled(int pixels) {
@@ -87,15 +86,11 @@ public abstract class ScreenBaseCore<T extends BaseContainerCore> extends Contai
 		int j = menu.getValue(3);
 		return i != 0 && j != 0 ? i * pixels / j : 0;
 	}
-	
-	
-
 
 	// renderHoveredToolTip
 	@Override
 	protected void renderTooltip(MatrixStack mStack, int x, int y) {
-		if (minecraft.player.inventory.getCarried().isEmpty() && this.hoveredSlot != null
-				&& !this.hoveredSlot.hasItem()
+		if (minecraft.player.inventory.getCarried().isEmpty() && this.hoveredSlot != null && !this.hoveredSlot.hasItem()
 				&& this.hoveredSlot instanceof BaseContainerCore.SlotItemHandlerWithInfo)
 			this.renderTooltip(mStack,
 					new TranslationTextComponent(((SlotItemHandlerWithInfo) this.hoveredSlot).getUsageString()), x, y);

@@ -15,7 +15,6 @@ import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
 import ca.skynetcloud.cybercore.util.container.ColorChangeContainer;
 import ca.skynetcloud.cybercore.util.crafting.ModedRecipeTypes;
 import ca.skynetcloud.cybercore.util.crafting.recipeclasses.ColorChangerRecipe;
-import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;

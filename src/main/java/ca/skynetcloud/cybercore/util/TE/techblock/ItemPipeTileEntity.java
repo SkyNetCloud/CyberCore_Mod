@@ -1,14 +1,10 @@
 package ca.skynetcloud.cybercore.util.TE.techblock;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Queue;
-import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -20,8 +16,6 @@ import ca.skynetcloud.cybercore.util.networking.handler.ItemPipeInventoryHandler
 import ca.skynetcloud.cybercore.util.networking.helper.WorldHelper;
 import ca.skynetcloud.cybercore.util.networking.routing.Route;
 import ca.skynetcloud.cybercore.util.networking.routing.RoutingNetwork;
-import ca.skynetcloud.cybercore.util.networking.util.CableInfo;
-import ca.skynetcloud.cybercore.util.networking.util.CableInfo.Connection;
 import ca.skynetcloud.cybercore.util.networking.wrapper.ItemInTubeWrapper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -1,7 +1,6 @@
 package ca.skynetcloud.cybercore.item;
 
 import java.util.List;
-import java.util.Properties;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;

@@ -47,18 +47,18 @@ public class CyberConfig {
 		public static Set<String> incompatibleEnchantments = new HashSet<>();
 
 		public static void bake() {
-			rarity = CONFIG.rarity.get();
-			levels = CONFIG.levels.get();
-			isTreasure = CONFIG.isTreasure.get();
-			isVillagerTrade = CONFIG.isVillagerTrade.get();
-			isLootable = CONFIG.isLootable.get();
-			canApplyAtEnchantingTable = CONFIG.canApplyAtEnchantingTable.get();
-			canApplyOnBooks = CONFIG.canApplyOnBooks.get();
-			minEnchantabilityBase = CONFIG.minEnchantabilityBase.get();
-			minEnchantabilityPerLevel = CONFIG.minEnchantabilityPerLevel.get();
+			rarity = Config.rarity.get();
+			levels = Config.levels.get();
+			isTreasure = Config.isTreasure.get();
+			isVillagerTrade = Config.isVillagerTrade.get();
+			isLootable = Config.isLootable.get();
+			canApplyAtEnchantingTable = Config.canApplyAtEnchantingTable.get();
+			canApplyOnBooks = Config.canApplyOnBooks.get();
+			minEnchantabilityBase = Config.minEnchantabilityBase.get();
+			minEnchantabilityPerLevel = Config.minEnchantabilityPerLevel.get();
 			incompatibleEnchantments.clear();
 
-			for (String enchantment : CONFIG.incompatibleEnchantments.get()) {
+			for (String enchantment : Config.incompatibleEnchantments.get()) {
 
 				if (ForgeRegistries.ENCHANTMENTS.containsKey(new ResourceLocation(enchantment))) {
 					incompatibleEnchantments.add(enchantment);

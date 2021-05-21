@@ -1,7 +1,6 @@
 package ca.skynetcloud.cybercore.util.container;
 
 import ca.skynetcloud.cybercore.init.ContainerInit;
-import ca.skynetcloud.cybercore.init.ItemInit;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowredFurnaceTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
