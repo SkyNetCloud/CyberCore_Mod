@@ -1,28 +1,29 @@
 package ca.skynetcloud.cybercore.world.biome;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
+import ca.skynetcloud.cybercore.init.BlockInit;
 import ca.skynetcloud.cybercore.init.EntityInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.biome.BiomeGenerationSettings;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
+import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureSpread;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.TwoLayerFeature;
-import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
+import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.NoiseDependant;
 import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
+import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import net.minecraftforge.event.RegistryEvent;
 
 public class DecayedBiome {
@@ -36,7 +37,7 @@ public class DecayedBiome {
 					.build();
 			BiomeGenerationSettings.Builder biomeGenerationSettings = new BiomeGenerationSettings.Builder()
 					.surfaceBuilder(SurfaceBuilder.DEFAULT
-							.configured(new SurfaceBuilderConfig(Blocks.GRASS_BLOCK.defaultBlockState(),
+							.configured(new SurfaceBuilderConfig(BlockInit.DECAYED_BLOCK.defaultBlockState(),
 									Blocks.STONE.defaultBlockState(), Blocks.STONE.defaultBlockState())));
 			biomeGenerationSettings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.TREE
 					.configured((new BaseTreeFeatureConfig.Builder(

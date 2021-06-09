@@ -11,8 +11,8 @@ import ca.skynetcloud.cybercore.block.blocks.ItemCable;
 import ca.skynetcloud.cybercore.util.networking.helper.PosHelper;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.block.BlockState;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 public class FastestRoutesSolver {
@@ -41,7 +41,7 @@ public class FastestRoutesSolver {
 
 			List<Direction> dirs = ItemCable.getConnectedDirections(state);
 			for (Direction face : dirs) {
-				BlockPos checkPos = node.pos.relative(face);
+				BlockPos checkPos = node.pos.offset(face);
 				Endpoint maybeEndpoint = new Endpoint(checkPos, face.getOpposite());
 
 				if (!visitedTubes.contains(checkPos) && network.tubes.contains(checkPos)) {

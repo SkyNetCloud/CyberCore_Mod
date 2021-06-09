@@ -3,7 +3,7 @@ package ca.skynetcloud.cybercore.util.networking.util;
 import java.util.Locale;
 import java.util.function.BiFunction;
 
-import javax.annotation.Nonnull;
+
 
 import com.google.common.base.Function;
 import com.google.common.base.Preconditions;
@@ -12,12 +12,7 @@ import com.google.common.base.Supplier;
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraftforge.registries.GameData;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+
 
 public class RegUtil {
 	@Nonnull

@@ -2,10 +2,10 @@ package ca.skynetcloud.cybercore.init.material;
 
 import java.util.function.Supplier;
 
+import javax.swing.UIDefaults.LazyValue;
+
 import ca.skynetcloud.cybercore.init.ItemInit;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
+import net.minecraft.recipe.Ingredient;
 
 public class BasisToolMaterial {
 

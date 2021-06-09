@@ -3,7 +3,7 @@ package ca.skynetcloud.cybercore.init;
 import java.util.stream.IntStream;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
+import ca.skynetcloud.cybercore.util.TE.techblock.ItemConvterBlockTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCablesTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCubeTileEntity;
@@ -31,8 +31,8 @@ public class TileEntityInit {
 	public static final TileEntityType<PowerCubeTileEntity> POWER_CUBE_TE = TileEntityType.Builder
 			.of(PowerCubeTileEntity::new, BlockInit.Battery).build(null);
 
-	public static final TileEntityType<ColorChangeTileEntity> COLOR_Changer_TE = TileEntityType.Builder
-			.of(ColorChangeTileEntity::new, BlockInit.C_Changer_Block).build(null);
+	public static final TileEntityType<ItemConvterBlockTileEntity> COLOR_Changer_TE = TileEntityType.Builder
+			.of(ItemConvterBlockTileEntity::new, BlockInit.ItemConvterBlock).build(null);
 
 	public static void registerTileEntities(RegistryEvent.Register<TileEntityType<?>> event) {
 

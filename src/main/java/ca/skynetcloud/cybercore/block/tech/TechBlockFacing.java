@@ -2,16 +2,15 @@ package ca.skynetcloud.cybercore.block.tech;
 
 import java.util.function.Supplier;
 
+import com.sun.jdi.Mirror;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
+import net.minecraft.data.client.model.VariantSettings.Rotation;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer.Builder;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 
 public class TechBlockFacing extends TechBlockBaseSubCore {
 

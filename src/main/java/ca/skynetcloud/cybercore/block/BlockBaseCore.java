@@ -3,8 +3,8 @@ package ca.skynetcloud.cybercore.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.StateHolder;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 
 @SuppressWarnings("unused")
 public class BlockBaseCore extends Block {

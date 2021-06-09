@@ -2,8 +2,8 @@ package ca.skynetcloud.cybercore.util.networking.helper;
 
 import java.util.function.Supplier;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 public class IsWasSprintPacket {

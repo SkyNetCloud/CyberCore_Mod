@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.tag.ItemTags;
 import net.minecraft.util.ResourceLocation;
 
 public class TagUtils {

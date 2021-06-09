@@ -1,17 +1,14 @@
 package ca.skynetcloud.cybercore.init.material;
 
-import static ca.skynetcloud.cybercore.init.ItemInit.cyber_ingot;
-import static ca.skynetcloud.cybercore.init.ItemInit.dark_steel_ingot;
-import static ca.skynetcloud.cybercore.init.ItemInit.ruby_ingot;
-
 import java.util.function.Supplier;
+
+import javax.swing.UIDefaults.LazyValue;
 
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

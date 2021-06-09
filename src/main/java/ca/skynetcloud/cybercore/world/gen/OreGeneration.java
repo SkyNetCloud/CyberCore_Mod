@@ -2,10 +2,10 @@ package ca.skynetcloud.cybercore.world.gen;
 
 import ca.skynetcloud.cybercore.init.BlockInit;
 import net.minecraft.block.BlockState;
+import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;

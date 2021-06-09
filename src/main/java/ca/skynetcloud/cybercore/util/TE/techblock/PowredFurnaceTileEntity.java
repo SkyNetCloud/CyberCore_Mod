@@ -2,7 +2,7 @@ package ca.skynetcloud.cybercore.util.TE.techblock;
 
 import java.util.Optional;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
 import ca.skynetcloud.cybercore.init.BlockInit;
@@ -12,12 +12,10 @@ import ca.skynetcloud.cybercore.util.container.PowredFurnaceContainer;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;

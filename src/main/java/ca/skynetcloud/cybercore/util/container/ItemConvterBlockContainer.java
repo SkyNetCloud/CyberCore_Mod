@@ -1,21 +1,20 @@
 package ca.skynetcloud.cybercore.util.container;
 
 import ca.skynetcloud.cybercore.init.ContainerInit;
-import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
+import ca.skynetcloud.cybercore.util.TE.techblock.ItemConvterBlockTileEntity;
 import ca.skynetcloud.cybercore.util.container.BaseContainerCore.SlotItemHandlerWithInfo;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class ColorChangeContainer extends BaseContainerCore {
-	public ColorChangeContainer(int id, PlayerInventory inv) {
-		this(id, inv, new ColorChangeTileEntity());
+public class ItemConvterBlockContainer extends BaseContainerCore {
+	public ItemConvterBlockContainer(int id, PlayerInventory inv) {
+		this(id, inv, new ItemConvterBlockTileEntity());
 	}
 
-	public ColorChangeContainer(int id, PlayerInventory player, ColorChangeTileEntity tileentity) {
+	public ItemConvterBlockContainer(int id, PlayerInventory player, ItemConvterBlockTileEntity tileentity) {
 		super(id, ContainerInit.c_changer_CON, player, tileentity, 25);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
@@ -82,10 +81,10 @@ public class ColorChangeContainer extends BaseContainerCore {
 }
 
 class ChangeCheckSlot extends SlotItemHandlerWithInfo {
-	private ColorChangeTileEntity te;
+	private ItemConvterBlockTileEntity te;
 
-	public ChangeCheckSlot(ColorChangeTileEntity te, IItemHandler itemHandler, int index, int xPosition, int yPosition,
-			String usage) {
+	public ChangeCheckSlot(ItemConvterBlockTileEntity te, IItemHandler itemHandler, int index, int xPosition,
+			int yPosition, String usage) {
 		super(itemHandler, index, xPosition, yPosition, usage);
 		this.te = te;
 	}

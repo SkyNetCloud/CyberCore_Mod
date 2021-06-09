@@ -15,6 +15,7 @@ public class RubyArmor extends ArmorItemBase {
 
 	public RubyArmor(IArmorMaterial mat, String resString, EquipmentSlotType equipmentSlotIn, Properties properties) {
 		super(mat, resString, equipmentSlotIn, properties);
+
 	}
 
 	@Override

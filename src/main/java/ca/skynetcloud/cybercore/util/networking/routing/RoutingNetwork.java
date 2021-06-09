@@ -6,14 +6,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import ca.skynetcloud.cybercore.util.networking.helper.WorldHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;

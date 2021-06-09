@@ -21,12 +21,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class ColorChangerRecipe implements IRecipe<IInventory> {
+public class ItemConvterRecipe implements IRecipe<IInventory> {
 	private final ResourceLocation id;
 	private final ItemStack input;
 	private final ItemStack output;
 
-	public ColorChangerRecipe(ResourceLocation id, ItemStack input, ItemStack output) {
+	public ItemConvterRecipe(ResourceLocation id, ItemStack input, ItemStack output) {
 		this.id = id;
 		this.input = input;
 		this.output = output;
@@ -72,17 +72,17 @@ public class ColorChangerRecipe implements IRecipe<IInventory> {
 
 	@Override
 	public IRecipeType<?> getType() {
-		return ModedRecipeTypes.COLORING;
+		return ModedRecipeTypes.Item_Convter_Recipes;
 	}
 
 	public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
-			implements IRecipeSerializer<ColorChangerRecipe> {
+			implements IRecipeSerializer<ItemConvterRecipe> {
 
 		// private static ResourceLocation NAME = new
 		// ResourceLocation(PlantTechMain.MODID, "compressing");
 
 		@Override
-		public ColorChangerRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+		public ItemConvterRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 
 			JsonObject inputobject = json.getAsJsonObject("input");
 			Item inputitem = null;
@@ -141,21 +141,21 @@ public class ColorChangerRecipe implements IRecipe<IInventory> {
 
 			if (inputstack != null && resultstack != null) {
 				// System.out.println(recipeId);
-				return new ColorChangerRecipe(recipeId, inputstack, resultstack);
+				return new ItemConvterRecipe(recipeId, inputstack, resultstack);
 			} else {
 				throw new IllegalStateException("Item did not exist:" + recipeId.toString());
 			}
 		}
 
 		@Override
-		public ColorChangerRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+		public ItemConvterRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
 			ItemStack input = buffer.readItem();
 			ItemStack result = buffer.readItem();
-			return new ColorChangerRecipe(recipeId, input, result);
+			return new ItemConvterRecipe(recipeId, input, result);
 		}
 
 		@Override
-		public void toNetwork(PacketBuffer buffer, ColorChangerRecipe recipe) {
+		public void toNetwork(PacketBuffer buffer, ItemConvterRecipe recipe) {
 			buffer.writeItem(recipe.input);
 			buffer.writeItem(recipe.output);
 		}

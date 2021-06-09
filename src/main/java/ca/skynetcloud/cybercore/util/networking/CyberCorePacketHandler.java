@@ -3,7 +3,7 @@ package ca.skynetcloud.cybercore.util.networking;
 import static java.util.Optional.of;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.network.NetworkDirection;

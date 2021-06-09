@@ -1,12 +1,13 @@
 package ca.skynetcloud.cybercore.event;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
+
 import ca.skynetcloud.cybercore.util.networking.handler.SoulBoundHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ClientEvent {

@@ -1,24 +1,24 @@
 package ca.skynetcloud.cybercore.util.screen;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
-import ca.skynetcloud.cybercore.util.container.ColorChangeContainer;
+import ca.skynetcloud.cybercore.util.TE.techblock.ItemConvterBlockTileEntity;
+import ca.skynetcloud.cybercore.util.container.ItemConvterBlockContainer;
 import ca.skynetcloud.cybercore.util.networking.ButtonPressMessage;
 import ca.skynetcloud.cybercore.util.networking.CyberCorePacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.resource.Resource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
-public class ColorChangeScreen extends ScreenBaseCore<ColorChangeContainer> {
-	private static final ResourceLocation BACKGROUND = new ResourceLocation(
+public class ItemConvterBlockScreen extends ScreenBaseCore<ItemConvterBlockContainer> {
+	private static final Resource BACKGROUND = new ResourceLocation(
 			CyberCoreMain.MODID + ":textures/gui/container/painter_gui.png");
 
-	public ColorChangeScreen(ColorChangeContainer container, PlayerInventory player, ITextComponent name) {
+	public ItemConvterBlockScreen(ItemConvterBlockContainer container, PlayerInventory player, ITextComponent name) {
 		super(container, player, name);
 	}
 
@@ -75,10 +75,9 @@ public class ColorChangeScreen extends ScreenBaseCore<ColorChangeContainer> {
 
 	private int getCookProgressScaled(int pixels) {
 		int i = menu.getValue(2);
-		return i != 0 ? i * pixels / ((ColorChangeTileEntity) this.te).ticksPerItem() : 0;
+		return i != 0 ? i * pixels / ((ItemConvterBlockTileEntity) this.te).ticksPerItem() : 0;
 	}
 
-	@SuppressWarnings("unused")
 	private boolean inArea(double mouseX, double mouseY, int posX, int posY) {
 		posX += this.leftPos;
 		posY += this.topPos;

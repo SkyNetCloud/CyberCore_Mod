@@ -8,16 +8,17 @@ import net.minecraft.item.ItemStack;
 
 public class CyberCoreTab extends ItemGroup {
 
-	public static final CyberCoreTab instance = new CyberCoreTab(ItemGroup.TABS.length, Names.CyberTAB);
-	public static final CyberCoreTab item_cable = new CyberCoreTab(ItemGroup.TABS.length, Names.CyberTAB_Item_Cable);
-	public static final CyberCoreTab power_cable = new CyberCoreTab(ItemGroup.TABS.length, Names.CyberTAB_Power_Cable);
+	public static final CyberCoreTab instance = new CyberCoreTab(ItemGroup.GROUPS.length, Names.CyberTAB);
+	public static final CyberCoreTab item_cable = new CyberCoreTab(ItemGroup.GROUPS.length, Names.CyberTAB_Item_Cable);
+	public static final CyberCoreTab power_cable = new CyberCoreTab(ItemGroup.GROUPS.length,
+			Names.CyberTAB_Power_Cable);
 
 	private CyberCoreTab(int index, String label) {
 		super(index, label);
 	}
 
 	@Override
-	public ItemStack makeIcon() {
+	public ItemStack createIcon() {
 
 		if (this == instance) {
 			return new ItemStack(ItemInit.cyber_ingot);

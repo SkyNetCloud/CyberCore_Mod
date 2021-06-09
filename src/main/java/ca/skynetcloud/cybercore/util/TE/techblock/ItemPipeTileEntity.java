@@ -7,7 +7,8 @@ import java.util.Optional;
 import java.util.Queue;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
+import org.jetbrains.annotations.Nullable;
 
 import ca.skynetcloud.cybercore.block.blocks.ItemCable;
 import ca.skynetcloud.cybercore.init.TileEntityInit;
@@ -28,7 +29,6 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;

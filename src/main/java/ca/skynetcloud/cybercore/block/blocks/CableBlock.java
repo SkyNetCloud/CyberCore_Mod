@@ -8,21 +8,21 @@ import ca.skynetcloud.cybercore.init.ItemInit;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCablesTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.Material;
+import net.minecraft.client.util.math.Vector3d;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -30,12 +30,11 @@ import net.minecraftforge.common.util.Constants.BlockFlags;
 import net.minecraftforge.energy.CapabilityEnergy;
 
 public class CableBlock extends Block {
-	public static final IntegerProperty NORTH = IntegerProperty.create("north", 0, 3),
-			EAST = IntegerProperty.create("east", 0, 3), SOUTH = IntegerProperty.create("south", 0, 3),
-			WEST = IntegerProperty.create("west", 0, 3), UP = IntegerProperty.create("up", 0, 3),
-			DOWN = IntegerProperty.create("down", 0, 3);
+	public static final IntProperty NORTH = IntProperty.of("north", 0, 3), EAST = IntProperty.of("east", 0, 3),
+			SOUTH = IntProperty.of("south", 0, 3), WEST = IntProperty.of("west", 0, 3), UP = IntProperty.of("up", 0, 3),
+			DOWN = IntProperty.of("down", 0, 3);
 
-	public static final Map<Direction, IntegerProperty> DIRECTIONS = new HashMap<Direction, IntegerProperty>() {
+	public static final Map<Direction, IntProperty> DIRECTIONS = new HashMap<Direction, IntProperty>() {
 		private static final long serialVersionUID = 1L;
 		{
 			put(Direction.NORTH, NORTH);
@@ -47,34 +46,34 @@ public class CableBlock extends Block {
 		}
 	};
 
-	private static final VoxelShape POST = box(7F, 7F, 7F, 9F, 9F, 9F);
+	private static final VoxelShape POST = createCuboidShape(7F, 7F, 7F, 9F, 9F, 9F);
 	private static final Map<Direction, VoxelShape> CONNECTION_VOXELS = new HashMap<Direction, VoxelShape>() {
 		private static final long serialVersionUID = 1L;
 		{
-			put(Direction.DOWN, box(6F, 0F, 6F, 10F, 2F, 10F)); // DOWN
-			put(Direction.UP, box(6F, 14F, 6F, 10F, 16F, 10F)); // UP
-			put(Direction.NORTH, box(6F, 6F, 0F, 10F, 10F, 2F)); // NORTH
-			put(Direction.SOUTH, box(6F, 6F, 14F, 10F, 10F, 16F)); // SOUTH
-			put(Direction.WEST, box(0F, 6F, 6F, 2F, 10F, 10F)); // WEST
-			put(Direction.EAST, box(14F, 6F, 6F, 16F, 10F, 10F)); // EAST
+			put(Direction.DOWN, createCuboidShape(6F, 0F, 6F, 10F, 2F, 10F)); // DOWN
+			put(Direction.UP, createCuboidShape(6F, 14F, 6F, 10F, 16F, 10F)); // UP
+			put(Direction.NORTH, createCuboidShape(6F, 6F, 0F, 10F, 10F, 2F)); // NORTH
+			put(Direction.SOUTH, createCuboidShape(6F, 6F, 14F, 10F, 10F, 16F)); // SOUTH
+			put(Direction.WEST, createCuboidShape(0F, 6F, 6F, 2F, 10F, 10F)); // WEST
+			put(Direction.EAST, createCuboidShape(14F, 6F, 6F, 16F, 10F, 10F)); // EAST
 		}
 	};
 
 	private static final Map<Direction, VoxelShape> CABLE_VOXELS = new HashMap<Direction, VoxelShape>() {
 		private static final long serialVersionUID = 1L;
 		{
-			put(Direction.DOWN, box(7F, 0F, 7F, 9F, 7F, 9F)); // DOWN
-			put(Direction.UP, box(7F, 9F, 7F, 9F, 16F, 9F)); // UP
-			put(Direction.NORTH, box(7F, 7F, 0F, 9F, 9F, 7F)); // NORTH
-			put(Direction.SOUTH, box(7F, 7F, 9F, 9F, 9F, 16F)); // SOUTH
-			put(Direction.WEST, box(0F, 7F, 7F, 7F, 9F, 9F)); // WEST
-			put(Direction.EAST, box(9F, 7F, 7F, 16F, 9F, 9F));// EAST
+			put(Direction.DOWN, createCuboidShape(7F, 0F, 7F, 9F, 7F, 9F)); // DOWN
+			put(Direction.UP, createCuboidShape(7F, 9F, 7F, 9F, 16F, 9F)); // UP
+			put(Direction.NORTH, createCuboidShape(7F, 7F, 0F, 9F, 9F, 7F)); // NORTH
+			put(Direction.SOUTH, createCuboidShape(7F, 7F, 9F, 9F, 9F, 16F)); // SOUTH
+			put(Direction.WEST, createCuboidShape(0F, 7F, 7F, 7F, 9F, 9F)); // WEST
+			put(Direction.EAST, createCuboidShape(9F, 7F, 7F, 16F, 9F, 9F));// EAST
 		}
 	};
 	protected final VoxelShape[][][][][][] shapes = new VoxelShape[3][3][3][3][3][3];
 
 	public CableBlock() {
-		super(Block.Properties.of(Material.METAL).strength(0.5F));
+		super(Block.pro(Material.METAL).strength(0.5F));
 		this.registerDefaultState(stateDefinition.any().setValue(NORTH, 0).setValue(EAST, 0).setValue(SOUTH, 0)
 				.setValue(WEST, 0).setValue(UP, 0).setValue(DOWN, 0));
 		initShapes();

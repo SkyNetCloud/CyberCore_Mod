@@ -7,7 +7,6 @@ import java.util.Queue;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.IntArrayNBT;
-import net.minecraft.util.Direction;
 
 public class ItemInTubeWrapper {
 	public ItemStack stack;

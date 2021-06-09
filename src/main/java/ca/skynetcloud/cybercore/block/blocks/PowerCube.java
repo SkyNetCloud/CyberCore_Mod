@@ -2,19 +2,18 @@ package ca.skynetcloud.cybercore.block.blocks;
 
 import java.util.function.Supplier;
 
+import com.sun.jdi.Mirror;
+
 import ca.skynetcloud.cybercore.block.tech.TechBlockBaseSubCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.data.client.model.VariantSettings.Rotation;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer.Builder;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

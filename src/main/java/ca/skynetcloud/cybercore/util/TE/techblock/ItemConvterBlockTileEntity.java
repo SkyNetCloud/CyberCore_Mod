@@ -5,27 +5,24 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.Nullable;
 
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
 import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
-import ca.skynetcloud.cybercore.util.container.ColorChangeContainer;
+import ca.skynetcloud.cybercore.util.container.ItemConvterBlockContainer;
 import ca.skynetcloud.cybercore.util.crafting.ModedRecipeTypes;
-import ca.skynetcloud.cybercore.util.crafting.recipeclasses.ColorChangerRecipe;
+import ca.skynetcloud.cybercore.util.crafting.recipeclasses.ItemConvterRecipe;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -36,7 +33,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.RangedWrapper;
 
-public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
+public class ItemConvterBlockTileEntity extends CoreEnergyInventoryTileEntity {
 
 	private int ticksPassed = 0;
 	private int selectedId = -1;
@@ -52,19 +49,19 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 		public int get(int index) {
 			switch (index) {
 			case 0:
-				return ColorChangeTileEntity.this.energystorage.getEnergyStored();
+				return ItemConvterBlockTileEntity.this.energystorage.getEnergyStored();
 			case 1:
-				return ColorChangeTileEntity.this.energystorage.getMaxEnergyStored();
+				return ItemConvterBlockTileEntity.this.energystorage.getMaxEnergyStored();
 			case 2:
-				return ColorChangeTileEntity.this.ticksPassed;
+				return ItemConvterBlockTileEntity.this.ticksPassed;
 			case 3:
-				return ColorChangeTileEntity.this.selectedId;
+				return ItemConvterBlockTileEntity.this.selectedId;
 			case 4:
-				return ColorChangeTileEntity.this.worldPosition.getX();
+				return ItemConvterBlockTileEntity.this.worldPosition.getX();
 			case 5:
-				return ColorChangeTileEntity.this.worldPosition.getY();
+				return ItemConvterBlockTileEntity.this.worldPosition.getY();
 			case 6:
-				return ColorChangeTileEntity.this.worldPosition.getZ();
+				return ItemConvterBlockTileEntity.this.worldPosition.getZ();
 			default:
 				return 0;
 			}
@@ -73,31 +70,31 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 		public void set(int index, int value) {
 			switch (index) {
 			case 0:
-				ColorChangeTileEntity.this.energystorage.setEnergyStored(value);
+				ItemConvterBlockTileEntity.this.energystorage.setEnergyStored(value);
 				break;
 			case 1:
-				ColorChangeTileEntity.this.energystorage.setEnergyMaxStored(value);
+				ItemConvterBlockTileEntity.this.energystorage.setEnergyMaxStored(value);
 				break;
 			case 2:
-				ColorChangeTileEntity.this.ticksPassed = value;
+				ItemConvterBlockTileEntity.this.ticksPassed = value;
 				break;
 			case 3:
-				ColorChangeTileEntity.this.selectedId = value;
+				ItemConvterBlockTileEntity.this.selectedId = value;
 				break;
 			case 4:
-				BlockPos newPos = new BlockPos(value, ColorChangeTileEntity.this.worldPosition.getY(),
-						ColorChangeTileEntity.this.worldPosition.getZ());
-				ColorChangeTileEntity.this.worldPosition = newPos;
+				BlockPos newPos = new BlockPos(value, ItemConvterBlockTileEntity.this.worldPosition.getY(),
+						ItemConvterBlockTileEntity.this.worldPosition.getZ());
+				ItemConvterBlockTileEntity.this.worldPosition = newPos;
 				break;
 			case 5:
-				BlockPos newPos2 = new BlockPos(ColorChangeTileEntity.this.worldPosition.getX(), value,
-						ColorChangeTileEntity.this.worldPosition.getZ());
-				ColorChangeTileEntity.this.worldPosition = newPos2;
+				BlockPos newPos2 = new BlockPos(ItemConvterBlockTileEntity.this.worldPosition.getX(), value,
+						ItemConvterBlockTileEntity.this.worldPosition.getZ());
+				ItemConvterBlockTileEntity.this.worldPosition = newPos2;
 				break;
 			case 6:
-				BlockPos newPos3 = new BlockPos(ColorChangeTileEntity.this.worldPosition.getX(),
-						ColorChangeTileEntity.this.worldPosition.getY(), value);
-				ColorChangeTileEntity.this.worldPosition = newPos3;
+				BlockPos newPos3 = new BlockPos(ItemConvterBlockTileEntity.this.worldPosition.getX(),
+						ItemConvterBlockTileEntity.this.worldPosition.getY(), value);
+				ItemConvterBlockTileEntity.this.worldPosition = newPos3;
 				break;
 			}
 
@@ -108,7 +105,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 		}
 	};
 
-	public ColorChangeTileEntity() {
+	public ItemConvterBlockTileEntity() {
 		super(TileEntityInit.COLOR_Changer_TE, Config.POWERLMIT.get(), 25);
 		inputs = new RangedWrapper(itemhandler, 0, 1);
 		outputs = new RangedWrapper(itemhandler, 1, 2);
@@ -212,8 +209,8 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 			Item particle = particleStack.getItem();
 			if (level != null) {
 				for (IRecipe<?> recipe : this.level.getRecipeManager().getRecipes()) {
-					if (recipe.getType() == ModedRecipeTypes.COLORING) {
-						ColorChangerRecipe compRecipe = (ColorChangerRecipe) recipe;
+					if (recipe.getType() == ModedRecipeTypes.Item_Convter_Recipes) {
+						ItemConvterRecipe compRecipe = (ItemConvterRecipe) recipe;
 						if (compRecipe.getInput().getItem() == particle) {
 							temprecipeList.put(Item.getId(compRecipe.getResultItem().getItem()),
 									Pair.of(compRecipe.getResultItem(), compRecipe.getAmountInput()));
@@ -224,8 +221,8 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 				}
 			} else {
 				for (IRecipe<?> recipe : Minecraft.getInstance().level.getRecipeManager().getRecipes()) {
-					if (recipe.getType() == ModedRecipeTypes.COLORING) {
-						ColorChangerRecipe compRecipe = (ColorChangerRecipe) recipe;
+					if (recipe.getType() == ModedRecipeTypes.Item_Convter_Recipes) {
+						ItemConvterRecipe compRecipe = (ItemConvterRecipe) recipe;
 						if (compRecipe.getInput().getItem() == particle) {
 							temprecipeList.put(Item.getId(compRecipe.getResultItem().getItem()),
 									Pair.of(compRecipe.getResultItem(), compRecipe.getAmountInput()));
@@ -282,7 +279,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 
 	@Override
 	public Container createMenu(int id, PlayerInventory inv, PlayerEntity player) {
-		return new ColorChangeContainer(id, inv, this);
+		return new ItemConvterBlockContainer(id, inv, this);
 	}
 
 	@Override

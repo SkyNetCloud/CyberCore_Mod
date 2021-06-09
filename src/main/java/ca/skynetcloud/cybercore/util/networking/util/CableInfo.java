@@ -3,10 +3,8 @@ package ca.skynetcloud.cybercore.util.networking.util;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.NBTUtil;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 
 public class CableInfo {
 	public BlockPos masterPos = BlockPos.ZERO;
@@ -20,7 +18,7 @@ public class CableInfo {
 	public CableInfo() {
 	}
 
-	public CableInfo(CompoundNBT compound) {
+	public CableInfo(Compound compound) {
 		this.masterPos = NBTUtil.readBlockPos(compound);
 		this.isMaster = compound.getBoolean("ismaster");
 		this.connections = compound.getIntArray("connections");
@@ -86,9 +84,9 @@ public class CableInfo {
 		return connections;
 	}
 
-	private HashSet<BlockPos> readBlockPosList(CompoundNBT compound, String key) {
+	private HashSet<BlockPos> readBlockPosList(Compound compound, String key) {
 		HashSet<BlockPos> blockPos = new HashSet<>();
-		CompoundNBT subCompound = compound.getCompound(key);
+		Compound subCompound = compound.getCompound(key);
 		int[] x = subCompound.getIntArray("x");
 		int[] y = subCompound.getIntArray("y");
 		int[] z = subCompound.getIntArray("z");

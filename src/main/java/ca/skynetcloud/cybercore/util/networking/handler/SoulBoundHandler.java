@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.Lists;
 
@@ -13,12 +13,11 @@ import ca.skynetcloud.cybercore.init.ItemInit;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.stats.Stats;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class SoulBoundHandler {
 	private static final HashMap<PlayerEntity, SoulBoundHandler> handlerMap = new HashMap<>();

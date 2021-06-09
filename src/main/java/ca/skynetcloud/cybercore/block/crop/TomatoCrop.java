@@ -5,9 +5,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.block.FarmlandBlock;
+import net.minecraft.block.Material;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
@@ -29,6 +29,7 @@ public class TomatoCrop extends CropsBlock {
 		super(Properties.of(Material.PLANT).noCollission().randomTicks().sound(SoundType.CROP));
 
 		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)));
+
 	}
 
 	protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {

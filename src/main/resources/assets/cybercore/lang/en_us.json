@@ -113,5 +113,9 @@
 	"item.cybercore.cyber_blend": "Cyber Ingot Blend",
 	"container.lunargen": "Lunar Gen",
 	"container.poweredfurnace": "Powered Furnace",
-	"cybercore.color_changer": "Color Changer"
+	"item.cybercore.ruby_gem_gear": "Ruby Gear",
+	"item.cybercore.dark_steel_gear": "Dark Steel Gear",
+	"item.cybercore.cyber_ingot_gear": "Cyber Ingot Gear",
+	"item.cybercore.solar_panel_part": "Solar Panel Part", 
+	"cybercore.color_changer": "Item Convter Block"
 }

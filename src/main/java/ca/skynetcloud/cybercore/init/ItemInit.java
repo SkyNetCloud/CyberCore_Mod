@@ -83,9 +83,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
-import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -121,6 +119,18 @@ public class ItemInit {
 
 	public static Item whrechItem = new WrenchItem();
 
+	public static Item solarPanelPart = new Item(new Item.Properties().tab(CyberCoreTab.instance))
+			.setRegistryName("solor_panel_part");
+
+	public static Item dark_steel_gear = new Item(new Item.Properties().tab(CyberCoreTab.instance))
+			.setRegistryName("dark_steel_gear");
+
+	public static Item cyber_item_gear = new Item(new Item.Properties().tab(CyberCoreTab.instance))
+			.setRegistryName("cyber_ingot.gear");
+
+	public static Item ruby_gem_gear = new Item(new Item.Properties().tab(CyberCoreTab.instance))
+			.setRegistryName("ruby_gem_gear");
+
 	// public static Item cable = new BlockItemCore(BlockInit.CABLE);
 
 	public static Item taco_shell = new Item(new Item.Properties().tab(CyberCoreTab.instance))
@@ -134,7 +144,7 @@ public class ItemInit {
 
 	public static BlockItem ruby_block = new BlockItemCore(BlockInit.RUBY_BLOCK);
 
-	public static BlockItem color_changer = new BlockItemCore(BlockInit.C_Changer_Block);
+	public static BlockItem convter_item_block = new BlockItemCore(BlockInit.ItemConvterBlock);
 
 	public static BlockItem power_cube = new BlockItemCore(BlockInit.Battery);
 
@@ -325,68 +335,23 @@ public class ItemInit {
 								new Item.Properties().tab(CyberCoreTab.item_cable)),
 						Names.COLORED_Item_TUBE_NAMES[i]));
 
-		event.getRegistry().register(ItemInit.CyberCoreCard);
-		event.getRegistry().register(ItemInit.power_cube);
-		event.getRegistry().register(ItemInit.color_changer);
-		event.getRegistry().register(ItemInit.whrechItem);
-		event.getRegistry().register(ItemInit.ruby_block);
-		event.getRegistry().register(ItemInit.dark_steel_block);
-		event.getRegistry().register(ItemInit.power_furnace_block);
-		event.getRegistry().register(ItemInit.taco_shell);
-		event.getRegistry().register(ItemInit.cyber_ore);
-		event.getRegistry().register(ItemInit.dark_steel_ore);
-		event.getRegistry().register(ItemInit.ruby_ore);
-		event.getRegistry().register(ItemInit.cyber_ingot);
-		event.getRegistry().register(ItemInit.cyber_blend);
-		event.getRegistry().register(ItemInit.cyber_bits);
-		event.getRegistry().register(ItemInit.dark_steel_ingot);
-		event.getRegistry().register(ItemInit.ruby_ingot);
-		event.getRegistry().register(ItemInit.tiller);
-		event.getRegistry().register(ItemInit.planter);
-		event.getRegistry().register(ItemInit.cheese);
-		event.getRegistry().register(ItemInit.tomato);
-		event.getRegistry().register(ItemInit.taco);
-		event.getRegistry().register(ItemInit.tomato_seed);
-		event.getRegistry().register(ItemInit.BlockExpItem);
-		event.getRegistry().register(ItemInit.lettuce);
-		event.getRegistry().register(ItemInit.lettuce_seed);
-		event.getRegistry().register(ItemInit.cyber_axe);
-		event.getRegistry().register(ItemInit.cyber_hoe);
-		event.getRegistry().register(ItemInit.cyber_pickaxe);
-		event.getRegistry().register(ItemInit.cyber_shovel);
-		event.getRegistry().register(ItemInit.cyber_sword);
-		event.getRegistry().register(ItemInit.ruby_axe);
-		event.getRegistry().register(ItemInit.ruby_hoe);
-		event.getRegistry().register(ItemInit.ruby_pickaxe);
-		event.getRegistry().register(ItemInit.ruby_shovel);
-		event.getRegistry().register(ItemInit.ruby_sword);
-		event.getRegistry().register(ItemInit.dark_steel_axe);
-		event.getRegistry().register(ItemInit.dark_steel_hoe);
-		event.getRegistry().register(ItemInit.dark_steel_pickaxe);
-		event.getRegistry().register(ItemInit.dark_steel_shovel);
-		event.getRegistry().register(ItemInit.dark_steel_sword);
-		event.getRegistry().register(ItemInit.speed_upgrade_card_1);
-		event.getRegistry().register(ItemInit.speed_upgrade_card_2);
-		event.getRegistry().register(ItemInit.speed_upgrade_card_3);
-		event.getRegistry().register(ItemInit.speed_upgrade_card_4);
-		event.getRegistry().register(ItemInit.power_upgrade_card_1);
-		event.getRegistry().register(ItemInit.power_upgrade_card_2);
-		event.getRegistry().register(ItemInit.power_upgrade_card_3);
-
-		event.getRegistry().register(ItemInit.DARK_STEEL_HELMET);
-		event.getRegistry().register(ItemInit.DARK_STEEL_CHESTPLATE);
-		event.getRegistry().register(ItemInit.DARK_STEEL_LEGGINGS);
-		event.getRegistry().register(ItemInit.DARK_STEEL_BOOTS);
-
-		event.getRegistry().register(ItemInit.RUBY_HELMET);
-		event.getRegistry().register(ItemInit.RUBY_CHESTPLATE);
-		event.getRegistry().register(ItemInit.RUBY_LEGGINGS);
-		event.getRegistry().register(ItemInit.RUBY_BOOTS);
-
-		event.getRegistry().register(ItemInit.CYBER_HELMET);
-		event.getRegistry().register(ItemInit.CYBER_CHESTPLATE);
-		event.getRegistry().register(ItemInit.CYBER_LEGGINGS);
-		event.getRegistry().register(ItemInit.CYBER_BOOTS);
+		event.getRegistry().registerAll(ItemInit.CyberCoreCard, ItemInit.power_cube, ItemInit.convter_item_block,
+				ItemInit.whrechItem, ItemInit.ruby_block, ItemInit.dark_steel_block, ItemInit.power_furnace_block,
+				ItemInit.taco_shell, ItemInit.cyber_ore, ItemInit.dark_steel_ore, ItemInit.ruby_ore,
+				ItemInit.cyber_ingot, ItemInit.cyber_blend, ItemInit.cyber_bits, ItemInit.dark_steel_ingot,
+				ItemInit.ruby_ingot, ItemInit.tiller, ItemInit.planter, ItemInit.cheese, ItemInit.tomato, ItemInit.taco,
+				ItemInit.tomato_seed, ItemInit.BlockExpItem, ItemInit.lettuce, ItemInit.lettuce_seed,
+				ItemInit.cyber_axe, ItemInit.cyber_hoe, ItemInit.cyber_pickaxe, ItemInit.cyber_shovel,
+				ItemInit.cyber_sword, ItemInit.ruby_axe, ItemInit.ruby_hoe, ItemInit.ruby_pickaxe, ItemInit.ruby_shovel,
+				ItemInit.ruby_sword, ItemInit.dark_steel_axe, ItemInit.dark_steel_hoe, ItemInit.dark_steel_pickaxe,
+				ItemInit.dark_steel_shovel, ItemInit.dark_steel_sword, ItemInit.speed_upgrade_card_1,
+				ItemInit.speed_upgrade_card_2, ItemInit.speed_upgrade_card_3, ItemInit.speed_upgrade_card_4,
+				ItemInit.power_upgrade_card_1, ItemInit.power_upgrade_card_2, ItemInit.power_upgrade_card_3,
+				ItemInit.DARK_STEEL_HELMET, ItemInit.DARK_STEEL_CHESTPLATE, ItemInit.DARK_STEEL_LEGGINGS,
+				ItemInit.DARK_STEEL_BOOTS, ItemInit.RUBY_HELMET, ItemInit.RUBY_CHESTPLATE, ItemInit.RUBY_LEGGINGS,
+				ItemInit.RUBY_BOOTS, ItemInit.CYBER_HELMET, ItemInit.CYBER_CHESTPLATE, ItemInit.CYBER_LEGGINGS,
+				ItemInit.CYBER_BOOTS, ItemInit.solarPanelPart, ItemInit.cyber_item_gear, ItemInit.dark_steel_gear,
+				ItemInit.ruby_gem_gear);
 	}
 
 	private static <T extends Item> T registerItem(IForgeRegistry<Item> registry, T newItem, String name) {

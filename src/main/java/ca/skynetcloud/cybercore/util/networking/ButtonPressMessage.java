@@ -2,9 +2,9 @@ package ca.skynetcloud.cybercore.util.networking;
 
 import java.util.function.Supplier;
 
-import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import ca.skynetcloud.cybercore.util.TE.techblock.ItemConvterBlockTileEntity;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -40,8 +40,8 @@ public class ButtonPressMessage {
 
 			TileEntity te = serverPlayer.level.getBlockEntity(pos);
 			if (te != null) {
-				if (te instanceof ColorChangeTileEntity) {
-					((ColorChangeTileEntity) te).setSelectedId(buttonId);
+				if (te instanceof ItemConvterBlockTileEntity) {
+					((ItemConvterBlockTileEntity) te).setSelectedId(buttonId);
 				}
 			}
 

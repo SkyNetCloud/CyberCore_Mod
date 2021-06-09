@@ -1,7 +1,7 @@
 package ca.skynetcloud.cybercore.block.blocks.color_cable;
 
 import ca.skynetcloud.cybercore.block.blocks.ItemCable;
-import net.minecraft.item.DyeColor;
+import net.minecraft.util.DyeColor;
 
 public class ColorItemCable extends ItemCable {
 

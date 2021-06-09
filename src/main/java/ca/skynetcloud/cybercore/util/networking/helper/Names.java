@@ -2,8 +2,8 @@ package ca.skynetcloud.cybercore.util.networking.helper;
 
 import java.util.Arrays;
 
-import net.minecraft.item.DyeColor;
-import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.util.DyeColor;
 
 public class Names {
 
@@ -31,6 +31,9 @@ public class Names {
 	public static final String LETTUCE_NAME = (MODID + ":lettuce");
 	public static final String TOMATO_NAME = (MODID + ":tomato");
 
+	public static final String DECAYED_BLOCK_NAME = "decayed_block";
+
+	public static final String ITEM_CONVERT_BLOCK = "item_convert_block";
 	public static final String BLOCK_LOADER = "block_loader";
 	public static final String BLOCK_EXTRACTOR = "block_extractor";
 

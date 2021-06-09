@@ -7,11 +7,12 @@ import java.util.Set;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import com.sun.jdi.BooleanValue;
+import com.sun.jdi.DoubleValue;
+
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
-import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 import net.minecraftforge.registries.ForgeRegistries;

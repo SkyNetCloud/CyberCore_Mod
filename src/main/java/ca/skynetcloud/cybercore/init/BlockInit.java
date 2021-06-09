@@ -6,6 +6,7 @@ import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.CyberCoreTab;
 import ca.skynetcloud.cybercore.block.BlockBaseCore;
 import ca.skynetcloud.cybercore.block.blocks.CableBlock;
+import ca.skynetcloud.cybercore.block.blocks.DecayedBlock;
 import ca.skynetcloud.cybercore.block.blocks.ExtractorBlock;
 import ca.skynetcloud.cybercore.block.blocks.ItemCable;
 import ca.skynetcloud.cybercore.block.blocks.PowerCube;
@@ -14,37 +15,41 @@ import ca.skynetcloud.cybercore.block.blocks.color_cable.ColorItemCable;
 import ca.skynetcloud.cybercore.block.crop.LettuceCrop;
 import ca.skynetcloud.cybercore.block.crop.TomatoCrop;
 import ca.skynetcloud.cybercore.block.tech.TechBlockFacing;
-import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
+import ca.skynetcloud.cybercore.util.TE.techblock.ItemConvterBlockTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCubeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowredFurnaceTileEntity;
 import ca.skynetcloud.cybercore.util.networking.helper.Names;
 import net.minecraft.block.Block;
+import net.minecraft.block.Material;
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.util.DyeColor;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+//TODO Clean Up BlockInit
 @ObjectHolder(CyberCoreMain.MODID)
 public class BlockInit {
 
 	public static ItemGroup group = CyberCoreTab.instance;
 
-	@ObjectHolder(Names.CABLE)
 	public static Block CABLE = null;
 
-	public static Block C_Changer_Block = new TechBlockFacing(ColorChangeTileEntity::new)
-			.setRegistryName("color_changer");
+	public static Block ItemConvterBlock = new TechBlockFacing(ItemConvterBlockTileEntity::new)
+			.setRegistryName(Names.ITEM_CONVERT_BLOCK);
 
 	public static Block BlockExp = new ExtractorBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f))
-			.setRegistryName("block_extractor");
+			.setRegistryName(Names.BLOCK_EXTRACTOR);
 
 	@ObjectHolder(Names.BLOCK_PIPE)
 	public static Block BLOCK_PIPE = null;
+
+	@ObjectHolder(Names.DECAYED_BLOCK_NAME)
+	public static Block DECAYED_BLOCK = new DecayedBlock(Block.Properties.of(Material.SAND).strength(5.0f, 5.1f), false)
+			.setRegistryName(Names.DECAYED_BLOCK_NAME);
 
 	@ObjectHolder(Names.POWER_BOX)
 	public static Block Battery = new PowerCube(PowerCubeTileEntity::new).setRegistryName(Names.POWER_BOX);

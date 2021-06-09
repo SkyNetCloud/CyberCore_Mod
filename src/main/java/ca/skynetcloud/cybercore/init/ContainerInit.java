@@ -1,6 +1,6 @@
 package ca.skynetcloud.cybercore.init;
 
-import ca.skynetcloud.cybercore.util.container.ColorChangeContainer;
+import ca.skynetcloud.cybercore.util.container.ItemConvterBlockContainer;
 import ca.skynetcloud.cybercore.util.container.PowerCubeCon;
 import ca.skynetcloud.cybercore.util.container.PowredFurnaceContainer;
 import net.minecraft.inventory.container.ContainerType;
@@ -12,7 +12,7 @@ public class ContainerInit {
 
 	public static final ContainerType<PowerCubeCon> POWER_CUBE_CON = new ContainerType<PowerCubeCon>(PowerCubeCon::new);
 
-	public static final ContainerType<ColorChangeContainer> c_changer_CON = new ContainerType<ColorChangeContainer>(
-			ColorChangeContainer::new);
+	public static final ContainerType<ItemConvterBlockContainer> c_changer_CON = new ContainerType<ItemConvterBlockContainer>(
+			ItemConvterBlockContainer::new);
 
 }

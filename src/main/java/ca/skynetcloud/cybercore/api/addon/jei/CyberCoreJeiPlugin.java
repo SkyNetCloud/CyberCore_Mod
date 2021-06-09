@@ -1,7 +1,7 @@
 package ca.skynetcloud.cybercore.api.addon.jei;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.api.addon.jei.colorchanger.ColorChangerCategory;
+import ca.skynetcloud.cybercore.api.addon.jei.colorchanger.ItemConvterCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.ModIds;
@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 @JeiPlugin
 public class CyberCoreJeiPlugin implements IModPlugin {
-	private ColorChangerCategory colorChangerCategory;
+	private ItemConvterCategory item_Convter_Category;
 
 	@Override
 	public ResourceLocation getPluginUid() {
@@ -24,14 +24,14 @@ public class CyberCoreJeiPlugin implements IModPlugin {
 	public void registerCategories(IRecipeCategoryRegistration registration) {
 		IJeiHelpers jeiHelpers = registration.getJeiHelpers();
 		IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
-		colorChangerCategory = new ColorChangerCategory(guiHelper);
-		registration.addRecipeCategories(colorChangerCategory);
+		item_Convter_Category = new ItemConvterCategory(guiHelper);
+		registration.addRecipeCategories(item_Convter_Category);
 	}
 
 	@Override
 	public void registerRecipes(IRecipeRegistration registration) {
-		registration.addRecipes(RecipeLoadded.getColorChangerRecipes(),
-				new ResourceLocation(CyberCoreMain.MODID, "color_changer"));
+		registration.addRecipes(RecipeLoadded.getItemConvterRecipes(),
+				new ResourceLocation(CyberCoreMain.MODID, "item_convter"));
 
 	}
 }
