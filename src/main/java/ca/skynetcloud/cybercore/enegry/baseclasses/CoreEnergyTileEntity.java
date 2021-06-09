@@ -1,7 +1,10 @@
 package ca.skynetcloud.cybercore.enegry.baseclasses;
 
+import java.util.Optional;
+
 import ca.skynetcloud.cybercore.enegry.CyberEnergyStorage;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.nbt.CompoundNBT;
@@ -20,10 +23,10 @@ abstract public class CoreEnergyTileEntity extends TileEntity implements ITickab
 	private LazyOptional<IEnergyStorage> energyCap;
 	public String customname;
 
-	public CoreEnergyTileEntity(TileEntityType<?> type, int energyStorage) {
+	public CoreEnergyTileEntity(BlockEntity type, int energyStorage) {
 		super(type);
 		energystorage = new CyberEnergyStorage(energyStorage);
-		energyCap = LazyOptional.of(() -> energystorage);
+		energyCap = Optional.of(() -> energystorage);
 	}
 
 	@Override

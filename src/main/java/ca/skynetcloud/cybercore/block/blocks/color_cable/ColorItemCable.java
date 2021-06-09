@@ -1,14 +1,15 @@
 package ca.skynetcloud.cybercore.block.blocks.color_cable;
 
 import ca.skynetcloud.cybercore.block.blocks.ItemCable;
+import net.minecraft.block.AbstractBlock.Settings;
 import net.minecraft.util.DyeColor;
 
 public class ColorItemCable extends ItemCable {
 
 	private DyeColor color;
 
-	public ColorItemCable(DyeColor color, Properties properties) {
-		super();
+	public ColorItemCable(DyeColor color, Settings settings) {
+		super(settings);
 		this.color = color;
 	}
 

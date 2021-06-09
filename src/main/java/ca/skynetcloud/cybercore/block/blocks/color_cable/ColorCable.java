@@ -7,8 +7,8 @@ public class ColorCable extends CableBlock {
 
 	private DyeColor color;
 
-	public ColorCable(DyeColor color, Properties properties) {
-		super();
+	public ColorCable(DyeColor color, Settings settings) {
+		super(settings);
 		this.color = color;
 	}
 

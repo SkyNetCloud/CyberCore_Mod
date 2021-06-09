@@ -15,6 +15,7 @@ import net.minecraft.block.ILiquidContainer;
 import net.minecraft.block.Material;
 import net.minecraft.block.SixWayBlock;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.AbstractBlock.Settings;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -26,6 +27,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -48,8 +50,8 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 
 	protected final VoxelShape[] shapes;
 
-	public ItemCable() {
-		super(Block.Properties.of(Material.GLASS).strength(0.4F).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL));
+	public ItemCable(Settings settings) {
+		super(settings);
 		this.registerDefaultState(stateDefinition.any().setValue(NORTH, Boolean.valueOf(false))
 				.setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false))
 				.setValue(WEST, Boolean.valueOf(false)).setValue(DOWN, Boolean.valueOf(false))

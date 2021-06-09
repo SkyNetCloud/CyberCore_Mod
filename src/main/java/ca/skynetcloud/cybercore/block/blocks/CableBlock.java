@@ -9,6 +9,7 @@ import ca.skynetcloud.cybercore.util.TE.techblock.PowerCablesTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
+import net.minecraft.block.AbstractBlock.Settings;
 import net.minecraft.client.util.math.Vector3d;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -72,8 +73,8 @@ public class CableBlock extends Block {
 	};
 	protected final VoxelShape[][][][][][] shapes = new VoxelShape[3][3][3][3][3][3];
 
-	public CableBlock() {
-		super(Block.pro(Material.METAL).strength(0.5F));
+	public CableBlock(Settings settings) {
+		super(settings);
 		this.registerDefaultState(stateDefinition.any().setValue(NORTH, 0).setValue(EAST, 0).setValue(SOUTH, 0)
 				.setValue(WEST, 0).setValue(UP, 0).setValue(DOWN, 0));
 		initShapes();
