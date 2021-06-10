@@ -9,7 +9,7 @@ import java.util.Queue;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import ca.skynetcloud.cybercore.block.blocks.ItemCable;
+import ca.skynetcloud.cybercore.block.blocks.cables.ItemCable;
 import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import ca.skynetcloud.cybercore.util.networking.handler.ItemPipeInventoryHandler;

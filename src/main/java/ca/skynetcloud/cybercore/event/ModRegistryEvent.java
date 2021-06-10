@@ -7,6 +7,7 @@ import ca.skynetcloud.cybercore.init.BlockInit;
 import ca.skynetcloud.cybercore.init.ContainerInit;
 import ca.skynetcloud.cybercore.init.EntityInit;
 import ca.skynetcloud.cybercore.init.ItemInit;
+import ca.skynetcloud.cybercore.init.SoundInit;
 import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.util.crafting.ModedRecipeSerializers;
 import ca.skynetcloud.cybercore.util.networking.helper.Names;
@@ -20,6 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
@@ -37,9 +39,10 @@ public class ModRegistryEvent {
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		;
+
 		event.getRegistry().register(BlockInit.LETTUCE_CROP);
 		event.getRegistry().register(BlockInit.BlockExp);
+		event.getRegistry().register(BlockInit.POWER_FENCE_GRID);
 		event.getRegistry().register(BlockInit.TOMATO_CROP);
 		event.getRegistry().register(BlockInit.CYBER_ORE);
 		event.getRegistry().register(BlockInit.RUBY_ORE);
@@ -71,6 +74,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(TileEntityInit.POWER_FURNACE_TE.setRegistryName(Names.POWER_FURNACE_BLOCK));
 		event.getRegistry().register(TileEntityInit.POWER_CUBE_TE.setRegistryName(Names.POWER_BOX));
 		event.getRegistry().register(TileEntityInit.COLOR_Changer_TE.setRegistryName(Names.CABLE_PAINTER));
+		event.getRegistry().register(TileEntityInit.POWER_FENCE_GRID_TE.setRegistryName(Names.FENCE_POWER_GIRD));
 
 		TileEntityInit.registerTileEntities(event);
 
@@ -88,6 +92,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ContainerInit.POWER_FURNCAE_CON.setRegistryName(Names.POWERED_FURNACE_CON));
 		event.getRegistry().register(ContainerInit.POWER_CUBE_CON.setRegistryName(Names.POWER_BOX_CON));
 		event.getRegistry().register(ContainerInit.c_changer_CON.setRegistryName("color_changer"));
+		event.getRegistry().register(ContainerInit.FPG_CON.setRegistryName(Names.FENCE_POWER_GIRD));
 
 		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "ContainerTypes Loaded");
 	}
@@ -106,6 +111,12 @@ public class ModRegistryEvent {
 		}
 		GlobalEntityTypeAttributes.put(EntityInit.RoBot, RobotEnemy.attributes());
 		CyberCoreMain.LOGGER.info(TextFormatting.RED + "Entites Loaded");
+	}
+
+	@SubscribeEvent
+	public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
+		SoundInit.registerAll(event.getRegistry());
+		CyberCoreMain.LOGGER.info(TextFormatting.RED + "Sound Event Loaded");
 	}
 
 	public static Item registerSpawnEgg(EntityType<?> entityType, String name, int primaryClr, int secondaryClr) {

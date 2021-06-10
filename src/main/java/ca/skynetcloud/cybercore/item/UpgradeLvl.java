@@ -20,6 +20,6 @@ public class UpgradeLvl extends ItemBaseCore {
 	}
 
 	public enum ItemType {
-		SOLAR_FOCUS, POWER_UPGRADE, SPEED_UPGRADE,
+		SOLAR_FOCUS, POWER_UPGRADE, SPEED_UPGRADE, CAPACITY_UPGRADE,
 	}
 }

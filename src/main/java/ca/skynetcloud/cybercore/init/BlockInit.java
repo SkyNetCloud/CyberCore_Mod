@@ -5,16 +5,26 @@ import java.util.stream.IntStream;
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.CyberCoreTab;
 import ca.skynetcloud.cybercore.block.BlockBaseCore;
-import ca.skynetcloud.cybercore.block.blocks.CableBlock;
 import ca.skynetcloud.cybercore.block.blocks.ExtractorBlock;
-import ca.skynetcloud.cybercore.block.blocks.ItemCable;
+import ca.skynetcloud.cybercore.block.blocks.FencePowerGrid;
 import ca.skynetcloud.cybercore.block.blocks.PowerCube;
-import ca.skynetcloud.cybercore.block.blocks.color_cable.ColorCable;
-import ca.skynetcloud.cybercore.block.blocks.color_cable.ColorItemCable;
+import ca.skynetcloud.cybercore.block.blocks.cables.CableBlock;
+import ca.skynetcloud.cybercore.block.blocks.cables.ItemCable;
+import ca.skynetcloud.cybercore.block.blocks.cables.color.ColorCable;
+import ca.skynetcloud.cybercore.block.blocks.cables.color.ColorItemCable;
+import ca.skynetcloud.cybercore.block.blocks.fences.ElecticFencesBlock;
+import ca.skynetcloud.cybercore.block.blocks.fences.color.FencesColor;
+import ca.skynetcloud.cybercore.block.blocks.fences.gate.ElecticFenceGate;
+import ca.skynetcloud.cybercore.block.blocks.fences.gate.color.ColorFenceGate;
+import ca.skynetcloud.cybercore.block.blocks.fences.top.ElectricFenceTop;
+import ca.skynetcloud.cybercore.block.blocks.fences.top.color.ElectricFenceTopColor;
+import ca.skynetcloud.cybercore.block.blocks.slab.Slab_Block;
+import ca.skynetcloud.cybercore.block.blocks.slab.color.SlabColor;
 import ca.skynetcloud.cybercore.block.crop.LettuceCrop;
 import ca.skynetcloud.cybercore.block.crop.TomatoCrop;
 import ca.skynetcloud.cybercore.block.tech.TechBlockFacing;
 import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
+import ca.skynetcloud.cybercore.util.TE.techblock.FencePowerGridTE;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCubeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowredFurnaceTileEntity;
 import ca.skynetcloud.cybercore.util.networking.helper.Names;
@@ -43,8 +53,23 @@ public class BlockInit {
 	public static Block BlockExp = new ExtractorBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f))
 			.setRegistryName("block_extractor");
 
+	public static Block POWER_FENCE_GRID = new FencePowerGrid(FencePowerGridTE::new)
+			.setRegistryName(Names.FENCE_POWER_GIRD);
+
 	@ObjectHolder(Names.BLOCK_PIPE)
 	public static Block BLOCK_PIPE = null;
+
+	@ObjectHolder(Names.Fence_Block)
+	public static Block Fence_Block = null;
+
+	@ObjectHolder(Names.Fence_Block_Top)
+	public static Block Fence_Block_Top = null;
+
+	@ObjectHolder(Names.Fence_Gate_Block)
+	public static Block Fence_Gate_Block = null;
+
+	@ObjectHolder(Names.Slab_Block)
+	public static Block Slab_Block = null;
 
 	@ObjectHolder(Names.POWER_BOX)
 	public static Block Battery = new PowerCube(PowerCubeTileEntity::new).setRegistryName(Names.POWER_BOX);
@@ -84,6 +109,10 @@ public class BlockInit {
 
 		registerBlock(registry, new CableBlock(), Names.CABLE);
 		registerBlock(registry, new ItemCable(), Names.BLOCK_PIPE);
+		registerBlock(registry, new Slab_Block(), Names.Slab_Block);
+		registerBlock(registry, new ElecticFencesBlock(), Names.Fence_Block);
+		registerBlock(registry, new ElecticFenceGate(), Names.Fence_Gate_Block);
+		registerBlock(registry, new ElectricFenceTop(), Names.Fence_Block_Top);
 
 		IntStream.range(0, 16)
 				.forEach(i -> registerBlock(registry,
@@ -96,6 +125,30 @@ public class BlockInit {
 						new ColorCable(DyeColor.values()[i], Block.Properties.of(Material.GLASS).strength(0.4F)
 								.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
 						Names.COLORED_Power_Cable_Names[i]));
+
+		IntStream.range(0, 16)
+				.forEach(i -> registerBlock(registry,
+						new FencesColor(DyeColor.values()[i], Block.Properties.of(Material.METAL).strength(30.0F)
+								.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
+						Names.COLORED_Fence_Block_Names[i]));
+
+		IntStream.range(0, 16)
+				.forEach(i -> registerBlock(registry,
+						new ElectricFenceTopColor(DyeColor.values()[i], Block.Properties.of(Material.METAL)
+								.strength(30.0F).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
+						Names.COLORED_Fence_Top_Block_Names[i]));
+
+		IntStream.range(0, 16)
+				.forEach(i -> registerBlock(registry,
+						new SlabColor(DyeColor.values()[i], Block.Properties.of(Material.METAL).strength(0.4F)
+								.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
+						Names.COLORED_Slab_Block_Names[i]));
+
+		IntStream.range(0, 16)
+				.forEach(i -> registerBlock(registry,
+						new ColorFenceGate(DyeColor.values()[i], Block.Properties.of(Material.METAL).strength(30.0F)
+								.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)),
+						Names.COLORED_Fence_Gate_Block_Names[i]));
 
 	}
 

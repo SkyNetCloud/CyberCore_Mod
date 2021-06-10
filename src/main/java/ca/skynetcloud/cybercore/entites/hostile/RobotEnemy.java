@@ -1,5 +1,6 @@
 package ca.skynetcloud.cybercore.entites.hostile;
 
+import ca.skynetcloud.cybercore.init.SoundInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -263,12 +264,12 @@ public class RobotEnemy extends MonsterEntity {
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.IRON_GOLEM_DEATH;
+		return SoundInit.Robot_Death_Noise;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.IRON_GOLEM_HURT;
+		return SoundInit.Robot_Hurt_Noise;
 	}
 
 	@Override

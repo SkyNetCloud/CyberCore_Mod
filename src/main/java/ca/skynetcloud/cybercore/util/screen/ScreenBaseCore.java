@@ -61,6 +61,7 @@ public abstract class ScreenBaseCore<T extends BaseContainerCore> extends Contai
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void renderBg(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
 		RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);

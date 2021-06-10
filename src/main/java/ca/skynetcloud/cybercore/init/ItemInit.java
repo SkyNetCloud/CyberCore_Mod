@@ -134,6 +134,8 @@ public class ItemInit {
 
 	public static BlockItem ruby_block = new BlockItemCore(BlockInit.RUBY_BLOCK);
 
+	public static BlockItem fpg_item_block = new BlockItemCore(BlockInit.POWER_FENCE_GRID);
+
 	public static BlockItem color_changer = new BlockItemCore(BlockInit.C_Changer_Block);
 
 	public static BlockItem power_cube = new BlockItemCore(BlockInit.Battery);
@@ -310,6 +312,20 @@ public class ItemInit {
 		registerItem(registry, new BlockItem(BlockInit.BLOCK_PIPE, new Item.Properties().tab(CyberCoreTab.item_cable)),
 				Names.BLOCK_PIPE);
 
+		registerItem(registry, new BlockItem(BlockInit.Fence_Block, new Item.Properties().tab(CyberCoreTab.instance)),
+				Names.Fence_Block);
+
+		registerItem(registry,
+				new BlockItem(BlockInit.Fence_Block_Top, new Item.Properties().tab(CyberCoreTab.instance)),
+				Names.Fence_Block_Top);
+
+		registerItem(registry,
+				new BlockItem(BlockInit.Fence_Gate_Block, new Item.Properties().tab(CyberCoreTab.instance)),
+				Names.Fence_Gate_Block);
+
+		registerItem(registry, new BlockItem(BlockInit.Slab_Block, new Item.Properties().tab(CyberCoreTab.instance)),
+				Names.Slab_Block);
+
 		IntStream.range(0, 16).forEach(i -> registerItem(registry,
 				new BlockItem(
 						ForgeRegistries.BLOCKS.getValue(
@@ -324,6 +340,34 @@ public class ItemInit {
 										new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Item_TUBE_NAMES[i])),
 								new Item.Properties().tab(CyberCoreTab.item_cable)),
 						Names.COLORED_Item_TUBE_NAMES[i]));
+
+		IntStream.range(0, 16)
+				.forEach(i -> registerItem(registry,
+						new BlockItem(
+								ForgeRegistries.BLOCKS.getValue(
+										new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Fence_Block_Names[i])),
+								new Item.Properties().tab(CyberCoreTab.instance)),
+						Names.COLORED_Fence_Block_Names[i]));
+
+		IntStream.range(0, 16)
+				.forEach(i -> registerItem(registry, new BlockItem(
+						ForgeRegistries.BLOCKS.getValue(
+								new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Fence_Top_Block_Names[i])),
+						new Item.Properties().tab(CyberCoreTab.instance)), Names.COLORED_Fence_Top_Block_Names[i]));
+
+		IntStream.range(0, 16)
+				.forEach(i -> registerItem(registry,
+						new BlockItem(
+								ForgeRegistries.BLOCKS.getValue(
+										new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Slab_Block_Names[i])),
+								new Item.Properties().tab(CyberCoreTab.instance)),
+						Names.COLORED_Slab_Block_Names[i]));
+
+		IntStream.range(0, 16)
+				.forEach(i -> registerItem(registry, new BlockItem(
+						ForgeRegistries.BLOCKS.getValue(
+								new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Fence_Gate_Block_Names[i])),
+						new Item.Properties().tab(CyberCoreTab.instance)), Names.COLORED_Fence_Gate_Block_Names[i]));
 
 		event.getRegistry().register(ItemInit.CyberCoreCard);
 		event.getRegistry().register(ItemInit.power_cube);
@@ -355,6 +399,7 @@ public class ItemInit {
 		event.getRegistry().register(ItemInit.cyber_pickaxe);
 		event.getRegistry().register(ItemInit.cyber_shovel);
 		event.getRegistry().register(ItemInit.cyber_sword);
+		event.getRegistry().register(ItemInit.fpg_item_block);
 		event.getRegistry().register(ItemInit.ruby_axe);
 		event.getRegistry().register(ItemInit.ruby_hoe);
 		event.getRegistry().register(ItemInit.ruby_pickaxe);

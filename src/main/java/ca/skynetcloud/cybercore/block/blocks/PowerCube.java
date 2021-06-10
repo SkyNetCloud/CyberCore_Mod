@@ -19,6 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class PowerCube extends TechBlockBaseSubCore {
+	
+	
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
 
 	public PowerCube(Supplier<? extends TileEntity> teCreator) {

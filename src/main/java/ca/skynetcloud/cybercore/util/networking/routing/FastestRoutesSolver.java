@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 
-import ca.skynetcloud.cybercore.block.blocks.ItemCable;
+import ca.skynetcloud.cybercore.block.blocks.cables.ItemCable;
 import ca.skynetcloud.cybercore.util.networking.helper.PosHelper;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.block.BlockState;

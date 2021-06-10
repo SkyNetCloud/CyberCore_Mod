@@ -17,11 +17,19 @@ plugins {
 repositories {
 	jcenter()
 
-	maven { url 'http://dvs1.progwml6.com/files/maven/' } // JEI + Tinker's
-	    
-    maven {
-        url "https://www.cursemaven.com"
-    }
+  maven {
+    // location of the maven that hosts JEI files
+    name = "Progwml6 maven"
+    url = "https://dvs1.progwml6.com/files/maven/"
+  }
+  maven {
+    // location of a maven mirror for JEI files, as a fallback
+    name = "ModMaven"
+    url = "https://modmaven.k-4u.nl"
+  }	    
+  maven {
+    url "https://www.cursemaven.com"
+  }
 	
 }
 
@@ -35,7 +43,7 @@ version = "1.16.5-1.12.19042"
 group = "ca.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(13)
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 

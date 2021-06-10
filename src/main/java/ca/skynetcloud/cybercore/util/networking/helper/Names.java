@@ -20,6 +20,18 @@ public class Names {
 
 	public static final BooleanProperty LIT = BooleanProperty.create("cooking");
 
+	public static final String[] COLORED_Slab_Block_Names = Arrays.stream(DyeColor.values())
+			.map(color -> color.toString() + "_slab_block").toArray(String[]::new);
+
+	public static final String[] COLORED_Fence_Block_Names = Arrays.stream(DyeColor.values())
+			.map(color -> color.toString() + "_electric_fence").toArray(String[]::new);
+
+	public static final String[] COLORED_Fence_Top_Block_Names = Arrays.stream(DyeColor.values())
+			.map(color -> color.toString() + "_electric_fence_top").toArray(String[]::new);
+
+	public static final String[] COLORED_Fence_Gate_Block_Names = Arrays.stream(DyeColor.values())
+			.map(color -> color.toString() + "_electric_fence_gate").toArray(String[]::new);
+
 	public static final String[] COLORED_Power_Cable_Names = Arrays.stream(DyeColor.values())
 			.map(color -> color.toString() + "_cable").toArray(String[]::new);
 
@@ -58,6 +70,7 @@ public class Names {
 	public static final String RUBY_ORE = "ruby_ore";
 	public static final String LUNAR_BLOCK = "lunarsolargenerator_block";
 	public static final String POWER_BOX = "power_storage";
+	public static final String FENCE_POWER_GIRD = "fence_power_gird";
 	public static final String RUBY_SLAB = "ruby_slab";
 	public static final String RUBY_STAIRS = "ruby_stairs";
 
@@ -72,6 +85,12 @@ public class Names {
 
 	public static final String CABLE = "cable";
 	public static final String BLOCK_PIPE = "block_pipe";
+
+	public static final String Fence_Block_Top = "electric_fence_top";
+
+	public static final String Fence_Block = "electric_fence";
+	public static final String Fence_Gate_Block = "electric_fence_gate";
+	public static final String Slab_Block = "slab_block";
 
 	public static final String CYBER_INGOT = ("cyber_ingot");
 	public static final String RUBY_INGOT = ("ruby_ingot");
