@@ -6,12 +6,12 @@ import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.CyberCoreTab;
 import ca.skynetcloud.cybercore.block.BlockBaseCore;
 import ca.skynetcloud.cybercore.block.blocks.ExtractorBlock;
-import ca.skynetcloud.cybercore.block.blocks.FencePowerGrid;
 import ca.skynetcloud.cybercore.block.blocks.PowerCube;
 import ca.skynetcloud.cybercore.block.blocks.cables.CableBlock;
 import ca.skynetcloud.cybercore.block.blocks.cables.ItemCable;
 import ca.skynetcloud.cybercore.block.blocks.cables.color.ColorCable;
 import ca.skynetcloud.cybercore.block.blocks.cables.color.ColorItemCable;
+import ca.skynetcloud.cybercore.block.blocks.fences.ElecticFenceGrid;
 import ca.skynetcloud.cybercore.block.blocks.fences.ElecticFencesBlock;
 import ca.skynetcloud.cybercore.block.blocks.fences.color.FencesColor;
 import ca.skynetcloud.cybercore.block.blocks.fences.gate.ElecticFenceGate;
@@ -53,7 +53,7 @@ public class BlockInit {
 	public static Block BlockExp = new ExtractorBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f))
 			.setRegistryName("block_extractor");
 
-	public static Block POWER_FENCE_GRID = new FencePowerGrid(FencePowerGridTE::new)
+	public static Block POWER_FENCE_GRID = new ElecticFenceGrid(FencePowerGridTE::new)
 			.setRegistryName(Names.FENCE_POWER_GIRD);
 
 	@ObjectHolder(Names.BLOCK_PIPE)

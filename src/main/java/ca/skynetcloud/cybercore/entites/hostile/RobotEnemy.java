@@ -37,6 +37,9 @@ public class RobotEnemy extends MonsterEntity {
 
 	private int attackAnimationTick;
 
+	public static PlayerEntity player;
+	public static World world;
+
 	private static final DataParameter<Integer> ATTACK_WARMUP_TICK = EntityDataManager.defineId(RobotEnemy.class,
 			DataSerializers.INT);
 	private static final DataParameter<Integer> ATTACK_TYPE = EntityDataManager.defineId(RobotEnemy.class,
@@ -54,6 +57,7 @@ public class RobotEnemy extends MonsterEntity {
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
+
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1D, true));
 		this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1D));
 		this.goalSelector.addGoal(8, new RandomWalkingGoal(this, 0.4D));
@@ -71,6 +75,7 @@ public class RobotEnemy extends MonsterEntity {
 	}
 
 	public static AttributeModifierMap attributes() {
+
 		return MonsterEntity.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.2499999940395355D)
 				.add(Attributes.FOLLOW_RANGE, 30.0D).add(Attributes.MAX_HEALTH, 200.0D)
 				.add(Attributes.ATTACK_DAMAGE, 6.0D).add(Attributes.KNOCKBACK_RESISTANCE, 20.0D).build();

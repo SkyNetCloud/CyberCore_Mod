@@ -3,7 +3,6 @@ package ca.skynetcloud.cybercore.init;
 import java.util.stream.IntStream;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.block.blocks.FencePowerGrid;
 import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.FencePowerGridTE;
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;

@@ -2,8 +2,8 @@ package ca.skynetcloud.cybercore.util.TE.techblock;
 
 import java.util.HashSet;
 
-import ca.skynetcloud.cybercore.block.blocks.FencePowerGrid;
 import ca.skynetcloud.cybercore.block.blocks.fences.BasicElecticFence;
+import ca.skynetcloud.cybercore.block.blocks.fences.ElecticFenceGrid;
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
 import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.util.container.FPGSupplierContainer;
@@ -72,9 +72,9 @@ public class FencePowerGridTE extends CoreEnergyInventoryTileEntity {
 	}
 
 	private void setPower(boolean powered) {
-		if (level != null && level.getBlockState(worldPosition).getBlock() instanceof FencePowerGrid) {
+		if (level != null && level.getBlockState(worldPosition).getBlock() instanceof ElecticFenceGrid) {
 			level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).getBlock().defaultBlockState()
-					.setValue(FencePowerGrid.SUPPLYING, powered));
+					.setValue(ElecticFenceGrid.SUPPLYING, powered));
 		}
 	}
 
