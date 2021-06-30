@@ -15,7 +15,8 @@ public class EnchantmentSoulbound extends Enchantment {
 	public static final String ID = CyberCoreMain.MODID + ":soul_bound";
 
 	public EnchantmentSoulbound() {
-		super(Rarity.RARE, EnchantmentType.ARMOR, new EquipmentSlotType[] { EquipmentSlotType.MAINHAND,EquipmentSlotType.CHEST });
+		super(Rarity.RARE, EnchantmentType.ARMOR,
+				new EquipmentSlotType[] { EquipmentSlotType.MAINHAND, EquipmentSlotType.CHEST });
 		this.setRegistryName("soul_bound");
 	}
 
@@ -38,8 +39,9 @@ public class EnchantmentSoulbound extends Enchantment {
 
 	@Override
 	public int getMaxCost(int enchantmentLevel) {
-		return this.getMaxCost(enchantmentLevel) + 50;
+		return 50;
 	}
+
 
 	@Override
 	public boolean isTreasureOnly() {

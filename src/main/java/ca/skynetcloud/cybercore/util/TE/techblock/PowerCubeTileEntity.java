@@ -1,5 +1,9 @@
 package ca.skynetcloud.cybercore.util.TE.techblock;
 
+import java.util.HashSet;
+
+import ca.skynetcloud.cybercore.block.blocks.PowerCube;
+import ca.skynetcloud.cybercore.block.blocks.fences.BasicElecticFence;
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
 import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
@@ -11,7 +15,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -25,6 +31,8 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 				return PowerCubeTileEntity.this.energystorage.getEnergyStored();
 			case 1:
 				return PowerCubeTileEntity.this.energystorage.getMaxEnergyStored();
+			case 2:
+				return PowerCubeTileEntity.this.ticksPassed;
 			default:
 				return 0;
 			}
@@ -38,12 +46,15 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 			case 1:
 				PowerCubeTileEntity.this.energystorage.setEnergyMaxStored(value);
 				break;
+			case 2:
+				PowerCubeTileEntity.this.ticksPassed = value;
+				break;
 			}
 
 		}
 
 		public int getCount() {
-			return 2;
+			return 3;
 		}
 	};
 
@@ -84,6 +95,18 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 
 	@Override
 	public void doUpdate() {
+		super.doUpdate();
+		if (level == null)
+			return;
+		ticksPassed++;
+		if (energystorage.getEnergyStored() <= 0)
+			setPower(false);
+		else if (!getConnected().isEmpty() && ticksPassed >= ticksPerItem()) {
+			energystorage.extractEnergy(energyPerAction());
+			setPower(true);
+			resetProgress(true);
+		}
+		
 		doEnergyLoop();
 	}
 
@@ -96,6 +119,25 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 	public ITextComponent getDisplayName() {
 
 		return new TranslationTextComponent(Names.POWER_BOX_CON_NAME);
+	}
+
+	private void setPower(boolean powered) {
+		if (level != null && level.getBlockState(worldPosition).getBlock() instanceof PowerCube) {
+			level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).getBlock().defaultBlockState()
+					.setValue(PowerCube.SUPPLYING, powered));
+		}
+	}
+
+	private HashSet<BlockPos> getConnected() {
+		HashSet<BlockPos> list = new HashSet<>();
+		if (level != null) {
+			for (Direction direction : Direction.values()) {
+				BlockPos blockPos = this.worldPosition.relative(direction);
+				if (level.getBlockState(blockPos).getBlock() instanceof BasicElecticFence)
+					list.add(blockPos);
+			}
+		}
+		return list;
 	}
 
 	@Override

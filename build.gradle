@@ -39,7 +39,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "1.16.5-1.12.19042"
+version = "1.16.5-1.124.19042"
 group = "ca.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 

@@ -83,6 +83,8 @@ public class Names {
 
 	public static final String CyberTAB_Power_Cable = "cybercore_power_cable";
 
+	public static final String CyberTAB_Other_Tab = "cybercore_electric_fence";
+
 	public static final String CABLE = "cable";
 	public static final String BLOCK_PIPE = "block_pipe";
 
@@ -116,10 +118,11 @@ public class Names {
 
 	public static final String LUNARGEN_CON = (MODID + ":lunar_gen_machine_con");
 	public static final String POWER_BOX_CON = (MODID + ":power_box_con");
+
 	public static final String POWERED_FURNACE_CON = (MODID + ":poweredfurnace_con");
 	public static final String POWERED_IRRIGATION_CON = (MODID + ":poweredirrigation_con");
 	public static final String CYBER_CHEST_CONS = (MODID + ":cyberchest_con");
-
+	public static final String COLOR_CHANGER_CON = (MODID + ":color_changer_con");
 	public static final String DARK_STEEL_HELMET_NAME = (MODID + ":dark_steel_helmet");
 	public static final String DARK_STEEL_CHESTPLATE_NAME = (MODID + ":dark_steel_chestplate");
 	public static final String DARK_STEEL_LEGGINGS_NAME = (MODID + ":dark_steel_leggings");

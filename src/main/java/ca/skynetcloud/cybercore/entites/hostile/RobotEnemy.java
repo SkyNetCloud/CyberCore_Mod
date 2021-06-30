@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
@@ -15,19 +16,27 @@ import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.AbstractIllagerEntity;
+import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,9 +45,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class RobotEnemy extends MonsterEntity {
 
 	private int attackAnimationTick;
-
-	public static PlayerEntity player;
-	public static World world;
 
 	private static final DataParameter<Integer> ATTACK_WARMUP_TICK = EntityDataManager.defineId(RobotEnemy.class,
 			DataSerializers.INT);
@@ -112,102 +118,25 @@ public class RobotEnemy extends MonsterEntity {
 		this.entityData.set(ATTACK_TYPE, tick);
 	}
 
-	public float isAttacking(float f) {
-		return this.getWarmupTick() == 0 ? 0.0F : (f) / (float) this.getWarmupTick();
+	protected int decreaseAirSupply(int p_70682_1_) {
+		return p_70682_1_;
 	}
 
-	@Override
-	public void aiStep() {
-		super.aiStep();
-
-		if (this.attackAnimationTick > 0) {
-			--this.attackAnimationTick;
+	protected void doPush(Entity p_82167_1_) {
+		if (p_82167_1_ instanceof IMob && !(p_82167_1_ instanceof CreeperEntity) && this.getRandom().nextInt(20) == 0) {
+			this.setTarget((LivingEntity) p_82167_1_);
 		}
 
-		// Choose your attack!
-		if (this.getAttackTick() == 100) {
-			this.setAttackType(random.nextInt(4));
-		}
-
-		// Let's not break this boi, okay? He has feelings :(
-		if (this.getAttackType() > 3) {
-			this.setAttackType(3);
-		}
-		if (this.getAttackType() < 0) {
-			this.setAttackType(0);
-		}
-
-		// Decrement attack tick
-		if (this.getAttackTick() > 0) {
-			if (this.getTarget() != null) {
-				this.setAttackTick(this.getAttackTick() - 1);
-			}
-		}
-
-		// Decrement warmup tick, stop golem
-		if (this.getAttackTick() == 0) {
-			if (this.getWarmupTick() > 0) {
-				this.setWarmupTick(this.getWarmupTick() - 1);
-				this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-			}
-
-			// Roar only when necessary
-			if (this.getWarmupTick() == 19) {
-				if (this.getAttackType() == 0) {
-					this.level.playSound(null, this.getBlockPosBelowThatAffectsMyMovement(), SoundEvents.RAVAGER_ROAR,
-							SoundCategory.HOSTILE, 1, 1);
-				}
-			}
-
-			// Attaaaaaack!
-			if (this.getWarmupTick() == 0) {
-				if (getAttackType() == 2) {
-					this.createParticles();
-				}
-				attack();
-				this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2499999940395355D);
-				this.attackAnimationTick = 15;
-				this.setWarmupTick(20);
-				this.setAttackTick(this.random.nextInt(100) + 100);
-			}
-		}
+		super.doPush(p_82167_1_);
 	}
 
-	private void attack() {
-		this.attackAnimationTick = 10;
-		if (!this.level.isClientSide) {
-
-			if (this.getAttackType() == 1) {
-				this.attackAnimationTick = 10;
-				Entity target = this.getTarget();
-				if (target != null) {
-					this.level.playSound(null, this.getBlockPosBelowThatAffectsMyMovement(),
-							SoundEvents.PLAYER_ATTACK_NODAMAGE, SoundCategory.HOSTILE, 2, 0);
-					if (target.distanceTo(this) < 4D) {
-						target.hurt(DamageSource.mobAttack(this), 8.0F);
-						this.level.playSound(null, this.getBlockPosBelowThatAffectsMyMovement(),
-								SoundEvents.STONE_BREAK, SoundCategory.HOSTILE, 2, 0);
-						this.launch(target, 8.0D);
-					}
-				}
-			}
-			if (this.getAttackType() == 2) {
-				this.attackAnimationTick = 10;
-				for (Entity entity : this.level.getEntitiesOfClass(LivingEntity.class,
-						this.getBoundingBox().inflate(4.0D))) {
-					if (!(entity instanceof AbstractIllagerEntity)) {
-						if (!(entity instanceof RobotEnemy)) {
-							entity.hurt(DamageSource.mobAttack(this), 6.0F);
-						}
-					}
-					this.launch(entity, 4.0D);
-					this.level.playSound(null, this.getBlockPosBelowThatAffectsMyMovement(),
-							SoundEvents.GENERIC_EXPLODE, SoundCategory.HOSTILE, 1f,
-							(float) (random.nextInt(3) / 10) + 0.2F);
-				}
-			}
-
+	@OnlyIn(Dist.CLIENT)
+	public void handleEntityEvent(byte p_70103_1_) {
+		if (p_70103_1_ == 4) {
+			this.attackAnimationTick = 10;
+			this.playSound(SoundEvents.IRON_GOLEM_ATTACK, 1.0F, 1.0F);
 		}
+		super.handleEntityEvent(p_70103_1_);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -215,23 +144,29 @@ public class RobotEnemy extends MonsterEntity {
 		return this.attackAnimationTick;
 	}
 
-	private void launch(Entity entity, double amplifier) {
-		double d0 = entity.getX() - this.getX();
-		double d1 = entity.getZ() - this.getZ();
-		double d2 = Math.max(d0 * d0 + d1 * d1, 0.001D);
-		entity.push(d0 / d2 * amplifier, 0.2D, d1 / d2 * amplifier);
-	}
-
-	private void createParticles() {
-		Vector3d vec3d = this.getBoundingBox().getCenter();
-
-		for (int i = 0; i < 40; ++i) {
-			double d0 = this.level.random.nextGaussian() * 0.4D;
-			double d1 = this.level.random.nextGaussian() * 0.4D;
-			double d2 = this.level.random.nextGaussian() * 0.4D;
-			this.level.addParticle(ParticleTypes.CLOUD, vec3d.x, vec3d.y, vec3d.z, d0, d1, d2);
-
+	@SuppressWarnings("deprecation")
+	public void aiStep() {
+		super.aiStep();
+		if (this.attackAnimationTick > 0) {
+			--this.attackAnimationTick;
 		}
+
+		if (getHorizontalDistanceSqr(this.getDeltaMovement()) > (double) 2.5000003E-7F && this.random.nextInt(5) == 0) {
+			int i = MathHelper.floor(this.getX());
+			int j = MathHelper.floor(this.getY() - (double) 0.2F);
+			int k = MathHelper.floor(this.getZ());
+			BlockPos pos = new BlockPos(i, j, k);
+			BlockState blockstate = this.level.getBlockState(pos);
+			if (!blockstate.isAir(this.level, pos)) {
+				this.level.addParticle(new BlockParticleData(ParticleTypes.BLOCK, blockstate).setPos(pos),
+						this.getX() + ((double) this.random.nextFloat() - 0.5D) * (double) this.getBbWidth(),
+						this.getY() + 0.1D,
+						this.getZ() + ((double) this.random.nextFloat() - 0.5D) * (double) this.getBbWidth(),
+						4.0D * ((double) this.random.nextFloat() - 0.5D), 0.5D,
+						((double) this.random.nextFloat() - 0.5D) * 4.0D);
+			}
+		}
+
 	}
 
 	public void addAdditionalSaveData(CompoundNBT compound) {
@@ -257,29 +192,44 @@ public class RobotEnemy extends MonsterEntity {
 		}
 	}
 
-	@Override
-	public boolean canBreatheUnderwater() {
-		return true;
+	private float getAttackDamage() {
+		return (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 	}
 
-	@Override
-	protected SoundEvent getAmbientSound() {
-		return null;
+	public boolean doHurtTarget(Entity p_70652_1_) {
+		this.attackAnimationTick = 10;
+		this.level.broadcastEntityEvent(this, (byte) 4);
+		float f = this.getAttackDamage();
+		float f1 = (int) f > 0 ? f / 2.0F + (float) this.random.nextInt((int) f) : f;
+		boolean flag = p_70652_1_.hurt(DamageSource.mobAttack(this), f1);
+		if (flag) {
+			p_70652_1_.setDeltaMovement(p_70652_1_.getDeltaMovement().add(0.0D, (double) 0.4F, 0.0D));
+			this.doEnchantDamageEffects(this, p_70652_1_);
+		}
+
+		this.playSound(SoundEvents.IRON_GOLEM_ATTACK, 1.0F, 1.0F);
+		return flag;
 	}
 
-	@Override
+	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
+		return SoundInit.Robot_Hurt_Noise;
+	}
+
 	protected SoundEvent getDeathSound() {
 		return SoundInit.Robot_Death_Noise;
 	}
 
-	@Override
-	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundInit.Robot_Hurt_Noise;
+	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
+		this.playSound(SoundInit.Robot_Walk_Noise, 1.0F, 1.0F);
 	}
 
-	@Override
-	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(SoundEvents.IRON_GOLEM_STEP, 1.0F, 1.0F);
+	public void die(DamageSource p_70645_1_) {
+		super.die(p_70645_1_);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public Vector3d getLeashOffset() {
+		return new Vector3d(0.0D, (double) (0.875F * this.getEyeHeight()), (double) (this.getBbWidth() * 0.4F));
 	}
 
 }

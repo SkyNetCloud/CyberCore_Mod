@@ -42,7 +42,6 @@ public class ModRegistryEvent {
 
 		event.getRegistry().register(BlockInit.LETTUCE_CROP);
 		event.getRegistry().register(BlockInit.BlockExp);
-		event.getRegistry().register(BlockInit.POWER_FENCE_GRID);
 		event.getRegistry().register(BlockInit.TOMATO_CROP);
 		event.getRegistry().register(BlockInit.CYBER_ORE);
 		event.getRegistry().register(BlockInit.RUBY_ORE);
@@ -74,7 +73,6 @@ public class ModRegistryEvent {
 		event.getRegistry().register(TileEntityInit.POWER_FURNACE_TE.setRegistryName(Names.POWER_FURNACE_BLOCK));
 		event.getRegistry().register(TileEntityInit.POWER_CUBE_TE.setRegistryName(Names.POWER_BOX));
 		event.getRegistry().register(TileEntityInit.COLOR_Changer_TE.setRegistryName(Names.CABLE_PAINTER));
-		event.getRegistry().register(TileEntityInit.POWER_FENCE_GRID_TE.setRegistryName(Names.FENCE_POWER_GIRD));
 
 		TileEntityInit.registerTileEntities(event);
 
@@ -91,8 +89,7 @@ public class ModRegistryEvent {
 	public static void registerContainerType(RegistryEvent.Register<ContainerType<?>> event) {
 		event.getRegistry().register(ContainerInit.POWER_FURNCAE_CON.setRegistryName(Names.POWERED_FURNACE_CON));
 		event.getRegistry().register(ContainerInit.POWER_CUBE_CON.setRegistryName(Names.POWER_BOX_CON));
-		event.getRegistry().register(ContainerInit.c_changer_CON.setRegistryName("color_changer"));
-		event.getRegistry().register(ContainerInit.FPG_CON.setRegistryName(Names.FENCE_POWER_GIRD));
+		event.getRegistry().register(ContainerInit.c_changer_CON.setRegistryName(Names.COLOR_CHANGER_CON));
 
 		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "ContainerTypes Loaded");
 	}

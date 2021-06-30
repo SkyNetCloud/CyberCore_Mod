@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import ca.skynetcloud.cybercore.block.blocks.PowerCube;
 import ca.skynetcloud.cybercore.init.DamageInit;
 import ca.skynetcloud.cybercore.init.SoundInit;
 import net.minecraft.block.Block;
@@ -45,7 +46,7 @@ public class BasicElecticFence extends Block {
 		for (Direction direction : Direction.values()) {
 			BlockState state = worldIn.getBlockState(pos.relative(direction));
 			Block block = state.getBlock();
-			if (block instanceof ElecticFenceGrid && state.getValue(ElecticFenceGrid.SUPPLYING))
+			if (block instanceof PowerCube && state.getValue(PowerCube.SUPPLYING))
 				return 15;
 			if (block instanceof BasicElecticFence && state.hasProperty(ELECTRIC_POWER)) {
 				int power = state.getValue(ELECTRIC_POWER);

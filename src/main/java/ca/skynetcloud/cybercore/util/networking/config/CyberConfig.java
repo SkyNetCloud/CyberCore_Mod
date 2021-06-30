@@ -69,6 +69,11 @@ public class CyberConfig {
 
 	public static class Config {
 
+		public static BooleanValue playMoveSound;
+		public static BooleanValue playHurtSound;
+		public static BooleanValue playDeathSound;
+		public static BooleanValue NikoNeekoMobsSetting;
+		public static BooleanValue SkyNetCloudMobsSetting;
 		public static IntValue MAX_ITEMS_IN_PIPE;
 		public static IntValue SOFT_CAP;
 		public static IntValue HARD_CAP;
@@ -215,6 +220,27 @@ public class CyberConfig {
 					.comment("Chance for item with enchant to be kept from 0.00 to 1.00.")
 					.translation("soulbound.config.save_chance").defineInRange("save_chance", 1.0, 0.0, 1.0);
 
+			builder.pop();
+
+			builder.push("Robot Stuff");
+
+			playMoveSound = builder.comment("Whether or not Robot move sound is on or off Default: true")
+					.translation(CONFIG_PREFIX + "playMoveSound").define("playMoveSound", true);
+
+			playHurtSound = builder.comment("Whether or not Robot hurt sound is on or off Default: true")
+					.translation(CONFIG_PREFIX + "playHurtSound").define("playHurtSound", true);
+
+			playDeathSound = builder.comment("Whether or not Robot death sound is on or off Default: true")
+					.translation(CONFIG_PREFIX + "playDeathSound").define("playDeathSound", true);
+/*
+			SkyNetCloudMobsSetting = builder.comment(
+					"Mobs Setting for the User [SkyNetCloud]  [This doesn't aply to normal player unless your in the same server] Default: true")
+					.translation(CONFIG_PREFIX + "SkyNetCloudMobsSetting").define("SkyNetCloudMobsSetting", true);
+
+			NikoNeekoMobsSetting = builder.comment(
+					"Mobs Setting for the User [NikoNeeko] [This doesn't aply to normal player unless your in the same server] Default: true")
+					.translation(CONFIG_PREFIX + "NikoNeekoMobsSetting").define("NikoNeekoMobsSetting", true);
+*/
 			builder.pop();
 
 			builder.push("Durability Drop Values");

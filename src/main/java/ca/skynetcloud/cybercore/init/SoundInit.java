@@ -18,10 +18,14 @@ public class SoundInit {
 	@ObjectHolder("robot_death")
 	public static SoundEvent Robot_Death_Noise;
 
+	@ObjectHolder("robot_walk")
+	public static SoundEvent Robot_Walk_Noise;
+
 	public static void registerAll(IForgeRegistry<SoundEvent> registry) {
 		registry.register(make("electric_fence_idle"));
 		registry.register(make("robot_hurt"));
 		registry.register(make("robot_death"));
+		registry.register(make("robot_walk"));
 	}
 
 	private static SoundEvent make(String soundName) {

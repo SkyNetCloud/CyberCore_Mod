@@ -134,8 +134,6 @@ public class ItemInit {
 
 	public static BlockItem ruby_block = new BlockItemCore(BlockInit.RUBY_BLOCK);
 
-	public static BlockItem fpg_item_block = new BlockItemCore(BlockInit.POWER_FENCE_GRID);
-
 	public static BlockItem color_changer = new BlockItemCore(BlockInit.C_Changer_Block);
 
 	public static BlockItem power_cube = new BlockItemCore(BlockInit.Battery);
@@ -346,14 +344,14 @@ public class ItemInit {
 						new BlockItem(
 								ForgeRegistries.BLOCKS.getValue(
 										new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Fence_Block_Names[i])),
-								new Item.Properties().tab(CyberCoreTab.instance)),
+								new Item.Properties().tab(CyberCoreTab.other)),
 						Names.COLORED_Fence_Block_Names[i]));
 
 		IntStream.range(0, 16)
 				.forEach(i -> registerItem(registry, new BlockItem(
 						ForgeRegistries.BLOCKS.getValue(
 								new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Fence_Top_Block_Names[i])),
-						new Item.Properties().tab(CyberCoreTab.instance)), Names.COLORED_Fence_Top_Block_Names[i]));
+						new Item.Properties().tab(CyberCoreTab.other)), Names.COLORED_Fence_Top_Block_Names[i]));
 
 		IntStream.range(0, 16)
 				.forEach(i -> registerItem(registry,
@@ -367,7 +365,7 @@ public class ItemInit {
 				.forEach(i -> registerItem(registry, new BlockItem(
 						ForgeRegistries.BLOCKS.getValue(
 								new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Fence_Gate_Block_Names[i])),
-						new Item.Properties().tab(CyberCoreTab.instance)), Names.COLORED_Fence_Gate_Block_Names[i]));
+						new Item.Properties().tab(CyberCoreTab.other)), Names.COLORED_Fence_Gate_Block_Names[i]));
 
 		event.getRegistry().register(ItemInit.CyberCoreCard);
 		event.getRegistry().register(ItemInit.power_cube);
@@ -399,7 +397,6 @@ public class ItemInit {
 		event.getRegistry().register(ItemInit.cyber_pickaxe);
 		event.getRegistry().register(ItemInit.cyber_shovel);
 		event.getRegistry().register(ItemInit.cyber_sword);
-		event.getRegistry().register(ItemInit.fpg_item_block);
 		event.getRegistry().register(ItemInit.ruby_axe);
 		event.getRegistry().register(ItemInit.ruby_hoe);
 		event.getRegistry().register(ItemInit.ruby_pickaxe);

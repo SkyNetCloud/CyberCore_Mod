@@ -9,6 +9,7 @@ import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.tileentity.TileEntity;
@@ -21,15 +22,17 @@ import net.minecraft.world.World;
 public class PowerCube extends TechBlockBaseSubCore {
 
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
+	public static final BooleanProperty SUPPLYING = BooleanProperty.create("supplying");
 
 	public PowerCube(Supplier<? extends TileEntity> teCreator) {
 		super(teCreator);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+		this.registerDefaultState(
+				this.stateDefinition.any().setValue(SUPPLYING, false).setValue(FACING, Direction.NORTH));
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+		return this.defaultBlockState().setValue(SUPPLYING, false).setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
 
 	@Override
@@ -50,7 +53,7 @@ public class PowerCube extends TechBlockBaseSubCore {
 
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
-		builder.add(FACING);
+		builder.add(FACING, SUPPLYING);
 	}
 
 }
