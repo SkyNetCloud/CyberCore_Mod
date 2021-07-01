@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_post"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_post"
       }
     },
     {
@@ -11,7 +11,7 @@
         "electric_power": "0"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side",
         "y": 90
       }
     },
@@ -21,7 +21,7 @@
         "electric_power": "0"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side"
       }
     },
     {
@@ -30,7 +30,7 @@
         "electric_power": "0"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side",
         "y": 180
       }
     },
@@ -40,7 +40,7 @@
         "electric_power": "0"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side",
         "y": 270
       }
     },
@@ -50,7 +50,7 @@
         "electric_power": "1"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -60,7 +60,7 @@
         "electric_power": "1"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -69,7 +69,7 @@
         "electric_power": "1"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -79,7 +79,7 @@
         "electric_power": "1"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -89,7 +89,7 @@
         "electric_power": "2"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -99,7 +99,7 @@
         "electric_power": "2"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -108,7 +108,7 @@
         "electric_power": "2"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -118,7 +118,7 @@
         "electric_power": "2"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -128,7 +128,7 @@
         "electric_power": "3"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -138,7 +138,7 @@
         "electric_power": "3"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -147,7 +147,7 @@
         "electric_power": "3"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -157,7 +157,7 @@
         "electric_power": "3"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -167,7 +167,7 @@
         "electric_power": "4"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -177,7 +177,7 @@
         "electric_power": "4"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -186,7 +186,7 @@
         "electric_power": "4"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -196,7 +196,7 @@
         "electric_power": "4"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -206,7 +206,7 @@
         "electric_power": "5"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -216,7 +216,7 @@
         "electric_power": "5"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -225,7 +225,7 @@
         "electric_power": "5"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -235,7 +235,7 @@
         "electric_power": "5"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -245,7 +245,7 @@
         "electric_power": "6"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -255,7 +255,7 @@
         "electric_power": "6"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -264,7 +264,7 @@
         "electric_power": "6"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -274,7 +274,7 @@
         "electric_power": "6"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -284,7 +284,7 @@
         "electric_power": "7"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -294,7 +294,7 @@
         "electric_power": "7"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -303,7 +303,7 @@
         "electric_power": "7"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -313,7 +313,7 @@
         "electric_power": "7"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -323,7 +323,7 @@
         "electric_power": "8"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -333,7 +333,7 @@
         "electric_power": "8"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -342,7 +342,7 @@
         "electric_power": "8"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -352,7 +352,7 @@
         "electric_power": "8"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -362,7 +362,7 @@
         "electric_power": "9"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -372,7 +372,7 @@
         "electric_power": "9"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -381,7 +381,7 @@
         "electric_power": "9"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -391,7 +391,7 @@
         "electric_power": "9"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -401,7 +401,7 @@
         "electric_power": "10"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -411,7 +411,7 @@
         "electric_power": "10"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -420,7 +420,7 @@
         "electric_power": "10"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -430,7 +430,7 @@
         "electric_power": "10"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -440,7 +440,7 @@
         "electric_power": "11"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -450,7 +450,7 @@
         "electric_power": "11"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -459,7 +459,7 @@
         "electric_power": "11"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -469,7 +469,7 @@
         "electric_power": "11"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -479,7 +479,7 @@
         "electric_power": "12"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -489,7 +489,7 @@
         "electric_power": "12"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -498,7 +498,7 @@
         "electric_power": "12"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -508,7 +508,7 @@
         "electric_power": "12"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -518,7 +518,7 @@
         "electric_power": "13"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -528,7 +528,7 @@
         "electric_power": "13"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -537,7 +537,7 @@
         "electric_power": "13"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -547,7 +547,7 @@
         "electric_power": "13"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -557,7 +557,7 @@
         "electric_power": "14"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -567,7 +567,7 @@
         "electric_power": "14"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -576,7 +576,7 @@
         "electric_power": "14"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -586,7 +586,7 @@
         "electric_power": "14"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     },
@@ -596,7 +596,7 @@
         "electric_power": "15"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 90
       }
     },
@@ -606,7 +606,7 @@
         "electric_power": "15"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered"
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered"
       }
     },
     {
@@ -615,7 +615,7 @@
         "electric_power": "15"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 180
       }
     },
@@ -625,7 +625,7 @@
         "electric_power": "15"
       },
       "apply": {
-        "model": "cybercore:block/electric_fences/color/electric_fence_side_powered",
+        "model": "cybercore:block/electric_fences/color/cyan_electric_fence_side_powered",
         "y": 270
       }
     }

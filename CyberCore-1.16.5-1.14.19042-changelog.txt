@@ -1,12 +1,9 @@
-Mod Build: 1.14 - June 30 2021
+Mod Build: 1.15 - June 30 2021
 	SkyNetCloud:
-      Add New Biome
-      Add Robot Hostile Mod
-	  Add Slabs and Colored Slabs (only obtainable in creative. No crafting recipes Yet) (Some Textures might be broken ik) 
-	  Add ElectiFence and Colored ElectiFence (only obtainable in creative No crafting recipes Yet) 
+	  Fixed Slabs and Colored Slabs Texturs & Crafting Recipes
+	  Fixed ElectiFence and Colored ElectiFence Texturs & Crafting Recipes
 	  
-	  
-	  Fixed SoulBound Book Crashing Game
+	 
 		
 			
 		

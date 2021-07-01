@@ -7,9 +7,10 @@
 		"1.15.2-recommended": "1.9.18362",
 		"1.16.4-lastest": "1.11.19041",
 		"1.16.4-recommended": "1.10.19041",
-		"1.16.5-lastest": "1.13.19042"
+		"1.16.5-lastest": "1.14.19042"
 	},
 	"1.16.5": {
+		"1.14.19042": "See https://www.curseforge.com/minecraft/mc-mods/cybercore-mod/files for detailed information.",
 		"1.13.19042": "See https://www.curseforge.com/minecraft/mc-mods/cybercore-mod/files for detailed information.",
 		"1.12.19042": "See https://www.curseforge.com/minecraft/mc-mods/cybercore-mod/files for detailed information." 
 	},
