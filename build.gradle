@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.0.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
     }
 }
 
@@ -39,11 +39,11 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "1.16.5-1.14.19042"
+version = "1.16.5-1.15.19042"
 group = "ca.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
@@ -60,7 +60,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                CyberCore {
                     source sourceSets.main
                 }
             }
@@ -69,12 +69,30 @@ minecraft {
         server {
             workingDirectory project.file('run')
 
+     
             property 'forge.logging.markers', 'REGISTRIES'
+
 
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                CyberCore {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'planttech2', '--all', '--output', file('src/generated/resources/')
+            args '--existing', sourceSets.main.resources.srcDirs[0]
+
+            mods {
+                CyberCore {
                     source sourceSets.main
                 }
             }
@@ -105,7 +123,6 @@ curseforge {
             releaseType = 'release'
             
             addGameVersion '1.16.5'
-            addGameVersion 'Java16'
             
             mainArtifact(jar) {
                 displayName = "CyberCore ${version}"

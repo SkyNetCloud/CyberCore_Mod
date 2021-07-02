@@ -1,6 +1,8 @@
 package ca.skynetcloud.cybercore.item;
 
 import ca.skynetcloud.cybercore.CyberCoreTab;
+import ca.skynetcloud.cybercore.block.blocks.fences.BasicElecticFence;
+import ca.skynetcloud.cybercore.block.blocks.fences.gate.ElecticFenceGate;
 import ca.skynetcloud.cybercore.block.tech.TechBlockFacing;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -36,6 +38,22 @@ public class WrenchItem extends ItemBaseCore {
 					return ActionResultType.SUCCESS;
 				}
 			}
+			if (!stack.isEmpty() && target.getBlock() instanceof ElecticFenceGate) {
+				if (stack.getItem() instanceof WrenchItem && player.isCrouching()) {
+					world.removeBlock(pos, false);
+					Block.popResource(world, pos, new ItemStack(target.getBlock()));
+					return ActionResultType.SUCCESS;
+				}
+			}
+			
+			if (!stack.isEmpty() && target.getBlock() instanceof BasicElecticFence) {
+				if (stack.getItem() instanceof WrenchItem && player.isCrouching()) {
+					world.removeBlock(pos, false);
+					Block.popResource(world, pos, new ItemStack(target.getBlock()));
+					return ActionResultType.SUCCESS;
+				}
+			}
+			
 		}
 
 		return super.useOn(context);

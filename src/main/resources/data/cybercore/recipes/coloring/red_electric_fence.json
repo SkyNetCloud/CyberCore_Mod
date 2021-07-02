@@ -1,0 +1,11 @@
+{
+	"type": "cybercore:coloring",
+	"input": {
+		"item": "cybercore:electric_fence",
+		"amount": 1
+	},
+	"result": {
+		"item": "cybercore:red_electric_fence",
+		"amount": 1
+	}
+}

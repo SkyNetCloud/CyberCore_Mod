@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"AA ",
+		"BB ",
+		"AA "
+	],
+	"key": {
+		"A": {
+			"item": "cybercore:dark_steel_ingot"
+		},
+		"B": {
+			"item": "minecraft:iron_bars"
+		}
+	},
+	"result": {
+		"item": "cybercore:electic_fence_gate",
+		"count": 1
+	}
+}

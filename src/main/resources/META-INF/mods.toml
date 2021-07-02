@@ -6,7 +6,7 @@ logoFile="Logo.png" #optional
 
 [[mods]] #mandatory
 modId="cybercore" #mandatory
-version="1.14.19042" #mandatory
+version="1.15.19042" #mandatory
 displayName="CyberCore" #mandatory
 authors="SkyNetCloud"
 updateJSONURL="https://raw.githubusercontent.com/SkyNetCloud/CyberCore_Mod/master/update.json" #optional

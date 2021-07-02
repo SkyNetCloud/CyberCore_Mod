@@ -310,15 +310,15 @@ public class ItemInit {
 		registerItem(registry, new BlockItem(BlockInit.BLOCK_PIPE, new Item.Properties().tab(CyberCoreTab.item_cable)),
 				Names.BLOCK_PIPE);
 
-		registerItem(registry, new BlockItem(BlockInit.Fence_Block, new Item.Properties().tab(CyberCoreTab.instance)),
+		registerItem(registry, new BlockItem(BlockInit.Fence_Block, new Item.Properties().tab(CyberCoreTab.other)),
 				Names.Fence_Block);
 
 		registerItem(registry,
-				new BlockItem(BlockInit.Fence_Block_Top, new Item.Properties().tab(CyberCoreTab.instance)),
+				new BlockItem(BlockInit.Fence_Block_Top, new Item.Properties().tab(CyberCoreTab.other)),
 				Names.Fence_Block_Top);
 
 		registerItem(registry,
-				new BlockItem(BlockInit.Fence_Gate_Block, new Item.Properties().tab(CyberCoreTab.instance)),
+				new BlockItem(BlockInit.Fence_Gate_Block, new Item.Properties().tab(CyberCoreTab.other)),
 				Names.Fence_Gate_Block);
 
 		registerItem(registry, new BlockItem(BlockInit.Slab_Block, new Item.Properties().tab(CyberCoreTab.instance)),

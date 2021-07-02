@@ -13,12 +13,15 @@ out
 *.iws
 *.iml
 .idea
+*.jar
 
 # gradle
 build
+
 .gradle
 
 # other
+gradle
 eclipse
 run
 server
