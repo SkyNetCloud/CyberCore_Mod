@@ -26,11 +26,11 @@ repositories {
     // location of a maven mirror for JEI files, as a fallback
     name = "ModMaven"
     url = "https://modmaven.k-4u.nl"
-  }	    
+  }
   maven {
     url "https://www.cursemaven.com"
   }
-	
+
 }
 
 
@@ -39,7 +39,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "1.16.5-1.15.19042"
+version = "1.16.5-1.16.19042"
 group = "ca.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
@@ -60,7 +60,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                CyberCore {
+                cybercore {
                     source sourceSets.main
                 }
             }
@@ -69,14 +69,12 @@ minecraft {
         server {
             workingDirectory project.file('run')
 
-     
             property 'forge.logging.markers', 'REGISTRIES'
-
 
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                CyberCore {
+                cybercore {
                     source sourceSets.main
                 }
             }
@@ -86,13 +84,13 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
+
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'planttech2', '--all', '--output', file('src/generated/resources/')
-            args '--existing', sourceSets.main.resources.srcDirs[0]
+            args '--mod', 'cybercore', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                CyberCore {
+                cybercore {
                     source sourceSets.main
                 }
             }
@@ -104,11 +102,14 @@ minecraft {
 dependencies {
 
     minecraft 'net.minecraftforge:forge:1.16.5-36.1.6'
-    
-    compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.4.88:api")
-    
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.4.88")
-     
+
+    // compile against the JEI API but do not include it at runtime
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    // at runtime, use the full JEI jar
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+
+    implementation "curse.maven:jer-240630:3336760"
+
  
 }
 

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "BBB",
+    "   "
+  ],
+  "key": {
+    "B": {
+      "item": "cybercore:dark_steel_block"
+    }
+  },
+  "result": {
+    "item": "cybercore:slab_block",
+    "count": 1
+  }
+}

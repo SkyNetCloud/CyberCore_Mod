@@ -1,0 +1,11 @@
+{
+	"type": "cybercore:coloring",
+	"input": {
+		"item": "cybercore:slab_block",
+		"amount": 1
+	},
+	"result": {
+		"item": "cybercore:light_gray_slab_block",
+		"amount": 1
+	}
+}

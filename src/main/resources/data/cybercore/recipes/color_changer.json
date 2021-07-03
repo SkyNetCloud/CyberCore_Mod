@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "CEC",
+    "A A"
+  ],
+  "key": {
+    "A": {
+      "item": "cybercore:cyber_ingot"
+    },
+    "E": {
+      "item": "cybercore:power_storage"
+    },
+    "B": {
+      "item": "cybercore:ruby_ingot"
+    }
+  },
+  "result": {
+    "item": "cybercore:color_changer",
+    "count": 1
+  }
+}
