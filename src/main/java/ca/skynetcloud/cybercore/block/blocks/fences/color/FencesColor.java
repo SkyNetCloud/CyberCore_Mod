@@ -1,13 +1,14 @@
 package ca.skynetcloud.cybercore.block.blocks.fences.color;
 
 import ca.skynetcloud.cybercore.block.blocks.fences.ElecticFencesBlock;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class FencesColor extends ElecticFencesBlock {
 
 	private DyeColor color;
 
-	public FencesColor(DyeColor color, Properties properties) {
+	public FencesColor(DyeColor color, BlockStateProperties properties) {
 		super();
 		this.color = color;
 	}

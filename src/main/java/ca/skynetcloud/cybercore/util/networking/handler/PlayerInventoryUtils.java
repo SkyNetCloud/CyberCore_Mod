@@ -3,8 +3,7 @@ package ca.skynetcloud.cybercore.util.networking.handler;
 import java.util.List;
 
 import ca.skynetcloud.cybercore.item.CyberCoreCard;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 public class PlayerInventoryUtils {
 	public static boolean enoughSpace(PlayerInventory inv, int neededSpace) {

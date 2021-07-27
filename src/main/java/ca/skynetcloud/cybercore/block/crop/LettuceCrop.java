@@ -1,9 +1,8 @@
 package ca.skynetcloud.cybercore.block.crop;
 
 import ca.skynetcloud.cybercore.init.ItemInit;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CropsBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class LettuceCrop extends CropsBlock {
+public class LettuceCrop extends CropBlock {
 
 	public static final IntegerProperty AGE_3 = IntegerProperty.create("age", 0, 3);
 

@@ -12,25 +12,25 @@ import javax.annotation.Nullable;
 import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.util.networking.util.CableInfo;
 import ca.skynetcloud.cybercore.util.networking.util.CableInfo.Connection;
-import net.minecraft.block.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class PowerCablesTileEntity extends TileEntity implements ITickableTileEntity {
+public class PowerCablesTileEntity extends BlockEntity {
 	public CableInfo cableInfo = new CableInfo();
 	public int maxTransferRate = 20;
 
-	public PowerCablesTileEntity(TileEntityType<?> tileEntityTypeIn) {
-		super(tileEntityTypeIn);
+	public PowerCablesTileEntity(BlockEntityType<?> tileEntityTypeIn) {
+		super(tileEntityTypeIn, worldPosition, blockState);
 	}
 
 	public PowerCablesTileEntity() {

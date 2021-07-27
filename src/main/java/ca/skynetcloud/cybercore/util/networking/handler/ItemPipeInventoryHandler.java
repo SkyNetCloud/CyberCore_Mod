@@ -1,8 +1,8 @@
 package ca.skynetcloud.cybercore.util.networking.handler;
 
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class ItemPipeInventoryHandler extends ItemStackHandler {

@@ -1,17 +1,11 @@
 package ca.skynetcloud.cybercore.util.container;
 
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyTileEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIntArray;
+import net.minecraft.world.CompoundContainer;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class BaseContainerCore extends Container {
+public class BaseContainerCore extends CompoundContainer {
 
 	protected final CoreEnergyTileEntity tileentity;
 	protected final IIntArray field_array;

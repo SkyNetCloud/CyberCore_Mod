@@ -8,7 +8,8 @@ import java.util.Set;
 import org.apache.commons.lang3.tuple.Pair;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.enchantment.Enchantment.Rarity;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
@@ -34,7 +35,7 @@ public class CyberConfig {
 	}
 
 	public static class Enchantment {
-		public static net.minecraft.enchantment.Enchantment.Rarity rarity = net.minecraft.enchantment.Enchantment.Rarity.RARE;
+		public static Rarity rarity = Rarity.RARE;
 
 		public static int levels = 1;
 		public static boolean isTreasure = false;
@@ -100,7 +101,7 @@ public class CyberConfig {
 		public static IntValue ITEM_OUT_SIZE;
 		public static BooleanValue durabilityDrop;
 		public static BooleanValue breakItemOnZeroDurability;
-		public static EnumValue<net.minecraft.enchantment.Enchantment.Rarity> rarity;
+		public static EnumValue<Rarity> rarity;
 		public static IntValue levels;
 		public static BooleanValue isTreasure;
 		public static BooleanValue isVillagerTrade;
@@ -158,7 +159,7 @@ public class CyberConfig {
 					15, 25);
 
 			rarity = builder.comment("The rarity of the enchantment").translation(CONFIG_PREFIX + "rarity")
-					.defineEnum("rarity", net.minecraft.enchantment.Enchantment.Rarity.RARE);
+					.defineEnum("rarity", Rarity.RARE);
 
 			levels = builder.comment("The number of levels of the enchantment").translation(CONFIG_PREFIX + "levels")
 					.defineInRange("levels", 1, 1, 5);

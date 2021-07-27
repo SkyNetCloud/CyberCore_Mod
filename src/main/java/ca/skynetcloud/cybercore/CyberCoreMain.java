@@ -12,8 +12,8 @@ import ca.skynetcloud.cybercore.util.networking.CyberCorePacketHandler;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
 import ca.skynetcloud.cybercore.util.networking.helper.Names;
 import ca.skynetcloud.cybercore.world.gen.OreGeneration;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -47,8 +47,8 @@ public class CyberCoreMain {
 	private void clientSetup(final FMLClientSetupEvent event) {
 		RenderInit.registerEntityRenderer();
 		ScreenInit.registerGUI();
-		RenderTypeLookup.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.cutout());
 		CyberCoreMain.LOGGER.info("Client Event Loadded");
 	}
 

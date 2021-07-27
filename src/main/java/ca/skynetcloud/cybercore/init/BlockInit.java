@@ -26,12 +26,15 @@ import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCubeTileEntity;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowredFurnaceTileEntity;
 import ca.skynetcloud.cybercore.util.networking.helper.Names;
-import net.minecraft.block.Block;
-import net.minecraft.block.OreBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.ItemGroup;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.OreBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.item.DyeColor;
+
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -40,7 +43,7 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(CyberCoreMain.MODID)
 public class BlockInit {
 
-	public static ItemGroup group = CyberCoreTab.instance;
+	public static CreativeModeTab group = CyberCoreTab.instance;
 
 	@ObjectHolder(Names.CABLE)
 	public static Block CABLE = null;

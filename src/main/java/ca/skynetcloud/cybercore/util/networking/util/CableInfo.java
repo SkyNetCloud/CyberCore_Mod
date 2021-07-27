@@ -3,7 +3,7 @@ package ca.skynetcloud.cybercore.util.networking.util;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -20,7 +20,7 @@ public class CableInfo {
 	public CableInfo() {
 	}
 
-	public CableInfo(CompoundNBT compound) {
+	public CableInfo(CompoundTag compound) {
 		this.masterPos = NBTUtil.readBlockPos(compound);
 		this.isMaster = compound.getBoolean("ismaster");
 		this.connections = compound.getIntArray("connections");
@@ -32,8 +32,8 @@ public class CableInfo {
 		}
 	}
 
-	public CompoundNBT write() {
-		CompoundNBT compound = NBTUtil.writeBlockPos(masterPos);
+	public CompoundTag write() {
+		CompoundTag compound = NBTUtil.writeBlockPos(masterPos);
 		compound.putBoolean("ismaster", isMaster);
 		compound.putIntArray("connections", connections);
 		if (isMaster) {
@@ -45,15 +45,15 @@ public class CableInfo {
 		return compound;
 	}
 
-	private void writeBlockPosList(CompoundNBT compound, String key, HashSet<BlockPos> targetList) {
+	private void writeBlockPosList(CompoundTag compound, String key, HashSet<BlockPos> targetList) {
 		HashSet<Connection> connections = new HashSet<>();
 		targetList.forEach((pos) -> connections.add(new Connection(pos, Direction.UP)));
 		writeBlockPosWithDirectionList(compound, key, connections, false);
 	}
 
-	private void writeBlockPosWithDirectionList(CompoundNBT compound, String key, HashSet<Connection> targetList,
+	private void writeBlockPosWithDirectionList(CompoundTag compound, String key, HashSet<Connection> targetList,
 			boolean direction) {
-		CompoundNBT subCompound = new CompoundNBT();
+		CompoundTag subCompound = new CompoundTag();
 		ArrayList<Integer> x = new ArrayList<>();
 		ArrayList<Integer> y = new ArrayList<>();
 		ArrayList<Integer> z = new ArrayList<>();
@@ -74,9 +74,9 @@ public class CableInfo {
 		compound.put(key, subCompound);
 	}
 
-	private HashSet<Connection> readBlockPosWithDirectionList(CompoundNBT compound, String key) {
+	private HashSet<Connection> readBlockPosWithDirectionList(CompoundTag compound, String key) {
 		HashSet<Connection> connections = new HashSet<>();
-		CompoundNBT subCompound = compound.getCompound(key);
+		CompoundTag subCompound = compound.getCompound(key);
 		int[] x = subCompound.getIntArray("x");
 		int[] y = subCompound.getIntArray("y");
 		int[] z = subCompound.getIntArray("z");
@@ -86,9 +86,9 @@ public class CableInfo {
 		return connections;
 	}
 
-	private HashSet<BlockPos> readBlockPosList(CompoundNBT compound, String key) {
+	private HashSet<BlockPos> readBlockPosList(CompoundTag compound, String key) {
 		HashSet<BlockPos> blockPos = new HashSet<>();
-		CompoundNBT subCompound = compound.getCompound(key);
+		CompoundTag subCompound = compound.getCompound(key);
 		int[] x = subCompound.getIntArray("x");
 		int[] y = subCompound.getIntArray("y");
 		int[] z = subCompound.getIntArray("z");

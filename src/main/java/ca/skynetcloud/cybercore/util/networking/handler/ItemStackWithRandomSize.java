@@ -2,7 +2,8 @@ package ca.skynetcloud.cybercore.util.networking.handler;
 
 import java.util.Random;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+
 
 public class ItemStackWithRandomSize {
 

@@ -11,22 +11,25 @@ import com.google.common.collect.Lists;
 
 import ca.skynetcloud.cybercore.init.ItemInit;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.item.ItemEntity;
+import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class SoulBoundHandler {
-	private static final HashMap<PlayerEntity, SoulBoundHandler> handlerMap = new HashMap<>();
+	private static final HashMap<Player, SoulBoundHandler> handlerMap = new HashMap<>();
 	public static final String soulboundTag = "SoulboundItems";
 	public static final String storedStacksTag = "StoredStacks";
 	public static final String soundTag = "playBrokeSound";
 	public static final String stackTag = "Stack";
-	private final PlayerEntity player;
+	private final Player player;
 
 	public static SoulBoundHandler getOrCreateSoulboundHandler(PlayerEntity player) {
 		if (getSoulboundHandler(player) != null)
@@ -76,14 +79,14 @@ public class SoulBoundHandler {
 	}
 
 	private void serializeDrops(Collection<ItemEntity> drops) {
-		CompoundNBT soulData = new CompoundNBT();
+		CompoundTag soulData = new CompoundTag();
 		soulData.putInt(storedStacksTag, drops.size());
 		int counter = 0;
 
 		for (ItemEntity drop : drops) {
 			ItemStack stack = this.itemEditor(drop.getItem()).copy();
 			if (stack != null) {
-				CompoundNBT serializedStack = stack.serializeNBT();
+				CompoundTag serializedStack = stack.serializeNBT();
 				soulData.put(stackTag + counter, serializedStack);
 				counter++;
 			}
@@ -92,17 +95,17 @@ public class SoulBoundHandler {
 		this.player.getPersistentData().put(soulboundTag, soulData);
 	}
 
-	private static boolean hasSerializedDrops(PlayerEntity player) {
+	private static boolean hasSerializedDrops(Player player) {
 		return player.getPersistentData().contains(soulboundTag);
 	}
 
 	private List<ItemStack> deserializeDrops() {
 		List<ItemStack> deserialized = Lists.newArrayList();
-		CompoundNBT soulData = this.player.getPersistentData().getCompound(soulboundTag);
+		CompoundTag soulData = this.player.getPersistentData().getCompound(soulboundTag);
 		int counter = soulData.getInt(storedStacksTag) - 1;
 
 		for (int c = counter; c >= 0; c--) {
-			CompoundNBT nbt = soulData.getCompound(stackTag + c);
+			CompoundTag nbt = soulData.getCompound(stackTag + c);
 			ItemStack stack = ItemStack.of(nbt);
 
 			if (!stack.isEmpty()) {
@@ -136,8 +139,8 @@ public class SoulBoundHandler {
 			}
 
 			int newDurability = (int) (item.getMaxDamage() * this.triangularDistribution(minimum, maximum, mode));
-			if (item.hurt(newDurability, this.player.getRandom(), (ServerPlayerEntity) this.player)) {
-				if (this.player instanceof PlayerEntity) {
+			if (item.hurt(newDurability, this.player.getRandom(), (ServerPlayer) this.player)) {
+				if (this.player instanceof Player) {
 					this.player.awardStat(Stats.ITEM_BROKEN.get(item.getItem()));
 				}
 

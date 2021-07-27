@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
 
@@ -43,13 +43,13 @@ version = "1.16.5-1.15.19042"
 group = "ca.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
 minecraft {
 
-    mappings channel: 'official', version: '1.16.5'
+    mappings channel: 'official', version: '1.17.1'
 
     runs {
         client {
@@ -103,11 +103,9 @@ minecraft {
 
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.16.5-36.1.6'
+    minecraft 'net.minecraftforge:forge:1.17.1-37.0.10'
     
-    compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.4.88:api")
-    
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.4.88")
+
      
  
 }

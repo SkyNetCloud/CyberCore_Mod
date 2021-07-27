@@ -17,26 +17,27 @@ import ca.skynetcloud.cybercore.util.networking.helper.WorldHelper;
 import ca.skynetcloud.cybercore.util.networking.routing.Route;
 import ca.skynetcloud.cybercore.util.networking.routing.RoutingNetwork;
 import ca.skynetcloud.cybercore.util.networking.wrapper.ItemInTubeWrapper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntity {
+public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEntity {
 
 	// public static final String DIST_NBT_KEY = "distance";
 	public static final String INV_NBT_KEY_ADD = "inventory_new_items";
@@ -62,8 +63,8 @@ public class ItemPipeTileEntity extends TileEntity implements ITickableTileEntit
 	@Nonnull // use getNetwork()
 	private RoutingNetwork network = RoutingNetwork.INVALID_NETWORK;
 
-	public ItemPipeTileEntity(TileEntityType<?> tileEntityTypeIn) {
-		super(tileEntityTypeIn);
+	public ItemPipeTileEntity(BlockEntityType<?> tileEntityTypeIn) {
+		super(tileEntityTypeIn, worldPosition, blockState);
 	}
 
 	public ItemPipeTileEntity() {
