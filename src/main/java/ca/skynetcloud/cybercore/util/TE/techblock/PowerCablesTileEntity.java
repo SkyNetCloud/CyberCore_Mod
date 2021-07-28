@@ -9,14 +9,13 @@ import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.util.networking.util.CableInfo;
-import ca.skynetcloud.cybercore.util.networking.util.CableInfo.Connection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -29,15 +28,10 @@ public class PowerCablesTileEntity extends BlockEntity {
 	public CableInfo cableInfo = new CableInfo();
 	public int maxTransferRate = 20;
 
-	public PowerCablesTileEntity(BlockEntityType<?> tileEntityTypeIn) {
-		super(tileEntityTypeIn, worldPosition, blockState);
+	public PowerCablesTileEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos pos, BlockState state) {
+		super(tileEntityTypeIn, pos, state);
 	}
 
-	public PowerCablesTileEntity() {
-		this(TileEntityInit.Cable);
-	}
-
-	@Override
 	public void tick() {
 		if (level != null && !level.isClientSide() && isMaster())
 			transferEnergy();
@@ -84,25 +78,25 @@ public class PowerCablesTileEntity extends BlockEntity {
 	}
 
 	@Override
-	public void load(BlockState state, CompoundNBT nbt) {
+	public void load(BlockState state, CompoundTag nbt) {
 		super.load(state, nbt);
 		this.cableInfo = new CableInfo(nbt.getCompound("cableinfo"));
 	}
 
 	@Override
-	public SUpdateTileEntityPacket getUpdatePacket() {
-		return new SUpdateTileEntityPacket(getBlockPos(), 3, getUpdateTag());
+	public ClientboundBlockEntityDataPacket getUpdatePacket() {
+		return new ClientboundBlockEntityDataPacket(getBlockPos(), 3, getUpdateTag());
 	}
 
 	@Override
-	public CompoundNBT getUpdateTag() {
-		return this.save(new CompoundNBT());
+	public CompoundTag getUpdateTag() {
+		return this.save(new CompoundTag());
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager manager, SUpdateTileEntityPacket packet) {
+	public void onDataPacket(Connection manager, ClientboundBlockEntityDataPacket packet) {
 		if (level != null)
-			handleUpdateTag(level.getBlockState(packet.getPos()), packet.getTag());
+			handleUpdateTag(packet.getTag());
 	}
 
 	public void initCable() {

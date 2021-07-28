@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.IntArrayNBT;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntArrayTag;
+import net.minecraft.world.item.ItemStack;
 
 public class ItemInTubeWrapper {
 	public ItemStack stack;
@@ -38,7 +38,7 @@ public class ItemInTubeWrapper {
 		}
 	}
 
-	public static ItemInTubeWrapper readFromNBT(CompoundNBT compound) {
+	public static ItemInTubeWrapper readFromNBT(CompoundTag compound) {
 		ItemStack stack = ItemStack.of(compound);
 		int[] moveBuffer = compound.getIntArray(MOVES_REMAINING_TAG);
 		int ticksElapsed = compound.getInt(TICKS_REMAINING_TAG);
@@ -52,7 +52,7 @@ public class ItemInTubeWrapper {
 	}
 
 	@SuppressWarnings("static-access")
-	public CompoundNBT writeToNBT(CompoundNBT compound) {
+	public CompoundTag writeToNBT(CompoundTag compound) {
 		compound.put(MOVES_REMAINING_TAG, compressMoveList(this.remainingMoves));
 		compound.putInt(TICKS_REMAINING_TAG, this.ticksElapsed);
 		compound.putInt(TICKS_DURATION_TAG, this.maximumDurationInTube);
@@ -62,9 +62,9 @@ public class ItemInTubeWrapper {
 		return compound;
 	}
 
-	public static IntArrayNBT compressMoveList(Queue<Direction> moves) {
+	public static IntArrayTag compressMoveList(Queue<Direction> moves) {
 		if (moves == null || moves.isEmpty())
-			return new IntArrayNBT(new int[0]);
+			return new IntArrayTag(new int[0]);
 
 		int moveIndex = 0;
 		ArrayList<Integer> buffer = new ArrayList<Integer>();
@@ -83,7 +83,7 @@ public class ItemInTubeWrapper {
 			}
 		}
 
-		IntArrayNBT nbt = new IntArrayNBT(buffer);
+		IntArrayTag nbt = new IntArrayTag(buffer);
 
 		return nbt;
 	}

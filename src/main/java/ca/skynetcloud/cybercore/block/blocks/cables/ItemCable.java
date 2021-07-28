@@ -9,21 +9,35 @@ import ca.skynetcloud.cybercore.block.blocks.ExtractorBlock;
 import ca.skynetcloud.cybercore.block.blocks.cables.color.ColorCable;
 import ca.skynetcloud.cybercore.block.blocks.cables.color.ColorItemCable;
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.PipeBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 public class ItemCable extends Block implements IBucketPickupHandler, ILiquidContainer {
 	public static final Direction[] FACING_VALUES = Direction.values();
 
-	public static final BooleanProperty DOWN = SixWayBlock.DOWN;
-	public static final BooleanProperty UP = SixWayBlock.UP;
-	public static final BooleanProperty NORTH = SixWayBlock.NORTH;
-	public static final BooleanProperty SOUTH = SixWayBlock.SOUTH;
-	public static final BooleanProperty WEST = SixWayBlock.WEST;
-	public static final BooleanProperty EAST = SixWayBlock.EAST;
+	public static final BooleanProperty DOWN = PipeBlock.DOWN;
+	public static final BooleanProperty UP = PipeBlock.UP;
+	public static final BooleanProperty NORTH = PipeBlock.NORTH;
+	public static final BooleanProperty SOUTH = PipeBlock.SOUTH;
+	public static final BooleanProperty WEST = PipeBlock.WEST;
+	public static final BooleanProperty EAST = PipeBlock.EAST;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
 	protected final VoxelShape[] shapes;
@@ -39,12 +53,7 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 	}
 
 	@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
-	}
-
-	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+	public BlockEntity createTileEntity(BlockState state, IBlockReader world) {
 		return new ItemPipeTileEntity();
 	}
 
@@ -115,7 +124,7 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 		if (block instanceof ItemCable)
 			return this.isTubeCompatible((ItemCable) block);
 
-		TileEntity te = world.getBlockEntity(newPos);
+		BlockEntity te = world.getBlockEntity(newPos);
 
 		if (te == null)
 			return false;
@@ -155,7 +164,7 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 			worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
 
-		return stateIn.setValue(SixWayBlock.PROPERTY_BY_DIRECTION.get(facing),
+		return stateIn.setValue(PipeBlock.PROPERTY_BY_DIRECTION.get(facing),
 				Boolean.valueOf(this.canConnectTo(worldIn, currentPos, facing)));
 	}
 
@@ -180,7 +189,7 @@ public class ItemCable extends Block implements IBucketPickupHandler, ILiquidCon
 			shapes[i] = core;
 			for (int j = 0; j < 6; j++) {
 				if ((i & (1 << j)) != 0) {
-					shapes[i] = VoxelShapes.or(shapes[i], dunswe[j]);
+					shapes[i] = Shapes.or(shapes[i], dunswe[j]);
 				}
 			}
 		}

@@ -4,28 +4,31 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import com.mojang.math.Vector3d;
+
 import ca.skynetcloud.cybercore.init.ItemInit;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCablesTileEntity;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.util.Constants.BlockFlags;
 import net.minecraftforge.energy.CapabilityEnergy;
 
@@ -104,9 +107,9 @@ public class CableBlock extends Block {
 				int state = states[i];
 				Direction direction = Direction.from3DDataValue(i);
 				if (state > 0) {
-					shape = VoxelShapes.or(shape, CABLE_VOXELS.get(direction));
+					shape = Shapes.or(shape, CABLE_VOXELS.get(direction));
 					if (state > 1)
-						shape = VoxelShapes.or(shape, CONNECTION_VOXELS.get(direction));
+						shape = Shapes.or(shape, CONNECTION_VOXELS.get(direction));
 				}
 			}
 		}
@@ -122,8 +125,8 @@ public class CableBlock extends Block {
 	}
 
 	@Override
-	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand hand,
-			BlockRayTraceResult ray) {
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, PlayerEntity player, Hand hand,
+			BlockHitResult ray) {
 		if (!worldIn.isClientSide() && hand.equals(Hand.MAIN_HAND)
 				&& player.getMainHandItem().getItem().equals(ItemInit.whrechItem)) {
 			Vector3d hitvec = ray.getLocation();
@@ -139,14 +142,14 @@ public class CableBlock extends Block {
 							if (te != null) {
 								te.rotateConnection(dir);
 								worldIn.setBlock(pos, getCurrentState(state, worldIn, pos), BlockFlags.DEFAULT);
-								return ActionResultType.SUCCESS;
+								return InteractionResult.SUCCESS;
 							}
 						}
 					}
 				}
 			}
 		}
-		return ActionResultType.PASS;
+		return InteractionResult.PASS;
 	}
 
 	@Override
@@ -166,7 +169,7 @@ public class CableBlock extends Block {
 	}
 
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+	public BlockEntity createTileEntity(BlockState state, IBlockReader world) {
 		return new PowerCablesTileEntity();
 	}
 

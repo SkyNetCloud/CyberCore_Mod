@@ -1,7 +1,7 @@
 package ca.skynetcloud.cybercore.block.blocks.fences.gate.color;
 
 import ca.skynetcloud.cybercore.block.blocks.fences.gate.ElecticFenceGate;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
 
 public class ColorFenceGate extends ElecticFenceGate {
 

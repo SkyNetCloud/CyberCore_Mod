@@ -1,59 +1,52 @@
 package ca.skynetcloud.cybercore.entites.hostile;
 
 import ca.skynetcloud.cybercore.init.SoundInit;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.RandomWalkingGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.monster.AbstractIllagerEntity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.BlockParticleData;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.monster.AbstractIllager;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class RobotEnemy extends MonsterEntity {
+public class RobotEnemy extends Monster {
 
 	private int attackAnimationTick;
 
-	private static final DataParameter<Integer> ATTACK_WARMUP_TICK = EntityDataManager.defineId(RobotEnemy.class,
-			DataSerializers.INT);
-	private static final DataParameter<Integer> ATTACK_TYPE = EntityDataManager.defineId(RobotEnemy.class,
-			DataSerializers.INT);
-	private static final DataParameter<Integer> ATTACK_TICK = EntityDataManager.defineId(RobotEnemy.class,
-			DataSerializers.INT);
+	private static final EntityDataAccessor<Integer> ATTACK_WARMUP_TICK = SynchedEntityData.defineId(RobotEnemy.class,
+			EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> ATTACK_TYPE = SynchedEntityData.defineId(RobotEnemy.class,
+			EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> ATTACK_TICK = SynchedEntityData.defineId(RobotEnemy.class,
+			EntityDataSerializers.INT);
 
-	public RobotEnemy(EntityType<? extends MonsterEntity> type, World world) {
+	public RobotEnemy(EntityType<? extends Monster> type, Level world) {
 		super(type, world);
 		this.xpReward = 20;
 		this.maxUpStep = 1.0F;
@@ -65,24 +58,22 @@ public class RobotEnemy extends MonsterEntity {
 		super.registerGoals();
 
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1D, true));
-		this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1D));
-		this.goalSelector.addGoal(8, new RandomWalkingGoal(this, 0.4D));
-		this.goalSelector.addGoal(9, new LookAtGoal(this, PlayerEntity.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(10, new LookAtGoal(this, LivingEntity.class, 8.0F));
-		this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[] { AbstractIllagerEntity.class }));
-		this.targetSelector.addGoal(5, (new NearestAttackableTargetGoal<PlayerEntity>(this, PlayerEntity.class, true))
-				.setUnseenMemoryTicks(300));
+		this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1D));
+		// this.goalSelector.addGoal(8, new RandomWalkingGoal(this, 0.4D));
+		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
+		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, LivingEntity.class, 8.0F));
+		this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[] { AbstractIllager.class }));
+		this.targetSelector.addGoal(5,
+				(new NearestAttackableTargetGoal<Player>(this, Player.class, true)).setUnseenMemoryTicks(300));
 		this.targetSelector.addGoal(4,
-				(new NearestAttackableTargetGoal<VillagerEntity>(this, VillagerEntity.class, false))
-						.setUnseenMemoryTicks(300));
+				(new NearestAttackableTargetGoal<Villager>(this, Villager.class, false)).setUnseenMemoryTicks(300));
 		this.targetSelector.addGoal(6,
-				(new NearestAttackableTargetGoal<IronGolemEntity>(this, IronGolemEntity.class, false))
-						.setUnseenMemoryTicks(300));
+				(new NearestAttackableTargetGoal<IronGolem>(this, IronGolem.class, false)).setUnseenMemoryTicks(300));
 	}
 
-	public static AttributeModifierMap attributes() {
+	public static AttributeSupplier attributes() {
 
-		return MonsterEntity.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.2499999940395355D)
+		return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.2499999940395355D)
 				.add(Attributes.FOLLOW_RANGE, 30.0D).add(Attributes.MAX_HEALTH, 200.0D)
 				.add(Attributes.ATTACK_DAMAGE, 6.0D).add(Attributes.KNOCKBACK_RESISTANCE, 20.0D).build();
 	}
@@ -123,7 +114,7 @@ public class RobotEnemy extends MonsterEntity {
 	}
 
 	protected void doPush(Entity p_82167_1_) {
-		if (p_82167_1_ instanceof IMob && !(p_82167_1_ instanceof CreeperEntity) && this.getRandom().nextInt(20) == 0) {
+		if (p_82167_1_ instanceof Enemy && !(p_82167_1_ instanceof Creeper) && this.getRandom().nextInt(20) == 0) {
 			this.setTarget((LivingEntity) p_82167_1_);
 		}
 
@@ -151,14 +142,14 @@ public class RobotEnemy extends MonsterEntity {
 			--this.attackAnimationTick;
 		}
 
-		if (getHorizontalDistanceSqr(this.getDeltaMovement()) > (double) 2.5000003E-7F && this.random.nextInt(5) == 0) {
-			int i = MathHelper.floor(this.getX());
-			int j = MathHelper.floor(this.getY() - (double) 0.2F);
-			int k = MathHelper.floor(this.getZ());
+		if (this.getDeltaMovement().horizontalDistanceSqr() > (double) 2.5000003E-7F && this.random.nextInt(5) == 0) {
+			int i = Mth.floor(this.getX());
+			int j = Mth.floor(this.getY() - (double) 0.2F);
+			int k = Mth.floor(this.getZ());
 			BlockPos pos = new BlockPos(i, j, k);
 			BlockState blockstate = this.level.getBlockState(pos);
-			if (!blockstate.isAir(this.level, pos)) {
-				this.level.addParticle(new BlockParticleData(ParticleTypes.BLOCK, blockstate).setPos(pos),
+			if (!blockstate.isAir()) {
+				this.level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate).setPos(pos),
 						this.getX() + ((double) this.random.nextFloat() - 0.5D) * (double) this.getBbWidth(),
 						this.getY() + 0.1D,
 						this.getZ() + ((double) this.random.nextFloat() - 0.5D) * (double) this.getBbWidth(),
@@ -169,7 +160,7 @@ public class RobotEnemy extends MonsterEntity {
 
 	}
 
-	public void addAdditionalSaveData(CompoundNBT compound) {
+	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putInt("AttackTick", this.getAttackTick());
 		compound.putInt("AttackWarmupTick", this.getWarmupTick());
@@ -179,7 +170,7 @@ public class RobotEnemy extends MonsterEntity {
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
-	public void readAdditionalSaveData(CompoundNBT compound) {
+	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.setAttackTick(compound.getInt("AttackTick"));
 		this.setWarmupTick(compound.getInt("AttackWarmupTick"));
@@ -228,8 +219,8 @@ public class RobotEnemy extends MonsterEntity {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public Vector3d getLeashOffset() {
-		return new Vector3d(0.0D, (double) (0.875F * this.getEyeHeight()), (double) (this.getBbWidth() * 0.4F));
+	public Vec3 getLeashOffset() {
+		return new Vec3(0.0D, (double) (0.875F * this.getEyeHeight()), (double) (this.getBbWidth() * 0.4F));
 	}
 
 }

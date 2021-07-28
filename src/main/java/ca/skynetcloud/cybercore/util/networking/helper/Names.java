@@ -2,8 +2,8 @@ package ca.skynetcloud.cybercore.util.networking.helper;
 
 import java.util.Arrays;
 
-import net.minecraft.item.DyeColor;
-import net.minecraft.state.BooleanProperty;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 public class Names {
 

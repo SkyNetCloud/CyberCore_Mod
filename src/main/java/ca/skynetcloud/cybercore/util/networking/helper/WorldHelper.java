@@ -11,24 +11,24 @@ import javax.annotation.Nullable;
 
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;
 import ca.skynetcloud.cybercore.util.networking.util.ClientProxy;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 public class WorldHelper {
-	public static List<ItemPipeTileEntity> getTubesAdjacentTo(World world, BlockPos pos) {
+	public static List<ItemPipeTileEntity> getTubesAdjacentTo(Level world, BlockPos pos) {
 		List<ItemPipeTileEntity> tes = new ArrayList<ItemPipeTileEntity>(6);
 		for (Direction face : Direction.values()) {
 			BlockPos checkPos = pos.relative(face);
-			TileEntity te = world.getBlockEntity(checkPos);
+			BlockEntity te = world.getBlockEntity(checkPos);
 			if (te instanceof ItemPipeTileEntity) {
 				tes.add((ItemPipeTileEntity) te);
 			}
@@ -37,35 +37,35 @@ public class WorldHelper {
 		return tes;
 	}
 
-	public static Stream<ItemPipeTileEntity> getBlockPositionsAsTubeTileEntities(World world,
+	public static Stream<ItemPipeTileEntity> getBlockPositionsAsTubeTileEntities(Level world,
 			Collection<BlockPos> posCollection) {
-		Stream<TileEntity> teStream = posCollection.stream().map(tubePos -> world.getBlockEntity(tubePos));
-		Stream<TileEntity> filteredStream = teStream.filter(te -> te instanceof ItemPipeTileEntity);
+		Stream<BlockEntity> teStream = posCollection.stream().map(tubePos -> world.getBlockEntity(tubePos));
+		Stream<BlockEntity> filteredStream = teStream.filter(te -> te instanceof ItemPipeTileEntity);
 		return filteredStream.map(te -> (ItemPipeTileEntity) te);
 	}
 
-	public static Optional<TileEntity> getTileEntityAt(World world, BlockPos pos) {
-		TileEntity te = world.getBlockEntity(pos);
+	public static Optional<BlockEntity> getTileEntityAt(Level world, BlockPos pos) {
+		BlockEntity te = world.getBlockEntity(pos);
 		return Optional.ofNullable(te);
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T extends TileEntity> Optional<T> getTileEntityAt(Class<? extends T> clazz, IWorldReader world,
+	public static <T extends BlockEntity> Optional<T> getTileEntityAt(Class<? extends T> clazz, LevelReader world,
 			BlockPos pos) {
-		TileEntity te = world.getBlockEntity(pos);
+		BlockEntity te = world.getBlockEntity(pos);
 		return Optional.ofNullable(te != null && clazz.isInstance(te) ? (T) te : null);
 	}
 
-	public static LazyOptional<IItemHandler> getTEItemHandlerAt(World world, BlockPos pos, Direction faceOfBlockPos) {
-		TileEntity te = world.getBlockEntity(pos);
+	public static LazyOptional<IItemHandler> getTEItemHandlerAt(Level world, BlockPos pos, Direction faceOfBlockPos) {
+		BlockEntity te = world.getBlockEntity(pos);
 
 		return te != null ? te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, faceOfBlockPos)
 				: LazyOptional.empty();
 	}
 
-	public static LazyOptional<IItemHandler> getTEItemHandlerAtIf(World world, BlockPos pos, Direction faceOfBlockPos,
-			Predicate<TileEntity> pred) {
-		TileEntity te = world.getBlockEntity(pos);
+	public static LazyOptional<IItemHandler> getTEItemHandlerAtIf(Level world, BlockPos pos, Direction faceOfBlockPos,
+			Predicate<BlockEntity> pred) {
+		BlockEntity te = world.getBlockEntity(pos);
 
 		if (te == null)
 			return LazyOptional.empty();
@@ -76,7 +76,7 @@ public class WorldHelper {
 		return te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, faceOfBlockPos);
 	}
 
-	public static void ejectItemstack(World world, BlockPos from_pos, @Nullable Direction output_dir, ItemStack stack) {
+	public static void ejectItemstack(Level world, BlockPos from_pos, @Nullable Direction output_dir, ItemStack stack) {
 		// if there is room in front of the shunt, eject items there
 		double x, y, z, xVel, yVel, zVel, xOff, yOff, zOff;
 		BlockPos output_pos;
@@ -131,7 +131,7 @@ public class WorldHelper {
 	}
 
 	@SuppressWarnings("resource")
-	public static Direction getBlockFacingForPlacement(BlockItemUseContext context) {
+	public static Direction getBlockFacingForPlacement(BlockPlaceContext context) {
 		// if sprint is being held (i.e. ctrl by default), facing is based on the face
 		// of the block that was clicked on
 		// otherwise, facing is based on the look vector of the player

@@ -2,8 +2,8 @@ package ca.skynetcloud.cybercore.util.networking.helper;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 
 public class PosHelper {
 

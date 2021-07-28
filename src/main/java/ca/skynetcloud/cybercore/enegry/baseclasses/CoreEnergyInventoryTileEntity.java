@@ -6,15 +6,15 @@ import java.util.List;
 import ca.skynetcloud.cybercore.item.UpgradeLvl;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
 import ca.skynetcloud.cybercore.util.networking.util.IItemChargeable;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -25,13 +25,12 @@ abstract public class CoreEnergyInventoryTileEntity extends CoreEnergyTileEntity
 	protected ItemStackHandler itemhandler;
 	protected LazyOptional<IItemHandler> inventoryCap;
 	protected int ticksPassed = 0;
-	protected int tier;
 
-	public CoreEnergyInventoryTileEntity(TileEntityType<?> type, int energyStorage, int invSize) {
-		super(type, energyStorage);
+	public CoreEnergyInventoryTileEntity(BlockEntityType<?> type, int energyStorage, int invSize) {
+		super(type, 0, blockState, energyStorage, invSize);
 		itemhandler = new ItemStackHandler(invSize);
 		inventoryCap = LazyOptional.of(() -> itemhandler);
-		this.tier = tier;
+
 	}
 
 	/**
@@ -74,15 +73,15 @@ abstract public class CoreEnergyInventoryTileEntity extends CoreEnergyTileEntity
 	}
 
 	@Override
-	public CompoundNBT save(CompoundNBT compound) {
+	public CompoundTag save(CompoundTag compound) {
 		compound.put("inventory", itemhandler.serializeNBT());
 		compound.putInt("tickspassed", ticksPassed);
 		return super.save(compound);
 	}
 
 	@Override
-	public void load(BlockState state, CompoundNBT compound) {
-		super.load(state, compound);
+	public void load(CompoundTag compound) {
+		super.load(compound);
 		int slotamount = itemhandler.getSlots();// prevent crash
 		itemhandler.deserializeNBT(compound.getCompound("inventory"));
 		if (itemhandler.getSlots() != slotamount)
@@ -90,7 +89,7 @@ abstract public class CoreEnergyInventoryTileEntity extends CoreEnergyTileEntity
 		this.ticksPassed = compound.getInt("tickspassed");
 	}
 
-	public static void spawnAsEntity(World worldIn, BlockPos pos, ItemStack stack) {
+	public static void spawnAsEntity(Level worldIn, BlockPos pos, ItemStack stack) {
 		if (worldIn != null && !worldIn.isClientSide && !stack.isEmpty() && !worldIn.restoringBlockSnapshots
 				&& worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) // do not drop items while restoring
 		// blockstates, prevents item dupe

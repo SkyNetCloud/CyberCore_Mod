@@ -2,20 +2,20 @@ package ca.skynetcloud.cybercore.util.container;
 
 import ca.skynetcloud.cybercore.init.ContainerInit;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCubeTileEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 public class PowerCubeCon extends BaseContainerCore {
 
-	public PowerCubeCon(int id, PlayerInventory inv) {
+	public PowerCubeCon(int id, Inventory inv) {
 		this(id, inv, new PowerCubeTileEntity());
 	}
 
-	public PowerCubeCon(int id, PlayerInventory player, PowerCubeTileEntity tileentity) {
+	public PowerCubeCon(int id, Inventory player, PowerCubeTileEntity tileentity) {
 		super(id, ContainerInit.POWER_CUBE_CON, player, tileentity, 3);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
@@ -27,7 +27,7 @@ public class PowerCubeCon extends BaseContainerCore {
 	}
 
 	@Override
-	public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
+	public ItemStack quickMoveStack(Player playerIn, int index) {
 		ItemStack stack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.slots.get(index);
 		if (slot != null && slot.hasItem()) {

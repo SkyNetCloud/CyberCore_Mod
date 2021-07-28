@@ -5,20 +5,20 @@ import java.util.List;
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.CyberCoreTab;
 import ca.skynetcloud.cybercore.init.ItemInit;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ToolType;
 
 public class DarkSteelPickaxe extends PickaxeItem {
@@ -26,47 +26,45 @@ public class DarkSteelPickaxe extends PickaxeItem {
 	public int coolDown = 0;
 	public boolean canUse;
 
-	public DarkSteelPickaxe(IItemTier material, float speed) {
+	public DarkSteelPickaxe(Tier material, float speed) {
 		super(material, 1, speed,
 				new Properties().tab(CyberCoreTab.instance).addToolType(ToolType.PICKAXE, material.getLevel()));
 	}
 
-	public DarkSteelPickaxe(IItemTier material, float speed, Properties properties) {
+	public DarkSteelPickaxe(Tier material, float speed, Properties properties) {
 		super(material, 1, speed, properties.addToolType(ToolType.PICKAXE, material.getLevel()));
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
 
 		if (stack.sameItem(new ItemStack(ItemInit.dark_steel_pickaxe))) {
-			tooltip.add(new StringTextComponent(
-					TextFormatting.DARK_PURPLE + "A shadow loom over you while you hold this tool"));
+			tooltip.add(
+					new TextComponent(ChatFormatting.DARK_PURPLE + "A shadow loom over you while you hold this tool"));
+
+			tooltip.add(new TextComponent(ChatFormatting.RED + "BLINDNESS" + " " + ChatFormatting.AQUA + "12 Sec"));
 
 			tooltip.add(
-					new StringTextComponent(TextFormatting.RED + "BLINDNESS" + " " + TextFormatting.AQUA + "12 Sec"));
+					new TextComponent(ChatFormatting.GREEN + "HEALTH BOOST" + " " + ChatFormatting.AQUA + "12 Sec"));
 
-			tooltip.add(new StringTextComponent(
-					TextFormatting.GREEN + "HEALTH BOOST" + " " + TextFormatting.AQUA + "12 Sec"));
-
-			tooltip.add(
-					new StringTextComponent(TextFormatting.RED + "SLOWNESS" + " " + TextFormatting.AQUA + "12 Sec"));
+			tooltip.add(new TextComponent(ChatFormatting.RED + "SLOWNESS" + " " + ChatFormatting.AQUA + "12 Sec"));
 		}
 
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
 
 	@Override
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
 
 		playerIn.getCooldowns().addCooldown(this, 600);
-		if (playerIn.getItemBySlot(EquipmentSlotType.MAINHAND).getItem() == ItemInit.dark_steel_pickaxe.getItem()) {
+		if (playerIn.getItemBySlot(EquipmentSlot.MAINHAND).getItem() == ItemInit.dark_steel_pickaxe.asItem()) {
 			if (worldIn.isClientSide) {
-				playerIn.sendMessage(new StringTextComponent(TextFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
-						+ TextFormatting.RED + "The Shadow Are Coming For You"), null);
+				playerIn.sendMessage(new TextComponent(ChatFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
+						+ ChatFormatting.RED + "The Shadow Are Coming For You"), null);
 			}
-			playerIn.addEffect(new EffectInstance(Effects.DIG_SLOWDOWN, 255, 1, false, false, true));
-			playerIn.addEffect(new EffectInstance(Effects.REGENERATION, 255, 1, false, false, true));
-			playerIn.addEffect(new EffectInstance(Effects.BLINDNESS, 255, 1, false, false, true));
+			playerIn.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 255, 1, false, false, true));
+			playerIn.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 255, 1, false, false, true));
+			playerIn.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 255, 1, false, false, true));
 		}
 
 		return super.use(worldIn, playerIn, handIn);

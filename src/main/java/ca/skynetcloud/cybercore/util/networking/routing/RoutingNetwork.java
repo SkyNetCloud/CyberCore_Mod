@@ -11,11 +11,11 @@ import javax.annotation.Nullable;
 import ca.skynetcloud.cybercore.util.TE.techblock.ItemPipeTileEntity;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import ca.skynetcloud.cybercore.util.networking.helper.WorldHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -84,7 +84,7 @@ public class RoutingNetwork {
 
 	/**
 	 * Returns true if a blockpos can potentially be part of this network Must have
-	 * a TileEntity associated with that position that is either a tube or has the
+	 * a BlockEntity associated with that position that is either a tube or has the
 	 * inventory capability on the given side
 	 * 
 	 * @param pos   to check
@@ -92,11 +92,11 @@ public class RoutingNetwork {
 	 * @param face  of the block being checked that items would be inserted into
 	 * @return
 	 */
-	public boolean isValidToBeInNetwork(BlockPos pos, World world, Direction face) {
+	public boolean isValidToBeInNetwork(BlockPos pos, Level world, Direction face) {
 		if (this.invalid)
 			return false;
 
-		TileEntity te = world.getBlockEntity(pos);
+		BlockEntity te = world.getBlockEntity(pos);
 		return (te != null && (te instanceof ItemPipeTileEntity
 				|| te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, face).isPresent()));
 
@@ -111,7 +111,7 @@ public class RoutingNetwork {
 	// and the side of that tube that the item was inserted into
 	// returns NULL if there are no valid routes
 	@Nullable
-	public Route getBestRoute(World world, BlockPos startPos, Direction insertionSide, ItemStack stack) {
+	public Route getBestRoute(Level world, BlockPos startPos, Direction insertionSide, ItemStack stack) {
 		if (stack.getCount() <= 0)
 			return null; // can't fit round pegs in square holes
 
@@ -135,11 +135,11 @@ public class RoutingNetwork {
 		return null; // no valid routes
 	}
 
-	private List<Route> generateRoutes(World world, BlockPos startPos) {
+	private List<Route> generateRoutes(Level world, BlockPos startPos) {
 		return FastestRoutesSolver.generateRoutes(this, world, startPos);
 	}
 
-	public static RoutingNetwork buildNetworkFrom(BlockPos pos, World world) {
+	public static RoutingNetwork buildNetworkFrom(BlockPos pos, Level world) {
 		HashSet<BlockPos> visited = new HashSet<BlockPos>();
 		HashSet<BlockPos> potentialEndpoints = new HashSet<BlockPos>();
 		RoutingNetwork network = new RoutingNetwork();
@@ -150,7 +150,7 @@ public class RoutingNetwork {
 		// narrow down the endpoint TEs to useable ones
 		for (BlockPos endPos : potentialEndpoints) {
 			// Endpoint point = Endpoint.createEndpoint(endPos, world, network.tubes);
-			TileEntity te = world.getBlockEntity(endPos);
+			BlockEntity te = world.getBlockEntity(endPos);
 			if (te == null)
 				continue; // just in case
 
@@ -171,7 +171,7 @@ public class RoutingNetwork {
 	}
 
 	// very large networks throw stackoverflow if recursion is used
-	private static void iterativelyBuildNetworkFrom(BlockPos startPos, World world, RoutingNetwork network,
+	private static void iterativelyBuildNetworkFrom(BlockPos startPos, Level world, RoutingNetwork network,
 			HashSet<BlockPos> visited, HashSet<BlockPos> potentialEndpoints) {
 		LinkedList<BlockPos> blocksToVisit = new LinkedList<BlockPos>();
 		blocksToVisit.add(startPos);
@@ -179,7 +179,7 @@ public class RoutingNetwork {
 
 			BlockPos visitedPos = blocksToVisit.poll();
 			visited.add(visitedPos);
-			TileEntity te = world.getBlockEntity(visitedPos);
+			BlockEntity te = world.getBlockEntity(visitedPos);
 			if (te instanceof ItemPipeTileEntity) {
 				network.tubes.add(visitedPos);
 				List<Direction> dirs = ((ItemPipeTileEntity) te).getConnectedDirections();
@@ -201,7 +201,7 @@ public class RoutingNetwork {
 	}
 
 	// sets the network of every tube in this network to this network
-	public void confirmAllTubes(World world) {
+	public void confirmAllTubes(Level world) {
 		WorldHelper.getBlockPositionsAsTubeTileEntities(world, this.tubes).forEach(tube -> tube.setNetwork(this));
 	}
 

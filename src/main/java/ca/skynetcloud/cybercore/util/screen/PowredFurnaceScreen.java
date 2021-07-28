@@ -1,14 +1,15 @@
 package ca.skynetcloud.cybercore.util.screen;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowredFurnaceTileEntity;
 import ca.skynetcloud.cybercore.util.container.PowredFurnaceContainer;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Font;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
@@ -21,7 +22,7 @@ public class PowredFurnaceScreen extends ScreenBaseCore<PowredFurnaceContainer> 
 	}
 
 	@Override
-	protected void renderBg(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
+	protected void renderBg(PoseStack mStack, float partialTicks, int mouseX, int mouseY) {
 		super.renderBg(mStack, partialTicks, mouseX, mouseY);
 
 		for (int p = 0; p < 6; p++) {
@@ -32,15 +33,15 @@ public class PowredFurnaceScreen extends ScreenBaseCore<PowredFurnaceContainer> 
 	}
 
 	@Override
-	protected void renderLabels(MatrixStack mStack, int mouseX, int mouseY) {
+	protected void renderLabels(PoseStack mStack, int mouseX, int mouseY) {
 		@SuppressWarnings("resource")
-		FontRenderer fontRenderer = Minecraft.getInstance().font;
+		Font fontRenderer = Minecraft.getInstance().font;
 
 		// fontRenderer.drawStringWithShadow(mStack, "Powered Furnace", 270, 60, 15312);
-		fontRenderer.drawShadow(mStack, "Power Stored FE: " + TextFormatting.GREEN + te.getEnergyStored(), -155, 70,
-				TextFormatting.BLUE.getColor());
-		fontRenderer.drawShadow(mStack, "Max It Can Stored FE : " + TextFormatting.GREEN + te.getMaxEnergyStored(),
-				-155, 50, TextFormatting.DARK_GREEN.getColor());
+		fontRenderer.drawShadow(mStack, "Power Stored FE: " + ChatFormatting.GREEN + te.getEnergyStored(), -155, 70,
+				ChatFormatting.BLUE.getColor());
+		fontRenderer.drawShadow(mStack, "Max It Can Stored FE : " + ChatFormatting.GREEN + te.getMaxEnergyStored(),
+				-155, 50, ChatFormatting.DARK_GREEN.getColor());
 	}
 	
 	

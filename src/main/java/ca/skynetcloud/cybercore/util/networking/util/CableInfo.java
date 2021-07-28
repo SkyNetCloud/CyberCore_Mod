@@ -3,25 +3,25 @@ package ca.skynetcloud.cybercore.util.networking.util;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NBTUtil;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.nbt.NbtUtils;
 
 public class CableInfo {
 	public BlockPos masterPos = BlockPos.ZERO;
 	public boolean isMaster = false;
 	public HashSet<BlockPos> slaves = new HashSet<>();
-	public HashSet<Connection> producers = new HashSet<>();
-	public HashSet<Connection> consumers = new HashSet<>();
-	public HashSet<Connection> storages = new HashSet<>();
+	public HashSet<StaticConnection> producers = new HashSet<>();
+	public HashSet<StaticConnection> consumers = new HashSet<>();
+	public HashSet<StaticConnection> storages = new HashSet<>();
 	public int[] connections = new int[] { 0, 0, 0, 0, 0, 0 };
 
 	public CableInfo() {
 	}
 
 	public CableInfo(CompoundTag compound) {
-		this.masterPos = NBTUtil.readBlockPos(compound);
+		this.masterPos = NbtUtils.readBlockPos(compound);
 		this.isMaster = compound.getBoolean("ismaster");
 		this.connections = compound.getIntArray("connections");
 		if (this.isMaster) {
@@ -33,7 +33,7 @@ public class CableInfo {
 	}
 
 	public CompoundTag write() {
-		CompoundTag compound = NBTUtil.writeBlockPos(masterPos);
+		CompoundTag compound = NbtUtils.writeBlockPos(masterPos);
 		compound.putBoolean("ismaster", isMaster);
 		compound.putIntArray("connections", connections);
 		if (isMaster) {
@@ -46,12 +46,12 @@ public class CableInfo {
 	}
 
 	private void writeBlockPosList(CompoundTag compound, String key, HashSet<BlockPos> targetList) {
-		HashSet<Connection> connections = new HashSet<>();
-		targetList.forEach((pos) -> connections.add(new Connection(pos, Direction.UP)));
+		HashSet<StaticConnection> connections = new HashSet<>();
+		targetList.forEach((pos) -> connections.add(new StaticConnection(pos, Direction.UP)));
 		writeBlockPosWithDirectionList(compound, key, connections, false);
 	}
 
-	private void writeBlockPosWithDirectionList(CompoundTag compound, String key, HashSet<Connection> targetList,
+	private void writeBlockPosWithDirectionList(CompoundTag compound, String key, HashSet<StaticConnection> targetList,
 			boolean direction) {
 		CompoundTag subCompound = new CompoundTag();
 		ArrayList<Integer> x = new ArrayList<>();
@@ -74,15 +74,15 @@ public class CableInfo {
 		compound.put(key, subCompound);
 	}
 
-	private HashSet<Connection> readBlockPosWithDirectionList(CompoundTag compound, String key) {
-		HashSet<Connection> connections = new HashSet<>();
+	private HashSet<StaticConnection> readBlockPosWithDirectionList(CompoundTag compound, String key) {
+		HashSet<StaticConnection> connections = new HashSet<>();
 		CompoundTag subCompound = compound.getCompound(key);
 		int[] x = subCompound.getIntArray("x");
 		int[] y = subCompound.getIntArray("y");
 		int[] z = subCompound.getIntArray("z");
 		int[] d = subCompound.getIntArray("d");
 		for (int i = 0; i < subCompound.getIntArray("x").length; i++)
-			connections.add(new Connection(new BlockPos(x[i], y[i], z[i]), Direction.from3DDataValue(d[i])));
+			connections.add(new StaticConnection(new BlockPos(x[i], y[i], z[i]), Direction.from3DDataValue(d[i])));
 		return connections;
 	}
 
@@ -104,14 +104,14 @@ public class CableInfo {
 		return newInfo;
 	}
 
-	public static class Connection {
+	public static class StaticConnection {
 		public BlockPos blockPos = BlockPos.ZERO;
 		public Direction direction = Direction.UP;
 
-		public Connection() {
+		public StaticConnection() {
 		}
 
-		public Connection(BlockPos blockPos, Direction direction) {
+		public StaticConnection(BlockPos blockPos, Direction direction) {
 			this.blockPos = blockPos;
 			this.direction = direction;
 		}

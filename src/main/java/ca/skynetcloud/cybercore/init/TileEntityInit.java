@@ -20,7 +20,7 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(CyberCoreMain.MODID)
 public class TileEntityInit {
 
-	public static final BlockEntityType<PowredFurnaceTileEntity> POWER_FURNACE_TE = TileEntityType.Builder
+	public static final BlockEntityType<PowredFurnaceTileEntity> POWER_FURNACE_TE = BlockEntityType.Builder
 			.of(PowredFurnaceTileEntity::new, BlockInit.POWER_FURNACE_BLOCK).build(null);
 
 	@ObjectHolder(Names.CABLE)
@@ -29,10 +29,10 @@ public class TileEntityInit {
 	@ObjectHolder(Names.BLOCK_PIPE)
 	public static final BlockEntityType<ItemPipeTileEntity> BLOCK_PIPE = null;
 
-	public static final BlockEntityType<PowerCubeTileEntity> POWER_CUBE_TE = TileEntityType.Builder
+	public static final BlockEntityType<PowerCubeTileEntity> POWER_CUBE_TE = BlockEntityType.Builder
 			.of(PowerCubeTileEntity::new, BlockInit.Battery).build(null);
 
-	public static final BlockEntityType<ColorChangeTileEntity> COLOR_Changer_TE = TileEntityType.Builder
+	public static final BlockEntityType<ColorChangeTileEntity> COLOR_Changer_TE = BlockEntityType.Builder
 			.of(ColorChangeTileEntity::new, BlockInit.C_Changer_Block).build(null);
 
 	public static void registerTileEntities(RegistryEvent.Register<TileEntityType<?>> event) {

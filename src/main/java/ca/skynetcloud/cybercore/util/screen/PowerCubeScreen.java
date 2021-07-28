@@ -1,25 +1,25 @@
 package ca.skynetcloud.cybercore.util.screen;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.util.container.PowerCubeCon;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.client.gui.Font;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 
 public class PowerCubeScreen extends ScreenBaseCore<PowerCubeCon> {
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(
 			CyberCoreMain.MODID + ":textures/gui/container/new_powerstorage.png");
 
-	public PowerCubeScreen(PowerCubeCon container, PlayerInventory player, ITextComponent name) {
+	public PowerCubeScreen(PowerCubeCon container, Inventory player, TextComponent name) {
 		super(container, player, name);
 	}
 
 	@Override
-	protected void renderBg(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
+	protected void renderBg(PoseStack mStack, float partialTicks, int mouseX, int mouseY) {
 		super.renderBg(mStack, partialTicks, mouseX, mouseY);
 
 		int k = this.getEnergyStoredScaled(55);
@@ -27,16 +27,16 @@ public class PowerCubeScreen extends ScreenBaseCore<PowerCubeCon> {
 	}
 
 	@Override
-	protected void renderLabels(MatrixStack mStack, int mouseX, int mouseY) {
+	protected void renderLabels(PoseStack mStack, int mouseX, int mouseY)  {
 		@SuppressWarnings("resource")
-		FontRenderer fontRenderer = Minecraft.getInstance().font;
+		Font fontRenderer = Minecraft.getInstance().font;
 
 		// fontRenderer.drawStringWithShadow(mStack, "Power Storage", 70, 5, 15312);
 		fontRenderer.drawShadow(mStack, "Power Stored: " + te.getEnergyStored(), -50, 20, 11111111);
 		fontRenderer.drawShadow(mStack, "Max Stored: " + te.getMaxEnergyStored(), -50, 35, 11111111);
 	}
 
-	protected void drawTooltips(MatrixStack mStack, int mouseX, int mouseY) {
+	protected void drawTooltips(PoseStack mStack, int mouseX, int mouseY) {
 
 	}
 

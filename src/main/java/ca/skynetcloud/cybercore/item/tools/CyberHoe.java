@@ -1,17 +1,15 @@
 package ca.skynetcloud.cybercore.item.tools;
 
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.IItemTier;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Tier;
 
 public class CyberHoe extends HoeItem {
 
-
 	private static final float speed = 0.4f;
 
-	public CyberHoe(IItemTier itemTier, int attackDamage, Properties properties) {
+	public CyberHoe(Tier itemTier, int attackDamage, Properties properties) {
 		super(itemTier, attackDamage, speed, properties);
-		
-	}
 
+	}
 
 }

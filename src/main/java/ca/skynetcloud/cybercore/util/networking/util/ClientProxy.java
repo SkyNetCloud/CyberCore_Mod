@@ -9,8 +9,8 @@ import com.google.common.collect.ImmutableSet;
 
 import ca.skynetcloud.cybercore.util.networking.CyberCorePacketHandler;
 import ca.skynetcloud.cybercore.util.networking.helper.IsWasSprintPacket;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraftforge.fml.DistExecutor;
 
 public class ClientProxy {

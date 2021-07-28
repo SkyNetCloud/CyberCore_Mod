@@ -4,19 +4,19 @@ import javax.annotation.Nonnull;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class EnchantmentSoulbound extends Enchantment {
 
 	public static final String ID = CyberCoreMain.MODID + ":soul_bound";
 
 	public EnchantmentSoulbound() {
-		super(Rarity.RARE, EnchantmentType.ARMOR,
-				new EquipmentSlotType[] { EquipmentSlotType.MAINHAND, EquipmentSlotType.CHEST });
+		super(Rarity.RARE, EnchantmentCategory.ARMOR,
+				new EquipmentSlot[] { EquipmentSlot.MAINHAND, EquipmentSlot.CHEST });
 		this.setRegistryName("soul_bound");
 	}
 

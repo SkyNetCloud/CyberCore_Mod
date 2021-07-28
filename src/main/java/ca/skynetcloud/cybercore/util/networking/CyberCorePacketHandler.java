@@ -3,12 +3,12 @@ package ca.skynetcloud.cybercore.util.networking;
 import static java.util.Optional.of;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.fml.network.NetworkDirection;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraftforge.fmllegacy.network.NetworkDirection;
+import net.minecraftforge.fmllegacy.network.NetworkRegistry;
+import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
 public class CyberCorePacketHandler {
 	private static final String PROTOCOL_VERSION = Integer.toString(1);
@@ -27,7 +27,7 @@ public class CyberCorePacketHandler {
 		INSTANCE.sendToServer(msg);
 	}
 
-	public static void sendTo(Object msg, ServerPlayerEntity player) {
+	public static void sendTo(Object msg, ServerPlayer player) {
 		if (!(player instanceof FakePlayer)) {
 			INSTANCE.sendTo(msg, player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
 		}

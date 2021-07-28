@@ -5,13 +5,10 @@ import java.util.List;
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.CyberCoreTab;
 import ca.skynetcloud.cybercore.init.ItemInit;
+import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.potion.EffectInstance;
+import net.minecraft.inventory.EquipmentSlot;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -19,16 +16,20 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Tier;
 import net.minecraftforge.common.ToolType;
 
 public class RubyPickaxe extends PickaxeItem {
 
-	public RubyPickaxe(IItemTier material, float speed) {
+	public RubyPickaxe(Tier material, float speed) {
 		super(material, 1, speed,
 				new Properties().tab(CyberCoreTab.instance).addToolType(ToolType.PICKAXE, material.getLevel()));
 	}
 
-	public RubyPickaxe(IItemTier material, float speed, Properties properties) {
+	public RubyPickaxe(Tier material, float speed, Properties properties) {
 		super(material, 1, speed, properties.addToolType(ToolType.PICKAXE, material.getLevel()));
 	}
 

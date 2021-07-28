@@ -1,18 +1,23 @@
 package ca.skynetcloud.cybercore.util.container;
 
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyTileEntity;
-import net.minecraft.world.CompoundContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class BaseContainerCore extends CompoundContainer {
+public class BaseContainerCore extends AbstractContainerMenu {
 
 	protected final CoreEnergyTileEntity tileentity;
-	protected final IIntArray field_array;
+	protected final ContainerData field_array;
 
-	public BaseContainerCore(int id, ContainerType<?> type, PlayerInventory player, CoreEnergyTileEntity tileentity,
-			int slots) {
-		super(type, id);
+	public BaseContainerCore(int id, MenuType<?> type, Inventory player, CoreEnergyTileEntity tileentity, int slots) {
+		super(type, slots);
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 9; x++) {
 				addSlot(new Slot(player, x + y * 9 + 9, 24 + x * 18, 107 + y * 18));
@@ -34,7 +39,7 @@ public class BaseContainerCore extends CompoundContainer {
 	}
 
 	@Override
-	public boolean stillValid(PlayerEntity playerIn) {
+	public boolean stillValid(Player playerIn) {
 		return tileentity.isUsableByPlayer(playerIn);
 	}
 
@@ -68,7 +73,7 @@ public class BaseContainerCore extends CompoundContainer {
 		}
 
 		@Override
-		public boolean mayPickup(PlayerEntity playerIn) {
+		public boolean mayPickup(Player playerIn) {
 			return false;
 		}
 

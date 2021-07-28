@@ -1,10 +1,10 @@
 package ca.skynetcloud.cybercore.item;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
 
 public class ArmorItemBase extends ArmorItem {
 	private String resString;
@@ -15,17 +15,17 @@ public class ArmorItemBase extends ArmorItem {
 
 	public static boolean hasTakenOff = true;
 
-	public ArmorItemBase(IArmorMaterial mat, String resString, EquipmentSlotType equipmentSlotIn,
+	public ArmorItemBase(ArmorMaterial mat, String resString, EquipmentSlot equipmentSlotIn,
 			Properties properties) {
 		super(mat, equipmentSlotIn, properties);
 		this.resString = resString;
 	}
 
 	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-		if (slot == EquipmentSlotType.HEAD || slot == EquipmentSlotType.CHEST || slot == EquipmentSlotType.FEET) {
+	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+		if (slot == EquipmentSlot.HEAD || slot == EquipmentSlot.CHEST || slot == EquipmentSlot.FEET) {
 			return "cybercore:textures/models/armor/" + resString + "_layer_1.png";
-		} else if (slot == EquipmentSlotType.LEGS) {
+		} else if (slot == EquipmentSlot.LEGS) {
 			return "cybercore:textures/models/armor/" + resString + "_layer_2.png";
 		} else {
 			return null;

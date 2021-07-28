@@ -4,16 +4,16 @@ import ca.skynetcloud.cybercore.CyberCoreTab;
 import ca.skynetcloud.cybercore.block.blocks.fences.BasicElecticFence;
 import ca.skynetcloud.cybercore.block.blocks.fences.gate.ElecticFenceGate;
 import ca.skynetcloud.cybercore.block.tech.TechBlockFacing;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class WrenchItem extends ItemBaseCore {
 
@@ -24,36 +24,36 @@ public class WrenchItem extends ItemBaseCore {
 	}
 
 	@Override
-	public ActionResultType useOn(ItemUseContext context) {
-		World world = context.getLevel();
+	public InteractionResult useOn(UseOnContext context) {
+		Level world = context.getLevel();
 		BlockPos pos = context.getClickedPos();
-		PlayerEntity player = context.getPlayer();
+		Player player = context.getPlayer();
 		if (!world.isClientSide) {
 			BlockState target = world.getBlockState(pos);
-			ItemStack stack = player.getItemInHand(Hand.MAIN_HAND);
+			ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
 			if (!stack.isEmpty() && target.getBlock() instanceof TechBlockFacing) {
 				if (stack.getItem() instanceof WrenchItem && player.isCrouching()) {
 					world.removeBlock(pos, false);
 					Block.popResource(world, pos, new ItemStack(target.getBlock()));
-					return ActionResultType.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 			}
 			if (!stack.isEmpty() && target.getBlock() instanceof ElecticFenceGate) {
 				if (stack.getItem() instanceof WrenchItem && player.isCrouching()) {
 					world.removeBlock(pos, false);
 					Block.popResource(world, pos, new ItemStack(target.getBlock()));
-					return ActionResultType.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 			}
-			
+
 			if (!stack.isEmpty() && target.getBlock() instanceof BasicElecticFence) {
 				if (stack.getItem() instanceof WrenchItem && player.isCrouching()) {
 					world.removeBlock(pos, false);
 					Block.popResource(world, pos, new ItemStack(target.getBlock()));
-					return ActionResultType.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 			}
-			
+
 		}
 
 		return super.useOn(context);

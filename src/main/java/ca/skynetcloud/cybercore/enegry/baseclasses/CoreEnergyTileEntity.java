@@ -1,28 +1,28 @@
 package ca.skynetcloud.cybercore.enegry.baseclasses;
 
 import ca.skynetcloud.cybercore.enegry.CyberEnergyStorage;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IIntArray;
+import net.minecraft.client.renderer.texture.Tickable;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
-abstract public class CoreEnergyTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+abstract public class CoreEnergyTileEntity extends BlockEntity implements Tickable {
 
 	protected CyberEnergyStorage energystorage;
 	private LazyOptional<IEnergyStorage> energyCap;
 	public String customname;
 
-	public CoreEnergyTileEntity(TileEntityType<?> type, int energyStorage) {
-		super(type);
+	public CoreEnergyTileEntity(BlockEntityType<?> type, BlockPos p_155545_, BlockState p_155546_, int energyStorage) {
+		super(type, p_155545_, p_155546_);
 		energystorage = new CyberEnergyStorage(energyStorage);
 		energyCap = LazyOptional.of(() -> energystorage);
 	}
@@ -47,7 +47,7 @@ abstract public class CoreEnergyTileEntity extends TileEntity implements ITickab
 	}
 
 	@Override
-	public CompoundNBT save(CompoundNBT compound) {
+	public CompoundTag save(CompoundTag compound) {
 
 		compound.put("energy", this.energystorage.serializeNBT());
 		super.save(compound);
@@ -55,8 +55,8 @@ abstract public class CoreEnergyTileEntity extends TileEntity implements ITickab
 	}
 
 	@Override
-	public void load(BlockState state, CompoundNBT compound) {
-		super.load(state, compound);
+	public void load(CompoundTag compound) {
+		super.load(compound);
 		this.energystorage.deserializeNBT(compound.getCompound("energy"));
 	}
 
@@ -68,7 +68,7 @@ abstract public class CoreEnergyTileEntity extends TileEntity implements ITickab
 		return this.energystorage.getMaxEnergyStored();
 	}
 
-	public boolean isUsableByPlayer(PlayerEntity player) {
+	public boolean isUsableByPlayer(Player player) {
 		return this.level.getBlockEntity(this.worldPosition) != this ? false
 				: player.distanceToSqr((double) this.worldPosition.getX() + 0.5D,
 						(double) this.worldPosition.getY() + 0.5D, (double) this.worldPosition.getZ() + 0.5D) <= 64.0D;
@@ -78,7 +78,7 @@ abstract public class CoreEnergyTileEntity extends TileEntity implements ITickab
 
 	}
 
-	public abstract IIntArray getIntArray();
+	public abstract ContainerData getIntArray();
 
 	public String getNameString() {
 

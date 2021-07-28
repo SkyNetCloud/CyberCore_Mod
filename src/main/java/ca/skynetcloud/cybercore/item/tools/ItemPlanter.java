@@ -5,20 +5,20 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -33,10 +33,10 @@ public class ItemPlanter extends Item {
 	}
 
 	@Override
-	public ActionResultType useOn(ItemUseContext context) {
+	public InteractionResult useOn(UseOnContext context) {
 		super.useOn(context);
-		World world = context.getLevel();
-		PlayerEntity player = context.getPlayer();
+		Level world = context.getLevel();
+		Player player = context.getPlayer();
 		ItemStack seeds = ItemStack.EMPTY;
 		Direction face = context.getHorizontalDirection();
 		BlockPos center = context.getClickedPos().above();
@@ -89,10 +89,10 @@ public class ItemPlanter extends Item {
 				p.broadcastBreakEvent(context.getHand());
 			});
 		}
-		return ActionResultType.SUCCESS;
+		return InteractionResult.SUCCESS;
 	}
 
-	private boolean tryPlantHere(World world, ItemStack seeds, BlockPos blockpos) {
+	private boolean tryPlantHere(Level world, ItemStack seeds, BlockPos blockpos) {
 		boolean didPlant = false;
 		if (world.getBlockState(blockpos.below()).getBlock() == Blocks.FARMLAND && world.isEmptyBlock(blockpos)) {
 			// looks valid. try to plant
@@ -103,9 +103,9 @@ public class ItemPlanter extends Item {
 		return didPlant;
 	}
 
-	private ItemStack getSeed(PlayerEntity player) {
+	private ItemStack getSeed(Player player) {
 		ItemStack seeds = ItemStack.EMPTY;
-		for (ItemStack s : player.inventory.items) {
+		for (ItemStack s : player.inventoryMenu.getItems()) {
 			if (!s.isEmpty()) {
 				Item item = s.getItem();
 				for (ResourceLocation st : item.getTags()) {
@@ -121,9 +121,8 @@ public class ItemPlanter extends Item {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
-			ITooltipFlag flagIn) {
-		TranslationTextComponent t = new TranslationTextComponent(getDescriptionId() + ".tooltip");
+	public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+		TranslatableComponent t = new TranslatableComponent(getDescriptionId() + ".tooltip");
 
 		tooltip.add(t);
 	}

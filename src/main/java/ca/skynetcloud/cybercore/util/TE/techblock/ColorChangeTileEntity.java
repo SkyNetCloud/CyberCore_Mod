@@ -12,24 +12,17 @@ import org.apache.commons.lang3.tuple.Pair;
 import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
 import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
-import ca.skynetcloud.cybercore.util.container.ColorChangeContainer;
 import ca.skynetcloud.cybercore.util.crafting.ModedRecipeTypes;
 import ca.skynetcloud.cybercore.util.crafting.recipeclasses.ColorChangerRecipe;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -48,7 +41,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 	private LazyOptional<IItemHandler> inputs_provider;
 	private LazyOptional<IItemHandler> outputs_provider;
 
-	protected final IIntArray field_array = new IIntArray() {
+	protected final ContainerData field_array = new ContainerData() {
 		public int get(int index) {
 			switch (index) {
 			case 0:
@@ -175,7 +168,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 	}
 
 	@Override
-	public IIntArray getIntArray() {
+	public ContainerData getIntArray() {
 		return field_array;
 	}
 
@@ -211,7 +204,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 		if (!particleStack.isEmpty()) {
 			Item particle = particleStack.getItem();
 			if (level != null) {
-				for (IRecipe<?> recipe : this.level.getRecipeManager().getRecipes()) {
+				for (Recipe<?> recipe : this.level.getRecipeManager().getRecipes()) {
 					if (recipe.getType() == ModedRecipeTypes.COLORING) {
 						ColorChangerRecipe compRecipe = (ColorChangerRecipe) recipe;
 						if (compRecipe.getInput().getItem() == particle) {
@@ -223,7 +216,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 
 				}
 			} else {
-				for (IRecipe<?> recipe : Minecraft.getInstance().level.getRecipeManager().getRecipes()) {
+				for (Recipe<?> recipe : Minecraft.getInstance().level.getRecipeManager().getRecipes()) {
 					if (recipe.getType() == ModedRecipeTypes.COLORING) {
 						ColorChangerRecipe compRecipe = (ColorChangerRecipe) recipe;
 						if (compRecipe.getInput().getItem() == particle) {
@@ -266,7 +259,7 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 	}
 
 	@Override
-	public CompoundNBT save(CompoundNBT compound) {
+	public CompoundTag save(CompoundTag compound) {
 		compound.putInt("tickspassed", ticksPassed);
 		compound.putInt("selectedId", selectedId);
 		super.save(compound);
@@ -274,15 +267,10 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 	}
 
 	@Override
-	public void load(BlockState state, CompoundNBT compound) {
+	public void load(CompoundTag compound) {
 		this.ticksPassed = compound.getInt("tickspassed");
 		this.selectedId = compound.getInt("selectedId");
-		super.load(state, compound);
-	}
-
-	@Override
-	public Container createMenu(int id, PlayerInventory inv, PlayerEntity player) {
-		return new ColorChangeContainer(id, inv, this);
+		super.load(compound);
 	}
 
 	@Override
@@ -293,11 +281,6 @@ public class ColorChangeTileEntity extends CoreEnergyInventoryTileEntity {
 	@Override
 	public int getEnergyOutSlot() {
 		return 24;
-	}
-
-	@Override
-	public ITextComponent getDisplayName() {
-		return new TranslationTextComponent("");
 	}
 
 }

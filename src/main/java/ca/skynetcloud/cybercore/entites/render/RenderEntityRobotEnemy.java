@@ -1,26 +1,27 @@
 package ca.skynetcloud.cybercore.entites.render;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.entites.hostile.RobotEnemy;
 import ca.skynetcloud.cybercore.entites.models.ModelRobotEnemy;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import ca.skynetcloud.cybercore.event.ClientEvent;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.resources.ResourceLocation;
 
 public class RenderEntityRobotEnemy extends MobRenderer<RobotEnemy, ModelRobotEnemy<RobotEnemy>> {
 
 	protected static final ResourceLocation mobTexture = new ResourceLocation(CyberCoreMain.MODID,
 			"textures/entity/robot_golem.png");
 
-	public RenderEntityRobotEnemy(EntityRendererManager rendermanagerIn) {
-		super(rendermanagerIn, new ModelRobotEnemy<RobotEnemy>(), 1F);
+	public RenderEntityRobotEnemy(EntityRendererProvider.Context context) {
+		super(context, new ModelRobotEnemy<>(context.bakeLayer(ClientEvent.ROBOT_LAYER)), 0.5F);
 	}
 
-	protected void applyRotations(RobotEnemy entityLiving, MatrixStack matrixStackIn, float ageInTicks,
-			float rotationYaw, float partialTicks) {
+	protected void applyRotations(RobotEnemy entityLiving, PoseStack matrixStackIn, float ageInTicks, float rotationYaw,
+			float partialTicks) {
 		super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
 		if (!((double) entityLiving.animationSpeed < 0.01D)) {
 			// float f = 13.0F;

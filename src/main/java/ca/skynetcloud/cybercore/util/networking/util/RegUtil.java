@@ -9,12 +9,14 @@ import com.google.common.base.Function;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Supplier;
 
+import com.sun.jna.Structure;
+
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.util.datafix.fixes.References;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.GameData;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -37,11 +39,14 @@ public class RegUtil {
 		return new Items(registry);
 	}
 
+
+	/*
 	@SuppressWarnings("deprecation")
-	public static void registerStructure(String key, Structure<?> structure) {
-		Registry.register(Registry.STRUCTURE_FEATURE, key.toLowerCase(Locale.ROOT), structure);
+	public static void registerStructure(String key, Structure structure) {
+		Registry.register(References.STRUCTURE_FEATURE, key.toLowerCase(Locale.ROOT), structure);
 		
 	}
+	*/
 
 	public static class Items {
 		private final IForgeRegistry<Item> registry;

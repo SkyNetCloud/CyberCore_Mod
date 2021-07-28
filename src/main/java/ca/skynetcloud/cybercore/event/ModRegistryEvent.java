@@ -12,18 +12,18 @@ import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.util.crafting.ModedRecipeSerializers;
 import ca.skynetcloud.cybercore.util.networking.helper.Names;
 import ca.skynetcloud.cybercore.world.biome.DecayedBiome;
-import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.EntityType;
+import net.minecraft.ChatFormatting;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.Item;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -34,7 +34,7 @@ public class ModRegistryEvent {
 	@SubscribeEvent
 	public static void registerEnchantment(RegistryEvent.Register<Enchantment> event) {
 		event.getRegistry().register(ItemInit.Soul_Bound);
-		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "Loaded Enchantment");
+		CyberCoreMain.LOGGER.info(ChatFormatting.BLUE + "Loaded Enchantment");
 	}
 
 	@SubscribeEvent
@@ -53,7 +53,7 @@ public class ModRegistryEvent {
 		event.getRegistry().register(BlockInit.C_Changer_Block);
 		BlockInit.registerBlocks(event);
 
-		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "Blocks Loaded");
+		CyberCoreMain.LOGGER.info(ChatFormatting.BLUE + "Blocks Loaded");
 	}
 
 	@SubscribeEvent
@@ -64,7 +64,7 @@ public class ModRegistryEvent {
 		event.getRegistry().registerAll(
 				EntityInit.entity_egg_item = registerSpawnEgg(EntityInit.RoBot, "robot_golem", 4410461, 16694040));
 
-		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "Items Loaded");
+		CyberCoreMain.LOGGER.info(ChatFormatting.BLUE + "Items Loaded");
 	}
 
 	@SubscribeEvent
@@ -76,13 +76,13 @@ public class ModRegistryEvent {
 
 		TileEntityInit.registerTileEntities(event);
 
-		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "TileEntityTypes Loaded");
+		CyberCoreMain.LOGGER.info(ChatFormatting.BLUE + "TileEntityTypes Loaded");
 	}
 
 	@SubscribeEvent
 	public static void registerRecipeSerializers(RegistryEvent.Register<IRecipeSerializer<?>> event) {
 		event.getRegistry().register(ModedRecipeSerializers.COLORCHNAGER.setRegistryName("coloring"));
-		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "RecipeSerializers Loaded");
+		CyberCoreMain.LOGGER.info(ChatFormatting.BLUE + "RecipeSerializers Loaded");
 	}
 
 	@SubscribeEvent
@@ -91,13 +91,13 @@ public class ModRegistryEvent {
 		event.getRegistry().register(ContainerInit.POWER_CUBE_CON.setRegistryName(Names.POWER_BOX_CON));
 		event.getRegistry().register(ContainerInit.c_changer_CON.setRegistryName(Names.COLOR_CHANGER_CON));
 
-		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "ContainerTypes Loaded");
+		CyberCoreMain.LOGGER.info(ChatFormatting.BLUE + "ContainerTypes Loaded");
 	}
 
 	@SubscribeEvent
 	public static void registerBiome(RegistryEvent.Register<Biome> event) {
 		DecayedBiome.registerBiomes(event);
-		CyberCoreMain.LOGGER.info(TextFormatting.BLUE + "Biomes Loaded");
+		CyberCoreMain.LOGGER.info(ChatFormatting.BLUE + "Biomes Loaded");
 	}
 
 	@SuppressWarnings("deprecation")
@@ -107,13 +107,13 @@ public class ModRegistryEvent {
 			event.getRegistry().register(entity);
 		}
 		GlobalEntityTypeAttributes.put(EntityInit.RoBot, RobotEnemy.attributes());
-		CyberCoreMain.LOGGER.info(TextFormatting.RED + "Entites Loaded");
+		CyberCoreMain.LOGGER.info(ChatFormatting.RED + "Entites Loaded");
 	}
 
 	@SubscribeEvent
 	public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
 		SoundInit.registerAll(event.getRegistry());
-		CyberCoreMain.LOGGER.info(TextFormatting.RED + "Sound Event Loaded");
+		CyberCoreMain.LOGGER.info(ChatFormatting.RED + "Sound Event Loaded");
 	}
 
 	public static Item registerSpawnEgg(EntityType<?> entityType, String name, int primaryClr, int secondaryClr) {

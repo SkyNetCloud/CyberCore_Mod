@@ -1,6 +1,6 @@
 package ca.skynetcloud.cybercore.item;
 
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
 public class ItemBaseCore extends Item {
 

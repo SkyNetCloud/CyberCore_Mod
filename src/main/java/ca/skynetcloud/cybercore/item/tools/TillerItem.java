@@ -1,36 +1,37 @@
 package ca.skynetcloud.cybercore.item.tools;
 
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FarmlandBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FarmBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class TillerItem extends HoeItem {
 
-	public TillerItem(IItemTier tier, float attackSpeedIn, int attackDamage, Properties builder) {
+	public TillerItem(Tier tier, float attackSpeedIn, int attackDamage, Properties builder) {
 		super(tier, attackDamage, attackSpeedIn, builder);
 
 	}
 
 	@Override
-	public ActionResultType useOn(ItemUseContext context) {
+	public InteractionResult useOn(UseOnContext context) {
 		// ActionResultType succ = super.onItemUse(context);
 		if (context.getClickedFace() == Direction.DOWN) {
-			return ActionResultType.FAIL;
+			return InteractionResult.FAIL;
 		}
 		// so we got a success from the initial block
-		World world = context.getLevel();
+		Level world = context.getLevel();
 		BlockPos center = context.getClickedPos();
 		// context.getPlayer().getHorizontalFacing()
 		Direction face = context.getHorizontalDirection();
@@ -58,18 +59,19 @@ public class TillerItem extends HoeItem {
 				}
 			}
 		}
-		return ActionResultType.SUCCESS;
+		return InteractionResult.SUCCESS;
 	}
 
-	private boolean hoeBlock(ItemUseContext context, BlockPos blockpos) {
-		World world = context.getLevel();
+
+	private boolean hoeBlock(BlockPlaceContext context, BlockPos blockpos) {
+		Level world = context.getLevel();
 		Block blockHere = world.getBlockState(blockpos).getBlock();
 		BlockState blockstate = TILLABLES.get(blockHere);
 		if (blockstate != null) {
 			blockstate = this.moisturize(blockstate);
 			if (world.setBlock(blockpos, blockstate, 11)) {
-				PlayerEntity playerentity = context.getPlayer();
-				world.playSound(playerentity, blockpos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				Player playerentity = context.getPlayer();
+				world.playSound(playerentity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 				if (playerentity != null) {
 					context.getItemInHand().hurtAndBreak(1, playerentity, (p) -> {
 						p.broadcastBreakEvent(context.getHand());
@@ -84,7 +86,7 @@ public class TillerItem extends HoeItem {
 	private BlockState moisturize(BlockState blockstate) {
 		try {
 			if (blockstate.getBlock() == Blocks.FARMLAND && CyberConfig.Config.getMoisture() > 0) {
-				blockstate = blockstate.setValue(FarmlandBlock.MOISTURE, CyberConfig.Config.getMoisture());
+				blockstate = blockstate.setValue(FarmBlock.MOISTURE, CyberConfig.Config.getMoisture());
 			}
 		} catch (Exception e) {
 			// CyberCoreMain.LOGGER.error("Tiller Item Moisturize error", e);

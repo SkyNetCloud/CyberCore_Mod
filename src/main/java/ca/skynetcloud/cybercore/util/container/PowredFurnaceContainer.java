@@ -2,20 +2,20 @@ package ca.skynetcloud.cybercore.util.container;
 
 import ca.skynetcloud.cybercore.init.ContainerInit;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowredFurnaceTileEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 public class PowredFurnaceContainer extends BaseContainerCore {
 
-	public PowredFurnaceContainer(int id, PlayerInventory inv) {
+	public PowredFurnaceContainer(int id, Inventory inv) {
 		this(id, inv, new PowredFurnaceTileEntity());
 	}
 
-	public PowredFurnaceContainer(int id, PlayerInventory player, PowredFurnaceTileEntity tileentity) {
+	public PowredFurnaceContainer(int id, Inventory player, PowredFurnaceTileEntity tileentity) {
 		super(id, ContainerInit.POWER_FURNCAE_CON, player, tileentity, 20);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
@@ -75,7 +75,7 @@ public class PowredFurnaceContainer extends BaseContainerCore {
 	}
 
 	@Override
-	public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
+	public ItemStack quickMoveStack(Player playerIn, int index) {
 		ItemStack stack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.slots.get(index);
 		if (slot != null && slot.hasItem()) {

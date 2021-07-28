@@ -8,25 +8,24 @@ import javax.annotation.Nullable;
 import ca.skynetcloud.cybercore.block.blocks.PowerCube;
 import ca.skynetcloud.cybercore.init.DamageInit;
 import ca.skynetcloud.cybercore.init.SoundInit;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.particles.BasicParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class BasicElecticFence extends Block {
@@ -38,11 +37,11 @@ public class BasicElecticFence extends Block {
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(ELECTRIC_POWER);
 	}
 
-	public static int calculatePower(World worldIn, BlockPos pos) {
+	public static int calculatePower(Level worldIn, BlockPos pos) {
 		int fencePower = 0;
 		for (Direction direction : Direction.values()) {
 			BlockState state = worldIn.getBlockState(pos.relative(direction));
@@ -59,7 +58,7 @@ public class BasicElecticFence extends Block {
 	}
 
 	@Override
-	public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
 		if (state.getValue(ELECTRIC_POWER) > 0 && worldIn.getGameTime() % 8L == 0L) {
 			if (entityIn instanceof LivingEntity) {
 				if (worldIn.isRaining() && worldIn.canSeeSky(pos)) {
@@ -74,14 +73,14 @@ public class BasicElecticFence extends Block {
 								20F);
 				}
 			} else {
-				entityIn.remove();
+				entityIn.remove(true);
 				if (worldIn.isClientSide)
 					doCollideAnimation(pos, worldIn, 7, ParticleTypes.SMOKE, SoundEvents.FIRE_EXTINGUISH, 0.8F, 20F);
 			}
 		}
 	}
 
-	private void doCollideAnimation(BlockPos pos, World worldIn, int amount, BasicParticleType particle,
+	private void doCollideAnimation(BlockPos pos, Level worldIn, int amount, SimpleParticleType particle,
 			SoundEvent sound, float volume, float pitch) {
 		double x = pos.getX();
 		double y = pos.getY();
@@ -90,23 +89,23 @@ public class BasicElecticFence extends Block {
 		// worldIn.playSound(x + 0.5, y + 0.5, z + 0.5,
 		// SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, volume,
 		// pitch, false);
-		worldIn.playLocalSound(x + 0.5, y + 0.5, z + 0.5, sound, SoundCategory.BLOCKS, volume, pitch, false);
+		worldIn.playLocalSound(x + 0.5, y + 0.5, z + 0.5, sound, SoundSource.BLOCKS, volume, pitch, false);
 		for (int i = 0; i < amount; i++)
 			worldIn.addParticle(particle, x + random.nextFloat(), y + random.nextFloat(), z + random.nextFloat(), 0.0D,
 					0.0D, 0.0D);
 	}
 
 	@Override
-	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
 		if (stateIn.getValue(ELECTRIC_POWER) > 0 && rand.nextInt(350) == 1)
 			if (worldIn.isClientSide)
 				doCollideAnimation(pos, worldIn, 1, ParticleTypes.CRIT, SoundInit.ELECTRIC_FENCE_IDLE, 0.05F, 1.0F);
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip,
-			ITooltipFlag flagIn) {
-		tooltip.add(new StringTextComponent(
+	public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip,
+			TooltipFlag flagIn) {
+		tooltip.add(new TextComponent(
 				"can be dismantled by wrench, connect to a powered energy supplier or electric fence to activate"));
 	}
 }

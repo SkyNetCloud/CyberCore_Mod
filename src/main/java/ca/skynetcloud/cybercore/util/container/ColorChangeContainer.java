@@ -3,19 +3,19 @@ package ca.skynetcloud.cybercore.util.container;
 import ca.skynetcloud.cybercore.init.ContainerInit;
 import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
 import ca.skynetcloud.cybercore.util.container.BaseContainerCore.SlotItemHandlerWithInfo;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 public class ColorChangeContainer extends BaseContainerCore {
-	public ColorChangeContainer(int id, PlayerInventory inv) {
+	public ColorChangeContainer(int id, Inventory inv) {
 		this(id, inv, new ColorChangeTileEntity());
 	}
 
-	public ColorChangeContainer(int id, PlayerInventory player, ColorChangeTileEntity tileentity) {
+	public ColorChangeContainer(int id, Inventory player, ColorChangeTileEntity tileentity) {
 		super(id, ContainerInit.c_changer_CON, player, tileentity, 25);
 		IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 				.orElseThrow(NullPointerException::new);
@@ -42,7 +42,7 @@ public class ColorChangeContainer extends BaseContainerCore {
 	}
 
 	@Override
-	public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
+	public ItemStack quickMoveStack(Player playerIn, int index) {
 		ItemStack stack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.slots.get(index);
 		if (slot != null && slot.hasItem()) {

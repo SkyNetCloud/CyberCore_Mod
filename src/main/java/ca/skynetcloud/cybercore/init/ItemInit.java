@@ -80,6 +80,7 @@ import ca.skynetcloud.cybercore.item.tools.TillerItem;
 import ca.skynetcloud.cybercore.util.networking.helper.Names;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
@@ -92,10 +93,10 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class ItemInit {
 
 	public static class FoodInit {
-		public static Food taco = (new Food.Builder()).nutrition(12).saturationMod(0.5F).meat().build();
-		public static Food cheese = (new Food.Builder()).nutrition(12).saturationMod(0.5F).build();
-		public static Food tomato = (new Food.Builder()).nutrition(12).saturationMod(0.5F).build();
-		public static Food lettuce = (new Food.Builder()).nutrition(12).saturationMod(0.5F).build();
+		public static FoodProperties taco = (new FoodProperties.Builder()).nutrition(12).saturationMod(0.5F).meat().build();
+		public static FoodProperties cheese = (new FoodProperties.Builder()).nutrition(12).saturationMod(0.5F).build();
+		public static FoodProperties tomato = (new FoodProperties.Builder()).nutrition(12).saturationMod(0.5F).build();
+		public static FoodProperties lettuce = (new FoodProperties.Builder()).nutrition(12).saturationMod(0.5F).build();
 	}
 
 	@SuppressWarnings("unused")
@@ -111,9 +112,7 @@ public class ItemInit {
 	public static Item planter = new ItemPlanter(new Properties().tab(CyberCoreTab.instance))
 			.setRegistryName(MODID + ":planter");
 
-	public static Item CyberCoreCard = new CyberCoreCard(new Properties().tab(CyberCoreTab.instance))
-			.setRegistryName(MODID + ":cyber_core_card");
-
+	
 	public static Item tiller = new TillerItem(BasisToolMaterial.cyber_ingot, 1, 0,
 			new Item.Properties().tab(CyberCoreTab.instance).rarity(Rarity.COMMON)).setRegistryName(MODID + ":tiller");
 

@@ -10,7 +10,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import ca.skynetcloud.cybercore.block.blocks.cables.ItemCable;
-import ca.skynetcloud.cybercore.init.TileEntityInit;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import ca.skynetcloud.cybercore.util.networking.handler.ItemPipeInventoryHandler;
 import ca.skynetcloud.cybercore.util.networking.helper.WorldHelper;
@@ -19,15 +18,13 @@ import ca.skynetcloud.cybercore.util.networking.routing.RoutingNetwork;
 import ca.skynetcloud.cybercore.util.networking.wrapper.ItemInTubeWrapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -37,7 +34,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEntity {
+public class ItemPipeTileEntity extends BlockEntity {
 
 	// public static final String DIST_NBT_KEY = "distance";
 	public static final String INV_NBT_KEY_ADD = "inventory_new_items";
@@ -63,12 +60,8 @@ public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEnti
 	@Nonnull // use getNetwork()
 	private RoutingNetwork network = RoutingNetwork.INVALID_NETWORK;
 
-	public ItemPipeTileEntity(BlockEntityType<?> tileEntityTypeIn) {
-		super(tileEntityTypeIn, worldPosition, blockState);
-	}
-
-	public ItemPipeTileEntity() {
-		this(TileEntityInit.BLOCK_PIPE);
+	public ItemPipeTileEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos pos, BlockState state) {
+		super(tileEntityTypeIn, pos, state);
 	}
 
 	/**** Getters and Setters ****/
@@ -97,8 +90,8 @@ public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEnti
 		return ItemCable.getConnectedDirections(state);
 	}
 
-	public static Optional<ItemPipeTileEntity> getTubeTEAt(World world, BlockPos pos) {
-		TileEntity te = world.getBlockEntity(pos);
+	public static Optional<ItemPipeTileEntity> getTubeTEAt(Level world, BlockPos pos) {
+		BlockEntity te = world.getBlockEntity(pos);
 		return Optional.ofNullable(te instanceof ItemPipeTileEntity ? (ItemPipeTileEntity) te : null);
 	}
 
@@ -136,7 +129,6 @@ public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEnti
 		return false;
 	}
 
-	@Override
 	public void tick() {
 		this.merge_buffer();
 		if (!this.inventory.isEmpty()) // if inventory is empty, skip the tick
@@ -172,7 +164,7 @@ public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEnti
 		if (!wrapper.remainingMoves.isEmpty()) // wrapper has remaining moves
 		{
 			Direction dir = wrapper.remainingMoves.poll();
-			TileEntity te = this.level.getBlockEntity(this.worldPosition.relative(dir));
+			BlockEntity te = this.level.getBlockEntity(this.worldPosition.relative(dir));
 			if (te instanceof ItemPipeTileEntity && this.isItemPipeCompatible((ItemPipeTileEntity) te)) {
 				((ItemPipeTileEntity) te).enqueueItemStack(wrapper.stack, wrapper.remainingMoves,
 						wrapper.maximumDurationInTube);
@@ -251,7 +243,7 @@ public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEnti
 	public void dropItems() {
 		this.merge_buffer();
 		for (ItemInTubeWrapper wrapper : this.inventory) {
-			InventoryHelper.dropItemStack(this.level, this.worldPosition.getX(), this.worldPosition.getY(),
+			Containers.dropItemStack(this.level, this.worldPosition.getX(), this.worldPosition.getY(),
 					this.worldPosition.getZ(), wrapper.stack);
 		}
 
@@ -265,7 +257,7 @@ public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEnti
 
 	public boolean isAnyInventoryAdjacent() {
 		for (Direction face : Direction.values()) {
-			TileEntity te = this.level.getBlockEntity(this.worldPosition.relative(face));
+			BlockEntity te = this.level.getBlockEntity(this.worldPosition.relative(face));
 			if (te != null && !(te instanceof ItemPipeTileEntity)) {
 				// if a nearby inventory that is not a tube exists
 				LazyOptional<IItemHandler> cap = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY,
@@ -282,37 +274,37 @@ public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEnti
 	}
 
 	@Override
-	public void load(BlockState state, CompoundNBT compound) {
-		super.load(state, compound);
+	public void load(CompoundTag compound) {
+		super.load(compound);
 
 		if (compound.contains(INV_NBT_KEY_RESET)) // only update inventory if the compound has an inv. key
 		{ // this lets the client receive packets without the inventory being cleared
-			ListNBT invList = compound.getList(INV_NBT_KEY_RESET, 10);
+			ListTag invList = compound.getList(INV_NBT_KEY_RESET, 10);
 			Queue<ItemInTubeWrapper> inventory = new LinkedList<ItemInTubeWrapper>();
 			for (int i = 0; i < invList.size(); i++) {
-				CompoundNBT itemTag = invList.getCompound(i);
+				CompoundTag itemTag = invList.getCompound(i);
 				inventory.add(ItemInTubeWrapper.readFromNBT(itemTag));
 			}
 			this.inventory = inventory;
 		} else if (compound.contains(INV_NBT_KEY_ADD)) // add newly inserted items to this tube
 		{
-			ListNBT invList = compound.getList(INV_NBT_KEY_ADD, 10);
+			ListTag invList = compound.getList(INV_NBT_KEY_ADD, 10);
 			for (int i = 0; i < invList.size(); i++) {
-				CompoundNBT itemTag = invList.getCompound(i);
+				CompoundTag itemTag = invList.getCompound(i);
 				this.inventory.add(ItemInTubeWrapper.readFromNBT(itemTag));
 			}
 		}
 	}
 
-	@Override // write entire inventory by default (for server -> hard disk purposes this is
+	@Override // write entire inventory by default (for server ->8 hard disk purposes this is
 				// what is called)
-	public CompoundNBT save(CompoundNBT compound) {
+	public CompoundTag save(CompoundTag compound) {
 
-		ListNBT invList = new ListNBT();
+		ListTag invList = new ListTag();
 		this.merge_buffer();
 
 		for (ItemInTubeWrapper wrapper : this.inventory) {
-			CompoundNBT invTag = new CompoundNBT();
+			CompoundTag invTag = new CompoundTag();
 			wrapper.writeToNBT(invTag);
 			invList.add(invTag);
 		}
@@ -330,8 +322,8 @@ public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEnti
 	 * //handleUpdateTag just calls read by default
 	 */
 	@Override
-	public CompoundNBT getUpdateTag() {
-		return this.save(new CompoundNBT()); // okay to send entire inventory on chunk load
+	public CompoundTag getUpdateTag() {
+		return this.save(new CompoundTag()); // okay to send entire inventory on chunk load
 	}
 
 	/**
@@ -340,16 +332,16 @@ public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEnti
 	 * network
 	 */
 	@Override
-	public SUpdateTileEntityPacket getUpdatePacket() {
-		CompoundNBT nbt = new CompoundNBT();
+	public ClientboundBlockEntityDataPacket getUpdatePacket() {
+		CompoundTag nbt = new CompoundTag();
 		super.save(nbt); // write the basic TE stuff
 
-		ListNBT invList = new ListNBT();
+		ListTag invList = new ListTag();
 
 		while (!this.wrappers_to_send_to_client.isEmpty()) {
 			// empty itemstacks are not added to the tube
 			ItemInTubeWrapper wrapper = this.wrappers_to_send_to_client.poll();
-			CompoundNBT invTag = new CompoundNBT();
+			CompoundTag invTag = new CompoundTag();
 			wrapper.writeToNBT(invTag);
 			invList.add(invTag);
 		}
@@ -357,33 +349,33 @@ public class ItemPipeTileEntity extends BlockEntity implements ITickableTileEnti
 			nbt.put(INV_NBT_KEY_ADD, invList);
 		}
 
-		return new SUpdateTileEntityPacket(this.getBlockPos(), 1, nbt);
+		return new ClientboundBlockEntityDataPacket(this.getBlockPos(), 1, nbt);
 	}
 
 	/**
 	 * Receive packet on client and get data out of it
 	 */
 	@Override
-	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet) {
+	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet) {
 		this.readNBT(packet.getTag());
 	}
 
-	public void readNBT(CompoundNBT compound) {
+	public void readNBT(CompoundTag compound) {
 
 		if (compound.contains(INV_NBT_KEY_RESET)) // only update inventory if the compound has an inv. key
 		{ // this lets the client receive packets without the inventory being cleared
-			ListNBT invList = compound.getList(INV_NBT_KEY_RESET, 10);
+			ListTag invList = compound.getList(INV_NBT_KEY_RESET, 10);
 			Queue<ItemInTubeWrapper> inventory = new LinkedList<ItemInTubeWrapper>();
 			for (int i = 0; i < invList.size(); i++) {
-				CompoundNBT itemTag = invList.getCompound(i);
+				CompoundTag itemTag = invList.getCompound(i);
 				inventory.add(ItemInTubeWrapper.readFromNBT(itemTag));
 			}
 			this.inventory = inventory;
 		} else if (compound.contains(INV_NBT_KEY_ADD)) // add newly inserted items to this tube
 		{
-			ListNBT invList = compound.getList(INV_NBT_KEY_ADD, 10);
+			ListTag invList = compound.getList(INV_NBT_KEY_ADD, 10);
 			for (int i = 0; i < invList.size(); i++) {
-				CompoundNBT itemTag = invList.getCompound(i);
+				CompoundTag itemTag = invList.getCompound(i);
 				this.inventory.add(ItemInTubeWrapper.readFromNBT(itemTag));
 			}
 		}

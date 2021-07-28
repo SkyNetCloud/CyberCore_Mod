@@ -2,25 +2,25 @@ package ca.skynetcloud.cybercore.block.blocks;
 
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import ca.skynetcloud.cybercore.util.networking.helper.WorldHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.DirectionalBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DirectionalBlock;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 
@@ -39,7 +39,7 @@ public class ExtractorBlock extends Block {
 
 	}
 
-	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos,
+	public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos,
 			boolean isMoving) {
 		if (!worldIn.isClientSide) {
 			boolean isReceivingPower = worldIn.hasNeighborSignal(pos);
@@ -47,10 +47,10 @@ public class ExtractorBlock extends Block {
 			if (isReceivingPower != isStatePowered) {
 				if (isReceivingPower) {
 					this.ejectItems(state, pos, worldIn);
-					worldIn.playSound(null, pos, SoundEvents.PISTON_CONTRACT, SoundCategory.BLOCKS, 0.3F,
+					worldIn.playSound(null, pos, SoundEvents.PISTON_CONTRACT, SoundSource.BLOCKS, 0.3F,
 							worldIn.random.nextFloat() * 0.1F + 0.8F);
 				} else {
-					worldIn.playSound(null, pos, SoundEvents.PISTON_CONTRACT, SoundCategory.BLOCKS, 0.1F,
+					worldIn.playSound(null, pos, SoundEvents.PISTON_CONTRACT, SoundSource.BLOCKS, 0.1F,
 							worldIn.random.nextFloat() * 0.1F + 0.9F);
 				}
 				worldIn.setBlock(pos, state.setValue(BlockStateProperties.POWERED, Boolean.valueOf(isReceivingPower)),
@@ -60,7 +60,7 @@ public class ExtractorBlock extends Block {
 		}
 	}
 
-	private void ejectItems(BlockState state, BlockPos pos, World world) {
+	private void ejectItems(BlockState state, BlockPos pos, Level world) {
 		Direction output_dir = state.getValue(FACING);
 		BlockPos output_pos = pos.relative(output_dir);
 		Direction input_dir = output_dir.getOpposite();
@@ -112,7 +112,7 @@ public class ExtractorBlock extends Block {
 	//// facing and blockstate boilerplate
 
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		Direction direction = context.getClickedFace().getOpposite();
 		return this.defaultBlockState().setValue(FACING,
 				direction.getAxis() == Direction.Axis.Y ? Direction.DOWN : direction);
@@ -122,25 +122,25 @@ public class ExtractorBlock extends Block {
 		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, BlockStateProperties.POWERED);
 	}
 
 	// model shapes
 
 	@Override
-	public VoxelShape getOcclusionShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
+	public VoxelShape getOcclusionShape(BlockState state, BlockGetter worldIn, BlockPos pos) {
 		return state.getShape(worldIn, pos);
 	}
 
 	@Override
-	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos,
-			ISelectionContext context) {
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos,
+			CollisionContext context) {
 		return this.getShape(state, worldIn, pos, context);
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		return this.shapes[this.getShapeIndex(state)];
 	}
 
@@ -188,7 +188,7 @@ public class ExtractorBlock extends Block {
 			VoxelShape output = Block.box(output_x_min, output_y_min, output_z_min, output_x_max, output_y_max,
 					output_z_max);
 
-			shapes[face] = VoxelShapes.or(input, mid, output);
+			shapes[face] = Shapes.or(input, mid, output);
 		}
 
 		return shapes;

@@ -5,23 +5,23 @@ import com.google.gson.JsonObject;
 import ca.skynetcloud.cybercore.util.TagUtils;
 import ca.skynetcloud.cybercore.util.crafting.ModedRecipeSerializers;
 import ca.skynetcloud.cybercore.util.crafting.ModedRecipeTypes;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class ColorChangerRecipe implements IRecipe<IInventory> {
+public class ColorChangerRecipe implements Recipe<Container> {
 	private final ResourceLocation id;
 	private final ItemStack input;
 	private final ItemStack output;
@@ -33,12 +33,12 @@ public class ColorChangerRecipe implements IRecipe<IInventory> {
 	}
 
 	@Override
-	public boolean matches(IInventory inv, World worldIn) {
+	public boolean matches(Container inv, Level worldIn) {
 		return input.getItem() == inv.getItem(0).getItem();
 	}
 
 	@Override
-	public ItemStack assemble(IInventory inv) {
+	public ItemStack assemble(Container inv) {
 		return output.copy();
 	}
 
@@ -66,17 +66,17 @@ public class ColorChangerRecipe implements IRecipe<IInventory> {
 	}
 
 	@Override
-	public IRecipeSerializer<?> getSerializer() {
+	public RecipeSerializer<?> getSerializer() {
 		return ModedRecipeSerializers.COLORCHNAGER;
 	}
 
 	@Override
-	public IRecipeType<?> getType() {
+	public RecipeType<?> getType() {
 		return ModedRecipeTypes.COLORING;
 	}
 
-	public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
-			implements IRecipeSerializer<ColorChangerRecipe> {
+	public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>>
+			implements RecipeSerializer<ColorChangerRecipe> {
 
 		// private static ResourceLocation NAME = new
 		// ResourceLocation(PlantTechMain.MODID, "compressing");
@@ -101,7 +101,7 @@ public class ColorChangerRecipe implements IRecipe<IInventory> {
 			}
 			ItemStack inputstack = null;
 			if (inputitem != null) {
-				inputstack = new ItemStack(inputitem, JSONUtils.getAsInt(inputobject, "amount", 1));
+				inputstack = new ItemStack(inputitem, GsonHelper.getAsInt(inputobject, "amount", 1));
 			}
 
 			JsonObject resultobject = json.getAsJsonObject("result");
@@ -118,7 +118,7 @@ public class ColorChangerRecipe implements IRecipe<IInventory> {
 					JsonObject enchantment = resultobject.getAsJsonObject("enchantment");
 					enchantType = ForgeRegistries.ENCHANTMENTS
 							.getValue(new ResourceLocation(enchantment.get("type").getAsString()));
-					enchantLevel = JSONUtils.getAsInt(enchantment, "level", 1);
+					enchantLevel = GsonHelper.getAsInt(enchantment, "level", 1);
 				}
 
 			} else if (resultobject.has("block"))// Just in case
@@ -131,7 +131,7 @@ public class ColorChangerRecipe implements IRecipe<IInventory> {
 
 			ItemStack resultstack = null;
 			if (resultitem != null) {
-				resultstack = new ItemStack(resultitem, JSONUtils.getAsInt(resultobject, "amount", 1));
+				resultstack = new ItemStack(resultitem, GsonHelper.getAsInt(resultobject, "amount", 1));
 				if (effect != null) {
 					PotionUtils.setPotion(resultstack, effect);
 				} else if (enchantType != null) {
@@ -148,17 +148,19 @@ public class ColorChangerRecipe implements IRecipe<IInventory> {
 		}
 
 		@Override
-		public ColorChangerRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+		public ColorChangerRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
 			ItemStack input = buffer.readItem();
 			ItemStack result = buffer.readItem();
 			return new ColorChangerRecipe(recipeId, input, result);
 		}
 
 		@Override
-		public void toNetwork(PacketBuffer buffer, ColorChangerRecipe recipe) {
+		public void toNetwork(FriendlyByteBuf buffer, ColorChangerRecipe recipe) {
 			buffer.writeItem(recipe.input);
 			buffer.writeItem(recipe.output);
 		}
+
+
 
 	}
 

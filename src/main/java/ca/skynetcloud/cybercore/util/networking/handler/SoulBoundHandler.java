@@ -11,17 +11,15 @@ import com.google.common.collect.Lists;
 
 import ca.skynetcloud.cybercore.init.ItemInit;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
-import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Enchantment;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+
 
 public class SoulBoundHandler {
 	private static final HashMap<Player, SoulBoundHandler> handlerMap = new HashMap<>();
@@ -31,7 +29,7 @@ public class SoulBoundHandler {
 	public static final String stackTag = "Stack";
 	private final Player player;
 
-	public static SoulBoundHandler getOrCreateSoulboundHandler(PlayerEntity player) {
+	public static SoulBoundHandler getOrCreateSoulboundHandler(Player player) {
 		if (getSoulboundHandler(player) != null)
 			return getSoulboundHandler(player);
 		else
@@ -39,21 +37,21 @@ public class SoulBoundHandler {
 	}
 
 	@Nullable
-	public static SoulBoundHandler getSoulboundHandler(PlayerEntity player) {
+	public static SoulBoundHandler getSoulboundHandler(Player player) {
 		return handlerMap.get(player);
 	}
 
-	public static SoulBoundHandler createSoulboundHandler(PlayerEntity player) {
+	public static SoulBoundHandler createSoulboundHandler(Player player) {
 		SoulBoundHandler newHandler = new SoulBoundHandler(player);
 		handlerMap.put(player, newHandler);
 		return newHandler;
 	}
 
-	public static boolean hasStoredDrops(PlayerEntity player) {
+	public static boolean hasStoredDrops(Player player) {
 		return hasSerializedDrops(player);
 	}
 
-	private SoulBoundHandler(PlayerEntity playerIn) {
+	private SoulBoundHandler(Player playerIn) {
 		this.player = playerIn;
 	}
 
@@ -175,13 +173,13 @@ public class SoulBoundHandler {
 			return b - Math.sqrt((1 - rand) * (b - a) * (b - c));
 	}
 
-	public void transferItems(PlayerEntity rebornPlayer) {
+	public void transferItems(Player rebornPlayer) {
 		List<ItemStack> retainedDrops = this.deserializeDrops();
 
 		if (retainedDrops.isEmpty())
 			return;
 		for (ItemStack item : retainedDrops) {
-			rebornPlayer.inventory.add(item);
+			rebornPlayer.addItem(item);
 		}
 
 		handlerMap.remove(this.player);

@@ -1,7 +1,7 @@
 package ca.skynetcloud.cybercore.block.blocks.fences.top.color;
 
 import ca.skynetcloud.cybercore.block.blocks.fences.top.ElectricFenceTop;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
 
 public class ElectricFenceTopColor extends ElectricFenceTop {
 
@@ -22,3 +22,4 @@ public class ElectricFenceTopColor extends ElectricFenceTop {
 	}
 
 }
+	
