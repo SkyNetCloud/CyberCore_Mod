@@ -68,6 +68,9 @@ public class Names {
 	public static final String CYBER_ORE = ("cyber_ore");
 	public static final String DARK_STEEL_ORE = "dark_steel_ore";
 	public static final String RUBY_ORE = "ruby_ore";
+	public static final String CYBER_DeepSlate_ORE = ("cyber_deepslate_ore");
+	public static final String DARK_STEEL_DeepSlate_ORE = "dark_steel_deepslate_ore";
+	public static final String RUBY_DeepSlate_ORE = "ruby_deepslate_ore";
 	public static final String LUNAR_BLOCK = "lunarsolargenerator_block";
 	public static final String POWER_BOX = "power_storage";
 	public static final String FENCE_POWER_GIRD = "fence_power_gird";

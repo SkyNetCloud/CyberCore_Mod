@@ -1,5 +1,7 @@
 package ca.skynetcloud.cybercore.entites.hostile;
 
+import java.util.Random;
+
 import ca.skynetcloud.cybercore.init.SoundInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -15,6 +17,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -30,6 +34,8 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -71,11 +77,11 @@ public class RobotEnemy extends Monster {
 				(new NearestAttackableTargetGoal<IronGolem>(this, IronGolem.class, false)).setUnseenMemoryTicks(300));
 	}
 
-	public static AttributeSupplier attributes() {
+	public static AttributeSupplier.Builder createAttributes() {
 
-		return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.2499999940395355D)
+		return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.2499999940395355D)
 				.add(Attributes.FOLLOW_RANGE, 30.0D).add(Attributes.MAX_HEALTH, 200.0D)
-				.add(Attributes.ATTACK_DAMAGE, 6.0D).add(Attributes.KNOCKBACK_RESISTANCE, 20.0D).build();
+				.add(Attributes.ATTACK_DAMAGE, 6.0D).add(Attributes.KNOCKBACK_RESISTANCE, 20.0D);
 	}
 
 	protected void defineSynchedData() {
@@ -104,6 +110,10 @@ public class RobotEnemy extends Monster {
 	public int getAttackType() {
 		return this.entityData.get(ATTACK_TYPE);
 	}
+	
+    public static boolean canRobotSpawn(EntityType<? extends RobotEnemy> animal, LevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, Random random) {
+        return levelAccessor.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK) && levelAccessor.getRawBrightness(pos, 0) > 8 && levelAccessor.canSeeSky(pos);
+    }
 
 	public void setAttackType(int tick) {
 		this.entityData.set(ATTACK_TYPE, tick);

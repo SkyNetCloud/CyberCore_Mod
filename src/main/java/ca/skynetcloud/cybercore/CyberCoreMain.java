@@ -4,11 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ca.skynetcloud.cybercore.init.BlockInit;
-import ca.skynetcloud.cybercore.init.RenderInit;
-import ca.skynetcloud.cybercore.init.ScreenInit;
 import ca.skynetcloud.cybercore.item.enchantment.EnchantmentSoulbound;
 import ca.skynetcloud.cybercore.util.crafting.ModedRecipeTypes;
-import ca.skynetcloud.cybercore.util.networking.CyberCorePacketHandler;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
 import ca.skynetcloud.cybercore.util.networking.helper.Names;
 import ca.skynetcloud.cybercore.world.gen.OreGeneration;
@@ -45,8 +42,8 @@ public class CyberCoreMain {
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {
-		RenderInit.registerEntityRenderer();
-		ScreenInit.registerGUI();
+		
+
 		ItemBlockRenderTypes.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.cutout());
 		CyberCoreMain.LOGGER.info("Client Event Loadded");
@@ -55,7 +52,6 @@ public class CyberCoreMain {
 	private void setup(final FMLCommonSetupEvent event) {
 
 		new ModedRecipeTypes();
-		CyberCorePacketHandler.register();
 
 		CyberCoreMain.LOGGER.info("Common Event Loadded");
 

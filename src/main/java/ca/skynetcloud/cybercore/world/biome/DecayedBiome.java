@@ -4,20 +4,23 @@ import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.init.EntityInit;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.Features;
-import net.minecraft.data.worldgen.Features.Decorators;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings;
-import net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.HeightmapConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoiseDependantDecoratorConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
 import net.minecraft.world.level.levelgen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.level.levelgen.surfacebuilders.SurfaceBuilderBaseConfiguration;
@@ -37,24 +40,25 @@ public class DecayedBiome {
 							.configured(new SurfaceBuilderBaseConfiguration(Blocks.GRAVEL.defaultBlockState(),
 									Blocks.STONE.defaultBlockState(), Blocks.STONE.defaultBlockState())));
 			biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, Feature.TREE
-					.configured((new TreeConfiguration(new SimpleStateProvider(Blocks.OAK_LOG.defaultBlockState()),
+					.configured(new TreeConfiguration.TreeConfigurationBuilder(
+							new SimpleStateProvider(Blocks.OAK_LOG.defaultBlockState()), new FancyTrunkPlacer(9, 5, 0),
 							new SimpleStateProvider(Blocks.OAK_LEAVES.defaultBlockState()),
-							new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1))).ignoreVines().build())
-					.decorated(Features.Decorators.HEIGHTMAP_SQUARE)
-					.decorated(Decorators.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));
+							new SimpleStateProvider(Blocks.OAK_SAPLING.defaultBlockState()),
+							new FancyFoliagePlacer(ConstantInt.of(3), ConstantInt.of(6), 4),
+							new TwoLayersFeatureSize(0, 3, 0)).build())
+					.decorated(FeatureDecorator.HEIGHTMAP
+							.configured(new HeightmapConfiguration(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES)))
+					.squared());
 			biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
 					Feature.RANDOM_PATCH.configured(Features.Configs.DEFAULT_GRASS_CONFIG)
-							.decorated(FeatureDecorator.HEIGHTMAP_SPREAD_DOUBLE).decorated(FeatureDecorator.COUNT_NOISE
+							.decorated(FeatureDecorator.COUNT_NOISE
 									.configured(new NoiseDependantDecoratorConfiguration(-0.8D, 5, 4))));
-			biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-					Feature.FLOWER.configured(Features.Configs.DEFAULT_FLOWER_CONFIG)
-							.decorated(Features.Decorators.ADD_32).decorated(Features.Decorators.HEIGHTMAP_SQUARE)
-							.count(5));
+
 			BiomeDefaultFeatures.addDefaultCarvers(biomeGenerationSettings);
 			BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
 			BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
 			MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder().setPlayerCanSpawn();
-			mobSpawnInfo.addSpawn(MobCategory.MONSTER, new SpawnerData(EntityInit.RoBot, 20, 4, 4));
+			mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.RoBot, 20, 4, 4));
 			biome = new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN)
 					.biomeCategory(Biome.BiomeCategory.FOREST).depth(0.1f).scale(0.2f).temperature(0.5f).downfall(0.5f)
 					.specialEffects(effects).mobSpawnSettings(mobSpawnInfo.build())

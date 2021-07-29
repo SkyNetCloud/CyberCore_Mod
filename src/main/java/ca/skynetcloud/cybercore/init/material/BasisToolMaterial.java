@@ -2,9 +2,8 @@ package ca.skynetcloud.cybercore.init.material;
 
 import java.util.function.Supplier;
 
-import javax.swing.UIDefaults.LazyValue;
-
 import ca.skynetcloud.cybercore.init.ItemInit;
+import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -24,7 +23,10 @@ public class BasisToolMaterial {
 		private final float efficiency;
 		private final float attackDamage;
 		private final int enchantability;
+		@SuppressWarnings("deprecation")
+		private final LazyLoadedValue<Ingredient> repair;
 
+		@SuppressWarnings("deprecation")
 		public ToolMaterial(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability,
 				Supplier<Ingredient> supplier) {
 			this.harvestLevel = harvestLevel;
@@ -32,6 +34,7 @@ public class BasisToolMaterial {
 			this.efficiency = efficiency;
 			this.attackDamage = (float) attackDamage;
 			this.enchantability = enchantability;
+			this.repair = new LazyLoadedValue<Ingredient>(supplier);
 
 		}
 
@@ -60,6 +63,7 @@ public class BasisToolMaterial {
 			return enchantability;
 		}
 
+		@SuppressWarnings("deprecation")
 		@Override
 		public Ingredient getRepairIngredient() {
 			return repair.get();

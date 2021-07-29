@@ -1,7 +1,8 @@
 package ca.skynetcloud.cybercore.block.blocks.slab.color;
 
 import ca.skynetcloud.cybercore.block.blocks.slab.Slab_Block;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item.Properties;
 
 public class SlabColor extends Slab_Block {
 

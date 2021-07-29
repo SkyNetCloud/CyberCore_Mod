@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "cybercore:blocks/cyber_deepslate_ore"
+	}
+}

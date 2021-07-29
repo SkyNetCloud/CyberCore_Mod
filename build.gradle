@@ -103,7 +103,7 @@ minecraft {
 
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.17.1-37.0.10'
+    minecraft 'net.minecraftforge:forge:1.17.1-37.0.13'
     
 
      
@@ -118,9 +118,9 @@ curseforge {
             
             changelog = file("CyberCore-${version}-changelog.txt")
             
-            releaseType = 'release'
+            releaseType = 'beta'
             
-            addGameVersion '1.16.5'
+            addGameVersion '1.17.1'
             
             mainArtifact(jar) {
                 displayName = "CyberCore ${version}"

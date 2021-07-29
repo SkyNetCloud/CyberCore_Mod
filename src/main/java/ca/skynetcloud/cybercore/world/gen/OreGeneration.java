@@ -13,14 +13,23 @@ public class OreGeneration {
 
 	public static void generateOres(final BiomeLoadingEvent event) {
 
-		generateOre(event.getGeneration(), OreConfiguration.Predicates.NATURAL_STONE,
-				BlockInit.DARK_STEEL_ORE.defaultBlockState(), 5, 11, 41, 24);
+		generateOre(event.getGeneration(), OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES,
+				BlockInit.DARK_STEEL_DeepSlate_ORE.defaultBlockState(), 20, 11, 41, 24);
 
-		generateOre(event.getGeneration(), OreConfiguration.Predicates.NATURAL_STONE,
-				BlockInit.CYBER_ORE.defaultBlockState(), 5, 1, 34, 15);
+		generateOre(event.getGeneration(), OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES,
+				BlockInit.CYBER_DeepSlate_ORE.defaultBlockState(), 20, 1, 34, 15);
 
-		generateOre(event.getGeneration(), OreConfiguration.Predicates.NATURAL_STONE,
-				BlockInit.RUBY_ORE.defaultBlockState(), 5, 2, 20, 11);
+		generateOre(event.getGeneration(), OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES,
+				BlockInit.RUBY_DeepSlate_ORE.defaultBlockState(), 20, 2, 20, 10);
+
+		generateOre(event.getGeneration(), OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
+				BlockInit.DARK_STEEL_ORE.defaultBlockState(), 20, 11, 11, 10);
+
+		generateOre(event.getGeneration(), OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
+				BlockInit.CYBER_ORE.defaultBlockState(), 20, 11, 11, 15);
+
+		generateOre(event.getGeneration(), OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
+				BlockInit.RUBY_ORE.defaultBlockState(), 20, 11, 11, 11);
 
 	}
 
