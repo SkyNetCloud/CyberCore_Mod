@@ -33,6 +33,6 @@ public class EntityInit {
 		entity.setRegistryName(location);
 		ENTITIES.add(entity);
 		return entity;
-	}
+	} 
 
 }
