@@ -37,7 +37,7 @@ public class DecayedBiome {
 					.build();
 			BiomeGenerationSettings.Builder biomeGenerationSettings = new BiomeGenerationSettings.Builder()
 					.surfaceBuilder(SurfaceBuilder.DEFAULT
-							.configured(new SurfaceBuilderBaseConfiguration(Blocks.GRAVEL.defaultBlockState(),
+							.configured(new SurfaceBuilderBaseConfiguration(Blocks.GRASS_BLOCK.defaultBlockState(),
 									Blocks.STONE.defaultBlockState(), Blocks.STONE.defaultBlockState())));
 			biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, Feature.TREE
 					.configured(new TreeConfiguration.TreeConfigurationBuilder(

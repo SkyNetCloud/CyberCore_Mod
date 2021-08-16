@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.world.item.ItemStack;
 
-
 public class ItemStackWithRandomSize {
 
 	private final ItemStack stack;

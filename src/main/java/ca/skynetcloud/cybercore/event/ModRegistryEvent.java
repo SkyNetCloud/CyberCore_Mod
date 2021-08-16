@@ -1,6 +1,7 @@
 package ca.skynetcloud.cybercore.event;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
+import ca.skynetcloud.cybercore.init.BlockEntityInit;
 import ca.skynetcloud.cybercore.init.BlockInit;
 import ca.skynetcloud.cybercore.init.ItemInit;
 import ca.skynetcloud.cybercore.init.SoundInit;
@@ -13,6 +14,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -31,7 +33,7 @@ public class ModRegistryEvent {
 
 		event.getRegistry().register(BlockInit.LETTUCE_CROP);
 		event.getRegistry().register(BlockInit.TOMATO_CROP);
-		
+
 		event.getRegistry().register(BlockInit.CYBER_ORE);
 		event.getRegistry().register(BlockInit.RUBY_ORE);
 		event.getRegistry().register(BlockInit.DARK_STEEL_ORE);
@@ -54,6 +56,14 @@ public class ModRegistryEvent {
 		ItemInit.registerItems(event);
 
 		CyberCoreMain.LOGGER.info(ChatFormatting.BLUE + "Items Loaded");
+	}
+
+	@SubscribeEvent
+	public static void registerTileEntityType(RegistryEvent.Register<BlockEntityType<?>> event) {
+
+		BlockEntityInit.registerTileEntities(event);
+
+		CyberCoreMain.LOGGER.info(ChatFormatting.BLUE + "TileEntityTypes Loaded");
 	}
 
 	@SubscribeEvent

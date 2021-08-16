@@ -233,15 +233,17 @@ public class CyberConfig {
 
 			playDeathSound = builder.comment("Whether or not Robot death sound is on or off Default: true")
 					.translation(CONFIG_PREFIX + "playDeathSound").define("playDeathSound", true);
-/*
-			SkyNetCloudMobsSetting = builder.comment(
-					"Mobs Setting for the User [SkyNetCloud]  [This doesn't aply to normal player unless your in the same server] Default: true")
-					.translation(CONFIG_PREFIX + "SkyNetCloudMobsSetting").define("SkyNetCloudMobsSetting", true);
-
-			NikoNeekoMobsSetting = builder.comment(
-					"Mobs Setting for the User [NikoNeeko] [This doesn't aply to normal player unless your in the same server] Default: true")
-					.translation(CONFIG_PREFIX + "NikoNeekoMobsSetting").define("NikoNeekoMobsSetting", true);
-*/
+			/*
+			 * SkyNetCloudMobsSetting = builder.comment(
+			 * "Mobs Setting for the User [SkyNetCloud]  [This doesn't aply to normal player unless your in the same server] Default: true"
+			 * ) .translation(CONFIG_PREFIX +
+			 * "SkyNetCloudMobsSetting").define("SkyNetCloudMobsSetting", true);
+			 * 
+			 * NikoNeekoMobsSetting = builder.comment(
+			 * "Mobs Setting for the User [NikoNeeko] [This doesn't aply to normal player unless your in the same server] Default: true"
+			 * ) .translation(CONFIG_PREFIX +
+			 * "NikoNeekoMobsSetting").define("NikoNeekoMobsSetting", true);
+			 */
 			builder.pop();
 
 			builder.push("Durability Drop Values");

@@ -12,7 +12,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-@SuppressWarnings("deprecation")
 public enum CustomArmorMaterial implements ArmorMaterial {
 
 	Ruby("ruby", 5, new int[] { 1, 2, 3, 1 }, 15, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {
@@ -44,7 +43,7 @@ public enum CustomArmorMaterial implements ArmorMaterial {
 		this.soundEvent = soundEvent;
 		this.toughness = toughness;
 		this.knockback = knockback;
-		this.repairMaterial = new LazyLoadedValue<Ingredient>(repairMaterial);
+		this.repairMaterial = new LazyLoadedValue<>(repairMaterial);
 	}
 
 	@Override
@@ -71,7 +70,6 @@ public enum CustomArmorMaterial implements ArmorMaterial {
 		return this.soundEvent;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public Ingredient getRepairIngredient() {
 

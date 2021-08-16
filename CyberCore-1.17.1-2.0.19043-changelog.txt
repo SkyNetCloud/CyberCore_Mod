@@ -1,7 +1,6 @@
 Mod Build: 1.15 - June 30 2021
 	SkyNetCloud:
-	  Fixed Slabs and Colored Slabs Texturs & Crafting Recipes
-	  Fixed ElectiFence and Colored ElectiFence Texturs & Crafting Recipes
+       Remove all Tech Block and Mobs and Tiller tool [will be back soon as I can find out how to fix them for 1.17.1]
 	  
 	 
 		

@@ -2,12 +2,16 @@ package ca.skynetcloud.cybercore.init;
 
 import static ca.skynetcloud.cybercore.CyberCoreMain.MODID;
 import static ca.skynetcloud.cybercore.util.networking.helper.Names.CHEESE_NAME;
+import static ca.skynetcloud.cybercore.util.networking.helper.Names.CYBER_AXE;
 import static ca.skynetcloud.cybercore.util.networking.helper.Names.CYBER_BOOTS_NAME;
 import static ca.skynetcloud.cybercore.util.networking.helper.Names.CYBER_CHESTPLATE_NAME;
 import static ca.skynetcloud.cybercore.util.networking.helper.Names.CYBER_HELMET_NAME;
+import static ca.skynetcloud.cybercore.util.networking.helper.Names.CYBER_HOE;
 import static ca.skynetcloud.cybercore.util.networking.helper.Names.CYBER_INGOT;
 import static ca.skynetcloud.cybercore.util.networking.helper.Names.CYBER_LEGGINGS_NAME;
 import static ca.skynetcloud.cybercore.util.networking.helper.Names.CYBER_PICKAXE;
+import static ca.skynetcloud.cybercore.util.networking.helper.Names.CYBER_SHOVEL;
+import static ca.skynetcloud.cybercore.util.networking.helper.Names.CYBER_SWORD;
 import static ca.skynetcloud.cybercore.util.networking.helper.Names.DARK_STEEL_AXE;
 import static ca.skynetcloud.cybercore.util.networking.helper.Names.DARK_STEEL_BOOTS_NAME;
 import static ca.skynetcloud.cybercore.util.networking.helper.Names.DARK_STEEL_CHESTPLATE_NAME;
@@ -76,7 +80,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -102,6 +105,7 @@ public class ItemInit {
 
 	public static Enchantment Soul_Bound = new EnchantmentSoulbound();
 
+
 	public static Item planter = new ItemPlanter(new Properties().tab(CyberCoreTab.instance))
 			.setRegistryName(MODID + ":planter");
 
@@ -120,21 +124,21 @@ public class ItemInit {
 
 	public static BlockItem ruby_block = new BlockItemCore(BlockInit.RUBY_BLOCK);
 
+	public static BlockItem color_changer = new BlockItemCore(BlockInit.C_Changer_Block);
+
+	public static BlockItem power_cube = new BlockItemCore(BlockInit.Battery);
+
 	public static BlockItem dark_steel_block = new BlockItemCore(BlockInit.DARK_STEEL_BLOCK);
 
 	public static BlockItem lettuce_crop = new BlockItemCore(BlockInit.LETTUCE_CROP);
+
+	public static BlockItem power_furnace_block = new BlockItemCore(BlockInit.POWER_FURNACE_BLOCK);
 
 	public static BlockItem cyber_ore = new BlockItemCore(BlockInit.CYBER_ORE);
 
 	public static BlockItem dark_steel_ore = new BlockItemCore(BlockInit.DARK_STEEL_ORE);
 
 	public static BlockItem ruby_ore = new BlockItemCore(BlockInit.RUBY_ORE);
-
-	public static BlockItem cyber_deepslate_ore = new BlockItemCore(BlockInit.CYBER_DeepSlate_ORE);
-
-	public static BlockItem dark_steel_deepslate_ore = new BlockItemCore(BlockInit.DARK_STEEL_DeepSlate_ORE);
-
-	public static BlockItem ruby_deepslate_ore = new BlockItemCore(BlockInit.RUBY_DeepSlate_ORE);
 
 	public static BlockItem tomato_crop = new BlockItemCore(BlockInit.TOMATO_CROP);
 
@@ -144,16 +148,16 @@ public class ItemInit {
 
 	// --------------- Foood ----------- \\
 
-	public static Item tomato = new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.lettuce))
+	public static Item tomato = new Item(new Item.Properties().tab(CyberCoreTab.TAB_FOOD).food(FoodInit.lettuce))
 			.setRegistryName(TOMATO_NAME);
 
-	public static Item lettuce = new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.lettuce))
+	public static Item lettuce = new Item(new Item.Properties().tab(CyberCoreTab.TAB_FOOD).food(FoodInit.lettuce))
 			.setRegistryName(LETTUCE_NAME);
 
-	public static Item taco = new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.taco))
+	public static Item taco = new Item(new Item.Properties().tab(CyberCoreTab.TAB_FOOD).food(FoodInit.taco))
 			.setRegistryName(TACO_NAME);
 
-	public static Item cheese = new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.cheese))
+	public static Item cheese = new Item(new Item.Properties().tab(CyberCoreTab.TAB_FOOD).food(FoodInit.cheese))
 			.setRegistryName(CHEESE_NAME);
 
 	// ------------------ Cyber Tools -------------- \\
@@ -162,16 +166,16 @@ public class ItemInit {
 			new Item.Properties().tab(CyberCoreTab.instance)).setRegistryName(CYBER_PICKAXE);
 
 	public static Item cyber_axe = new CyberAxe(BasisToolMaterial.cyber_ingot, 5F,
-			new Item.Properties().tab(CyberCoreTab.instance)).setRegistryName(Names.CYBER_AXE);
+			new Item.Properties().tab(CyberCoreTab.instance)).setRegistryName(CYBER_AXE);
 
 	public static Item cyber_hoe = new CyberHoe(BasisToolMaterial.cyber_ingot, 0,
-			new Item.Properties().tab(CyberCoreTab.instance)).setRegistryName(Names.CYBER_HOE);
+			new Item.Properties().tab(CyberCoreTab.instance)).setRegistryName(CYBER_HOE);
 
 	public static Item cyber_shovel = new CyberShovel(BasisToolMaterial.cyber_ingot, 0.5F,
-			new Item.Properties().tab(CyberCoreTab.instance)).setRegistryName(Names.CYBER_SHOVEL);
+			new Item.Properties().tab(CyberCoreTab.instance)).setRegistryName(CYBER_SHOVEL);
 
 	public static Item cyber_sword = new CyberSword(BasisToolMaterial.cyber_ingot, 5,
-			new Item.Properties().tab(CyberCoreTab.instance)).setRegistryName(Names.CYBER_SWORD);
+			new Item.Properties().tab(CyberCoreTab.instance)).setRegistryName(CYBER_SWORD);
 
 	// ------------------ Ruby Tools -------------- \\
 
@@ -289,6 +293,12 @@ public class ItemInit {
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
 
+		registerItem(registry, new BlockItem(BlockInit.CABLE, new Item.Properties().tab(CyberCoreTab.power_cable)),
+				Names.CABLE);
+
+		registerItem(registry, new BlockItem(BlockInit.BLOCK_PIPE, new Item.Properties().tab(CyberCoreTab.item_cable)),
+				Names.BLOCK_PIPE);
+
 		registerItem(registry, new BlockItem(BlockInit.Fence_Block, new Item.Properties().tab(CyberCoreTab.other)),
 				Names.Fence_Block);
 
@@ -300,6 +310,21 @@ public class ItemInit {
 
 		registerItem(registry, new BlockItem(BlockInit.Slab_Block, new Item.Properties().tab(CyberCoreTab.instance)),
 				Names.Slab_Block);
+
+		IntStream.range(0, 16).forEach(i -> registerItem(registry,
+				new BlockItem(
+						ForgeRegistries.BLOCKS.getValue(
+								new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Power_Cable_Names[i])),
+						new Item.Properties().tab(CyberCoreTab.power_cable)),
+				Names.COLORED_Power_Cable_Names[i]));
+
+		IntStream.range(0, 16)
+				.forEach(i -> registerItem(registry,
+						new BlockItem(
+								ForgeRegistries.BLOCKS.getValue(
+										new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Item_TUBE_NAMES[i])),
+								new Item.Properties().tab(CyberCoreTab.item_cable)),
+						Names.COLORED_Item_TUBE_NAMES[i]));
 
 		IntStream.range(0, 16)
 				.forEach(i -> registerItem(registry,
@@ -329,27 +354,21 @@ public class ItemInit {
 								new ResourceLocation(CyberCoreMain.MODID, Names.COLORED_Fence_Gate_Block_Names[i])),
 						new Item.Properties().tab(CyberCoreTab.other)), Names.COLORED_Fence_Gate_Block_Names[i]));
 
-		// event.getRegistry().register(ItemInit.power_cube);
-		// event.getRegistry().register(ItemInit.color_changer);
+		event.getRegistry().register(ItemInit.power_cube);
+		event.getRegistry().register(ItemInit.color_changer);
 		event.getRegistry().register(ItemInit.whrechItem);
 		event.getRegistry().register(ItemInit.ruby_block);
 		event.getRegistry().register(ItemInit.dark_steel_block);
-		// event.getRegistry().register(ItemInit.power_furnace_block);
+		event.getRegistry().register(ItemInit.power_furnace_block);
 		event.getRegistry().register(ItemInit.taco_shell);
 		event.getRegistry().register(ItemInit.cyber_ore);
 		event.getRegistry().register(ItemInit.dark_steel_ore);
 		event.getRegistry().register(ItemInit.ruby_ore);
-
-		event.getRegistry().register(ItemInit.cyber_deepslate_ore);
-		event.getRegistry().register(ItemInit.dark_steel_deepslate_ore);
-		event.getRegistry().register(ItemInit.ruby_deepslate_ore);
-
 		event.getRegistry().register(ItemInit.cyber_ingot);
 		event.getRegistry().register(ItemInit.cyber_blend);
 		event.getRegistry().register(ItemInit.cyber_bits);
 		event.getRegistry().register(ItemInit.dark_steel_ingot);
 		event.getRegistry().register(ItemInit.ruby_ingot);
-		// event.getRegistry().register(ItemInit.tiller);
 		event.getRegistry().register(ItemInit.planter);
 		event.getRegistry().register(ItemInit.cheese);
 		event.getRegistry().register(ItemInit.tomato);

@@ -7,6 +7,7 @@ import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
+@SuppressWarnings("deprecation")
 public class BasisToolMaterial {
 
 	public static final Tier cyber_ingot = new ToolMaterial(5, 2059, 10.0F, 5.0F, 16,
@@ -23,10 +24,8 @@ public class BasisToolMaterial {
 		private final float efficiency;
 		private final float attackDamage;
 		private final int enchantability;
-		@SuppressWarnings("deprecation")
 		private final LazyLoadedValue<Ingredient> repair;
 
-		@SuppressWarnings("deprecation")
 		public ToolMaterial(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability,
 				Supplier<Ingredient> supplier) {
 			this.harvestLevel = harvestLevel;
@@ -35,7 +34,6 @@ public class BasisToolMaterial {
 			this.attackDamage = (float) attackDamage;
 			this.enchantability = enchantability;
 			this.repair = new LazyLoadedValue<Ingredient>(supplier);
-
 		}
 
 		@Override
@@ -63,7 +61,6 @@ public class BasisToolMaterial {
 			return enchantability;
 		}
 
-		@SuppressWarnings("deprecation")
 		@Override
 		public Ingredient getRepairIngredient() {
 			return repair.get();

@@ -3,6 +3,7 @@ package ca.skynetcloud.cybercore.util.networking.util;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import ca.skynetcloud.cybercore.util.TagUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
