@@ -4,12 +4,13 @@ import java.util.HashSet;
 
 import ca.skynetcloud.cybercore.block.blocks.PowerCube;
 import ca.skynetcloud.cybercore.block.blocks.fences.BasicElecticFence;
-import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryTileEntity;
-import ca.skynetcloud.cybercore.init.BlockEntityInit;
+import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyInventoryBlockEntity;
+
+import ca.skynetcloud.cybercore.init.CoreInit;
 import ca.skynetcloud.cybercore.item.UpgradeLvl.ItemType;
 import ca.skynetcloud.cybercore.util.container.PowerCubeCon;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
-import ca.skynetcloud.cybercore.util.networking.helper.Names;
+import ca.skynetcloud.cybercore.util.networking.helper.NameHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -21,50 +22,47 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
+public class PowerCubeBlockEntity extends CoreEnergyInventoryBlockEntity {
 
 	private int currentLvl = -1;
-	protected final ContainerData field_array = new ContainerData() {
-		public int get(int index) {
-			switch (index) {
-			case 0:
-				return PowerCubeTileEntity.this.energystorage.getEnergyStored();
-			case 1:
-				return PowerCubeTileEntity.this.energystorage.getMaxEnergyStored();
-			case 2:
-				return PowerCubeTileEntity.this.ticksPassed;
-			default:
-				return 0;
-			}
+	protected final ContainerData data = new ContainerData()
+	{
+		public int get(int index)
+		{
+			return switch (index)
+					{
+						case 0 -> PowerCubeBlockEntity.this.energystorage.getEnergyStored();
+						case 1 -> PowerCubeBlockEntity.this.energystorage.getMaxEnergyStored();
+						default -> 0;
+					};
 		}
 
-		public void set(int index, int value) {
-			switch (index) {
-			case 0:
-				PowerCubeTileEntity.this.energystorage.setEnergyStored(value);
-				break;
-			case 1:
-				PowerCubeTileEntity.this.energystorage.setEnergyMaxStored(value);
-				break;
-			case 2:
-				PowerCubeTileEntity.this.ticksPassed = value;
-				break;
+		public void set(int index, int value)
+		{
+			switch (index)
+			{
+				case 0 -> PowerCubeBlockEntity.this.energystorage.setEnergyStored(value);
+				case 1 -> PowerCubeBlockEntity.this.energystorage.setEnergyMaxStored(value);
 			}
-
 		}
-
-		public int getCount() {
-			return 3;
+		public int getCount()
+		{
+			return 2;
 		}
 	};
+	public PowerCubeBlockEntity()
+	{
+		this(BlockPos.ZERO, CoreInit.BlockInit.Battery.defaultBlockState());
+	}
 
-	public PowerCubeTileEntity(BlockPos worldPosition, BlockState blockState) {
-		super(BlockEntityInit.POWER_CUBE_TE, Config.POWERLMIT.get(), 3, worldPosition, blockState);
+	public PowerCubeBlockEntity(BlockPos worldPosition, BlockState blockState) {
+		super(CoreInit.BlockEntityInit.POWER_CUBE_TE, worldPosition, blockState, Config.POWERLMIT.get(), 4);
 	}
 
 	@Override
-	public ContainerData getIntArray() {
-		return field_array;
+	public ContainerData getContainerData()
+	{
+		return data;
 	}
 
 	@Override
@@ -93,6 +91,7 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 		}
 	}
 
+
 	@Override
 	public void doUpdate() {
 		super.doUpdate();
@@ -118,7 +117,7 @@ public class PowerCubeTileEntity extends CoreEnergyInventoryTileEntity {
 	@Override
 	public Component getDisplayName() {
 
-		return new TranslatableComponent(Names.POWER_BOX_CON_NAME);
+		return new TranslatableComponent(NameHelper.POWER_BOX_CON_NAME);
 	}
 
 	private void setPower(boolean powered) {

@@ -4,7 +4,7 @@ import java.util.List;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.CyberCoreTab;
-import ca.skynetcloud.cybercore.init.ItemInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -35,7 +35,7 @@ public class RubyPickaxe extends PickaxeItem {
 	@Override
 	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
 
-		if (stack.sameItem(new ItemStack(ItemInit.ruby_pickaxe))) {
+		if (stack.sameItem(new ItemStack(CoreInit.ItemInit.ruby_pickaxe))) {
 			tooltip.add(new TextComponent(ChatFormatting.LIGHT_PURPLE + "Seem To Be Good"));
 
 			tooltip.add(new TextComponent(
@@ -53,7 +53,7 @@ public class RubyPickaxe extends PickaxeItem {
 	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
 
 		playerIn.getCooldowns().addCooldown(this, 600);
-		if (playerIn.getItemBySlot(EquipmentSlot.MAINHAND).getItem() == ItemInit.ruby_pickaxe.asItem()) {
+		if (playerIn.getItemBySlot(EquipmentSlot.MAINHAND).getItem() == CoreInit.ItemInit.ruby_pickaxe.asItem()) {
 			if (worldIn.isClientSide) {
 				playerIn.sendMessage(new TextComponent(ChatFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
 						+ ChatFormatting.RED + "This Tool Seem To Like You"), null);

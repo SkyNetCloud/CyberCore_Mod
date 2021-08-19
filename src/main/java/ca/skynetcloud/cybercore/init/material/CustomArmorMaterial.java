@@ -2,7 +2,7 @@ package ca.skynetcloud.cybercore.init.material;
 
 import java.util.function.Supplier;
 
-import ca.skynetcloud.cybercore.init.ItemInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
@@ -15,12 +15,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public enum CustomArmorMaterial implements ArmorMaterial {
 
 	Ruby("ruby", 5, new int[] { 1, 2, 3, 1 }, 15, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {
-		return Ingredient.of(ItemInit.ruby_ingot);
+		return Ingredient.of(CoreInit.ItemInit.ruby_ingot);
 	}), Dark_Steel("dark_steel", 15, new int[] { 1, 4, 5, 2 }, 12, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {
-		return Ingredient.of(ItemInit.dark_steel_ingot);
+		return Ingredient.of(CoreInit.ItemInit.dark_steel_ingot);
 	}),
 	Cyber_Ingot("cyber_ingot", 15, new int[] { 10, 34, 25, 14 }, 9, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {
-		return Ingredient.of(ItemInit.cyber_ingot);
+		return Ingredient.of(CoreInit.ItemInit.cyber_ingot);
 	});
 
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };

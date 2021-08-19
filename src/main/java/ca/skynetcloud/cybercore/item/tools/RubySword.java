@@ -2,7 +2,7 @@ package ca.skynetcloud.cybercore.item.tools;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.CyberCoreTab;
-import ca.skynetcloud.cybercore.init.ItemInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
@@ -28,7 +28,7 @@ public class RubySword extends SwordItem {
 	@Override
 	public void onCraftedBy(ItemStack stack, Level p_77622_2_, Player p_77622_3_) {
 		if (!p_77622_2_.isClientSide()) {
-			if (stack.sameItem(new ItemStack(ItemInit.cyber_sword))) {
+			if (stack.sameItem(new ItemStack(CoreInit.ItemInit.cyber_sword))) {
 				stack.enchant(Enchantments.SHARPNESS, 5);
 				if (!HasSwordBeenMade) {
 					p_77622_3_.sendMessage(new TextComponent(ChatFormatting.GREEN + "[" + CyberCoreMain.NAME

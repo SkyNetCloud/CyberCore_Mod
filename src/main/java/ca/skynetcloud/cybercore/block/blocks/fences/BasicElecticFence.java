@@ -5,8 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import ca.skynetcloud.cybercore.init.DamageInit;
-import ca.skynetcloud.cybercore.init.SoundInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -62,12 +61,12 @@ public class BasicElecticFence extends Block {
 		if (state.getValue(ELECTRIC_POWER) > 0 && worldIn.getGameTime() % 8L == 0L) {
 			if (entityIn instanceof LivingEntity) {
 				if (worldIn.isRaining() && worldIn.canSeeSky(pos)) {
-					entityIn.hurt(DamageInit.ELECTRIC_FENCE, 5.0F);
+					entityIn.hurt(CoreInit.DamageInit.ELECTRIC_FENCE, 5.0F);
 					if (worldIn.isClientSide)
 						doCollideAnimation(pos, worldIn, 1, ParticleTypes.LARGE_SMOKE, SoundEvents.FIRE_EXTINGUISH,
 								0.75F, 50F);
 				} else {
-					entityIn.hurt(DamageInit.ELECTRIC_FENCE, 2.5F);
+					entityIn.hurt(CoreInit.DamageInit.ELECTRIC_FENCE, 2.5F);
 					if (worldIn.isClientSide)
 						doCollideAnimation(pos, worldIn, 1, ParticleTypes.SMOKE, SoundEvents.FIRE_EXTINGUISH, 0.55F,
 								20F);
@@ -99,7 +98,7 @@ public class BasicElecticFence extends Block {
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
 		if (stateIn.getValue(ELECTRIC_POWER) > 0 && rand.nextInt(350) == 1)
 			if (worldIn.isClientSide)
-				doCollideAnimation(pos, worldIn, 1, ParticleTypes.CRIT, SoundInit.ELECTRIC_FENCE_IDLE, 0.05F, 1.0F);
+				doCollideAnimation(pos, worldIn, 1, ParticleTypes.CRIT, CoreInit.SoundInit.ELECTRIC_FENCE_IDLE, 0.05F, 1.0F);
 	}
 
 	@Override

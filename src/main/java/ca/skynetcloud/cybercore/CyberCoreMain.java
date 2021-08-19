@@ -1,13 +1,13 @@
 package ca.skynetcloud.cybercore;
 
+import ca.skynetcloud.cybercore.init.CoreInit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ca.skynetcloud.cybercore.init.BlockInit;
 import ca.skynetcloud.cybercore.item.enchantment.EnchantmentSoulbound;
 import ca.skynetcloud.cybercore.util.crafting.ModedRecipeTypes;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
-import ca.skynetcloud.cybercore.util.networking.helper.Names;
+import ca.skynetcloud.cybercore.util.networking.helper.NameHelper;
 import ca.skynetcloud.cybercore.world.gen.OreGeneration;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -21,10 +21,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(Names.MODID)
+@Mod(NameHelper.MODID)
 public class CyberCoreMain {
-	public static final String NAME = Names.NAME;
-	public static final String MODID = Names.MODID;
+	public static final String NAME = NameHelper.NAME;
+	public static final String MODID = NameHelper.MODID;
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public static EnchantmentSoulbound soulbound;
@@ -42,17 +42,16 @@ public class CyberCoreMain {
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {
-		
 
-		ItemBlockRenderTypes.setRenderLayer(BlockInit.LETTUCE_CROP, RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(BlockInit.TOMATO_CROP, RenderType.cutout());
+		CoreInit.ScreensInit.registerGUI();
+		ItemBlockRenderTypes.setRenderLayer(CoreInit.BlockInit.LETTUCE_CROP, RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(CoreInit.BlockInit.TOMATO_CROP, RenderType.cutout());
 		CyberCoreMain.LOGGER.info("Client Event Loadded");
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
 
 		new ModedRecipeTypes();
-
 		CyberCoreMain.LOGGER.info("Common Event Loadded");
 
 	}

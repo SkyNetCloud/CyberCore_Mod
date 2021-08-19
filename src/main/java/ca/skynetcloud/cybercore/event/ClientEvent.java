@@ -3,7 +3,7 @@ package ca.skynetcloud.cybercore.event;
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.entites.models.ModelRobotEnemy;
 import ca.skynetcloud.cybercore.entites.render.RenderEntityRobotEnemy;
-import ca.skynetcloud.cybercore.init.EntityInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
 import ca.skynetcloud.cybercore.util.networking.handler.SoulBoundHandler;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -23,7 +23,7 @@ public class ClientEvent {
 
 	@SubscribeEvent
 	public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
-		event.registerEntityRenderer(EntityInit.RoBot, RenderEntityRobotEnemy::new);
+		event.registerEntityRenderer(CoreInit.EntityInit.RoBot, RenderEntityRobotEnemy::new);
 	}
 
 	@SubscribeEvent

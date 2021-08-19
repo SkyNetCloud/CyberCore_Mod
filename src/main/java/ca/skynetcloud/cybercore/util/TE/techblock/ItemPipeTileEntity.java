@@ -10,7 +10,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import ca.skynetcloud.cybercore.block.blocks.cables.ItemCable;
-import ca.skynetcloud.cybercore.init.BlockEntityInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig.Config;
 import ca.skynetcloud.cybercore.util.networking.handler.ItemPipeInventoryHandler;
 import ca.skynetcloud.cybercore.util.networking.helper.WorldHelper;
@@ -67,7 +67,7 @@ public class ItemPipeTileEntity extends BlockEntity {
 	}
 
 	public ItemPipeTileEntity(BlockPos worldPosition, BlockState blockState) {
-		this(BlockEntityInit.BLOCK_PIPE, worldPosition, blockState);
+		this(CoreInit.BlockEntityInit.BLOCK_PIPE, worldPosition, blockState);
 	}
 
 	/**** Getters and Setters ****/
@@ -324,7 +324,7 @@ public class ItemPipeTileEntity extends BlockEntity {
 	/**
 	 * Get an NBT compound to sync to the client with SPacketChunkData, used for
 	 * initial loading of the chunk or when many blocks change at once. This
-	 * compound comes back to you clientside in {@link handleUpdateTag}
+	 * compound comes back to you clientside in {@link //handleUpdateTag}
 	 * //handleUpdateTag just calls read by default
 	 */
 	@Override

@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import ca.skynetcloud.cybercore.init.ItemInit;
+
+import ca.skynetcloud.cybercore.init.CoreInit;
 import ca.skynetcloud.cybercore.util.TE.techblock.PowerCablesBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -114,6 +115,7 @@ public class CableBlock extends Block implements EntityBlock {
 		return shape;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		// Direction indexes are DUNSWE
@@ -122,11 +124,12 @@ public class CableBlock extends Block implements EntityBlock {
 						.min(2, state.getValue(EAST))];
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand hand,
 			BlockHitResult ray) {
 		if (!worldIn.isClientSide() && hand.equals(InteractionHand.MAIN_HAND)
-				&& player.getMainHandItem().getItem().equals(ItemInit.whrechItem)) {
+				&& player.getMainHandItem().getItem().equals(CoreInit.ItemInit.whrechItem)) {
 			Vec3 hitvec = ray.getLocation();
 			hitvec = hitvec.add(-pos.getX(), -pos.getY(), -pos.getZ());
 			VoxelShape tempshape;
@@ -150,6 +153,7 @@ public class CableBlock extends Block implements EntityBlock {
 		return InteractionResult.PASS;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldstate, boolean bool) {
 		if (!world.isClientSide() && state.getBlock() != oldstate.getBlock()) {

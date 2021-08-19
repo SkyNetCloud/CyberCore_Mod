@@ -1,6 +1,7 @@
 package ca.skynetcloud.cybercore.block.crop;
 
-import ca.skynetcloud.cybercore.init.ItemInit;
+
+import ca.skynetcloud.cybercore.init.CoreInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -47,7 +48,7 @@ public class TomatoCrop extends CropBlock {
 
 	@OnlyIn(Dist.CLIENT)
 	protected ItemLike getSeedsItem() {
-		return ItemInit.tomato_seed;
+		return CoreInit.ItemInit.tomato_seed;
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -60,7 +61,7 @@ public class TomatoCrop extends CropBlock {
 		if (!world.isClientSide) {
 			if (this.isMaxAge(state)) {
 				world.addFreshEntity(
-						new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemInit.tomato, 1)));
+						new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(CoreInit.ItemInit.tomato, 1)));
 				world.setBlock(pos, this.getStateForAge(0), 0);
 				return true;
 			}

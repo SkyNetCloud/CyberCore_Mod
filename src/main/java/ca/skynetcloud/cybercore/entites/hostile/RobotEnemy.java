@@ -2,7 +2,7 @@ package ca.skynetcloud.cybercore.entites.hostile;
 
 import java.util.Random;
 
-import ca.skynetcloud.cybercore.init.SoundInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -213,15 +213,15 @@ public class RobotEnemy extends Monster {
 	}
 
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-		return SoundInit.Robot_Hurt_Noise;
+		return CoreInit.SoundInit.Robot_Hurt_Noise;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundInit.Robot_Death_Noise;
+		return CoreInit.SoundInit.Robot_Death_Noise;
 	}
 
 	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
-		this.playSound(SoundInit.Robot_Walk_Noise, 1.0F, 1.0F);
+		this.playSound(CoreInit.SoundInit.Robot_Walk_Noise, 1.0F, 1.0F);
 	}
 
 	public void die(DamageSource p_70645_1_) {

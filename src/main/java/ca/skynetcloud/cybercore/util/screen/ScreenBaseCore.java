@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyTileEntity;
+import ca.skynetcloud.cybercore.enegry.baseclasses.CoreEnergyBlockEntity;
 import ca.skynetcloud.cybercore.util.container.BaseContainerCore;
 import ca.skynetcloud.cybercore.util.container.BaseContainerCore.SlotItemHandlerWithInfo;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -18,7 +18,7 @@ public abstract class ScreenBaseCore<T extends BaseContainerCore> extends Abstra
 	protected static final ResourceLocation TEXTURES = new ResourceLocation(
 			CyberCoreMain.MODID + ":textures/gui/container/new_lunagen.png");
 	protected final Inventory inv;
-	protected final CoreEnergyTileEntity te;
+	protected final CoreEnergyBlockEntity te;
 
 	protected abstract ResourceLocation getBackgroundTexture();
 

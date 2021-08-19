@@ -1,6 +1,7 @@
 package ca.skynetcloud.cybercore.item.armor;
 
-import ca.skynetcloud.cybercore.init.ItemInit;
+
+import ca.skynetcloud.cybercore.init.CoreInit;
 import ca.skynetcloud.cybercore.item.ArmorItemBase;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -19,10 +20,10 @@ public class DarkSteelArmor extends ArmorItemBase {
 
 	@Override
 	public void onArmorTick(ItemStack stack, Level world, Player player) {
-		if (player.getItemBySlot(EquipmentSlot.HEAD).getItem() == ItemInit.DARK_STEEL_HELMET.asItem()
-				&& player.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemInit.DARK_STEEL_CHESTPLATE.asItem()
-				&& player.getItemBySlot(EquipmentSlot.LEGS).getItem() == ItemInit.DARK_STEEL_LEGGINGS.asItem()
-				&& player.getItemBySlot(EquipmentSlot.FEET).getItem() == ItemInit.DARK_STEEL_BOOTS.asItem()) {
+		if (player.getItemBySlot(EquipmentSlot.HEAD).getItem() == CoreInit.ItemInit.DARK_STEEL_HELMET.asItem()
+				&& player.getItemBySlot(EquipmentSlot.CHEST).getItem() == CoreInit.ItemInit.DARK_STEEL_CHESTPLATE.asItem()
+				&& player.getItemBySlot(EquipmentSlot.LEGS).getItem() == CoreInit.ItemInit.DARK_STEEL_LEGGINGS.asItem()
+				&& player.getItemBySlot(EquipmentSlot.FEET).getItem() == CoreInit.ItemInit.DARK_STEEL_BOOTS.asItem()) {
 			hasSendBoundMessage = true;
 			hasEffectEnable = true;
 			if (player instanceof LivingEntity)

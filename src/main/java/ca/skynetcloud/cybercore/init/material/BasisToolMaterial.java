@@ -2,7 +2,8 @@ package ca.skynetcloud.cybercore.init.material;
 
 import java.util.function.Supplier;
 
-import ca.skynetcloud.cybercore.init.ItemInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
+
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -11,11 +12,11 @@ import net.minecraft.world.item.crafting.Ingredient;
 public class BasisToolMaterial {
 
 	public static final Tier cyber_ingot = new ToolMaterial(5, 2059, 10.0F, 5.0F, 16,
-			() -> Ingredient.of(ItemInit.cyber_ingot));
+			() -> Ingredient.of(CoreInit.ItemInit.cyber_ingot));
 	public static final Tier ruby_gem = new ToolMaterial(3, 1482, 2.9F, 2.9F, 11,
-			() -> Ingredient.of(ItemInit.ruby_ingot));
+			() -> Ingredient.of(CoreInit.ItemInit.ruby_ingot));
 	public static final Tier dark_steel_ingot = new ToolMaterial(3, 2021, 6.5F, 2.1F, 9,
-			() -> Ingredient.of(ItemInit.dark_steel_ingot));
+			() -> Ingredient.of(CoreInit.ItemInit.dark_steel_ingot));
 
 	private static class ToolMaterial implements Tier {
 

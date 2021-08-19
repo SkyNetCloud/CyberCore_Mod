@@ -1,7 +1,7 @@
 package ca.skynetcloud.cybercore.world.biome;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.init.EntityInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.Features;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -58,7 +58,7 @@ public class DecayedBiome {
 			BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
 			BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
 			MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder().setPlayerCanSpawn();
-			mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityInit.RoBot, 20, 4, 4));
+			mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(CoreInit.EntityInit.RoBot, 20, 4, 4));
 			biome = new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN)
 					.biomeCategory(Biome.BiomeCategory.FOREST).depth(0.1f).scale(0.2f).temperature(0.5f).downfall(0.5f)
 					.specialEffects(effects).mobSpawnSettings(mobSpawnInfo.build())

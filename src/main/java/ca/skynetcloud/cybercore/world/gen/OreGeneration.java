@@ -1,6 +1,6 @@
 package ca.skynetcloud.cybercore.world.gen;
 
-import ca.skynetcloud.cybercore.init.BlockInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -20,22 +20,22 @@ public class OreGeneration {
 	public static void generateOres(final BiomeLoadingEvent event) {
 
 		generateOre(event.getGeneration(), OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES,
-				BlockInit.DARK_STEEL_DeepSlate_ORE.defaultBlockState(), 12);
+				CoreInit.BlockInit.DARK_STEEL_DeepSlate_ORE.defaultBlockState(), 12);
 
 		generateOre(event.getGeneration(), OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES,
-				BlockInit.CYBER_DeepSlate_ORE.defaultBlockState(), 12);
+				CoreInit.BlockInit.CYBER_DeepSlate_ORE.defaultBlockState(), 12);
 
 		generateOre(event.getGeneration(), OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES,
-				BlockInit.RUBY_DeepSlate_ORE.defaultBlockState(), 12);
+				CoreInit.BlockInit.RUBY_DeepSlate_ORE.defaultBlockState(), 12);
 
 		generateOre(event.getGeneration(), OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
-				BlockInit.DARK_STEEL_ORE.defaultBlockState(), 12);
+				CoreInit.BlockInit.DARK_STEEL_ORE.defaultBlockState(), 12);
 
 		generateOre(event.getGeneration(), OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
-				BlockInit.CYBER_ORE.defaultBlockState(), 12);
+				CoreInit.BlockInit.CYBER_ORE.defaultBlockState(), 12);
 
 		generateOre(event.getGeneration(), OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
-				BlockInit.RUBY_ORE.defaultBlockState(), 12);
+				CoreInit.BlockInit.RUBY_ORE.defaultBlockState(), 12);
 
 	}
 

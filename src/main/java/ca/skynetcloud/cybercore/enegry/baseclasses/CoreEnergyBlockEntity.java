@@ -4,34 +4,55 @@ import ca.skynetcloud.cybercore.enegry.CyberEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.TickingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
-abstract public class CoreEnergyTileEntity extends BlockEntity implements MenuProvider {
+abstract public class CoreEnergyBlockEntity extends BlockEntity implements MenuProvider {
 
 	protected CyberEnergyStorage energystorage;
 	private LazyOptional<IEnergyStorage> energyCap;
 	public String customname;
 
-	public CoreEnergyTileEntity(BlockEntityType<?> type, int energyStorage, BlockPos pos, BlockState state) {
+	public CoreEnergyBlockEntity(BlockEntityType<?> type, int energyStorage, BlockPos pos, BlockState state) {
 		super(type, pos, state);
 		energystorage = new CyberEnergyStorage(energyStorage);
 		energyCap = LazyOptional.of(() -> energystorage);
 	}
 
-	public void tick() {
-		if (this.level != null && !this.level.isClientSide) {
-			doUpdate();
+
+	public static void tick(Level level, BlockPos pos, BlockState state, BlockEntity be)
+	{
+		if (level != null && !level.isClientSide){
+			if(be instanceof CoreEnergyBlockEntity ebe){
+				ebe.doUpdate();
+			}
 		}
+	}
+
+	public void notifyClient()
+	{
+		if (level != null && !level.isClientSide())
+		{
+			BlockState state = level.getBlockState(getBlockPos());
+			level.sendBlockUpdated(getBlockPos(), state, state, 3);
+		}
+	}
+
+	@Override
+	public Component getDisplayName()
+	{
+		return new TranslatableComponent("container." + getNameString());
 	}
 
 	public void doUpdate() {
@@ -77,8 +98,12 @@ abstract public class CoreEnergyTileEntity extends BlockEntity implements MenuPr
 	public void onSlotContentChanged() {
 
 	}
+	public abstract ContainerData getContainerData();
 
-	public abstract ContainerData getIntArray();
+	public boolean requireSyncUponOpen()
+	{
+		return false;
+	}
 
 	public String getNameString() {
 

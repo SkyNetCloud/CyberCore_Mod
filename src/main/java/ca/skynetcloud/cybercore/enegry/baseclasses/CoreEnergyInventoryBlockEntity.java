@@ -21,18 +21,17 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-abstract public class CoreEnergyInventoryTileEntity extends CoreEnergyTileEntity {
+abstract public class CoreEnergyInventoryBlockEntity extends CoreEnergyBlockEntity {
+
 	protected ItemStackHandler itemhandler;
 	protected LazyOptional<IItemHandler> inventoryCap;
 	protected int ticksPassed = 0;
-	protected int tier;
 
-	public CoreEnergyInventoryTileEntity(BlockEntityType<?> type, int energyStorage, int invSize, BlockPos pos,
-			BlockState state) {
+
+	public CoreEnergyInventoryBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int energyStorage,  int invSize) {
 		super(type, energyStorage, pos, state);
 		itemhandler = new ItemStackHandler(invSize);
 		inventoryCap = LazyOptional.of(() -> itemhandler);
-		this.tier = tier;
 	}
 
 	/**
@@ -151,6 +150,7 @@ abstract public class CoreEnergyInventoryTileEntity extends CoreEnergyTileEntity
 	public int getTotalCapacity(int capacityChipSlot) {
 		return (int) (1000 * Math.pow(10, getMarkcard(capacityChipSlot, UpgradeLvl.ItemType.CAPACITY_UPGRADE)));
 	}
+
 
 	public enum EnergyConsumptionType {
 		PER_TICK, PER_PROCESS, NONE

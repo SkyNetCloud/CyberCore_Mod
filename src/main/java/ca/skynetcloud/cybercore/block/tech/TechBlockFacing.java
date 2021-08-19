@@ -1,7 +1,9 @@
 package ca.skynetcloud.cybercore.block.tech;
 
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
@@ -17,7 +19,7 @@ public class TechBlockFacing extends TechBlockBaseSubCore {
 
 	public static final DirectionProperty FACING = DirectionalBlock.FACING;
 
-	public TechBlockFacing(Supplier<? extends BlockEntity> teCreator) {
+	public TechBlockFacing(BiFunction<BlockPos, BlockState, ? extends BlockEntity> teCreator) {
 		super(teCreator);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}

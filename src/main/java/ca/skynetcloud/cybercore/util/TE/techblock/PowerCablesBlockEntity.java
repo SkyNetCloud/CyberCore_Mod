@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import ca.skynetcloud.cybercore.init.BlockEntityInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
 import ca.skynetcloud.cybercore.util.networking.util.CableInfo;
 import ca.skynetcloud.cybercore.util.networking.util.CableInfo.StaticConnection;
 import net.minecraft.core.BlockPos;
@@ -33,7 +33,7 @@ public class PowerCablesBlockEntity extends BlockEntity {
 	}
 
 	public PowerCablesBlockEntity(BlockPos worldPosition, BlockState blockState) {
-		this(BlockEntityInit.Cable, worldPosition, blockState);
+		this(CoreInit.BlockEntityInit.Cable, worldPosition, blockState);
 	}
 
 	public void tick() {

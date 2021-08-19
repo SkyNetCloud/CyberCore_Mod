@@ -3,7 +3,7 @@ package ca.skynetcloud.cybercore.util.screen;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
-import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeTileEntity;
+import ca.skynetcloud.cybercore.util.TE.techblock.ColorChangeBlockEntity;
 import ca.skynetcloud.cybercore.util.container.ColorChangeContainer;
 import ca.skynetcloud.cybercore.util.networking.ButtonPressMessage;
 import ca.skynetcloud.cybercore.util.networking.CyberCorePacketHandler;
@@ -75,7 +75,7 @@ public class ColorChangeScreen extends ScreenBaseCore<ColorChangeContainer> {
 
 	private int getCookProgressScaled(int pixels) {
 		int i = menu.getValue(2);
-		return i != 0 ? i * pixels / ((ColorChangeTileEntity) this.te).ticksPerItem() : 0;
+		return i != 0 ? i * pixels / ((ColorChangeBlockEntity) this.te).ticksPerItem() : 0;
 	}
 
 	@SuppressWarnings("unused")

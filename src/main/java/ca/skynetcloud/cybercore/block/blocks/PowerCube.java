@@ -1,5 +1,6 @@
 package ca.skynetcloud.cybercore.block.blocks;
 
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 import ca.skynetcloud.cybercore.block.tech.TechBlockBaseSubCore;
@@ -24,7 +25,7 @@ public class PowerCube extends TechBlockBaseSubCore {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	public static final BooleanProperty SUPPLYING = BooleanProperty.create("supplying");
 
-	public PowerCube(Supplier<? extends BlockEntity> teCreator) {
+	public PowerCube(BiFunction<BlockPos, BlockState, ? extends BlockEntity> teCreator){
 		super(teCreator);
 		this.registerDefaultState(
 				this.stateDefinition.any().setValue(SUPPLYING, false).setValue(FACING, Direction.NORTH));

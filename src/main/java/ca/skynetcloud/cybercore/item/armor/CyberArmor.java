@@ -1,6 +1,7 @@
 package ca.skynetcloud.cybercore.item.armor;
 
-import ca.skynetcloud.cybercore.init.ItemInit;
+import ca.skynetcloud.cybercore.init.CoreInit;
+
 import ca.skynetcloud.cybercore.item.ArmorItemBase;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -21,10 +22,10 @@ public class CyberArmor extends ArmorItemBase {
 	@Override
 	public void onArmorTick(ItemStack stack, Level world, Player player) {
 
-		if (player.getItemBySlot(EquipmentSlot.HEAD).getItem() == ItemInit.CYBER_HELMET.asItem()
-				&& player.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemInit.CYBER_CHESTPLATE.asItem()
-				&& player.getItemBySlot(EquipmentSlot.LEGS).getItem() == ItemInit.CYBER_LEGGINGS.asItem()
-				&& player.getItemBySlot(EquipmentSlot.FEET).getItem() == ItemInit.CYBER_BOOTS.asItem()) {
+		if (player.getItemBySlot(EquipmentSlot.HEAD).getItem() == CoreInit.ItemInit.CYBER_HELMET.asItem()
+				&& player.getItemBySlot(EquipmentSlot.CHEST).getItem() == CoreInit.ItemInit.CYBER_CHESTPLATE.asItem()
+				&& player.getItemBySlot(EquipmentSlot.LEGS).getItem() == CoreInit.ItemInit.CYBER_LEGGINGS.asItem()
+				&& player.getItemBySlot(EquipmentSlot.FEET).getItem() == CoreInit.ItemInit.CYBER_BOOTS.asItem()) {
 			hasSendBoundMessage = true;
 			hasEffectEnable = true;
 			if (player instanceof LivingEntity)

@@ -4,7 +4,8 @@ import java.util.List;
 
 import ca.skynetcloud.cybercore.CyberCoreMain;
 import ca.skynetcloud.cybercore.CyberCoreTab;
-import ca.skynetcloud.cybercore.init.ItemInit;
+
+import ca.skynetcloud.cybercore.init.CoreInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -35,7 +36,7 @@ public class CyberPickaxe extends PickaxeItem {
 	@Override
 	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
 
-		if (stack.sameItem(new ItemStack(ItemInit.cyber_pickaxe))) {
+		if (stack.sameItem(new ItemStack(CoreInit.ItemInit.cyber_pickaxe))) {
 			tooltip.add(new TextComponent("Hmm someone is watching you"));
 
 			tooltip.add(
@@ -45,7 +46,7 @@ public class CyberPickaxe extends PickaxeItem {
 
 		}
 
-		if (stack.sameItem(new ItemStack(ItemInit.ruby_pickaxe))) {
+		if (stack.sameItem(new ItemStack(CoreInit.ItemInit.ruby_pickaxe))) {
 			tooltip.add(new TextComponent(ChatFormatting.LIGHT_PURPLE + "Seem To Be Good"));
 
 			tooltip.add(
@@ -56,7 +57,7 @@ public class CyberPickaxe extends PickaxeItem {
 
 		}
 
-		if (stack.sameItem(new ItemStack(ItemInit.dark_steel_pickaxe))) {
+		if (stack.sameItem(new ItemStack(CoreInit.ItemInit.dark_steel_pickaxe))) {
 			tooltip.add(
 					new TextComponent(ChatFormatting.DARK_PURPLE + "A shadow loom over you while you hold this tool"));
 
@@ -75,7 +76,7 @@ public class CyberPickaxe extends PickaxeItem {
 	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
 
 		playerIn.getCooldowns().addCooldown(this, 600);
-		if (playerIn.getItemBySlot(EquipmentSlot.MAINHAND).getItem() == ItemInit.cyber_pickaxe.asItem()) {
+		if (playerIn.getItemBySlot(EquipmentSlot.MAINHAND).getItem() == CoreInit.ItemInit.cyber_pickaxe.asItem()) {
 			if (worldIn.isClientSide) {
 				playerIn.sendMessage(new TextComponent(ChatFormatting.GREEN + "[" + CyberCoreMain.NAME + "] "
 						+ ChatFormatting.RED + "Hmm What Did It added to you"), null);

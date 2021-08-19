@@ -7,9 +7,10 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import ca.skynetcloud.cybercore.init.CoreInit;
 import com.google.common.collect.Lists;
 
-import ca.skynetcloud.cybercore.init.ItemInit;
+
 import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
@@ -59,8 +60,8 @@ public class SoulBoundHandler {
 		List<ItemEntity> retainedDrops = Lists.newArrayList();
 		for (ItemEntity eventDrop : eventDrops) {
 			ItemStack item = eventDrop.getItem();
-			if (item.isEnchanted() && EnchantmentHelper.getEnchantments(item).containsKey(ItemInit.Soul_Bound)) {
-				int level = EnchantmentHelper.getItemEnchantmentLevel(ItemInit.Soul_Bound, item);
+			if (item.isEnchanted() && EnchantmentHelper.getEnchantments(item).containsKey(CoreInit.ItemInit.Soul_Bound)) {
+				int level = EnchantmentHelper.getItemEnchantmentLevel(CoreInit.ItemInit.Soul_Bound, item);
 				double chance = 5 + (10 * (level - 1));
 				double rng = Math.random();
 				if (rng < chance) {
@@ -118,7 +119,7 @@ public class SoulBoundHandler {
 	}
 
 	private ItemStack itemEditor(ItemStack item) {
-		int level = EnchantmentHelper.getItemEnchantmentLevel(ItemInit.Soul_Bound, item);
+		int level = EnchantmentHelper.getItemEnchantmentLevel(CoreInit.ItemInit.Soul_Bound, item);
 		if (CyberConfig.Config.durabilityDrop.get()) {
 			double minimum = CyberConfig.Config.minimumDurabilityDrop.get()
 					- (CyberConfig.Config.additiveDurabilityDrop.get() * (level - 1));
@@ -155,7 +156,7 @@ public class SoulBoundHandler {
 			return item;
 		if (level > 1) {
 			Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(item);
-			enchantments.put(ItemInit.Soul_Bound, level - 1);
+			enchantments.put(CoreInit.ItemInit.Soul_Bound, level - 1);
 			EnchantmentHelper.setEnchantments(enchantments, item);
 		} else {
 			Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(item);
