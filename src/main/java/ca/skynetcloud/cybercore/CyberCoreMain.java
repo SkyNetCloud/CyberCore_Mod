@@ -1,14 +1,14 @@
 package ca.skynetcloud.cybercore;
 
-import ca.skynetcloud.cybercore.init.CoreInit;
+import ca.skynetcloud.cybercore.client.init.CoreInit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ca.skynetcloud.cybercore.item.enchantment.EnchantmentSoulbound;
-import ca.skynetcloud.cybercore.util.crafting.ModedRecipeTypes;
-import ca.skynetcloud.cybercore.util.networking.config.CyberConfig;
-import ca.skynetcloud.cybercore.util.networking.helper.NameHelper;
-import ca.skynetcloud.cybercore.world.gen.OreGeneration;
+import ca.skynetcloud.cybercore.common.item.enchantment.EnchantmentSoulbound;
+import ca.skynetcloud.cybercore.client.crafting.ModedRecipeTypes;
+import ca.skynetcloud.cybercore.client.networking.config.CyberConfig;
+import ca.skynetcloud.cybercore.client.networking.helper.NameHelper;
+import ca.skynetcloud.cybercore.client.world.gen.OreGeneration;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.common.MinecraftForge;
@@ -56,3 +56,6 @@ public class CyberCoreMain {
 
 	}
 }
+
+
+

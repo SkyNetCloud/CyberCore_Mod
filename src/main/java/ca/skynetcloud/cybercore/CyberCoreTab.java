@@ -1,8 +1,8 @@
 package ca.skynetcloud.cybercore;
 
 
-import ca.skynetcloud.cybercore.init.CoreInit;
-import ca.skynetcloud.cybercore.util.networking.helper.NameHelper;
+import ca.skynetcloud.cybercore.client.init.CoreInit;
+import ca.skynetcloud.cybercore.client.networking.helper.NameHelper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
