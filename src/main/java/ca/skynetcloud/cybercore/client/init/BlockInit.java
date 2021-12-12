@@ -1,9 +1,16 @@
 package ca.skynetcloud.cybercore.client.init;
 
 import ca.skynetcloud.cybercore.CyberCore;
+import ca.skynetcloud.cybercore.client.container.PoweredFurnaceMenu;
 import ca.skynetcloud.cybercore.client.utilities.blocks.HasItem;
+import ca.skynetcloud.cybercore.common.blocks.crops.LettuceCrop;
+import ca.skynetcloud.cybercore.common.blocks.crops.TomatoCrop;
+import ca.skynetcloud.cybercore.common.blocks.tech.PowerCube;
+import ca.skynetcloud.cybercore.common.blocks.tech.TechBaseBlock;
 import ca.skynetcloud.cybercore.common.blocks.tech.cable.ItemCable;
 import ca.skynetcloud.cybercore.common.blocks.tech.cable.PowerCable;
+import ca.skynetcloud.cybercore.common.blocks.techentity.PowerCubeBlockEntity;
+import ca.skynetcloud.cybercore.common.blocks.techentity.PoweredFurnaceBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -30,6 +37,18 @@ public class BlockInit {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, CyberCore.MODID);
 
     @HasItem
+    public static RegistryObject<Block> POWERED_FURNACE = BLOCKS.register("powered_furnace", () -> new TechBaseBlock(PoweredFurnaceBlockEntity::new));
+
+    @HasItem
+    public static RegistryObject<Block> TOMATO_CROP = BLOCKS.register("tomato_crop", () -> new TomatoCrop());
+
+    @HasItem
+    public static RegistryObject<Block> LETTUCE_CROP = BLOCKS.register("lettuce_crop", () -> new LettuceCrop());
+
+    @HasItem
+    public static RegistryObject<Block> POWER_CUBE = BLOCKS.register("power_cube", () -> new PowerCube(PowerCubeBlockEntity::new));
+
+    @HasItem
     public static RegistryObject<Block> CYBER_ORE_BLOCK = BLOCKS.register("cyber_ore", () -> new OreBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f)));
 
     @HasItem
@@ -38,10 +57,10 @@ public class BlockInit {
     @HasItem
     public static RegistryObject<Block> RUBY_ORE_BLOCK = BLOCKS.register("ruby_ore", () -> new OreBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f)));
 
-    @HasItem(isWIP = false)
+    @HasItem(isWIP = true)
     public static RegistryObject<Block> POWER_CABLE = BLOCKS.register("power_cable_block", () -> new PowerCable());
 
-    @HasItem(isWIP = false)
+    @HasItem(isWIP = true)
     public static RegistryObject<Block> ITEM_CABLE = BLOCKS.register("item_cable_block", () -> new ItemCable());
 
 

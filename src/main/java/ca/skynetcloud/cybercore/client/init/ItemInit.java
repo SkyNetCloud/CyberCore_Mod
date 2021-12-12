@@ -2,14 +2,20 @@ package ca.skynetcloud.cybercore.client.init;
 
 import ca.skynetcloud.cybercore.CyberCore;
 import ca.skynetcloud.cybercore.client.utilities.CyberCoreTab;
+import ca.skynetcloud.cybercore.common.blocks.crops.TomatoCrop;
 import ca.skynetcloud.cybercore.common.items.armor.CyberArmor;
 import ca.skynetcloud.cybercore.common.items.armor.material.ArmorMaterialWrapper;
 import ca.skynetcloud.cybercore.common.items.enchantment.EnchantmentSoulbound;
 import ca.skynetcloud.cybercore.common.items.tools.*;
+
+import ca.skynetcloud.cybercore.common.items.tools.farming.PlaterTool;
+import ca.skynetcloud.cybercore.common.items.tools.farming.TillerTool;
 import ca.skynetcloud.cybercore.common.items.tools.material.ToolMaterialWrapper;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.fmllegacy.RegistryObject;
@@ -21,6 +27,12 @@ public class ItemInit {
     public static final DeferredRegister<Enchantment> Enchantments = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, CyberCore.MODID);
 
     public static RegistryObject<Enchantment> SOUL_BOUND = Enchantments.register("soul_bound_book", () -> new EnchantmentSoulbound());
+
+    public static RegistryObject<Item> TOMATO_SEED = ITEMS.register("tomato_seed", () -> new SeedInit(BlockInit.TOMATO_CROP.get()));
+    public static RegistryObject<Item> LETTUCE_SEED = ITEMS.register("lettuce_seed", () -> new SeedInit(BlockInit.LETTUCE_CROP.get()));
+
+    public static RegistryObject<Item> TILLER_TOOL = ITEMS.register("tiller_tool", () -> new TillerTool(Tiers.GOLD, new Item.Properties().tab(CyberCoreTab.MAIN)));
+    public static RegistryObject<Item> PLATER_TOOL = ITEMS.register("plater_tool", () -> new PlaterTool(new Item.Properties().tab(CyberCoreTab.MAIN)));
 
     public static RegistryObject<Item> CYBER_HELMET = ITEMS.register("cyber_armor_head", () -> new CyberArmor(ArmorMaterialWrapper.Cyber_Ingot, "cyber", EquipmentSlot.HEAD, new Item.Properties().tab(CyberCoreTab.MAIN)));
     public static RegistryObject<Item> CYBER_CHESTPLATE = ITEMS.register("cyber_armor_chestplate", () -> new CyberArmor(ArmorMaterialWrapper.Cyber_Ingot, "cyber", EquipmentSlot.CHEST, new Item.Properties().tab(CyberCoreTab.MAIN)));
@@ -61,13 +73,10 @@ public class ItemInit {
 
     public static RegistryObject<Item> DARK_STEEL_AXE = ITEMS.register("dark_steel_axe", () -> new DarkSteelAxe(ToolMaterialWrapper.dark_steel_ingot, 3,
             new Item.Properties().tab(CyberCoreTab.MAIN)));
-    public static RegistryObject<Item> DARK_STEEL_PICKAXE = ITEMS.register("dark_steel_pickaxe", () -> new DarkSteelPickaxe(ToolMaterialWrapper.dark_steel_ingot, 3,
-            new Item.Properties().tab(CyberCoreTab.MAIN)));
-    public static RegistryObject<Item> DARK_STEEL_SHOVEL = ITEMS.register("dark_steel_shovel", () -> new DarkSteelShovel(ToolMaterialWrapper.dark_steel_ingot, 3,
-            new Item.Properties().tab(CyberCoreTab.MAIN)));
-    public static RegistryObject<Item> DARK_STEEL_SWORD = ITEMS.register("dark_steel_sword", () -> new DarkSteelSword(ToolMaterialWrapper.dark_steel_ingot, 3,
-            new Item.Properties().tab(CyberCoreTab.MAIN)));
-    public static RegistryObject<Item> DARK_STEEL_HOE = ITEMS.register("dark_steel_hoe", () -> new ca.skynetcloud.cybercore.common.item.tools.DarkSteelHoe(ToolMaterialWrapper.dark_steel_ingot, 3,
+    public static RegistryObject<Item> DARK_STEEL_PICKAXE = ITEMS.register("dark_steel_pickaxe", () -> new DarkSteelPickaxe(ToolMaterialWrapper.dark_steel_ingot, 3, new Item.Properties().tab(CyberCoreTab.MAIN)));
+    public static RegistryObject<Item> DARK_STEEL_SHOVEL = ITEMS.register("dark_steel_shovel", () -> new DarkSteelShovel(ToolMaterialWrapper.dark_steel_ingot, 3, new Item.Properties().tab(CyberCoreTab.MAIN)));
+    public static RegistryObject<Item> DARK_STEEL_SWORD = ITEMS.register("dark_steel_sword", () -> new DarkSteelSword(ToolMaterialWrapper.dark_steel_ingot, 3, new Item.Properties().tab(CyberCoreTab.MAIN)));
+    public static RegistryObject<Item> DARK_STEEL_HOE = ITEMS.register("dark_steel_hoe", () -> new DarkSteelHoe(ToolMaterialWrapper.dark_steel_ingot, 3,
             new Item.Properties().tab(CyberCoreTab.MAIN)));
 
 

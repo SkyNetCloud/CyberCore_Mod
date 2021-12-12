@@ -1,8 +1,9 @@
-package ca.skynetcloud.cybercore.client.techblock;
+package ca.skynetcloud.cybercore.common.blocks.techentity;
 
 import ca.skynetcloud.cybercore.client.container.PoweredFurnaceMenu;
-import ca.skynetcloud.cybercore.client.enegry.baseclasses.CoreEnergyInventoryBlockEntity;
-import ca.skynetcloud.cybercore.client.init.CoreInit;
+import ca.skynetcloud.cybercore.client.energy.baseclasses.PyroEnergyInventoryBlockEntity;
+import ca.skynetcloud.cybercore.client.init.BlockEntityInit;
+import ca.skynetcloud.cybercore.client.init.BlockInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -26,9 +27,9 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public class PoweredFurnaceBlockEntity extends CoreEnergyInventoryBlockEntity {
+public class PoweredFurnaceBlockEntity extends PyroEnergyInventoryBlockEntity {
 
-    public int[] tickPassed = new int[6];
+    public int[] ticksPassed = new int[6];
     public int ticks = 0;
     boolean isSmelting;
     protected ItemStackHandler dummyitemhandler = new ItemStackHandler();
@@ -46,12 +47,12 @@ public class PoweredFurnaceBlockEntity extends CoreEnergyInventoryBlockEntity {
                     {
                         case 0 -> PoweredFurnaceBlockEntity.this.energystorage.getEnergyStored();
                         case 1 -> PoweredFurnaceBlockEntity.this.energystorage.getMaxEnergyStored();
-                        case 2 -> PoweredFurnaceBlockEntity.this.tickPassed[0];
-                        case 3 -> PoweredFurnaceBlockEntity.this.tickPassed[1];
-                        case 4 -> PoweredFurnaceBlockEntity.this.tickPassed[2];
-                        case 5 -> PoweredFurnaceBlockEntity.this.tickPassed[3];
-                        case 6 -> PoweredFurnaceBlockEntity.this.tickPassed[4];
-                        case 7 -> PoweredFurnaceBlockEntity.this.tickPassed[5];
+                        case 2 -> PoweredFurnaceBlockEntity.this.ticksPassed[0];
+                        case 3 -> PoweredFurnaceBlockEntity.this.ticksPassed[1];
+                        case 4 -> PoweredFurnaceBlockEntity.this.ticksPassed[2];
+                        case 5 -> PoweredFurnaceBlockEntity.this.ticksPassed[3];
+                        case 6 -> PoweredFurnaceBlockEntity.this.ticksPassed[4];
+                        case 7 -> PoweredFurnaceBlockEntity.this.ticksPassed[5];
                         default -> 0;
                     };
         }
@@ -62,12 +63,12 @@ public class PoweredFurnaceBlockEntity extends CoreEnergyInventoryBlockEntity {
             {
                 case 0 -> PoweredFurnaceBlockEntity.this.energystorage.setEnergyStored(value);
                 case 1 -> PoweredFurnaceBlockEntity.this.energystorage.setEnergyMaxStored(value);
-                case 2 -> PoweredFurnaceBlockEntity.this.tickPassed[0] = value;
-                case 3 -> PoweredFurnaceBlockEntity.this.tickPassed[1] = value;
-                case 4 -> PoweredFurnaceBlockEntity.this.tickPassed[2] = value;
-                case 5 -> PoweredFurnaceBlockEntity.this.tickPassed[3] = value;
-                case 6 -> PoweredFurnaceBlockEntity.this.tickPassed[4] = value;
-                case 7 -> PoweredFurnaceBlockEntity.this.tickPassed[5] = value;
+                case 2 -> PoweredFurnaceBlockEntity.this.ticksPassed[0] = value;
+                case 3 -> PoweredFurnaceBlockEntity.this.ticksPassed[1] = value;
+                case 4 -> PoweredFurnaceBlockEntity.this.ticksPassed[2] = value;
+                case 5 -> PoweredFurnaceBlockEntity.this.ticksPassed[3] = value;
+                case 6 -> PoweredFurnaceBlockEntity.this.ticksPassed[4] = value;
+                case 7 -> PoweredFurnaceBlockEntity.this.ticksPassed[5] = value;
             }
         }
         public int getCount()
@@ -75,15 +76,16 @@ public class PoweredFurnaceBlockEntity extends CoreEnergyInventoryBlockEntity {
             return 8;
         }
     };
+    private int tickPassed;
 
     public PoweredFurnaceBlockEntity()
     {
-        this(BlockPos.ZERO, CoreInit.BlockInit.POWER_FURNACE_BLOCK.defaultBlockState());
+        this(BlockPos.ZERO, BlockInit.POWERED_FURNACE.get().defaultBlockState());
     }
 
     public PoweredFurnaceBlockEntity(BlockPos pos, BlockState state)
     {
-        super(CoreInit.BlockEntityInit.POWER_CUBE_TE, pos, state, 1000, 16);
+        super(BlockEntityInit.POWERED_FURNACE_BE.get(), pos, state, 1000, 16, 1);
         inputs = new RangedWrapper(itemhandler, 0,6);
         outputs = new RangedWrapper(itemhandler, 6, 12);
         inputs_provider = LazyOptional.of(() -> inputs);
@@ -114,7 +116,7 @@ public class PoweredFurnaceBlockEntity extends CoreEnergyInventoryBlockEntity {
                 ticks++;
                 if (ticks >= getTicksPerAmount())
                 {
-                    energystorage.receiveEnergy(250, false);
+                    energystorage.receiveEnergy(100 * getTicksPerAmount(), false);
                     ticks = 0;
                 }
             }
@@ -131,21 +133,21 @@ public class PoweredFurnaceBlockEntity extends CoreEnergyInventoryBlockEntity {
                 if (this.canSmelt(i))
                 {
                     isSmelting = true;
-                    tickPassed[i]++;
-                    if (tickPassed[i] >= this.ticksPerItem())
+                    ticksPassed[i]++;
+                    if (ticksPassed[i] >= this.ticksPerItem())
                     {
                         this.smeltItem(i);
-                        tickPassed[i] = 0;
+                        ticksPassed[i] = 0;
 
                     }
                 }
-                else if (tickPassed[i] > 0)
-                    tickPassed[i] = 0;
+                else if (ticksPassed[i] > 0)
+                    ticksPassed[i] = 0;
             }
             else
             {
-                if (!this.canSmelt(i) && tickPassed[i] > 0)
-                    tickPassed[i] = 0;
+                if (!this.canSmelt(i) && ticksPassed[i] > 0)
+                    ticksPassed[i] = 0;
                 break;
             }
         }
@@ -155,7 +157,7 @@ public class PoweredFurnaceBlockEntity extends CoreEnergyInventoryBlockEntity {
 
     public int getTicksPerAmount()
     {
-        return 15;
+        return 550;
     }
 
     @Override
@@ -220,7 +222,7 @@ public class PoweredFurnaceBlockEntity extends CoreEnergyInventoryBlockEntity {
     @Override
     public CompoundTag save(CompoundTag compound)
     {
-        compound.putIntArray("cooktime", tickPassed);
+        compound.putIntArray("cooktime", ticksPassed);
         return super.save(compound);
     }
 
@@ -228,7 +230,7 @@ public class PoweredFurnaceBlockEntity extends CoreEnergyInventoryBlockEntity {
     public void load(CompoundTag compound)
     {
         super.load(compound);
-        tickPassed = compound.getIntArray("cooktime");
+        ticksPassed = compound.getIntArray("cooktime");
     }
 
     @Override
@@ -241,23 +243,6 @@ public class PoweredFurnaceBlockEntity extends CoreEnergyInventoryBlockEntity {
     public AbstractContainerMenu createMenu(int id, Inventory inv, Player player)
     {
         return new PoweredFurnaceMenu(id, inv, this);
-    }
-
-    @Override
-    public int getEnergyInSlot()
-    {
-        return 13;
-    }
-
-    @Override
-    public int getEnergyOutSlot()
-    {
-        return 14;
-    }
-
-    @Override
-    public Component getDisplayName() {
-        return null;
     }
 }
 

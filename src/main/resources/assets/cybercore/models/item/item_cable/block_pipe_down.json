@@ -1,84 +1,84 @@
 {
-	"credit": "Yeet",
-	"parent": "block/cube_all",
+	"credit": "Made with Blockbench",
 	"textures": {
-		"all": "cybercore:blocks/cyber_ore"
+		"0": "cybercore:blocks/cables/item_cable",
+		"particle": "cybercore:blocks/cables/item_cable"
 	},
 	"elements": [
 		{
 			"from": [
+				7,
 				0,
-				0,
-				0
+				7
 			],
 			"to": [
-				16,
-				16,
-				16
+				9,
+				7,
+				9
 			],
 			"rotation": {
 				"angle": 0,
 				"axis": "y",
 				"origin": [
-					0.5,
-					0.5,
-					7.5
+					8,
+					7,
+					8
 				]
 			},
 			"faces": {
 				"north": {
 					"uv": [
-						0,
-						0,
-						16,
-						16
+						7,
+						7,
+						9,
+						9
 					],
-					"texture": "#all"
+					"texture": "#0"
 				},
 				"east": {
 					"uv": [
-						0,
-						0,
-						16,
-						16
+						7,
+						7,
+						8.997,
+						8.999
 					],
-					"texture": "#all"
+					"texture": "#0"
 				},
 				"south": {
 					"uv": [
-						0,
-						0,
-						16,
-						16
+						7,
+						7,
+						8.999,
+						8.999
 					],
-					"texture": "#all"
+					"texture": "#0"
 				},
 				"west": {
 					"uv": [
-						0,
-						0,
-						16,
-						16
+						7,
+						7,
+						8.999,
+						9
 					],
-					"texture": "#all"
+					"texture": "#0"
 				},
 				"up": {
 					"uv": [
-						0,
-						0,
-						16,
-						16
+						7,
+						7,
+						8.999,
+						8.999
 					],
-					"texture": "#all"
+					"texture": "#0"
 				},
 				"down": {
 					"uv": [
-						0,
-						0,
-						16,
-						16
+						7,
+						7,
+						8.999,
+						8.998
 					],
-					"texture": "#all"
+					"texture": "#0"
 				}
 			}
 		}

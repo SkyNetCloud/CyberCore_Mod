@@ -94,7 +94,6 @@ public class CyberConfig {
 		public static IntValue SpeedCardTick;
 		public static IntValue LabGenerateChance;
 		public static IntValue TILLING_RANGE;
-		public static IntValue IRRIG_RANGE;
 		public static IntValue MOISTURE;
 		public static IntValue PLANTER_RANGE;
 		public static IntValue ITEM_OUT_SIZE;
@@ -292,9 +291,7 @@ public class CyberConfig {
 			return PLANTER_RANGE.get();
 		}
 
-		public static int getIrrigationRange() {
-			return IRRIG_RANGE.get();
-		}
+		//public static int getIrrigationRange() {return IRRIG_RANGE.get();}
 
 		public static int getMoisture() {
 			return MOISTURE.get();

@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "cybercore:blocks/ruby_block",
-        "top": "cybercore:blocks/ruby_block",
-        "side": "cybercore:blocks/ruby_block"
-    }
-}
