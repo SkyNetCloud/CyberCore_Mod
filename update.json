@@ -1,4 +1,3 @@
-  
 {
 	"homepage": "https://www.curseforge.com/minecraft/mc-mods/cybercore-mod",
 	"promos": {
@@ -9,7 +8,15 @@
 		"1.16.4-lastest": "1.11.19041",
 		"1.16.4-recommended": "1.10.19041",
 		"1.16.5-lastest": "1.15.19042",
-		"1.16.5-recommended": "1.15.19042"
+		"1.16.5-recommended": "1.15.19042",
+		"1.17.1-lastest": "2.1.19043",
+		"1.17.1-recommended": "2.1.19043"
+	},
+	"1.18.1": {
+		"3.0.19043": "See https://www.curseforge.com/minecraft/mc-mods/cybercore-mod/files for detailed information."
+	},
+	"1.17.1": {
+	   	"2.0.19043": "See https://www.curseforge.com/minecraft/mc-mods/cybercore-mod/files for detailed information."
 	},
 	"1.16.5": {
 		"1.15.19042": "See https://www.curseforge.com/minecraft/mc-mods/cybercore-mod/files for detailed information.",
