@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABA",
+		"BCB",
+		"ABA"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:sugar"
+		},
+		"B": {
+			"item": "cybercore:speed_upgrade_card_1"
+		},
+		"C": {
+			"item": "minecraft:redstone"
+		}
+	},
+	"result": {
+		"item": "cybercore:speed_upgrade_card_2",
+		"count": 1
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:smelting",
+	"ingredient": {
+		"item": "cybercore:cyber_blend"
+	},
+	"result": "cybercore:cyber_ingot",
+	"experience": 1.0,
+	"cookingtime": 200
+}

@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:smelting",
+	"ingredient": {
+		"item": "cybercore:dark_steel_ore"
+	},
+	"result": "cybercore:dark_steel_ingot",
+	"experience": 1.0,
+	"cookingtime": 200
+}

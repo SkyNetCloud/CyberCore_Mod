@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"DDD",
+		" S ",
+		" S "
+	],
+	"key": {
+		"D": {
+			"item": "cybercore:dark_steel_ingot"
+		},
+		"S": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"item": "cybercore:dark_steel_pickaxe"
+	}
+}

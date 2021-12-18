@@ -1,0 +1,7 @@
+{
+	"replace": false,
+	"values": [
+		"#cybercore:seeds/lettuce",
+		"#cybercore:seeds/tomato"
+	]
+}

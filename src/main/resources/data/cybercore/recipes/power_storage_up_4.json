@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"BAB",
+		"CBC",
+		"BAB"
+	],
+	"key": {
+		"A": {
+			"item": "cybercore:ruby_ingot"
+		},
+		"B": {
+			"item": "cybercore:power_storage_card_3"
+		},
+		"C": {
+			"item": "cybercore:dark_steel_ingot"
+		}
+	},
+	"result": {
+		"item": "cybercore:power_storage_card_4",
+		"count": 1
+	}
+}
