@@ -4,9 +4,10 @@ import ca.skynetcloud.cybercore.CyberCore;
 import ca.skynetcloud.cybercore.client.container.PowerCubeMenu;
 import ca.skynetcloud.cybercore.client.container.PoweredFurnaceMenu;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.fmllegacy.RegistryObject;
+
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ContainerInit {
 

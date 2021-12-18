@@ -2,25 +2,21 @@ package ca.skynetcloud.cybercore.client.init;
 
 import ca.skynetcloud.cybercore.CyberCore;
 import ca.skynetcloud.cybercore.client.utilities.CyberCoreTab;
-import ca.skynetcloud.cybercore.common.blocks.crops.TomatoCrop;
+import ca.skynetcloud.cybercore.common.items.ItemTier;
 import ca.skynetcloud.cybercore.common.items.armor.CyberArmor;
 import ca.skynetcloud.cybercore.common.items.armor.material.ArmorMaterialWrapper;
 import ca.skynetcloud.cybercore.common.items.enchantment.EnchantmentSoulbound;
 import ca.skynetcloud.cybercore.common.items.tools.*;
-
 import ca.skynetcloud.cybercore.common.items.tools.farming.PlaterTool;
 import ca.skynetcloud.cybercore.common.items.tools.farming.TillerTool;
 import ca.skynetcloud.cybercore.common.items.tools.material.ToolMaterialWrapper;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, CyberCore.MODID);
@@ -79,6 +75,15 @@ public class ItemInit {
     public static RegistryObject<Item> DARK_STEEL_HOE = ITEMS.register("dark_steel_hoe", () -> new DarkSteelHoe(ToolMaterialWrapper.dark_steel_ingot, 3,
             new Item.Properties().tab(CyberCoreTab.MAIN)));
 
+    public static RegistryObject<Item> SOLARLENS_TIER_1 = ITEMS.register("solarlens_1", () -> new ItemTier(new Item.Properties().tab(CyberCoreTab.MAIN), 1, ItemTier.ItemType.SOLAR_LENS));
+    public static RegistryObject<Item> SOLARLENS_TIER_2 = ITEMS.register("solarlens_2", () -> new ItemTier(new Item.Properties().tab(CyberCoreTab.MAIN), 2, ItemTier.ItemType.SOLAR_LENS));
+    public static RegistryObject<Item> SOLARLENS_TIER_3 = ITEMS.register("solarlens_3", () -> new ItemTier(new Item.Properties().tab(CyberCoreTab.MAIN), 3, ItemTier.ItemType.SOLAR_LENS));
+    public static RegistryObject<Item> SOLARLENS_TIER_4 = ITEMS.register("solarlens_4", () -> new ItemTier(new Item.Properties().tab(CyberCoreTab.MAIN), 4, ItemTier.ItemType.SOLAR_LENS));
+
+    public static RegistryObject<Item> SPEED_UP_TIER_1 = ITEMS.register("speed_up_1", () -> new ItemTier(new Item.Properties().tab(CyberCoreTab.MAIN), 1, ItemTier.ItemType.SPEED_UP));
+    public static RegistryObject<Item> SPEED_UP_TIER_2 = ITEMS.register("speed_up_2", () -> new ItemTier(new Item.Properties().tab(CyberCoreTab.MAIN), 2, ItemTier.ItemType.SPEED_UP));
+    public static RegistryObject<Item> SPEED_UP_TIER_3 = ITEMS.register("speed_up_3", () -> new ItemTier(new Item.Properties().tab(CyberCoreTab.MAIN), 3, ItemTier.ItemType.SPEED_UP));
+    public static RegistryObject<Item> SPEED_UP_TIER_4 = ITEMS.register("speed_up_4", () -> new ItemTier(new Item.Properties().tab(CyberCoreTab.MAIN), 4, ItemTier.ItemType.SPEED_UP));
 
     public static RegistryObject<Item> TACO = ITEMS.register("taco", () -> new Item(new Item.Properties().tab(CyberCoreTab.MAIN).food(FoodInit.TACO)));
     public static RegistryObject<Item> CHEESE = ITEMS.register("cheese", () -> new Item(new Item.Properties().tab(CyberCoreTab.MAIN).food(FoodInit.CHEESE)));

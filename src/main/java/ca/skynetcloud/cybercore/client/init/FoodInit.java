@@ -1,9 +1,6 @@
 package ca.skynetcloud.cybercore.client.init;
 
-import ca.skynetcloud.cybercore.client.utilities.CyberCoreTab;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Item;
-import net.minecraftforge.fmllegacy.RegistryObject;
 
 public class FoodInit {
 

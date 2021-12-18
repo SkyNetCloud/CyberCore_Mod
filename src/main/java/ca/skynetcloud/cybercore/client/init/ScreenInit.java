@@ -1,6 +1,5 @@
 package ca.skynetcloud.cybercore.client.init;
 
-import ca.skynetcloud.cybercore.client.container.PoweredFurnaceMenu;
 import ca.skynetcloud.cybercore.client.gui.PowerCubeScreen;
 import ca.skynetcloud.cybercore.client.gui.PoweredFunranceMenuScreen;
 import net.minecraft.client.gui.screens.MenuScreens;

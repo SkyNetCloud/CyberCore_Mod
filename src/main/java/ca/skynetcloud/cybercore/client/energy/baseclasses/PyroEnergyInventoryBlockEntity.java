@@ -1,13 +1,11 @@
 package ca.skynetcloud.cybercore.client.energy.baseclasses;
 
 import ca.skynetcloud.cybercore.client.utilities.CyberConfig;
+import ca.skynetcloud.cybercore.common.items.ItemTier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -70,6 +68,8 @@ abstract public class PyroEnergyInventoryBlockEntity extends PyroEnergyBlockEnti
         return super.getCapability(capability, facing);
     }
 
+
+
     @Override
     public CompoundTag save(CompoundTag compound)
     {
@@ -89,6 +89,28 @@ abstract public class PyroEnergyInventoryBlockEntity extends PyroEnergyBlockEnti
             itemhandler.setSize(slotamount);// prevent crash when invsize changed while update
         this.ticksPassed = compound.getInt("tickspassed");
     }
+
+    public int getUpgradeTier(ItemTier.ItemType itemType)
+    {
+        return getUpgradeTier(getUpgradeSlot(), itemType);
+    }
+
+    protected abstract int getUpgradeSlot();
+
+    public int getUpgradeTier(int slot, ItemTier.ItemType itemType)
+    {
+        if (slot == -1)
+            return 0;
+        ItemStack stack = itemhandler.getStackInSlot(slot);
+        if (!stack.isEmpty() && stack.getItem() instanceof ItemTier tieritem)
+        {
+            if (tieritem.getItemType() == itemType)
+                return tieritem.getTier();
+        }
+        return 0;
+    }
+
+
 
     public int energyPerAction()
     {

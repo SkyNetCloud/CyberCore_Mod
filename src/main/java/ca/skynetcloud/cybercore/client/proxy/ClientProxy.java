@@ -1,16 +1,14 @@
 package ca.skynetcloud.cybercore.client.proxy;
 
+import com.google.common.collect.ImmutableSet;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraftforge.fml.DistExecutor;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-
-import com.google.common.collect.ImmutableSet;
-
-
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraftforge.fml.DistExecutor;
 
 public class ClientProxy {
     public static Optional<ClientProxy> INSTANCE = DistExecutor

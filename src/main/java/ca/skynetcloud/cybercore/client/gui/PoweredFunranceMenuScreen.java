@@ -24,10 +24,12 @@ public class PoweredFunranceMenuScreen extends ScreenBaseCore<PoweredFurnaceMenu
     @Override
     protected void renderBg(PoseStack mStack, float partialTicks, int mouseX, int mouseY) {
         super.renderBg(mStack, partialTicks, mouseX, mouseY);
+        this.imageWidth = 225;
+        this.imageHeight = 197;
 
         for (int p = 0; p < 6; p++) {
             int l = this.getCookProgressScaled(p, 15);
-            blit(mStack, this.leftPos + 24 + p * 27, this.topPos + 46, 3, 200, 12, l);
+            blit(mStack, this.leftPos + 25 + p * 31, this.topPos + 46, 3, 200, 12, l);
         }
     }
 

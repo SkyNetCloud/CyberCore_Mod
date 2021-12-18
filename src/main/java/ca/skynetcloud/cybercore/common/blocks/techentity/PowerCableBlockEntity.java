@@ -1,24 +1,24 @@
 package ca.skynetcloud.cybercore.common.blocks.techentity;
 
-import ca.skynetcloud.cybercore.common.blocks.techentity.subclasses.PowerCableInfo;
-import ca.skynetcloud.cybercore.common.blocks.techentity.subclasses.PowerCableInfo.Connection;
 import ca.skynetcloud.cybercore.client.init.BlockEntityInit;
 import ca.skynetcloud.cybercore.client.init.BlockInit;
-
+import ca.skynetcloud.cybercore.common.blocks.techentity.subclasses.PowerCableInfo;
+import ca.skynetcloud.cybercore.common.blocks.techentity.subclasses.PowerCableInfo.Connection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 

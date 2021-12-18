@@ -1,30 +1,30 @@
 package ca.skynetcloud.cybercore.client.utilities;
 
+import ca.skynetcloud.cybercore.CyberCore;
+import ca.weblite.objc.Proxy;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.enchantment.Enchantment.Rarity;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
+import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
+import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
+import net.minecraftforge.common.ForgeConfigSpec.IntValue;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import ca.skynetcloud.cybercore.CyberCore;
-
-import net.minecraft.resources.ResourceLocation;
-
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.registries.ForgeRegistries;
-import org.apache.commons.lang3.tuple.Pair;
-import net.minecraft.world.item.enchantment.Enchantment.Rarity;
 import static net.minecraft.world.item.enchantment.Enchantment.Rarity.RARE;
-
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
-import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
-import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
-import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class CyberConfig {
 
     public static final ForgeConfigSpec CONFIG_SPEC;
     public static final Config CONFIG;
     private static final String CONFIG_PREFIX = "gui." + CyberCore.MODID + ".config.";
+    //public static Proxy rubyOrePerChunk;
 
     static {
         final Pair<Config, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Config::new);
@@ -37,6 +37,50 @@ public class CyberConfig {
     public static void bake() {
         Enchantment.bake();
         CyberConfig.bake();
+    }
+
+    public static class OreConfig {
+        public static int cyberOreVeinSize;
+        public static int cyberOrePerChunk;
+        public static int cyberOreMinHeight;
+        public static int cyberOreMaxHeight;
+
+        public static int rubyOreVeinSize;
+        public static int rubyOrePerChunk;
+        public static int rubyOreMinHeight;
+        public static int rubyOreMaxHeight;
+
+
+        public static int darksteelOreVeinSize;
+        public static int darksteelOrePerChunk;
+        public static int darksteelOreMinHeight;
+        public static int darksteelOreMaxHeight;
+
+        public static boolean cyberOreGeneration;
+        public static boolean rubyOreGeneration;
+        public static boolean darksteelOreGeneration;
+
+        public static void bake() {
+            cyberOrePerChunk = Config.cyberOrePerChunk.get();
+            cyberOreVeinSize = Config.cyberOreVeinSize.get();
+            cyberOreMinHeight = Config.cyberOreMinHeight.get();
+            cyberOreMinHeight = Config.cyberOreMaxHeight.get();
+
+            rubyOreVeinSize = Config.rubyOreVeinSize.get();
+            rubyOrePerChunk = Config.rubyOrePerChunk.get();
+            rubyOreMinHeight = Config.rubyOreMinHeight.get();
+            rubyOreMaxHeight = Config.rubyOreMaxHeight.get();
+
+            darksteelOreVeinSize = Config.darksteelOreVeinSize.get();
+            darksteelOrePerChunk = Config.darksteelOrePerChunk.get();
+            darksteelOreMinHeight = Config.darksteelOreMinHeight.get();
+            darksteelOreMaxHeight = Config.darksteelOreMaxHeight.get();
+
+            cyberOreGeneration = Config.cyberOreGeneration.get();
+            rubyOreGeneration = Config.rubyOreGeneration.get();
+            darksteelOreGeneration = Config.darksteelOreGeneration.get();
+
+        }
     }
 
     public static class Enchantment {
@@ -108,7 +152,57 @@ public class CyberConfig {
         public static ForgeConfigSpec.ConfigValue<List<? extends String>> incompatibleEnchantments;
         //#endregion
 
+        //#region OreConfigInfo
+
+        public static IntValue cyberOreVeinSize;
+        public static IntValue cyberOrePerChunk;
+        public static IntValue cyberOreMinHeight;
+        public static IntValue cyberOreMaxHeight;
+
+        public static IntValue rubyOreVeinSize;
+        public static IntValue rubyOrePerChunk;
+        public static IntValue rubyOreMinHeight;
+        public static IntValue rubyOreMaxHeight;
+
+
+        public static IntValue darksteelOreVeinSize;
+        public static IntValue darksteelOrePerChunk;
+        public static IntValue darksteelOreMinHeight;
+        public static IntValue darksteelOreMaxHeight;
+
+
+        public static BooleanValue cyberOreGeneration;
+        public static BooleanValue rubyOreGeneration;
+        public static BooleanValue darksteelOreGeneration;
+
+        //#endregion
+
         public Config(ForgeConfigSpec.Builder builder) {
+
+
+            //#region FarmingToolConfigVaules
+            builder.push("Ores Settings");
+
+            cyberOreGeneration = builder.comment("Generate Cyber Ore").define("ore_generation.world_generation.cyber", true);
+            rubyOreGeneration = builder.comment("Generate Ruby Ore").define("ore_generation.world_generation.ruby", true);
+            darksteelOreGeneration = builder.comment("Generate Dark Steel Ore").define("ore_generation.world_generation.darksteel", true);
+
+            cyberOreVeinSize =  builder.comment("Set Max Cyber Ore Vein Size (Default = 4)").defineInRange("ore_generation.cyber.cyberOreVeinSize", 4, 0, 36);
+            cyberOrePerChunk = builder.comment("Set Cyber Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.cyber.cyberOreChance", 1, 0, 32);
+            cyberOreMinHeight = builder.comment("Set Cyber Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.cyber.cyberOreMinHeight", 25, 0, 120);
+            cyberOreMaxHeight = builder.comment("Set Cyber Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.cyber.cyberOreMaxHeight", 55, 0, 125);
+
+            rubyOreVeinSize =  builder.comment("Set Max Ruby Ore Vein Size (Default = 4)").defineInRange("ore_generation.ruby.rubyOreVeinSize", 4, 0, 36);
+            rubyOrePerChunk = builder.comment("Set Ruby Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.ruby.rubyOreChance", 1, 0, 32);
+            rubyOreMinHeight = builder.comment("Set Ruby Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.ruby.rubyOreMinHeight", 25, 0, 120);
+            rubyOreMaxHeight = builder.comment("Set Ruby Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.ruby.rubyOreMaxHeight", 55, 0, 125);
+
+            darksteelOreVeinSize =  builder.comment("Set Max Dark Steel Ore Vein Size (Default = 4)").defineInRange("ore_generation.darksteel.darksteelOreVeinSize", 4, 0, 36);
+            darksteelOrePerChunk = builder.comment("Set Dark Steel Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.darksteel.darksteelOreChance", 1, 0, 32);
+            darksteelOreMinHeight = builder.comment("Set Dark Steel Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.darksteel.darksteelOreMinHeight", 25, 0, 120);
+            darksteelOreMaxHeight = builder.comment("Set Dark Steel Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.darksteel.darksteelOreMaxHeight", 55, 0, 125);
+            builder.pop();
+            //endregion
 
             //#region FarmingToolConfigVaules
             builder.push("Farming Tools Settings");

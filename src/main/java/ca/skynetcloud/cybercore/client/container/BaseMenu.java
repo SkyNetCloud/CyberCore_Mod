@@ -1,5 +1,6 @@
 package ca.skynetcloud.cybercore.client.container;
 
+import ca.skynetcloud.cybercore.common.items.ItemTier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -10,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
@@ -21,9 +21,9 @@ public abstract class BaseMenu extends AbstractContainerMenu {
         super(type, id);
         for (int y = 0; y < 3; y++)
             for (int x = 0; x < 9; x++)
-                addSlot(new Slot(player, x + y * 9 + 9, 23 + x * 18, 106 + y * 18));
+                addSlot(new Slot(player, x + y * 9 + 9, 24 + x * 18, 107 + y * 18));
         for (int x = 0; x < 9; x++)
-            addSlot(new Slot(player, x, 23 + x * 18, 164));
+            addSlot(new Slot(player, x, 24 + x * 18, 165));
     }
     protected LimitedItemInfoSlot createOutoutSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition)
     {
@@ -67,6 +67,11 @@ public abstract class BaseMenu extends AbstractContainerMenu {
         return stack;
     }
 
+    protected LimitedItemInfoSlot createSpeedUpSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition)
+    {
+        return new LimitedItemInfoSlot(itemHandler, index, xPosition, yPosition, "slot.util.speed_up").setConditions(ItemTier.ItemType.SPEED_UP).setLimited();
+    }
+
     public class SlotItemHandlerWithInfo extends SlotItemHandler
     {
         private final String usage;
@@ -83,16 +88,12 @@ public abstract class BaseMenu extends AbstractContainerMenu {
             return usage;
         }
 
+
         @Override
         public void setChanged()
         {
             super.setChanged();
-            if (listening)
-            {
-                BaseMenu.this.broadcastChanges();
-                //if (BaseMenu.this instanceof BaseBlockMenu blockMenu);
-                    //blockMenu.blockEntity.onContainerUpdated(getSlotIndex());
-            }
+
         }
 
         public SlotItemHandlerWithInfo setShouldListen()
@@ -154,6 +155,13 @@ public abstract class BaseMenu extends AbstractContainerMenu {
             return this;
         }
 
+        public LimitedItemInfoSlot setConditions(ItemTier.ItemType type)
+        {
+            this.conditions = (stack) -> stack.getItem() instanceof ItemTier && ((ItemTier) stack.getItem()).getItemType() == type;
+            return this;
+        }
+
+
 
         public LimitedItemInfoSlot setCanTake(boolean enabled)
         {
@@ -165,5 +173,6 @@ public abstract class BaseMenu extends AbstractContainerMenu {
             this.canTake = conditions;
             return this;
         }
+
     }
 }

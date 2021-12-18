@@ -1,14 +1,5 @@
 package ca.skynetcloud.cybercore.client.utilities.blocks.itemcables.wrapper;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-
-import javax.annotation.Nullable;
-
 import ca.skynetcloud.cybercore.client.proxy.ClientProxy;
 import ca.skynetcloud.cybercore.common.blocks.techentity.ItemCableBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -22,6 +13,14 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class WorldHelperWrapper {
     public static List<ItemCableBlockEntity> getTubesAdjacentTo(Level world, BlockPos pos) {

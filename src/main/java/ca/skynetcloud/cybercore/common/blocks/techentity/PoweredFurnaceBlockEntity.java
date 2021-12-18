@@ -4,10 +4,10 @@ import ca.skynetcloud.cybercore.client.container.PoweredFurnaceMenu;
 import ca.skynetcloud.cybercore.client.energy.baseclasses.PyroEnergyInventoryBlockEntity;
 import ca.skynetcloud.cybercore.client.init.BlockEntityInit;
 import ca.skynetcloud.cybercore.client.init.BlockInit;
+import ca.skynetcloud.cybercore.common.items.ItemTier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -27,6 +27,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
+import static ca.skynetcloud.cybercore.common.items.ItemTier.ItemType.SOLAR_LENS;
 public class PoweredFurnaceBlockEntity extends PyroEnergyInventoryBlockEntity {
 
     public int[] ticksPassed = new int[6];
@@ -116,7 +117,7 @@ public class PoweredFurnaceBlockEntity extends PyroEnergyInventoryBlockEntity {
                 ticks++;
                 if (ticks >= getTicksPerAmount())
                 {
-                    energystorage.receiveEnergy(100 * getTicksPerAmount(), false);
+                    energystorage.receiveEnergy(getEnergyPerTick(getUpgradeTier(15, SOLAR_LENS)));
                     ticks = 0;
                 }
             }
@@ -155,9 +156,29 @@ public class PoweredFurnaceBlockEntity extends PyroEnergyInventoryBlockEntity {
             this.energystorage.extractEnergy(energyPerAction(), false);
     }
 
+
+    private int getEnergyPerTick(int focusLevel)
+    {
+        return switch (focusLevel)
+                {
+                    case 1 -> 20;
+                    case 2 -> 60;
+                    case 3 -> 180;
+                    case 4 -> 540;
+                    default -> 0;
+                };
+    }
+
+
+    @Override
+    public int getUpgradeSlot()
+    {
+        return 1;
+    }
+
     public int getTicksPerAmount()
     {
-        return 550;
+            return 80 - getUpgradeTier(ItemTier.ItemType.SPEED_UP) * 15;
     }
 
     @Override

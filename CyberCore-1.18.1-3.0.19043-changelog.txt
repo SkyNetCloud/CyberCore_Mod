@@ -1,0 +1,17 @@
+Mod Build: 2.1 - Dec 12 2021
+	SkyNetCloud:
+       Fixed/Removed:
+       Re-did most of my code and re-added some blocks
+       Removed Colored Cables (Will Be Added again later down the line)
+       Fixed Soul Bound Book
+
+
+       Bugs That I'm Still Working On:
+	    Items Cables don't work right still working on a fix for this for right now don't use them
+	 
+	   Added:
+       Ore Config
+			
+		
+				
+

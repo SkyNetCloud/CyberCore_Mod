@@ -1,50 +1,34 @@
 package ca.skynetcloud.cybercore.client.world.gen;
 
-import ca.skynetcloud.cybercore.client.init.BlockInit;
-import net.minecraft.world.level.block.state.BlockState;
+
+import ca.skynetcloud.cybercore.client.data.worldgen.OrePlacedFeatureSystem;
+import ca.skynetcloud.cybercore.client.utilities.CyberConfig;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RangeDecoratorConfiguration;
-import net.minecraft.world.level.levelgen.heightproviders.UniformHeight;
-import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+
 
 public class OreGen {
 
-    public static final RangeDecoratorConfiguration RANGE_20_20 = new RangeDecoratorConfiguration(
-            UniformHeight.of(VerticalAnchor.aboveBottom(20), VerticalAnchor.belowTop(20)));
+    @SubscribeEvent(priority= EventPriority.HIGH)
+    public static void generateOres(BiomeLoadingEvent event) {
 
-    public static void generateOres(final BiomeLoadingEvent event) {
-    /* TODO ADD DEEPSLATE_ORE
+        BiomeGenerationSettingsBuilder builder = event.getGeneration();
 
-        generateOre(event.getGeneration(), OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES,
-                BlockInit.DARK_STEEL_DeepSlate_ORE.get().defaultBlockState(), 12);
-
-        generateOre(event.getGeneration(), OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES,
-                BlockInit.CYBER_DeepSlate_ORE.get().defaultBlockState(), 12);
-
-        generateOre(event.getGeneration(), OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES,
-                BlockInit.RUBY_DeepSlate_ORE.get().defaultBlockState(), 12);
-     */
-        generateOre(event.getGeneration(), OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
-                BlockInit.DARK_STEEL_ORE_BLOCK.get().defaultBlockState(), 12);
-
-        generateOre(event.getGeneration(), OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
-                BlockInit.CYBER_ORE_BLOCK.get().defaultBlockState(), 12);
-
-        generateOre(event.getGeneration(), OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
-                BlockInit.RUBY_ORE_BLOCK.get().defaultBlockState(), 12);
+        if(CyberConfig.OreConfig.cyberOreGeneration) {
+            builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacedFeatureSystem.ORE_CYBERORE);
+        }
+        if(CyberConfig.OreConfig.rubyOreGeneration) {
+            builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacedFeatureSystem.ORE_RUBY);
+        }
+        if(CyberConfig.OreConfig.darksteelOreGeneration) {
+            builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacedFeatureSystem.ORE_DARK_STEEL);
+        }
 
     }
 
-    private static void generateOre(BiomeGenerationSettingsBuilder settings, RuleTest fillerType, BlockState state,
-                                    int veinSize) {
-        settings.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES,
-                Feature.ORE.configured(new OreConfiguration(fillerType, state, veinSize)).range(RANGE_20_20).squared()
-                        .count(veinSize));
-    }
+
 
 }

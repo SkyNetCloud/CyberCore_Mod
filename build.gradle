@@ -39,17 +39,17 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "1.17.1-2.0.19043"
+version = "1.18.1-3.0.19043"
 group = "ca.skynetcloud.cybercore"
 archivesBaseName = "CyberCore"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
 minecraft {
 
-    mappings channel: 'official', version: '1.17.1'
+    mappings channel: 'official', version: '1.18'
 
     runs {
         client {
@@ -103,7 +103,7 @@ minecraft {
 
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.17.1-37.0.13'
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.5'
     
 
      
@@ -120,7 +120,7 @@ curseforge {
             
             releaseType = 'beta'
             
-            addGameVersion '1.17.1'
+            addGameVersion '1.18.1'
             
             mainArtifact(jar) {
                 displayName = "CyberCore ${version}"

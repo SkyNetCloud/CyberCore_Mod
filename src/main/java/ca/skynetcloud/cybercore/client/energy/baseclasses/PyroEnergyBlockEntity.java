@@ -101,10 +101,6 @@ abstract public class PyroEnergyBlockEntity extends BlockEntity implements MenuP
 
         }
 
-        public int getUpgradeSlot()
-        {
-            return -1;
-        }
 
         public abstract ContainerData getContainerData();
 

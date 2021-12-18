@@ -15,14 +15,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 import java.util.function.BiFunction;
 
 public class PowerCube extends TechBaseBlock {
 
-
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty SUPPLYING = BooleanProperty.create("supplying");
+    public static final IntegerProperty TIER = IntegerProperty.create("power_storage", 0, 5);
 
     public PowerCube(BiFunction<BlockPos, BlockState, ? extends BlockEntity> teCreator){
         super(teCreator);

@@ -1,12 +1,11 @@
 package ca.skynetcloud.cybercore.client.init;
 
 import ca.skynetcloud.cybercore.CyberCore;
-import ca.skynetcloud.cybercore.client.container.PoweredFurnaceMenu;
 import ca.skynetcloud.cybercore.client.utilities.blocks.HasItem;
 import ca.skynetcloud.cybercore.common.blocks.crops.LettuceCrop;
 import ca.skynetcloud.cybercore.common.blocks.crops.TomatoCrop;
 import ca.skynetcloud.cybercore.common.blocks.tech.PowerCube;
-import ca.skynetcloud.cybercore.common.blocks.tech.TechBaseBlock;
+import ca.skynetcloud.cybercore.common.blocks.tech.TechBaseBlockFacing;
 import ca.skynetcloud.cybercore.common.blocks.tech.cable.ItemCable;
 import ca.skynetcloud.cybercore.common.blocks.tech.cable.PowerCable;
 import ca.skynetcloud.cybercore.common.blocks.techentity.PowerCubeBlockEntity;
@@ -19,10 +18,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
-
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.OreBlock;
 import net.minecraft.world.level.material.Material;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -37,7 +36,7 @@ public class BlockInit {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, CyberCore.MODID);
 
     @HasItem
-    public static RegistryObject<Block> POWERED_FURNACE = BLOCKS.register("powered_furnace", () -> new TechBaseBlock(PoweredFurnaceBlockEntity::new));
+    public static RegistryObject<Block> POWERED_FURNACE = BLOCKS.register("powered_furnace", () -> new TechBaseBlockFacing(PoweredFurnaceBlockEntity::new));
 
     @HasItem
     public static RegistryObject<Block> TOMATO_CROP = BLOCKS.register("tomato_crop", () -> new TomatoCrop());

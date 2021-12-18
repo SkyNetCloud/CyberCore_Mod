@@ -1,8 +1,5 @@
 package ca.skynetcloud.cybercore.client.gui;
 
-import ca.skynetcloud.cybercore.CyberCore;
-
-
 import ca.skynetcloud.cybercore.client.container.BaseBlockMenu;
 import ca.skynetcloud.cybercore.client.container.BaseMenu;
 import ca.skynetcloud.cybercore.client.energy.baseclasses.PyroEnergyBlockEntity;

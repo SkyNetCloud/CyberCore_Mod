@@ -1,14 +1,5 @@
 package ca.skynetcloud.cybercore.common.blocks.techentity;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Queue;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import ca.skynetcloud.cybercore.client.init.BlockEntityInit;
 import ca.skynetcloud.cybercore.client.init.BlockInit;
 import ca.skynetcloud.cybercore.client.utilities.blocks.itemcables.handler.ItemCableInvtoryHandler;
@@ -33,6 +24,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.*;
 
 public class ItemCableBlockEntity extends BlockEntity {
 
@@ -337,7 +332,9 @@ public class ItemCableBlockEntity extends BlockEntity {
      * every packet but we should notify the client of new items entering the
      * network
      */
-    @Override
+
+
+
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         CompoundTag nbt = new CompoundTag();
         super.save(nbt); // write the basic TE stuff
@@ -355,7 +352,7 @@ public class ItemCableBlockEntity extends BlockEntity {
             nbt.put(INV_NBT_KEY_ADD, invList);
         }
 
-        return new ClientboundBlockEntityDataPacket(this.getBlockPos(), 1, nbt);
+        return null;
     }
 
     /**
