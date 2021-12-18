@@ -24,7 +24,6 @@ public class CyberConfig {
     public static final ForgeConfigSpec CONFIG_SPEC;
     public static final Config CONFIG;
     private static final String CONFIG_PREFIX = "gui." + CyberCore.MODID + ".config.";
-    //public static Proxy rubyOrePerChunk;
 
     static {
         final Pair<Config, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Config::new);
@@ -33,88 +32,8 @@ public class CyberConfig {
     }
 
 
-
     public static void bake() {
-        Enchantment.bake();
         CyberConfig.bake();
-    }
-
-    public static class OreConfig {
-        public static int cyberOreVeinSize;
-        public static int cyberOrePerChunk;
-        public static int cyberOreMinHeight;
-        public static int cyberOreMaxHeight;
-
-        public static int rubyOreVeinSize;
-        public static int rubyOrePerChunk;
-        public static int rubyOreMinHeight;
-        public static int rubyOreMaxHeight;
-
-
-        public static int darksteelOreVeinSize;
-        public static int darksteelOrePerChunk;
-        public static int darksteelOreMinHeight;
-        public static int darksteelOreMaxHeight;
-
-        public static boolean cyberOreGeneration;
-        public static boolean rubyOreGeneration;
-        public static boolean darksteelOreGeneration;
-
-        public static void bake() {
-            cyberOrePerChunk = Config.cyberOrePerChunk.get();
-            cyberOreVeinSize = Config.cyberOreVeinSize.get();
-            cyberOreMinHeight = Config.cyberOreMinHeight.get();
-            cyberOreMinHeight = Config.cyberOreMaxHeight.get();
-
-            rubyOreVeinSize = Config.rubyOreVeinSize.get();
-            rubyOrePerChunk = Config.rubyOrePerChunk.get();
-            rubyOreMinHeight = Config.rubyOreMinHeight.get();
-            rubyOreMaxHeight = Config.rubyOreMaxHeight.get();
-
-            darksteelOreVeinSize = Config.darksteelOreVeinSize.get();
-            darksteelOrePerChunk = Config.darksteelOrePerChunk.get();
-            darksteelOreMinHeight = Config.darksteelOreMinHeight.get();
-            darksteelOreMaxHeight = Config.darksteelOreMaxHeight.get();
-
-            cyberOreGeneration = Config.cyberOreGeneration.get();
-            rubyOreGeneration = Config.rubyOreGeneration.get();
-            darksteelOreGeneration = Config.darksteelOreGeneration.get();
-
-        }
-    }
-
-    public static class Enchantment {
-        public static Rarity rarity = RARE;
-
-        public static int levels = 1;
-        public static boolean isTreasure = false;
-        public static boolean isVillagerTrade = true;
-        public static boolean isLootable = true;
-        public static boolean canApplyAtEnchantingTable = true;
-        public static boolean canApplyOnBooks = true;
-        public static int minEnchantabilityBase = 15;
-        public static int minEnchantabilityPerLevel = 5;
-        public static Set<String> incompatibleEnchantments = new HashSet<>();
-
-        public static void bake() {
-            rarity = Config.rarity.get();
-            levels = Config.levels.get();
-            isTreasure = Config.isTreasure.get();
-            isVillagerTrade = Config.isVillagerTrade.get();
-            isLootable = Config.isLootable.get();
-            canApplyAtEnchantingTable = Config.canApplyAtEnchantingTable.get();
-            canApplyOnBooks = Config.canApplyOnBooks.get();
-            minEnchantabilityBase = Config.minEnchantabilityBase.get();
-            minEnchantabilityPerLevel = Config.minEnchantabilityPerLevel.get();
-            incompatibleEnchantments.clear();
-
-            for (String enchantment : Config.incompatibleEnchantments.get()) {
-
-                if (ForgeRegistries.ENCHANTMENTS.containsKey(new ResourceLocation(enchantment))) {
-                    incompatibleEnchantments.add(enchantment);
-                }
-            }
-        }
     }
 
     public static class Config {

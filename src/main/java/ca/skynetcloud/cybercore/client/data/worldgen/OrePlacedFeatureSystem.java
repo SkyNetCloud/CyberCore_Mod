@@ -14,15 +14,15 @@ public class OrePlacedFeatureSystem {
 
     public static String MODID = CyberCore.MODID;
 
-    public static final PlacedFeature ORE_RUBY = OreConfigFeatures.ORE_RUBY.placed(commonOrePlacement(CyberConfig.OreConfig.rubyOrePerChunk, HeightRangePlacement.uniform(VerticalAnchor.absolute(CyberConfig.OreConfig.rubyOreMinHeight), VerticalAnchor.absolute(CyberConfig.OreConfig.rubyOreMaxHeight))));
-    public static final PlacedFeature ORE_CYBERORE = OreConfigFeatures.ORE_CYBERORE.placed(commonOrePlacement(CyberConfig.OreConfig.cyberOrePerChunk, HeightRangePlacement.uniform(VerticalAnchor.absolute(CyberConfig.OreConfig.cyberOreMinHeight), VerticalAnchor.absolute(CyberConfig.OreConfig.cyberOreMaxHeight))));
-    public static final PlacedFeature ORE_DARK_STEEL = OreConfigFeatures.ORE_DARK_STEEL.placed(rareOrePlacement(CyberConfig.OreConfig.darksteelOrePerChunk, HeightRangePlacement.triangle(VerticalAnchor.absolute(CyberConfig.OreConfig.darksteelOreMinHeight), VerticalAnchor.absolute(CyberConfig.OreConfig.darksteelOreMaxHeight))));
+    public static final PlacedFeature ORE_RUBY = OreConfigFeatures.ORE_RUBY.placed(commonOrePlacement(CyberConfig.Config.rubyOrePerChunk.get(), HeightRangePlacement.uniform(VerticalAnchor.absolute(CyberConfig.Config.rubyOreMinHeight.get()), VerticalAnchor.absolute(CyberConfig.Config.rubyOreMaxHeight.get()))));
+    public static final PlacedFeature ORE_CYBERORE = OreConfigFeatures.ORE_CYBERORE.placed(commonOrePlacement(CyberConfig.Config.cyberOrePerChunk.get(), HeightRangePlacement.uniform(VerticalAnchor.absolute(CyberConfig.Config.cyberOreMinHeight.get()), VerticalAnchor.absolute(CyberConfig.Config.cyberOreMaxHeight.get()))));
+    public static final PlacedFeature ORE_DARK_STEEL = OreConfigFeatures.ORE_DARK_STEEL.placed(rareOrePlacement(CyberConfig.Config.darksteelOrePerChunk.get(), HeightRangePlacement.triangle(VerticalAnchor.absolute(CyberConfig.Config.darksteelOreMinHeight.get()), VerticalAnchor.absolute(CyberConfig.Config.darksteelOreMaxHeight.get()))));
 
     public static void initOrePlacedFeatures()
     {
-        PlacementUtils.register(new ResourceLocation(MODID, "cyber_ore").toString(), ORE_CYBERORE);
-        PlacementUtils.register(new ResourceLocation(MODID, "ruby_ore").toString(), ORE_RUBY);
-        PlacementUtils.register(new ResourceLocation(MODID, "dark_steel_ore").toString(), ORE_DARK_STEEL);
+        PlacementUtils.register(new ResourceLocation(MODID, "ore_cyber").toString(), ORE_CYBERORE);
+        PlacementUtils.register(new ResourceLocation(MODID, "ore_ruby").toString(), ORE_RUBY);
+        PlacementUtils.register(new ResourceLocation(MODID, "ore_dark_steel").toString(), ORE_DARK_STEEL);
     }
 
 

@@ -42,19 +42,18 @@ public class CyberCore {
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, CyberConfig.CONFIG_SPEC);
 
         MTA.register(this);
-        MTA.register(OreGen.class);
+        MTA.addListener(EventPriority.HIGH, OreGen::generateOres);
 
 
         BlockInit.BLOCKS.register(FML);
         ItemInit.ITEMS.register(FML);
         ContainerInit.CONTAINERS.register(FML);
         ItemInit.Enchantments.register(FML);
-        BlockInit.registerItemBlocks();
+        //BlockInit.registerItemBlocks();
         BlockEntityInit.BLOCK_ENTITIES.register(FML);
     }
 
     private void setup(FMLCommonSetupEvent event) {
-
         OrePlacedFeatureSystem.initOrePlacedFeatures();
         OreConfigFeatures.initModFeatures();
     }
