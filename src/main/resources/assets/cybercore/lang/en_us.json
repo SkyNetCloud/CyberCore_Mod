@@ -7,6 +7,7 @@
   "block.cybercore.ruby_block": "Ruby Block",
   "block.cybercore.dark_steel_block": "Dark Steel Block",
   "block.cybercore.ruby_ore": "Ruby Ore",
+  "block.cybercore.cyber_ore": "Cyber Ore",
   "item.cybercore.cyber_ingot": "Cyber Ingot",
   "item.cybercore.cyber_pickaxe": "Cyber Pickaxe",
   "item.cybercore.cyber_axe": "Cyber Axe",
@@ -26,6 +27,11 @@
   "item.cybercore.ruby_gem": "Ruby Gem",
   "item.cybercore.dark_steel_ingot": "Dark Steel Ingot",
   "slot.powered_furnace.input": "Input Slot",
-  "slot.solargenerator.lens": "Solar Len Slot"
+  "slot.solargenerator.lens": "Solar Len Slot",
 
+
+  "tooltip.cyber_ore.tip": "§fFound between y%s to y%s",
+  "tooltip.ruby_ore.tip": "§fFound between y%s to y%s",
+  "tooltip.darksteel_ore.tip": "§fFound between y%s to y%s",
+  "tooltip.config.tip": "§4§oWorld Generation Disabled - Enable through Config File"
 }

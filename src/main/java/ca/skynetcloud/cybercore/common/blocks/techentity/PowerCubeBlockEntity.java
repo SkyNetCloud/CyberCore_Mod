@@ -5,6 +5,7 @@ import ca.skynetcloud.cybercore.client.container.PowerCubeMenu;
 import ca.skynetcloud.cybercore.client.energy.baseclasses.PyroEnergyInventoryBlockEntity;
 import ca.skynetcloud.cybercore.client.init.BlockEntityInit;
 import ca.skynetcloud.cybercore.client.init.BlockInit;
+import ca.skynetcloud.cybercore.common.items.ItemTier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -12,10 +13,11 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.block.state.BlockState;
 
+import static ca.skynetcloud.cybercore.common.items.ItemTier.ItemType.SOLAR_LENS;
+
 public class PowerCubeBlockEntity extends PyroEnergyInventoryBlockEntity {
 
-	//private static final int power_per_lvl = -1;
-	private int currentLvl = -1;
+	public int ticks = 0;
 	protected final ContainerData data = new ContainerData()
 	{
 		public int get(int index)
@@ -50,7 +52,39 @@ public class PowerCubeBlockEntity extends PyroEnergyInventoryBlockEntity {
 		super(BlockEntityInit.POWER_CUBE_BE.get(), worldPosition, blockState, 1000, 4, 4);
 	}
 
+	@Override
+	public void doUpdate()
+	{
+		if (level != null && level.isDay() && level.canSeeSky(worldPosition.above()))
+		{
+			if (energystorage.getMaxEnergyStored() - energystorage.getEnergyStored() > 0)
+			{
+				ticks++;
+				if (ticks >= getTicksPerAmount())
+				{
+					energystorage.receiveEnergy(getEnergyPerTick(getUpgradeTier(15, SOLAR_LENS)));
+					ticks = 0;
+				}
+			}
+		}
+	}
 
+	private int getEnergyPerTick(int focusLevel)
+	{
+		return switch (focusLevel)
+				{
+					case 1 -> 20;
+					case 2 -> 60;
+					case 3 -> 180;
+					case 4 -> 540;
+					default -> 0;
+				};
+	}
+
+	public int getTicksPerAmount()
+	{
+		return 80 - getUpgradeTier(ItemTier.ItemType.SPEED_UP) * 15;
+	}
 
 	@Override
 	public ContainerData getContainerData()
