@@ -19,18 +19,18 @@ public class EnchantmentSoulbound extends Enchantment {
 	@Nonnull
 	@Override
 	public Rarity getRarity() {
-		return CyberConfig.Enchantment.rarity;
+		return CyberConfig.Config.rarity.get();
 	}
 
 	@Override
 	public int getMaxLevel() {
-		return CyberConfig.Enchantment.levels;
+		return CyberConfig.Config.levels.get();
 	}
 
 	@Override
 	public int getMinCost(int enchantmentLevel) {
-		return CyberConfig.Enchantment.minEnchantabilityBase
-				+ CyberConfig.Enchantment.minEnchantabilityPerLevel * (enchantmentLevel - 1);
+		return CyberConfig.Config.minEnchantabilityBase.get()
+				+ CyberConfig.Config.minEnchantabilityPerLevel.get() * (enchantmentLevel - 1);
 	}
 
 	@Override
@@ -41,24 +41,24 @@ public class EnchantmentSoulbound extends Enchantment {
 
 	@Override
 	public boolean isTreasureOnly() {
-		return CyberConfig.Enchantment.isTreasure;
+		return CyberConfig.Config.isTreasure.get();
 	}
 
 	@Override
 	public boolean isTradeable() {
-		return CyberConfig.Enchantment.isVillagerTrade;
+		return CyberConfig.Config.isVillagerTrade.get();
 	}
 
 	@Override
 	public boolean isDiscoverable() {
-		return CyberConfig.Enchantment.isLootable;
+		return CyberConfig.Config.isLootable.get();
 	}
 
 	@Override
 	protected boolean checkCompatibility(Enchantment ench) {
 		ResourceLocation rl = ench.getRegistryName();
 
-		if (rl != null && CyberConfig.Enchantment.incompatibleEnchantments.contains(rl.toString())) {
+		if (rl != null && CyberConfig.Config.incompatibleEnchantments.get().contains(rl.toString())) {
 			return false;
 		}
 		return super.checkCompatibility(ench);
@@ -66,11 +66,11 @@ public class EnchantmentSoulbound extends Enchantment {
 
 	@Override
 	public boolean canApplyAtEnchantingTable(@Nonnull ItemStack stack) {
-		return super.canApplyAtEnchantingTable(stack) && CyberConfig.Enchantment.canApplyAtEnchantingTable;
+		return super.canApplyAtEnchantingTable(stack) && CyberConfig.Config.canApplyAtEnchantingTable.get();
 	}
 
 	@Override
 	public boolean isAllowedOnBooks() {
-		return CyberConfig.Enchantment.canApplyOnBooks;
+		return CyberConfig.Config.canApplyOnBooks.get();
 	}
 }

@@ -1,7 +1,6 @@
 package ca.skynetcloud.cybercore;
 
-import ca.skynetcloud.cybercore.client.data.worldgen.OreConfigFeatures;
-import ca.skynetcloud.cybercore.client.data.worldgen.OrePlacedFeatureSystem;
+import ca.skynetcloud.cybercore.client.data.worldgen.OreFeaturesSystem;
 import ca.skynetcloud.cybercore.client.init.*;
 import ca.skynetcloud.cybercore.client.utilities.CyberConfig;
 import ca.skynetcloud.cybercore.client.world.gen.OreGen;
@@ -16,7 +15,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 
 
 @Mod("cybercore")
@@ -41,7 +39,6 @@ public class CyberCore {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, CyberConfig.CONFIG_SPEC);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, CyberConfig.CONFIG_SPEC);
 
-        MTA.register(this);
         MTA.addListener(EventPriority.HIGH, OreGen::generateOres);
 
 
@@ -49,16 +46,18 @@ public class CyberCore {
         ItemInit.ITEMS.register(FML);
         ContainerInit.CONTAINERS.register(FML);
         ItemInit.Enchantments.register(FML);
-        //BlockInit.registerItemBlocks();
         BlockEntityInit.BLOCK_ENTITIES.register(FML);
     }
 
-    private void setup(FMLCommonSetupEvent event) {
-        OrePlacedFeatureSystem.initOrePlacedFeatures();
-        OreConfigFeatures.initModFeatures();
-    }
+    //This used to be the PreInit
+    private void setup(FMLCommonSetupEvent event)
+    {
 
+        LOGGER.info("Setup Method Registered (PreInit)");
+
+    }
     private void clientSetup(final FMLClientSetupEvent event){
         ScreenInit.registerScreenInit();
     }
+
 }

@@ -89,6 +89,28 @@ public class CyberConfig {
         public static IntValue darksteelOreMinHeight;
         public static IntValue darksteelOreMaxHeight;
 
+        /*
+        public static IntValue deepslate_cyberOreVeinSize;
+        public static IntValue deepslate_cyberOrePerChunk;
+        public static IntValue deepslate_cyberOreMinHeight;
+        public static IntValue deepslate_cyberOreMaxHeight;
+
+        public static IntValue deepslate_rubyOreVeinSize;
+        public static IntValue deepslate_rubyOrePerChunk;
+        public static IntValue deepslate_rubyOreMinHeight;
+        public static IntValue deepslate_rubyOreMaxHeight;
+
+
+        public static IntValue deepslate_darksteelOreVeinSize;
+        public static IntValue deepslate_darksteelOrePerChunk;
+        public static IntValue deepslate_darksteelOreMinHeight;
+        public static IntValue deepslate_darksteelOreMaxHeight;
+
+
+        public static BooleanValue deepslate_cyberOreGeneration;
+        public static BooleanValue deepslate_rubyOreGeneration;
+        public static BooleanValue deepslate_darksteelOreGeneration;
+        */
 
         public static BooleanValue cyberOreGeneration;
         public static BooleanValue rubyOreGeneration;
@@ -106,20 +128,43 @@ public class CyberConfig {
             rubyOreGeneration = builder.comment("Generate Ruby Ore").define("ore_generation.world_generation.ruby", true);
             darksteelOreGeneration = builder.comment("Generate Dark Steel Ore").define("ore_generation.world_generation.darksteel", true);
 
-            cyberOreVeinSize =  builder.comment("Set Max Cyber Ore Vein Size (Default = 4)").defineInRange("ore_generation.cyber.cyberOreVeinSize", 4, 0, 36);
-            cyberOrePerChunk = builder.comment("Set Cyber Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.cyber.cyberOreChance", 1, 0, 32);
-            cyberOreMinHeight = builder.comment("Set Cyber Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.cyber.cyberOreMinHeight", 25, 0, 120);
-            cyberOreMaxHeight = builder.comment("Set Cyber Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.cyber.cyberOreMaxHeight", 55, 0, 125);
 
-            rubyOreVeinSize =  builder.comment("Set Max Ruby Ore Vein Size (Default = 4)").defineInRange("ore_generation.ruby.rubyOreVeinSize", 4, 0, 36);
-            rubyOrePerChunk = builder.comment("Set Ruby Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.ruby.rubyOreChance", 1, 0, 32);
-            rubyOreMinHeight = builder.comment("Set Ruby Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.ruby.rubyOreMinHeight", 25, 0, 120);
-            rubyOreMaxHeight = builder.comment("Set Ruby Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.ruby.rubyOreMaxHeight", 55, 0, 125);
+            cyberOreVeinSize =  builder.comment("Set Max Cyber Ore Vein Size (Default = 4)").defineInRange("ore_generation.cyber.cyberOreVeinSize", 10, 0, 36);
+            cyberOrePerChunk = builder.comment("Set Cyber Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.cyber.cyberOreChance",  5, 0, 32);
+            cyberOreMinHeight = builder.comment("Set Cyber Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.cyber.cyberOreMinHeight", -25, -65, 120);
+            cyberOreMaxHeight = builder.comment("Set Cyber Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.cyber.cyberOreMaxHeight", 15, -65, 125);
 
-            darksteelOreVeinSize =  builder.comment("Set Max Dark Steel Ore Vein Size (Default = 4)").defineInRange("ore_generation.darksteel.darksteelOreVeinSize", 4, 0, 36);
-            darksteelOrePerChunk = builder.comment("Set Dark Steel Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.darksteel.darksteelOreChance", 1, 0, 32);
-            darksteelOreMinHeight = builder.comment("Set Dark Steel Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.darksteel.darksteelOreMinHeight", 25, 0, 120);
-            darksteelOreMaxHeight = builder.comment("Set Dark Steel Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.darksteel.darksteelOreMaxHeight", 55, 0, 125);
+            rubyOreVeinSize =  builder.comment("Set Max Ruby Ore Vein Size (Default = 4)").defineInRange("ore_generation.ruby.rubyOreVeinSize", 10, 0, 36);
+            rubyOrePerChunk = builder.comment("Set Ruby Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.ruby.rubyOreChance", 5, 0, 32);
+            rubyOreMinHeight = builder.comment("Set Ruby Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.ruby.rubyOreMinHeight", -15, -65, 120);
+            rubyOreMaxHeight = builder.comment("Set Ruby Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.ruby.rubyOreMaxHeight", 25, -65, 125);
+
+            darksteelOreVeinSize =  builder.comment("Set Max Dark Steel Ore Vein Size (Default = 4)").defineInRange("ore_generation.darksteel.darksteelOreVeinSize", 10, 0, 36);
+            darksteelOrePerChunk = builder.comment("Set Dark Steel Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.darksteel.darksteelOreChance", 5, 0, 32);
+            darksteelOreMinHeight = builder.comment("Set Dark Steel Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.darksteel.darksteelOreMinHeight", -15, -65, 120);
+            darksteelOreMaxHeight = builder.comment("Set Dark Steel Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.darksteel.darksteelOreMaxHeight", 25, -65, 125);
+/*
+
+            deepslate_cyberOreGeneration = builder.comment("Generate Deepslate Cyber Ore").define("ore_generation.world_generation.deepslate_cyber", true);
+            deepslate_rubyOreGeneration = builder.comment("Generate Deepslate Ruby Ore").define("ore_generation.world_generation.deepslate_ruby", true);
+            deepslate_darksteelOreGeneration = builder.comment("Generate Deepslate Dark Steel Ore").define("ore_generation.world_generation.deepslate_darksteel", true);
+
+
+            deepslate_cyberOreVeinSize =  builder.comment("Set Max Deepslate Cyber Ore Vein Size (Default = 4)").defineInRange("ore_generation.cyber.deepslate_cyberOreVeinSize", 15, 0, 36);
+            deepslate_cyberOrePerChunk = builder.comment("Set Deepslate Cyber Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.cyber.deepslate_cyberOreChance",  10, 0, 32);
+            deepslate_cyberOreMinHeight = builder.comment("Set Deepslate Cyber Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.cyber.deepslate_cyberOreMinHeight", 25, 0, 120);
+            deepslate_cyberOreMaxHeight = builder.comment("Set Deepslate Cyber Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.cyber.deepslate_cyberOreMaxHeight", 55, 0, 125);
+
+            deepslate_rubyOreVeinSize =  builder.comment("Set Max Deepslate Ruby Ore Vein Size (Default = 4)").defineInRange("ore_generation.ruby.deepslate_rubyOreVeinSize", 5, 0, 32);
+            deepslate_rubyOrePerChunk = builder.comment("Set Deepslate Ruby Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.ruby.deepslate_rubyOreChance", 2, 0, 32);
+            deepslate_rubyOreMinHeight = builder.comment("Set Deepslate Ruby Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.ruby.rdeepslate_ubyOreMinHeight", 25, 0, 120);
+            deepslate_rubyOreMaxHeight = builder.comment("Set Deepslate Ruby Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.ruby.deepslate_rubyOreMaxHeight", 55, 0, 125);
+
+            deepslate_darksteelOreVeinSize =  builder.comment("Set Max Deepslate Dark Steel Ore Vein Size (Default = 4)").defineInRange("ore_generation.darksteel.deepslate_darksteelOreVeinSize", 5, 0, 36);
+            deepslate_darksteelOrePerChunk = builder.comment("Set Deepslate Dark Steel Ore Spawn Chance (Default = 2)").defineInRange("ore_generation.darksteel.deepslate_darksteelOreChance", 10, 0, 32);
+            deepslate_darksteelOreMinHeight = builder.comment("Set Deepslate Dark Steel Ore Min Spawn Height (Default = 25)").defineInRange("ore_generation.darksteel.deepslate_darksteelOreMinHeight", 25, 0, 120);
+            deepslate_darksteelOreMaxHeight = builder.comment("Set Deepslate Dark Steel Ore Max Spawn Height (Default = 55)").defineInRange("ore_generation.darksteel.deepslate_darksteelOreMaxHeight", 55, 0, 125);
+*/
             builder.pop();
             //endregion
 

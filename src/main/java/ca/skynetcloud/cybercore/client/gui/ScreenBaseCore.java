@@ -13,7 +13,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public abstract class ScreenBaseCore<T extends BaseBlockMenu> extends AbstractContainerScreen<T> {
-	//protected static final ResourceLocation TEXTURES = new ResourceLocation( CyberCore.MODID + ":textures/gui/container/new_lunagen.png");
 	protected final Inventory inv;
 	protected final PyroEnergyBlockEntity te;
 

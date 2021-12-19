@@ -3,18 +3,12 @@ package ca.skynetcloud.cybercore.common.blocks;
 import ca.skynetcloud.cybercore.client.init.BlockInit;
 import ca.skynetcloud.cybercore.client.utilities.CyberConfig;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import ca.skynetcloud.cybercore.client.utilities.blocks.itemcables.wrapper.OreToolTipWrapper.*;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.entity.monster.piglin.Piglin;
-import net.minecraft.world.entity.monster.piglin.PiglinAi;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -49,6 +43,19 @@ public class NewOreBlock extends OreBlock {
             tooltip.add(new TranslatableComponent("tooltip.config.tip"));}
         else tooltip.add(new TranslatableComponent(CyberOreTip.oreTip, CyberConfig.Config.cyberOreMinHeight.get().toString(), CyberConfig.Config.cyberOreMaxHeight.get().toString()));}
         else if (this == BlockInit.RUBY_ORE_BLOCK.get()){
+        if (!CyberConfig.Config.rubyOreGeneration.get()){
+            tooltip.add(new TranslatableComponent("tooltip.config.tip"));}
+        else tooltip.add(new TranslatableComponent(RubyOreTip.oreTip, CyberConfig.Config.rubyOreMinHeight.get().toString(), CyberConfig.Config.rubyOreMaxHeight.get().toString()));}
+        else if (this == BlockInit.DARK_STEEL_ORE_BLOCK.get()){
+        if (!CyberConfig.Config.darksteelOreGeneration.get()){
+            tooltip.add(new TranslatableComponent("tooltip.config.tip"));}
+        else tooltip.add(new TranslatableComponent(DarkSteelOreTip.oreTip, CyberConfig.Config.darksteelOreMinHeight.get().toString(), CyberConfig.Config.darksteelOreMaxHeight.get().toString()));
+        }
+        if(this == BlockInit.DEEPSLATE_CYBER_ORE_BLOCK.get()){
+        if (!CyberConfig.Config.cyberOreGeneration.get()){
+            tooltip.add(new TranslatableComponent("tooltip.config.tip"));}
+        else tooltip.add(new TranslatableComponent(CyberOreTip.oreTip, CyberConfig.Config.cyberOreMinHeight.get().toString(), CyberConfig.Config.cyberOreMaxHeight.get().toString()));}
+    else if (this == BlockInit.RUBY_ORE_BLOCK.get()){
         if (!CyberConfig.Config.rubyOreGeneration.get()){
             tooltip.add(new TranslatableComponent("tooltip.config.tip"));}
         else tooltip.add(new TranslatableComponent(RubyOreTip.oreTip, CyberConfig.Config.rubyOreMinHeight.get().toString(), CyberConfig.Config.rubyOreMaxHeight.get().toString()));}

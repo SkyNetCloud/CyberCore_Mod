@@ -49,7 +49,7 @@ println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getPro
 
 minecraft {
 
-    mappings channel: 'official', version: '1.18'
+    mappings channel: 'official', version: '1.18.1'
 
     runs {
         client {
@@ -104,8 +104,11 @@ minecraft {
 dependencies {
 
     minecraft 'net.minecraftforge:forge:1.18.1-39.0.5'
-    
 
+    // compile against the JEI API but do not include it at runtime
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    // at runtime, use the full JEI jar
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
      
  
 }

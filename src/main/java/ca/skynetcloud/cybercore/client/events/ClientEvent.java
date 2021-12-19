@@ -2,7 +2,7 @@ package ca.skynetcloud.cybercore.client.events;
 
 import ca.skynetcloud.cybercore.CyberCore;
 import ca.skynetcloud.cybercore.client.init.BlockInit;
-import ca.skynetcloud.cybercore.client.utilities.blocks.BlockRenderLayer;
+import ca.skynetcloud.cybercore.client.utilities.blocks.itemcables.BlockRenderLayer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
@@ -33,4 +33,5 @@ public class ClientEvent {
             }
         }
     }
+
 }

@@ -3,6 +3,7 @@ package ca.skynetcloud.cybercore.client.init;
 import ca.skynetcloud.cybercore.CyberCore;
 import ca.skynetcloud.cybercore.client.container.PowerCubeMenu;
 import ca.skynetcloud.cybercore.client.container.PoweredFurnaceMenu;
+import ca.skynetcloud.cybercore.client.container.SolarGenMenu;
 import net.minecraft.world.inventory.MenuType;
 
 import net.minecraftforge.registries.DeferredRegister;
@@ -15,6 +16,7 @@ public class ContainerInit {
 
     public static final RegistryObject<MenuType<PoweredFurnaceMenu>> POWERED_FURNACE_MENU = CONTAINERS.register("powered_furnace_menu", () -> new MenuType<>(PoweredFurnaceMenu::new));
     public static final RegistryObject<MenuType<PowerCubeMenu>> POWER_CUBE_MENU = CONTAINERS.register("power_cube_menu", () -> new MenuType<>(PowerCubeMenu::new));
+    public static final RegistryObject<MenuType<SolarGenMenu>> SOLAR_GEN_MENU = CONTAINERS.register("solar_gen_menu", () -> new MenuType<>(SolarGenMenu::new));
 
 
 }

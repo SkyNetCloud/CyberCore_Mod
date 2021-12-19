@@ -1,4 +1,4 @@
-package ca.skynetcloud.cybercore.client.utilities.blocks;
+package ca.skynetcloud.cybercore.client.utilities.blocks.itemcables;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

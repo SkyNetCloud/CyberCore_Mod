@@ -31,7 +31,6 @@ import static ca.skynetcloud.cybercore.common.items.ItemTier.ItemType.SOLAR_LENS
 public class PoweredFurnaceBlockEntity extends PyroEnergyInventoryBlockEntity {
 
     public int[] ticksPassed = new int[6];
-    public int ticks = 0;
     boolean isSmelting;
     protected ItemStackHandler dummyitemhandler = new ItemStackHandler();
 
@@ -110,22 +109,6 @@ public class PoweredFurnaceBlockEntity extends PyroEnergyInventoryBlockEntity {
     {
 
         super.doUpdate();
-        if (level != null && level.isDay() && level.canSeeSky(worldPosition.above()))
-        {
-            if (energystorage.getMaxEnergyStored() - energystorage.getEnergyStored() > 0)
-            {
-                ticks++;
-                if (ticks >= getTicksPerAmount())
-                {
-                    energystorage.receiveEnergy(getEnergyPerTick(getUpgradeTier(15, SOLAR_LENS)));
-                    ticks = 0;
-                }
-            }
-        }
-
-
-
-        super.doUpdate();
         isSmelting = false;
         for (int i = 0; i < 6; i++)
         {
@@ -157,28 +140,13 @@ public class PoweredFurnaceBlockEntity extends PyroEnergyInventoryBlockEntity {
     }
 
 
-    private int getEnergyPerTick(int focusLevel)
-    {
-        return switch (focusLevel)
-                {
-                    case 1 -> 20;
-                    case 2 -> 60;
-                    case 3 -> 180;
-                    case 4 -> 540;
-                    default -> 0;
-                };
-    }
+
 
 
     @Override
     public int getUpgradeSlot()
     {
         return 1;
-    }
-
-    public int getTicksPerAmount()
-    {
-            return 80 - getUpgradeTier(ItemTier.ItemType.SPEED_UP) * 15;
     }
 
     @Override
