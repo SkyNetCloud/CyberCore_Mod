@@ -83,10 +83,9 @@ public class PowerCableBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound)
-    {
+    protected void saveAdditional(CompoundTag compound) {
         compound.put("cableinfo", this.cableInfo.write());
-        return super.save(compound);
+        super.saveAdditional(compound);
     }
 
     public void initCable()
@@ -436,7 +435,7 @@ public class PowerCableBlockEntity extends BlockEntity {
         {
             LazyOptional<IEnergyStorage> capability = tileentity.getCapability(CapabilityEnergy.ENERGY, facing);
             if (capability.isPresent())
-                return capability.orElseThrow(() -> new NullPointerException("Trying to get null energy capability for block " + tileentity.getBlockState().getBlock().getRegistryName().toString() + " at " + pos));
+                return capability.orElseThrow(() -> new NullPointerException("Trying to get null energy capability for block " + tileentity.getBlockState().getBlock() + " at " + pos));
         }
         return null;
     }

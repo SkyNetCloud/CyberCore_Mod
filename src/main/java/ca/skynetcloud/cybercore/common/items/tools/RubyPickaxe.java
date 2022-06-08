@@ -6,7 +6,6 @@ import ca.skynetcloud.cybercore.client.init.ItemInit;
 import ca.skynetcloud.cybercore.client.utilities.CyberCoreTab;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -36,12 +35,12 @@ public class RubyPickaxe extends PickaxeItem {
 	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
 
 		if (stack.sameItem(new ItemStack(ItemInit.RUBY_PICKAXE.get()))) {
-			tooltip.add(new TextComponent(ChatFormatting.LIGHT_PURPLE + "Seem To Be Good"));
+			tooltip.add(Component.literal(ChatFormatting.LIGHT_PURPLE + "Seem To Be Good"));
 
-			tooltip.add(new TextComponent(
+			tooltip.add(Component.literal(
 					ChatFormatting.GREEN + "NIGHT VISION" + " " + ChatFormatting.AQUA + "24 Sec"));
 
-			tooltip.add(new TextComponent(
+			tooltip.add(Component.literal(
 					ChatFormatting.GREEN + "HERO OF THE VILLAGE" + " " + ChatFormatting.AQUA + "12 Sec"));
 
 		}
@@ -55,8 +54,8 @@ public class RubyPickaxe extends PickaxeItem {
 		playerIn.getCooldowns().addCooldown(this, 600);
 		if (playerIn.getItemBySlot(EquipmentSlot.MAINHAND).getItem() == ItemInit.RUBY_PICKAXE.get().asItem()) {
 			if (worldIn.isClientSide) {
-				playerIn.sendMessage(new TextComponent(ChatFormatting.GREEN + "[" + CyberCore.MODID + "] "
-						+ ChatFormatting.RED + "This Tool Seem To Like You"), null);
+				playerIn.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "[" + CyberCore.MODID + "] "
+						+ ChatFormatting.RED + "This Tool Seem To Like You"));
 			}
 			playerIn.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 500, 1, false, false, true));
 			playerIn.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 255, 1, false, false, true));

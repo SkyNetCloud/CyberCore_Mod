@@ -13,7 +13,7 @@ import ca.skynetcloud.cybercore.common.blocks.techentity.PowerCubeBlockEntity;
 import ca.skynetcloud.cybercore.common.blocks.techentity.PoweredFurnaceBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -22,9 +22,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 
 import net.minecraft.world.level.material.Material;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
@@ -49,13 +49,13 @@ public class BlockInit {
     public static RegistryObject<Block> POWER_CUBE = BLOCKS.register("power_cube", () -> new PowerCube(PowerCubeBlockEntity::new));
 
     @HasItem
-    public static RegistryObject<Block> CYBER_ORE_BLOCK = BLOCKS.register("cyber_ore", () -> new OreBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f)));
+    public static RegistryObject<Block> CYBER_ORE_BLOCK = BLOCKS.register("cyber_ore", () -> new DropExperienceBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f)));
 
     @HasItem
-    public static RegistryObject<Block> DARK_STEEL_ORE_BLOCK = BLOCKS.register("dark_steel_ore", () -> new OreBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f)));
+    public static RegistryObject<Block> DARK_STEEL_ORE_BLOCK = BLOCKS.register("dark_steel_ore", () -> new DropExperienceBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f)));
 
     @HasItem
-    public static RegistryObject<Block> RUBY_ORE_BLOCK = BLOCKS.register("ruby_ore", () -> new OreBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f)));
+    public static RegistryObject<Block> RUBY_ORE_BLOCK = BLOCKS.register("ruby_ore", () -> new DropExperienceBlock(Block.Properties.of(Material.STONE).strength(5.0f, 10.0f)));
 
     @HasItem(isWIP = true)
     public static RegistryObject<Block> POWER_CABLE = BLOCKS.register("power_cable_block", () -> new PowerCable());
@@ -73,8 +73,8 @@ public class BlockInit {
                ItemInit.ITEMS.register(registryObject.getId().getPath(), () -> new BlockItem(registryObject.get(), new Item.Properties().tab(annotation.tab().getTab())) {
                     @Override
                     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tips, TooltipFlag advanced) {
-                        if (annotation.isWIP())
-                            tips.add(new TextComponent("WIP object, may not be obtainable through normal ways.").withStyle(ChatFormatting.RED));
+                        //if (annotation.isWIP())
+                           //tips.add(new Component("WIP object, may not be obtainable through normal ways.").withStyle(ChatFormatting.RED));
                     }
                 });
             }

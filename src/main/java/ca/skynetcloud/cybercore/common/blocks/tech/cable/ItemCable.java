@@ -160,7 +160,7 @@ public class ItemCable extends Block implements EntityBlock, BucketPickup, Liqui
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn,
                                   BlockPos currentPos, BlockPos facingPos) {
         if (stateIn.getValue(WATERLOGGED)) {
-            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+            //worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
 
         return stateIn.setValue(PipeBlock.PROPERTY_BY_DIRECTION.get(facing),
@@ -236,8 +236,6 @@ public class ItemCable extends Block implements EntityBlock, BucketPickup, Liqui
         if (!state.getValue(WATERLOGGED) && fluidStateIn.getType() == Fluids.WATER) {
             if (!worldIn.isClientSide()) {
                 worldIn.setBlock(pos, state.setValue(WATERLOGGED, Boolean.valueOf(true)), 3);
-                worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getType(),
-                        fluidStateIn.getType().getTickDelay(worldIn));
             }
 
             return true;

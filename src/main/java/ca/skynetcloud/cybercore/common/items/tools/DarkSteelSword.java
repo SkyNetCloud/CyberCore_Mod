@@ -4,7 +4,7 @@ import ca.skynetcloud.cybercore.CyberCore;
 import ca.skynetcloud.cybercore.client.init.ItemInit;
 import ca.skynetcloud.cybercore.client.utilities.CyberCoreTab;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -32,10 +32,9 @@ public class DarkSteelSword extends SwordItem {
 				stack.enchant(Enchantments.SHARPNESS, 5);
 				if (!HasSwordBeenMade) {
 					p_77622_3_
-							.sendMessage(
-									new TextComponent(ChatFormatting.GREEN + "[" + CyberCore.MODID + "] "
-											+ ChatFormatting.RED + "The Item you made is now been given an Enchant :D"),
-									null);
+							.sendSystemMessage(
+									Component.literal(ChatFormatting.GREEN + "[" + CyberCore.MODID + "] "
+											+ ChatFormatting.RED + "The Item you made is now been given an Enchant :D"));
 				}
 			}
 		}

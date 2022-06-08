@@ -6,8 +6,7 @@ import ca.skynetcloud.cybercore.common.blocks.tech.cable.ItemCable;
 import ca.skynetcloud.cybercore.common.blocks.tech.cable.PowerCable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -62,12 +61,19 @@ public class WrenchItem extends Item {
 		return false;
 	}
 
-	@Override
-	public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flagIn)
+	 /*@Override
+    public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flagIn)
 	{
+
 		tooltip.add(new TextComponent(new TranslatableComponent("info.wrench_cable").getString()));
 		tooltip.add(new TextComponent(""));
 		tooltip.add(new TextComponent(new TranslatableComponent("info.wrench_dismantle").getString()));
+
 	}
+		*/
+
+
+
+
 
 }

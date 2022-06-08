@@ -6,9 +6,9 @@ import ca.skynetcloud.cybercore.common.blocks.techentity.PowerCableBlockEntity;
 import ca.skynetcloud.cybercore.common.blocks.techentity.PowerCubeBlockEntity;
 import ca.skynetcloud.cybercore.common.blocks.techentity.PoweredFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class BlockEntityInit {
 

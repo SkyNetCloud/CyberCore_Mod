@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
@@ -45,9 +44,9 @@ abstract public class PyroEnergyBlockEntity extends BlockEntity implements MenuP
         }
 
         @Override
-        public CompoundTag getUpdateTag()
+        public void handleUpdateTag(CompoundTag tag)
         {
-            return save(super.getUpdateTag());
+            saveAdditional(super.getUpdateTag());
         }
 
         public void doUpdate()
@@ -61,10 +60,10 @@ abstract public class PyroEnergyBlockEntity extends BlockEntity implements MenuP
         }
 
         @Override
-        public CompoundTag save(CompoundTag compound)
+        public void saveAdditional(CompoundTag compound)
         {
             compound.put("energy", this.energystorage.serializeNBT());
-            return super.save(compound);
+            super.saveAdditional(compound);
         }
 
         @Override
@@ -111,7 +110,7 @@ abstract public class PyroEnergyBlockEntity extends BlockEntity implements MenuP
         @Override
         public Component getDisplayName()
         {
-            return new TranslatableComponent("container." + getNameString());
+            return Component.translatable("container." + getNameString());
         }
 
         public void notifyClient()

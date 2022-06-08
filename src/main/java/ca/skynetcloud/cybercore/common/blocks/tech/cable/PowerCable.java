@@ -26,7 +26,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.util.Constants.BlockFlags;
 import net.minecraftforge.energy.CapabilityEnergy;
 
 import javax.annotation.Nullable;
@@ -152,7 +151,7 @@ public class PowerCable extends CyberBlockEntityBlock {
                             if (te != null)
                             {
                                 te.rotateConnection(dir);
-                                level.setBlock(pos, getCurrentState(state, level, pos), BlockFlags.DEFAULT);
+                                level.setBlock(pos, getCurrentState(state, level, pos), Block.UPDATE_NONE);
                                 return InteractionResult.SUCCESS;
                             }
                         }
@@ -171,7 +170,7 @@ public class PowerCable extends CyberBlockEntityBlock {
             PowerCableBlockEntity te = getTECable(world, pos);
             if (te != null)
             {
-                world.setBlock(pos, getCurrentState(state, world, pos), BlockFlags.DEFAULT);
+                world.setBlock(pos, getCurrentState(state, world, pos), Block.UPDATE_NONE);
                 te.initCable();
             }
         }

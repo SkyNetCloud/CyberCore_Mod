@@ -10,10 +10,9 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 
 public abstract class ScreenBaseCore<T extends BaseBlockMenu> extends AbstractContainerScreen<T> {
 	//protected static final ResourceLocation TEXTURES = new ResourceLocation( CyberCore.MODID + ":textures/gui/container/new_lunagen.png");
@@ -54,13 +53,15 @@ public abstract class ScreenBaseCore<T extends BaseBlockMenu> extends AbstractCo
 
 	}
 
+
+
 	public void drawTooltip(PoseStack mStack, String lines, int mouseX, int mouseY, int posX, int posY, int width,
-			int height) {
+							int height) {
 
 		posX += this.leftPos;
 		posY += this.topPos;
 		if (mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height) {
-			renderTooltip(mStack, new TextComponent(lines), mouseX, mouseY);
+			renderTooltip(mStack, Component.literal(lines), mouseX, mouseY);
 		}
 	}
 
@@ -98,7 +99,7 @@ public abstract class ScreenBaseCore<T extends BaseBlockMenu> extends AbstractCo
 		if (minecraft.player.inventoryMenu.getCarried().isEmpty() && this.hoveredSlot != null
 				&& !this.hoveredSlot.hasItem() && this.hoveredSlot instanceof BaseMenu.SlotItemHandlerWithInfo)
 			this.renderTooltip(mStack,
-					new TranslatableComponent(((BaseMenu.SlotItemHandlerWithInfo) this.hoveredSlot).getUsageString()), x, y);
+					Component.translatable(((BaseMenu.SlotItemHandlerWithInfo) this.hoveredSlot).getUsageString()), x, y);
 		else
 			super.renderTooltip(mStack, x, y);
 	}

@@ -220,10 +220,10 @@ public class PoweredFurnaceBlockEntity extends PyroEnergyInventoryBlockEntity {
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound)
+    public void saveAdditional(CompoundTag compound)
     {
         compound.putIntArray("cooktime", ticksPassed);
-        return super.save(compound);
+        super.saveAdditional(compound);
     }
 
     @Override

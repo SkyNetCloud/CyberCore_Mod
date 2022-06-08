@@ -5,7 +5,6 @@ import ca.skynetcloud.cybercore.client.init.ItemInit;
 import ca.skynetcloud.cybercore.client.utilities.CyberCoreTab;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -35,12 +34,12 @@ public class CyberPickaxe extends PickaxeItem {
 	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
 
 		if (stack.sameItem(new ItemStack(ItemInit.CYBER_PICKAXE.get()))) {
-			tooltip.add(new TextComponent("Hmm someone is watching you"));
+			tooltip.add(Component.literal("Hmm someone is watching you"));
 
 			tooltip.add(
-					new TextComponent(ChatFormatting.GREEN + "NIGHT VISION" + " " + ChatFormatting.AQUA + "24 Sec"));
+					Component.literal(ChatFormatting.GREEN + "NIGHT VISION" + " " + ChatFormatting.AQUA + "24 Sec"));
 
-			tooltip.add(new TextComponent(ChatFormatting.GREEN + "HASTE" + " " + ChatFormatting.AQUA + "12 Sec"));
+			tooltip.add(Component.literal(ChatFormatting.GREEN + "HASTE" + " " + ChatFormatting.AQUA + "12 Sec"));
 
 		}
 
@@ -54,8 +53,8 @@ public class CyberPickaxe extends PickaxeItem {
 		playerIn.getCooldowns().addCooldown(this, 600);
 		if (playerIn.getItemBySlot(EquipmentSlot.MAINHAND).getItem() == ItemInit.CYBER_PICKAXE.get().asItem()) {
 			if (worldIn.isClientSide) {
-				playerIn.sendMessage(new TextComponent(ChatFormatting.GREEN + "[" + CyberCore.MODID + "] "
-						+ ChatFormatting.RED + "Hmm What Did It added to you"), null);
+				playerIn.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "[" + CyberCore.MODID + "] "
+						+ ChatFormatting.RED + "Hmm What Did It added to you"));
 			}
 
 			playerIn.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 500, 1, false, false, true));

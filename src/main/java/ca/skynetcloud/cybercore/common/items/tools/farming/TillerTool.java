@@ -21,9 +21,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
- /**
-  * This Code Was Made By Lothrazar
-  */
 
 public class TillerTool extends HoeItem {
 

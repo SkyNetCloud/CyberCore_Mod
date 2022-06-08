@@ -5,7 +5,6 @@ import ca.skynetcloud.cybercore.client.init.ItemInit;
 import ca.skynetcloud.cybercore.client.utilities.CyberCoreTab;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -40,14 +39,14 @@ public class DarkSteelPickaxe extends PickaxeItem {
 
 		if (stack.sameItem(new ItemStack(ItemInit.DARK_STEEL_PICKAXE.get()))) {
 			tooltip.add(
-					new TextComponent(ChatFormatting.DARK_PURPLE + "A shadow loom over you while you hold this tool"));
+					Component.literal(ChatFormatting.DARK_PURPLE + "A shadow loom over you while you hold this tool"));
 
-			tooltip.add(new TextComponent(ChatFormatting.RED + "BLINDNESS" + " " + ChatFormatting.AQUA + "12 Sec"));
+			tooltip.add(Component.literal(ChatFormatting.RED + "BLINDNESS" + " " + ChatFormatting.AQUA + "12 Sec"));
 
 			tooltip.add(
-					new TextComponent(ChatFormatting.GREEN + "HEALTH BOOST" + " " + ChatFormatting.AQUA + "12 Sec"));
+					Component.literal(ChatFormatting.GREEN + "HEALTH BOOST" + " " + ChatFormatting.AQUA + "12 Sec"));
 
-			tooltip.add(new TextComponent(ChatFormatting.RED + "SLOWNESS" + " " + ChatFormatting.AQUA + "12 Sec"));
+			tooltip.add(Component.literal(ChatFormatting.RED + "SLOWNESS" + " " + ChatFormatting.AQUA + "12 Sec"));
 		}
 
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
@@ -59,8 +58,8 @@ public class DarkSteelPickaxe extends PickaxeItem {
 		playerIn.getCooldowns().addCooldown(this, 600);
 		if (playerIn.getItemBySlot(EquipmentSlot.MAINHAND).getItem() == ItemInit.DARK_STEEL_PICKAXE.get().asItem()) {
 			if (worldIn.isClientSide) {
-				playerIn.sendMessage(new TextComponent(ChatFormatting.GREEN + "[" + CyberCore.MODID + "] "
-						+ ChatFormatting.RED + "The Shadow Are Coming For You"), null);
+				playerIn.sendSystemMessage(Component.literal(ChatFormatting.GREEN + "[" + CyberCore.MODID + "] "
+						+ ChatFormatting.RED + "The Shadow Are Coming For You"));
 			}
 			playerIn.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 255, 1, false, false, true));
 			playerIn.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 255, 1, false, false, true));

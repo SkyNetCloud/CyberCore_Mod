@@ -302,9 +302,11 @@ public class ItemCableBlockEntity extends BlockEntity {
         }
     }
 
+
+
     @Override // write entire inventory by default (for server -> hard disk purposes this is
     // what is called)
-    public CompoundTag save(CompoundTag compound) {
+    public void saveAdditional(CompoundTag compound) {
 
         ListTag invList = new ListTag();
         this.merge_buffer();
@@ -318,29 +320,20 @@ public class ItemCableBlockEntity extends BlockEntity {
             compound.put(INV_NBT_KEY_RESET, invList);
         }
 
-        return super.save(compound);
+        super.saveAdditional(compound);
     }
 
-    /**
-     * Get an NBT compound to sync to the client with SPacketChunkData, used for
-     * initial loading of the chunk or when many blocks change at once. This
-     * compound comes back to you clientside in {@link //handleUpdateTag}
-     * //handleUpdateTag just calls read by default
-     */
+
     @Override
-    public CompoundTag getUpdateTag() {
-        return this.save(new CompoundTag()); // okay to send entire inventory on chunk load
+    public void handleUpdateTag(CompoundTag tag) {
+        this.saveAdditional(tag); // okay to send entire inventory on chunk load
     }
 
-    /**
-     * Prepare a packet to sync TE to client We don't need to send the inventory in
-     * every packet but we should notify the client of new items entering the
-     * network
-     */
+
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         CompoundTag nbt = new CompoundTag();
-        super.save(nbt); // write the basic TE stuff
+        super.saveAdditional(nbt); // write the basic TE stuff
 
         ListTag invList = new ListTag();
 
@@ -355,12 +348,10 @@ public class ItemCableBlockEntity extends BlockEntity {
             nbt.put(INV_NBT_KEY_ADD, invList);
         }
 
-        return new ClientboundBlockEntityDataPacket(this.getBlockPos(), 1, nbt);
+       // return new ClientboundBlockEntityDataPacket(this.getBlockPos(), 1, nbt);
+        return null;
     }
 
-    /**
-     * Receive packet on client and get data out of it
-     */
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet) {
         this.readNBT(packet.getTag());

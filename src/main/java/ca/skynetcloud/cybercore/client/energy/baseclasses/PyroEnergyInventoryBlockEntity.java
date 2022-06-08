@@ -71,11 +71,11 @@ abstract public class PyroEnergyInventoryBlockEntity extends PyroEnergyBlockEnti
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound)
+    public void saveAdditional(CompoundTag compound)
     {
         compound.put("inventory", itemhandler.serializeNBT());
         compound.putInt("tickspassed", ticksPassed);
-        return super.save(compound);
+        super.saveAdditional(compound);
     }
 
 

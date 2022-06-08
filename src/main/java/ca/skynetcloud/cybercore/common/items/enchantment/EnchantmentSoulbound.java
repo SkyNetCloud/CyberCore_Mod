@@ -3,6 +3,8 @@ package ca.skynetcloud.cybercore.common.items.enchantment;
 import javax.annotation.Nonnull;
 
 import ca.skynetcloud.cybercore.CyberCore;
+import ca.skynetcloud.cybercore.client.init.BlockInit;
+import ca.skynetcloud.cybercore.client.init.ItemInit;
 import ca.skynetcloud.cybercore.client.utilities.CyberConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -57,7 +59,7 @@ public class EnchantmentSoulbound extends Enchantment {
 
 	@Override
 	protected boolean checkCompatibility(Enchantment ench) {
-		ResourceLocation rl = ench.getRegistryName();
+		ResourceLocation rl = ItemInit.SOUL_BOUND.getId();
 
 		if (rl != null && CyberConfig.Enchantment.incompatibleEnchantments.contains(rl.toString())) {
 			return false;
