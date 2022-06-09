@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "cybercore:block/electrical_cabinet"
+		},
+		"facing=south": {
+			"model": "cybercore:block/electrical_cabinet",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "cybercore:block/electrical_cabinet",
+			"y": 270
+		},
+		"facing=east": {
+			"model": "cybercore:block/electrical_cabinet",
+			"y": 90
+		}
+	}
+}

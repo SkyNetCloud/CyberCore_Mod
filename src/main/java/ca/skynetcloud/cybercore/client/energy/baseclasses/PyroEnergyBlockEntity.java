@@ -1,6 +1,6 @@
 package ca.skynetcloud.cybercore.client.energy.baseclasses;
 
-import ca.skynetcloud.cybercore.client.energy.PyroEnergySorage;
+import ca.skynetcloud.cybercore.client.energy.PyroEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -22,7 +22,7 @@ import java.util.Random;
 abstract public class PyroEnergyBlockEntity extends BlockEntity implements MenuProvider {
 
 
-        protected PyroEnergySorage energystorage;
+        protected PyroEnergyStorage energystorage;
         private final LazyOptional<IEnergyStorage> energyCap;
         public String customname;
         protected final Random rand = new Random();
@@ -30,7 +30,7 @@ abstract public class PyroEnergyBlockEntity extends BlockEntity implements MenuP
 	public PyroEnergyBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int energyStorage)
         {
             super(type, pos, state);
-            energystorage = new PyroEnergySorage(energyStorage);
+            energystorage = new PyroEnergyStorage(energyStorage);
             energyCap = LazyOptional.of(() -> energystorage);
         }
 

@@ -1,19 +1,14 @@
 package ca.skynetcloud.cybercore.client.utilities.blocks.itemcables.routing;
 
 import ca.skynetcloud.cybercore.client.utilities.blocks.itemcables.wrapper.PosHelperWrapper;
-import ca.skynetcloud.cybercore.common.blocks.tech.cable.ItemCable;
+import ca.skynetcloud.cybercore.client.world.level.block.tech.cable.ItemCable;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class FastestRoutesSolver {
 

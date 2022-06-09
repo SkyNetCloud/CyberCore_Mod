@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cybercore",
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "i i",
+    " i ",
+    " i "
+  ],
+  "result": {
+    "item": "cybercore:wrench_tool"
+  }
+}

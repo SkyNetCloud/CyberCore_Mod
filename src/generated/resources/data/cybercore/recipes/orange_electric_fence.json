@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cybercore",
+  "ingredients": [
+    {
+      "item": "cybercore:electric_fence"
+    },
+    {
+      "item": "minecraft:orange_dye"
+    }
+  ],
+  "result": {
+    "item": "cybercore:orange_electric_fence"
+  }
+}

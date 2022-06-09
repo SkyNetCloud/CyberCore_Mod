@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "cybercore:block/ores/deepslate/deepslate_cyber_ore"
+		}
+	}
+}

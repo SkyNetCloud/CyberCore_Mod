@@ -1,24 +1,22 @@
 package ca.skynetcloud.cybercore.client.utilities;
 
+import ca.skynetcloud.cybercore.CyberCore;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.enchantment.Enchantment.Rarity;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
+import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
+import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
+import net.minecraftforge.common.ForgeConfigSpec.IntValue;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import ca.skynetcloud.cybercore.CyberCore;
-
-import net.minecraft.resources.ResourceLocation;
-
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.registries.ForgeRegistries;
-import org.apache.commons.lang3.tuple.Pair;
-import net.minecraft.world.item.enchantment.Enchantment.Rarity;
 import static net.minecraft.world.item.enchantment.Enchantment.Rarity.RARE;
-
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
-import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
-import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
-import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class CyberConfig {
 
@@ -33,12 +31,10 @@ public class CyberConfig {
     }
 
 
-
     public static void bake() {
         Enchantment.bake();
         CyberConfig.bake();
     }
-
     public static class Enchantment {
         public static Rarity rarity = RARE;
 
@@ -90,6 +86,19 @@ public class CyberConfig {
         //#region enchantmentConfigInfo
         public static DoubleValue additiveDurabilityDrop;
         public static DoubleValue maximumDurabilityDrop;
+
+
+        public static IntValue MYSTERIOUS_VEINSIZE;
+        public static IntValue MYSTERIOUS_AMOUNT;
+        public static IntValue OVERWORLD_VEINSIZE;
+        public static IntValue OVERWORLD_AMOUNT;
+        public static IntValue DEEPSLATE_VEINSIZE;
+        public static IntValue DEEPSLATE_AMOUNT;
+        public static IntValue NETHER_VEINSIZE;
+        public static IntValue NETHER_AMOUNT;
+        public static IntValue END_VEINSIZE;
+        public static IntValue END_AMOUNT;
+
         public static DoubleValue minimumDurabilityDrop;
         public static DoubleValue modeDurabilityDrop;
         public static DoubleValue dropLevel;
@@ -130,6 +139,41 @@ public class CyberConfig {
             PLANTER_RANGE = builder.comment("Range of planter item").defineInRange("planter.range", 9, 2, 32);
             builder.pop();
             //#endregion
+
+            builder.push("Ore Config Settings");
+
+            MYSTERIOUS_VEINSIZE = builder
+                    .comment("Veinsize of our ore in the mysterious dimension")
+                    .defineInRange("mysteriousVeinsize", 25, 1, Integer.MAX_VALUE);
+            MYSTERIOUS_AMOUNT = builder
+                    .comment("Amount of veines of our ore in the mysterious dimension")
+                    .defineInRange("mysteriousAmount", 10, 1, Integer.MAX_VALUE);
+            OVERWORLD_VEINSIZE = builder
+                    .comment("Veinsize of our ore in the overworld dimension")
+                    .defineInRange("overworldVeinsize", 5, 1, Integer.MAX_VALUE);
+            OVERWORLD_AMOUNT = builder
+                    .comment("Amount of veines of our ore in the overworld dimension")
+                    .defineInRange("overworldAmount", 3, 1, Integer.MAX_VALUE);
+            DEEPSLATE_VEINSIZE = builder
+                    .comment("Veinsize of our ore in the overworld dimension but for deepslate")
+                    .defineInRange("deepslateVeinsize", 5, 1, Integer.MAX_VALUE);
+            DEEPSLATE_AMOUNT = builder
+                    .comment("Amount of veines of our ore in the overworld dimension but for deepslate")
+                    .defineInRange("deepslateAmount", 3, 1, Integer.MAX_VALUE);
+            NETHER_VEINSIZE = builder
+                    .comment("Veinsize of our ore in the nether dimension")
+                    .defineInRange("netherVeinsize", 5, 1, Integer.MAX_VALUE);
+            NETHER_AMOUNT = builder
+                    .comment("Amount of veines of our ore in the nether dimension")
+                    .defineInRange("netherAmount", 3, 1, Integer.MAX_VALUE);
+            END_VEINSIZE = builder
+                    .comment("Veinsize of our ore in the end dimension")
+                    .defineInRange("endVeinsize", 10, 1, Integer.MAX_VALUE);
+            END_AMOUNT = builder
+                    .comment("Amount of veines of our ore in the end dimension")
+                    .defineInRange("endAmount", 6, 1, Integer.MAX_VALUE);
+
+            builder.pop();
 
             //#region BookSettings
             builder.push("Soul Bound Enchantment Values");

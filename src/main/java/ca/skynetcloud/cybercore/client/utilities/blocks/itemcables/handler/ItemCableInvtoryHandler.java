@@ -1,6 +1,6 @@
 package ca.skynetcloud.cybercore.client.utilities.blocks.itemcables.handler;
 
-import ca.skynetcloud.cybercore.common.blocks.techentity.ItemCableBlockEntity;
+import ca.skynetcloud.cybercore.client.world.level.block.techentity.ItemCableBlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;

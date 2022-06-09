@@ -10,12 +10,13 @@ import net.minecraftforge.energy.IEnergyStorage;
 
 public class EnergyProvider implements ICapabilitySerializable<CompoundTag> {
 
-    protected PyroEnergySorage energystorage;
+    protected PyroEnergyStorage energystorage;
+
     private LazyOptional<IEnergyStorage> energyCap;
 
     public EnergyProvider(int storage)
     {
-        energystorage = new PyroEnergySorage(storage);
+        energystorage = new PyroEnergyStorage(storage);
         energyCap = LazyOptional.of(() -> energystorage);
     }
 

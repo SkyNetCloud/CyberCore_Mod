@@ -1,7 +1,7 @@
 package ca.skynetcloud.cybercore.client.events;
 
 import ca.skynetcloud.cybercore.CyberCore;
-import ca.skynetcloud.cybercore.client.init.BlockInit;
+import ca.skynetcloud.cybercore.client.init.MainInit;
 import ca.skynetcloud.cybercore.client.utilities.blocks.BlockRenderLayer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -22,7 +22,7 @@ public class ClientEvent {
 
     @SubscribeEvent
     public static void onFMLClientSetup(FMLClientSetupEvent event) throws IllegalAccessException {
-        List<Field> list = Arrays.asList(BlockInit.class.getDeclaredFields()).stream().filter(f -> f.isAnnotationPresent(BlockRenderLayer.class)).collect(Collectors.toList());
+        List<Field> list = Arrays.asList(MainInit.class.getDeclaredFields()).stream().filter(f -> f.isAnnotationPresent(BlockRenderLayer.class)).collect(Collectors.toList());
         for(Field field: list){
             BlockRenderLayer annotation = field.getAnnotation(BlockRenderLayer.class);
             RegistryObject<Block> registryObject = (RegistryObject<Block>) field.get(RegistryObject.class);

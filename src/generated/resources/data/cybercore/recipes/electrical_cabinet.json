@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cybercore",
+  "key": {
+    "b": {
+      "item": "minecraft:iron_block"
+    },
+    "f": {
+      "item": "cybercore:shock_flower"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "ibi",
+    "bfb",
+    "ibi"
+  ],
+  "result": {
+    "item": "cybercore:electrical_cabinet"
+  }
+}

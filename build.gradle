@@ -54,13 +54,11 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-
             property 'forge.logging.markers', 'REGISTRIES'
-
             property 'forge.logging.console.level', 'debug'
-
+            property 'forge.enabledGameTestNamespaces', 'cybercoremod'
             mods {
-                CyberCore {
+                cybercore {
                     source sourceSets.main
                 }
             }
@@ -68,15 +66,23 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-
-     
             property 'forge.logging.markers', 'REGISTRIES'
-
-
             property 'forge.logging.console.level', 'debug'
-
+            property 'forge.enabledGameTestNamespaces', 'cybercore'
             mods {
-                CyberCore {
+                cybercore {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        gameTestServer {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'cybercore'
+            mods {
+                cybercore {
                     source sourceSets.main
                 }
             }
@@ -84,15 +90,11 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-
-            args '--mod', 'planttech2', '--all', '--output', file('src/generated/resources/')
-            args '--existing', sourceSets.main.resources.srcDirs[0]
-
+            args '--mod', 'cybercore', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
             mods {
-                CyberCore {
+                cybercore {
                     source sourceSets.main
                 }
             }
@@ -100,11 +102,16 @@ minecraft {
     }
 }
 
+sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.19-41.0.1'
+    minecraft 'net.minecraftforge:forge:1.19-41.0.15'
 
+}
+
+tasks.named('createMcpToSrg').configure {
+    format = 'TSRG'
 }
 
 curseforge {

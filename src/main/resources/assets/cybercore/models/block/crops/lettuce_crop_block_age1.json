@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "cybercore:blocks/lettuce_crop_block_stage1"
+    }
+}

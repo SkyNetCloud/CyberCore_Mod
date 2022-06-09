@@ -1,0 +1,20 @@
+{
+  "values": [
+    "cybercore:black_electric_fence",
+    "cybercore:red_electric_fence",
+    "cybercore:blue_electric_fence",
+    "cybercore:yellow_electric_fence",
+    "cybercore:green_electric_fence",
+    "cybercore:gray_electric_fence",
+    "cybercore:light_blue_electric_fence",
+    "cybercore:light_gray_electric_fence",
+    "cybercore:lime_electric_fence",
+    "cybercore:magenta_electric_fence",
+    "cybercore:orange_electric_fence",
+    "cybercore:pink_electric_fence",
+    "cybercore:purple_electric_fence",
+    "cybercore:cyan_electric_fence",
+    "cybercore:white_electric_fence",
+    "cybercore:brown_electric_fence"
+  ]
+}

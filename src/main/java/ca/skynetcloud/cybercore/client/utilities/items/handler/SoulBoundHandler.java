@@ -1,18 +1,8 @@
 package ca.skynetcloud.cybercore.client.utilities.items.handler;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Nullable;
-
-
-import ca.skynetcloud.cybercore.client.init.ItemInit;
+import ca.skynetcloud.cybercore.client.init.MainInit;
 import ca.skynetcloud.cybercore.client.utilities.CyberConfig;
 import com.google.common.collect.Lists;
-
-
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
@@ -21,6 +11,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SoulBoundHandler {
     private static final HashMap<Player, SoulBoundHandler> handlerMap = new HashMap<>();
@@ -60,8 +56,8 @@ public class SoulBoundHandler {
         List<ItemEntity> retainedDrops = Lists.newArrayList();
         for (ItemEntity eventDrop : eventDrops) {
             ItemStack item = eventDrop.getItem();
-            if (item.isEnchanted() && EnchantmentHelper.getEnchantments(item).containsKey(ItemInit.SOUL_BOUND.get())) {
-                int level = EnchantmentHelper.getItemEnchantmentLevel(ItemInit.SOUL_BOUND.get(), item);
+            if (item.isEnchanted() && EnchantmentHelper.getEnchantments(item).containsKey(MainInit.SOUL_BOUND.get())) {
+                int level = EnchantmentHelper.getItemEnchantmentLevel(MainInit.SOUL_BOUND.get(), item);
                 double chance = 5 + (10 * (level - 1));
                 double rng = Math.random();
                 if (rng < chance) {
@@ -119,7 +115,7 @@ public class SoulBoundHandler {
     }
 
     private ItemStack itemEditor(ItemStack item) {
-        int level = EnchantmentHelper.getItemEnchantmentLevel(ItemInit.SOUL_BOUND.get(), item);
+        int level = EnchantmentHelper.getItemEnchantmentLevel(MainInit.SOUL_BOUND.get(), item);
         if (CyberConfig.Config.durabilityDrop.get()) {
             double minimum = CyberConfig.Config.minimumDurabilityDrop.get()
                     - (CyberConfig.Config.additiveDurabilityDrop.get() * (level - 1));
@@ -156,7 +152,7 @@ public class SoulBoundHandler {
             return item;
         if (level > 1) {
             Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(item);
-            enchantments.put(ItemInit.SOUL_BOUND.get(), level - 1);
+            enchantments.put(MainInit.SOUL_BOUND.get(), level - 1);
             EnchantmentHelper.setEnchantments(enchantments, item);
         } else {
             Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(item);

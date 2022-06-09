@@ -1,7 +1,7 @@
 package ca.skynetcloud.cybercore.client.utilities.blocks.itemcables.routing;
 
 import ca.skynetcloud.cybercore.client.utilities.blocks.itemcables.wrapper.WorldHelperWrapper;
-import ca.skynetcloud.cybercore.common.blocks.techentity.ItemCableBlockEntity;
+import ca.skynetcloud.cybercore.client.world.level.block.techentity.ItemCableBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
